@@ -509,4 +509,32 @@ QBShared.Jobs = {
             },
         },
     },
+    ['bean'] = {
+		label = 'Bean Machine',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            ['0'] = {
+                name = 'Novice',
+                payment = 50
+            },
+			['1'] = {
+                name = 'Employee',
+                payment = 75
+            },
+			['2'] = {
+                name = 'Experienced',
+                payment = 100
+            },
+			['3'] = {
+                name = 'Advanced',
+                payment = 125
+            },
+			['4'] = {
+                name = 'Boss',
+				isboss = true,
+                payment = 150
+            },
+        },
+	},
 }
