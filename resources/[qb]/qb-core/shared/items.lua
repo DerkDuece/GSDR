@@ -868,25 +868,6 @@ QBShared.Items = {
 	['gt-beef_combo_meal'] 		 = {['name'] = 'gt-beef_combo_meal', 		    ['label'] = 'Beef Combo Meal', 	   	    ['weight'] = 100, 		['type'] = 'item', 		['image'] = 'gt-combomeal.png', 	    ['unique'] = false, 	['useable'] = true, 	['shouldClose'] = true,    ['combinable'] = nil,   ['description'] = 'Gunnar made a whole combo meal, better hope you get something special...'},
 	['gt-chicken_combo_meal'] 	 = {['name'] = 'gt-chicken_combo_meal',   	['label'] = 'Chicken Combo Meal', 	    ['weight'] = 100, 		['type'] = 'item', 		['image'] = 'gt-combomeal.png',		    ['unique'] = false, 	['useable'] = true, 	['shouldClose'] = true,    ['combinable'] = nil,   ['description'] = 'Gunnar made a whole combo meal, better hope you get something special...'},
 
-		--qb-bbq
-	['b-burger'] 			        = {['name'] = 'b-burger', 		        	   	['label'] = 'Beef Burger', 		    ['weight'] = 500, 		['type'] = 'item', 		['image'] = 'b-burger.png', 	        	['unique'] = false, 	['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A Juicy Beef Burger'},
-	['b-uc-burger'] 			    = {['name'] = 'b-uc-burger', 		           	['label'] = 'Raw Burger', 	        ['weight'] = 500, 		['type'] = 'item', 		['image'] = 'b-uc-burger.png', 	        	['unique'] = false, 	['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A Raw Patty of Beef'},
-	['b-chicken'] 			        = {['name'] = 'b-chicken', 		        	   	['label'] = 'Chicken Burger', 	    ['weight'] = 500, 		['type'] = 'item', 		['image'] = 'b-chicken.png', 	        	['unique'] = false, 	['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A Tender Chicken Burger'},
-	['b-uc-chicken'] 			    = {['name'] = 'b-uc-chicken', 		           	['label'] = 'Raw Chicken Burger',   ['weight'] = 500, 		['type'] = 'item', 		['image'] = 'b-uc-chicken.png', 	       	['unique'] = false, 	['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A Raw Chicken Patty'},
-	['b-hotdog'] 			        = {['name'] = 'b-hotdog', 		        	   	['label'] = 'HotDog', 		        ['weight'] = 500, 		['type'] = 'item', 		['image'] = 'b-hotdog.png', 	        	['unique'] = false, 	['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'Topped HotDog'},
-	['b-uc-hotdog'] 			    = {['name'] = 'b-uc-hotdog', 		           	['label'] = 'Raw HotDog', 	        ['weight'] = 500, 		['type'] = 'item', 		['image'] = 'b-uc-hotdog.png', 	        	['unique'] = false, 	['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A Raw HotDog'},
-	['b-ribs'] 			            = {['name'] = 'b-ribs', 		        	   	['label'] = 'Spare Ribs', 		    ['weight'] = 500, 		['type'] = 'item', 		['image'] = 'b-ribs.png', 	            	['unique'] = false, 	['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A Tangy Rack of Ribs'},
-	['b-uc-ribs'] 	     		    = {['name'] = 'b-uc-ribs', 		             	['label'] = 'Raw Ribs', 	        ['weight'] = 500, 		['type'] = 'item', 		['image'] = 'b-uc-ribs.png', 	        	['unique'] = false, 	['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A Raw Rack of Ribs'},
-	['b-brisket'] 			        = {['name'] = 'b-brisket', 		        	   	['label'] = 'Brisket Joint', 	    ['weight'] = 500, 		['type'] = 'item', 		['image'] = 'b-brisket.png', 	        	['unique'] = false, 	['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'Nicely Cooked Brisket'},
-	['b-uc-brisket'] 			    = {['name'] = 'b-uc-brisket', 		           	['label'] = 'Raw Brisket', 	        ['weight'] = 500, 		['type'] = 'item', 		['image'] = 'b-uc-brisket.png', 	       	['unique'] = false, 	['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'Raw Brisket Joint'},
-	['b-jacket'] 			        = {['name'] = 'b-jacket', 		        	   	['label'] = 'Loaded Jacket', 	    ['weight'] = 500, 		['type'] = 'item', 		['image'] = 'b-jacket.png', 	        	['unique'] = false, 	['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A Fully Loaded Jacket Potato'},
-	['b-uc-jacket'] 			    = {['name'] = 'b-uc-jacket', 		           	['label'] = 'Raw Jacket', 	        ['weight'] = 500, 		['type'] = 'item', 		['image'] = 'b-uc-jacket.png', 	        	['unique'] = false, 	['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A Raw Jacket Potato'},
-	['bbq1'] 			 	    	 = {['name'] = 'bbq1', 					    	['label'] = 'Forge Djorman', 		['weight'] = 500, 		['type'] = 'item', 		['image'] = 'bbq1.png', 		    		['unique'] = true, 		['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'For when youre wanting that perfect char-grilled taste'},
-	['bbq2'] 			 			 = {['name'] = 'bbq2', 					    	['label'] = 'Leetle Grill', 		['weight'] = 500, 		['type'] = 'item', 		['image'] = 'bbq2.png', 		    		['unique'] = true, 		['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'Who likes tiny portable grills? We do'},
-	['bbq3'] 			 			 = {['name'] = 'bbq3', 					    	['label'] = 'Stand Grill', 			['weight'] = 500, 		['type'] = 'item', 		['image'] = 'bbq3.png', 		    		['unique'] = true, 		['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'Its not the best, but definitely not the worst either'},
-	['bbq4'] 			 			 = {['name'] = 'bbq4', 				    		['label'] = 'Craftguy Grill', 		['weight'] = 500, 		['type'] = 'item', 		['image'] = 'bbq4.png', 		    		['unique'] = true, 		['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'This may create hockey pucks of char'},
-	['bbq5'] 			 			 = {['name'] = 'bbq5', 				    		['label'] = 'Brick-Lain Grill', 	['weight'] = 500, 		['type'] = 'item', 		['image'] = 'bbq5.png', 		    		['unique'] = true, 		['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'So youre old fashioned, huh?'},
-
 	['gym_membership'] = {['name'] = 'gym_membership', ['label'] = 'Gym Membership', ['weight'] = 0, ['type'] = 'item',  ['image'] = 'gym_membership.png',  ['unique'] = true, ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Gym Membership for Pump and Run'},
 
 	["toolbox"]   	= {["name"] = "toolbox", 		["label"] = "Toolbox", 	["weight"] = 150, 		["type"] = "item", 		["image"] = "toolbox.png", 			["unique"] = false,   	["useable"] = true,    ["shouldClose"] = false,    ["combinable"] = nil,   ["description"] = ""},
@@ -1411,6 +1392,50 @@ QBShared.Items = {
 		["burger-coupon25"] 		 	 = {["name"] = "burger-coupon25", 			["label"] = "Burgershot Coupon 25% Off", 				["weight"] = 15, 		["type"] = "item", 		["image"] = "bs_coupon-25.png", 			["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,    ["combinable"] = nil,   ["description"] = "25% Off Coupon "},
 		["burger-coupon15"] 		 	 = {["name"] = "burger-coupon15", 			["label"] = "Burgershot Coupon 15% Off", 				["weight"] = 15, 		["type"] = "item", 		["image"] = "bs_coupon-fifteen.png", 			["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,    ["combinable"] = nil,   ["description"] = "15% Off Coupon "},
 		["burger-coupon10"] 		 	 = {["name"] = "burger-coupon10", 			["label"] = "Burgershot Coupon 10% Off", 				["weight"] = 15, 		["type"] = "item", 		["image"] = "bs_coupon-ten.png", 			["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,    ["combinable"] = nil,   ["description"] = "10% Off Coupon "},
+	
+		['bbq1'] 			    	= {['name'] = 'bbq1', 		        		['label'] = 'BBQ Pit', 			['weight'] = 200, 		['type'] = 'item', 		['image'] = 'bbq1.png', 			['unique'] = false,    	['useable'] = true, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = 'A Sturdy BBQ Pit.'},
+		['bbq2'] 			    	= {['name'] = 'bbq2', 		        		['label'] = 'BBQ Pit', 			['weight'] = 200, 		['type'] = 'item', 		['image'] = 'bbq2.png', 			['unique'] = false,    	['useable'] = true, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = 'A Sturdy BBQ Pit.'},
+		['bbq3'] 			    	= {['name'] = 'bbq3', 		        		['label'] = 'BBQ Pit', 			['weight'] = 200, 		['type'] = 'item', 		['image'] = 'bbq3.png', 			['unique'] = false,    	['useable'] = true, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = 'A Sturdy BBQ Pit.'},
+		['bbq4'] 			    	= {['name'] = 'bbq4', 		        		['label'] = 'BBQ Pit', 			['weight'] = 200, 		['type'] = 'item', 		['image'] = 'bbq4.png', 			['unique'] = false,    	['useable'] = true, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = 'A Sturdy BBQ Pit.'},
+		['bbq5'] 			    	= {['name'] = 'bbq5', 		        		['label'] = 'BBQ Pit', 			['weight'] = 200, 		['type'] = 'item', 		['image'] = 'bbq5.png', 			['unique'] = false,    	['useable'] = true, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = 'A Sturdy BBQ Pit.'},
+	
+	-- Raw Ingredients
+	
+		['rawpork'] 						= {['name'] = 'rawpork', 			    		['label'] = 'Raw Pork', 				['weight'] = 100, 		['type'] = 'item', 		['image'] = 'rawpork.png', 					['unique'] = false, 	['useable'] = false, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = 'Yum! Cereal'},
+	
+		['rawbeef'] 				= {['name'] = 'rawbeef', 			    	['label'] = 'Raw Steak', 			['weight'] = 100, 		['type'] = 'item', 		['image'] = 'rawbeef.png', 				['unique'] = false, 	['useable'] = false, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = 'This butter sure do smell funny'},
+	
+		['rawbacon']						= {['name'] = 'rawbacon', 			    		['label'] = 'Raw Bacon', 				['weight'] = 100, 		['type'] = 'item', 		['image'] = 'rawbacon.png', 					['unique'] = false, 	['useable'] = false, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = ''},
+	
+		['rawsausage']						= {['name'] = 'rawsausage', 			    			['label'] = 'Raw Sausage', 				['weight'] = 100, 		['type'] = 'item', 		['image'] = 'rawsausage.png', 					['unique'] = false, 	['useable'] = false, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = ''},
+	
+		['groundbeef']						= {['name'] = 'groundbeef', 			    			['label'] = 'Raw Hamburger Meat', 				['weight'] = 100, 		['type'] = 'item', 		['image'] = 'groundbeef.png', 					['unique'] = false, 	['useable'] = false, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = ''},
+	
+		['lettuce']						= {['name'] = 'lettuce', 			    			['label'] = 'Lettuce', 				['weight'] = 100, 		['type'] = 'item', 		['image'] = 'lettuce.png', 					['unique'] = false, 	['useable'] = false, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = ''},
+	
+		['cheddar']						= {['name'] = 'cheddar', 			    			['label'] = 'Cheddar', 				['weight'] = 100, 		['type'] = 'item', 		['image'] = 'cheddar.png', 					['unique'] = false, 	['useable'] = false, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = ''},
+	
+		['tomato']						= {['name'] = 'tomato', 			    			['label'] = 'Tomato', 				['weight'] = 100, 		['type'] = 'item', 		['image'] = 'tomato.png', 					['unique'] = false, 	['useable'] = false, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = ''},
+	
+		['onion']						= {['name'] = 'onion', 			    			['label'] = 'Onion', 				['weight'] = 100, 		['type'] = 'item', 		['image'] = 'onion.png', 					['unique'] = false, 	['useable'] = false, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = ''},
+	
+		['burgerbun']						= {['name'] = 'burgerbun', 			    			['label'] = 'Burger Bun', 				['weight'] = 100, 		['type'] = 'item', 		['image'] = 'burgerbun.png', 					['unique'] = false, 	['useable'] = false, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = ''},
+		
+		['hotdogbun']						= {['name'] = 'hotdogbun', 			    			['label'] = 'Hot Dog Bun', 				['weight'] = 100, 		['type'] = 'item', 		['image'] = 'hotdogbun.png', 					['unique'] = false, 	['useable'] = false, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = ''},
+	
+	-- cooked ingredients
+	
+		['burgerpatty']							= {['name'] = 'burgerpatty', 			    			['label'] = 'Hamburger Patty', 					['weight'] = 100, 		['type'] = 'item', 		['image'] = 'burgerpatty.png', 					['unique'] = false, 	['useable'] = false, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = ''},
+	
+		['hotdog']						= {['name'] = 'hotdog', 			    			['label'] = 'Hot Dog', 				['weight'] = 100, 		['type'] = 'item', 		['image'] = 'hotdog.png', 					['unique'] = false, 	['useable'] = false, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = ''},
+	
+		['cookedsausage']						= {['name'] = 'cookedsausage', 			    			['label'] = 'Cooked Sausage', 				['weight'] = 100, 		['type'] = 'item', 		['image'] = 'cookedsausage.png', 					['unique'] = false, 	['useable'] = false, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = ''},
+	
+		['steak']						= {['name'] = 'steak', 			    			['label'] = 'Steak', 				['weight'] = 100, 		['type'] = 'item', 		['image'] = 'steak.png', 					['unique'] = false, 	['useable'] = false, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = ''},
+	
+		['porkchop']						= {['name'] = 'porkchop', 			    			['label'] = 'Pork Chop', 				['weight'] = 100, 		['type'] = 'item', 		['image'] = 'porkchop.png', 					['unique'] = false, ['useable'] = false, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = ''},
+	
+		['cheeseburger']						= {['name'] = 'cheeseburger', 			    			['label'] = 'Cheese Burger', 				['weight'] = 100, 		['type'] = 'item', 		['image'] = 'cheeseburger.png', 					['unique'] = false, 	['useable'] = false, 	['shouldClose'] = true,	   		['combinable'] = nil,   ['description'] = ''},
 	
 
 }
