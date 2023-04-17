@@ -20,7 +20,7 @@ local function CreateDutyBlips(playerId, playerLabel, playerJob, playerLocation)
         ShowHeadingIndicatorOnBlip(blip, true)
         SetBlipRotation(blip, math.ceil(playerLocation.w))
         SetBlipScale(blip, 1.0)
-        if playerJob == "police" then
+        if playerJob == "leo" then
             SetBlipColour(blip, 38)
         else
             SetBlipColour(blip, 5)
@@ -69,7 +69,7 @@ AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
         TriggerEvent('qb-clothing:client:loadOutfit', trackerClothingData)
     end
 
-    if PlayerJob and PlayerJob.name ~= "police" then
+    if PlayerJob and PlayerJob.type ~= "leo" then
         if DutyBlips then
             for _, v in pairs(DutyBlips) do
                 RemoveBlip(v)
@@ -130,7 +130,7 @@ RegisterNetEvent('police:client:sendBillingMail', function(amount)
 end)
 
 RegisterNetEvent('police:client:UpdateBlips', function(players)
-    if PlayerJob and (PlayerJob.name == 'police' or PlayerJob.name == 'ambulance') and
+    if PlayerJob and (PlayerJob.type == 'leo' or PlayerJob.name == 'ambulance') and
         PlayerJob.onduty then
         if DutyBlips then
             for _, v in pairs(DutyBlips) do
@@ -205,10 +205,10 @@ end)
 CreateThread(function()
     for _, station in pairs(Config.Locations["stations"]) do
         local blip = AddBlipForCoord(station.coords.x, station.coords.y, station.coords.z)
-        SetBlipSprite(blip, 60)
+        SetBlipSprite(blip, station.Sprite)
         SetBlipAsShortRange(blip, true)
         SetBlipScale(blip, 0.8)
-        SetBlipColour(blip, 29)
+        SetBlipColour(blip, station.Colour)
         BeginTextCommandSetBlipName("STRING")
         AddTextComponentString(station.label)
         EndTextCommandSetBlipName(blip)

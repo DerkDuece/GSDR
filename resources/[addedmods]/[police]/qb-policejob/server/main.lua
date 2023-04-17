@@ -653,12 +653,14 @@ RegisterNetEvent('police:server:policeAlert', function(text)
 end)
 
 RegisterNetEvent('police:server:TakeOutImpound', function(plate, garage)
+   
     local src = source
+    --[[ TODO
     local playerPed = GetPlayerPed(src)
-    local playerCoords = GetEntityCoords(playerPed)
-    local targetCoords = Config.Locations["impound"][garage]
+    local playerCoords = GetEntityCoords(GetPlayerPed(src))
+    local targetCoords = Config.Locations["impound"][garage]["vehped"]
     if #(playerCoords - targetCoords) > 10.0 then return DropPlayer(src, "Attempted exploit abuse") end
-
+    ]]
     MySQL.update('UPDATE player_vehicles SET state = ? WHERE plate = ?', {0, plate})
     TriggerClientEvent('QBCore:Notify', src, Lang:t("success.impound_vehicle_removed"), 'success')
 end)

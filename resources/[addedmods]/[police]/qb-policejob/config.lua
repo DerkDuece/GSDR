@@ -10,59 +10,105 @@ Config.Objects = {
 
 Config.MaxSpikes = 5
 
+Config.FuelScript = "LegacyFuel"
+
+Config.EnableTrahs = false
+
 Config.HandCuffItem = 'handcuffs'
 
 Config.LicenseRank = 2
 
 Config.UseTarget = GetConvar('UseTarget', 'false') == 'true'
+Config.Debug = false -- Enables DebugPoly
+
+    --Peds
+Config.EnablePeds = true -- true: spawns ped at locations/ false: dosen't spawn peds
+    --DutyPed
+Config.DutyPedScenario = "WORLD_HUMAN_CLIPBOARD_FACILITY" --https://github.com/DioneB/gtav-scenarios
+Config.DutyPed = 's_m_y_cop_01' --https://docs.fivem.net/docs/game-references/ped-models/
+    --Armory
+Config.ArmoryPedScenario = "WORLD_HUMAN_STAND_MOBILE_UPRIGHT_CLUBHOUSE"
+Config.ArmoryPed = "s_m_y_swat_01"
+    --Garage
+Config.GaragePedScenario = "WORLD_HUMAN_AA_SMOKE"
+Config.GaragePed = 'mp_m_waremech_01'
+    --Helicopter
+Config.HeliPedScenario = "WORLD_HUMAN_CLIPBOARD"
+Config.HeliPed = 's_m_y_pilot_01'
+    --Impound
+Config.ImpoundPed = 'ig_tomcasino'
+Config.ImpoundPedScenario = "WORLD_HUMAN_CLIPBOARD"
+    --Evidence
+Config.EvidencePed = 's_m_y_ranger_01'
+Config.EvidencePedScenario = "PROP_HUMAN_SEAT_COMPUTER" -- If U change this u nedd to change -1.5 to 1.0 at job.lua/
+
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+----------------------------------------!ALL LOCATIONS USES GABZ MRPD!-------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 Config.Locations = {
     ["duty"] = {
-        [1] = vector3(440.085, -974.924, 30.689),
-        [2] = vector3(-449.811, 6012.909, 31.815),
+        [1] = vector4(442.6802, -981.9631, 30.6895, 88.7578), --MRPD
+        [2] = vector4(1852.9075, 3688.9360, 34.2670, 205.9638), --BCSO Sandy
     },
     ["vehicle"] = {
-        [1] = vector4(448.159, -1017.41, 28.562, 90.654),
-        [2] = vector4(471.13, -1024.05, 28.17, 274.5),
-        [3] = vector4(-455.39, 6002.02, 31.34, 87.93),
+        [1] = { --MRPD
+            vehped = vector4(441.47, -974.68, 25.7, 175.08),
+            vehiclespawn = vector4(445.2, -986.15, 25.7, 265.32)
+        },
+        [2] = { -- Sandy
+            vehped = vector4(1867.3826, 3690.7957, 33.7625, 292.8421),
+            vehiclespawn = vector4(1870.12, 3698.43, 33.47, 209.73)
+        },
     },
-    ["stash"] = {
-        [1] = vector3(453.075, -980.124, 30.889),
+    ["stash"] = { --Personal Stash
+        [1] = vector3(461.9494, -999.65, 29.6709), --MRPD
     },
     ["impound"] = {
-        [1] = vector3(436.68, -1007.42, 27.32),
-        [2] = vector3(-436.14, 5982.63, 31.34),
+        [1] = { --MRPD
+            vehped = vector4(426.5917, -986.6365, 25.6998, 267.6819),
+            vehiclespawn = vector4(425.3405, -989.1127, 25.6998, 267.2135)
+        },
+        [2] = { -- Sandy
+            vehped = vector4(1854.4951, 3700.7144, 34.2653, 25.5320),
+            vehiclespawn = vector4(1851.6676, 3707.9885, 33.2954, 30.2172)
+        },
     },
     ["helicopter"] = {
-        [1] = vector4(449.168, -981.325, 43.691, 87.234),
-        [2] = vector4(-475.43, 5988.353, 31.716, 31.34),
+        [1] = { --MRPD [helipad ONE]
+            vehped = vector4(463.9107, -982.2362, 43.6917, 91.1086),
+            vehiclespawn = vector4(449.3762, -981.0111, 43.6914, 91.8346)
+        },
+        [2] = { --MRPD [helipad 2]
+            vehped = vector4(472.9283, -987.9117, 41.0071, 274.7533),
+            vehiclespawn = vector4(481.4584, -982.4268, 41.0071, 86.7650)
+        },
     },
     ["armory"] = {
-        [1] = vector3(462.23, -981.12, 30.68),
+        [1] = vector4(480.3087, -996.6514, 30.6896, 89.4523), --MRPD
     },
-    ["trash"] = {
+    ["trash"] = { --Enable or Disablit at line:17
         [1] = vector3(439.0907, -976.746, 30.776),
     },
     ["fingerprint"] = {
-        [1] = vector3(460.9667, -989.180, 24.92),
+        [1] = vector3(474.71, -1013.88, 26.07) 
     },
     ["evidence"] = {
-        [1] = vector3(442.1722, -996.067, 30.689),
-        [2] = vector3(451.7031, -973.232, 30.689),
-        [3] = vector3(455.1456, -985.462, 30.689),
+        [1] = vector4(472.5, -990.61, 25.75, 265.05),
     },
     ["stations"] = {
-        [1] = {label = "Police Station", coords = vector4(428.23, -984.28, 29.76, 3.5)},
-        [2] = {label = "Prison", coords = vector4(1845.903, 2585.873, 45.672, 272.249)},
-        [3] = {label = "Police Station Paleto", coords = vector4(-451.55, 6014.25, 31.716, 223.81)},
+        [1] = {label = "L.S.P.D - Mission Row", coords = vector4(428.23, -984.28, 29.76, 3.5), Sprite = 60, Colour = 29},
+        [2] = {label = "BolingBroke", coords = vector4(1845.903, 2585.873, 45.672, 272.249), Sprite = 252, Colour = 54},
+        [3] = {label = "B.C.S.O - Sandy", coords = vector4(1853.74, 3685.86, 34.27, 33.64), Sprite = 60, Colour = 28},
     },
 }
 
 Config.ArmoryWhitelist = {}
 
-Config.PoliceHelicopter = "POLMAV"
 
 Config.SecurityCameras = {
-    hideradar = false,
+    hideradar = true,
     cameras = {
         [1] = {label = "Pacific Bank CAM#1", coords = vector3(257.45, 210.07, 109.08), r = {x = -25.0, y = 0.0, z = 28.05}, canRotate = false, isOnline = true},
         [2] = {label = "Pacific Bank CAM#2", coords = vector3(232.86, 221.46, 107.83), r = {x = -25.0, y = 0.0, z = -140.91}, canRotate = false, isOnline = true},
@@ -101,63 +147,21 @@ Config.SecurityCameras = {
     },
 }
 
-Config.AuthorizedVehicles = {
-	-- Grade 0
-	[0] = {
-		["police"] = "Police Car 1",
-		["police2"] = "Police Car 2",
-		["police3"] = "Police Car 3",
-		["police4"] = "Police Car 4",
-		["policeb"] = "Police Car 5",
-		["policet"] = "Police Car 6",
-		["sheriff"] = "Sheriff Car 1",
-		["sheriff2"] = "Sheriff Car 2",
-	},
-	-- Grade 1
-	[1] = {
-		["police"] = "Police Car 1",
-		["police2"] = "Police Car 2",
-		["police3"] = "Police Car 3",
-		["police4"] = "Police Car 4",
-		["policeb"] = "Police Car 5",
-		["policet"] = "Police Car 6",
-		["sheriff"] = "Sheriff Car 1",
-		["sheriff2"] = "Sheriff Car 2",
+Config.Helicopters = {
+    ['POLMAV'] = "POLMAV",
+    ['SRU - Buzzard'] = "sru2"
+}
 
+Config.VehicleTable = {
+	["L.S.P.D"] = {
+        ['L.S.P.D - Crown Vic'] = "police",
+        ['2t40 - Q'] = "2t40"
 	},
-	-- Grade 2
-	[2] = {
-		["police"] = "Police Car 1",
-		["police2"] = "Police Car 2",
-		["police3"] = "Police Car 3",
-		["police4"] = "Police Car 4",
-		["policeb"] = "Police Car 5",
-		["policet"] = "Police Car 6",
-		["sheriff"] = "Sheriff Car 1",
-		["sheriff2"] = "Sheriff Car 2",
+
+	["B.C.S.O"] = {
+	    ['B.C.S.O - Crown Vic'] = "sheriff"
 	},
-	-- Grade 3
-	[3] = {
-		["police"] = "Police Car 1",
-		["police2"] = "Police Car 2",
-		["police3"] = "Police Car 3",
-		["police4"] = "Police Car 4",
-		["policeb"] = "Police Car 5",
-		["policet"] = "Police Car 6",
-		["sheriff"] = "Sheriff Car 1",
-		["sheriff2"] = "Sheriff Car 2",
-	},
-	-- Grade 4
-	[4] = {
-		["police"] = "Police Car 1",
-		["police2"] = "Police Car 2",
-		["police3"] = "Police Car 3",
-		["police4"] = "Police Car 4",
-		["policeb"] = "Police Car 5",
-		["policet"] = "Police Car 6",
-		["sheriff"] = "Sheriff Car 1",
-		["sheriff2"] = "Sheriff Car 2",
-	}
+
 }
 
 Config.WhitelistedVehicles = {}
@@ -393,6 +397,7 @@ Config.Items = {
     }
 }
 
+--TODO
 Config.VehicleSettings = {
     ["car1"] = { --- Model name
         ["extras"] = {
