@@ -1,7 +1,7 @@
 Config = {}
 Config.Locale = 'en'
 Config.Mysql = 'oxmysql' -- "ghmattisql", "mysql-async", "oxmysql"
-Config.framework = 'ESX' -- ESX or QBCORE
+Config.framework = 'QBCORE' -- ESX or QBCORE
 Config.weight_type = false
 Config.weight = 1.5
 

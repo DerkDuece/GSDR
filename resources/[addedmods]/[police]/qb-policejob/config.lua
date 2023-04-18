@@ -10,7 +10,7 @@ Config.Objects = {
 
 Config.MaxSpikes = 5
 
-Config.FuelScript = "LegacyFuel"
+Config.FuelScript = "cdn-fuel"
 
 Config.EnableTrahs = false
 

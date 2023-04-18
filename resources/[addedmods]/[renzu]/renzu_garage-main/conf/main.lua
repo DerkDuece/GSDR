@@ -1,7 +1,7 @@
 Config = {}
 Config.Locale = "en" -- en,es,de or any language support
 --FRAMEWORK
-Config.framework = 'ESX' -- ESX, QBCORE
+Config.framework = 'QBCORE' -- ESX, QBCORE
 Config.target = true -- use ox_target,qb-target with peds when interacting to Garage.
 --GENERAL SETTING
 Config.Mysql = 'oxmysql' -- "ghmattisql", "mysql-async", "oxmysql"
