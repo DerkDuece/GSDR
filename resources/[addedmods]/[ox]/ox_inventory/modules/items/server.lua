@@ -2,44 +2,12 @@ if not lib then return end
 
 ---@overload fun(name: string): OxServerItem
 local Items = {}
-local ItemList = shared.items
----@cast ItemList { [string]: OxServerItem }
-
+local ItemList = require 'modules.items.shared' --[[@as { [string]: OxServerItem }]]
+local Utils = require 'modules.utils.server'
+ 
 TriggerEvent('ox_inventory:itemList', ItemList)
 
--- Slot count and maximum weight for containers
--- Whitelist and blacklist: ['item_name'] = true
-Items.containers = {
-	['paperbag'] = {
-		size = {5, 1000},
-		blacklist = {
-			['testburger'] = true -- No burgers!
-		}
-	},
-	['pizzabox'] = {
-		size = {1, 1000},
-		whitelist = {
-			['pizza'] = true -- Pizza box for pizza only
-		}
-	}
-}
-
-local CreateItemContainers = function(data)
-	Items.containers[data.name] = {
-		size = data.size,
-		blacklist = data.blacklist,
-		whitelist = data.whitelist
-	}
-end
-exports('CreateItemContainers',CreateItemContainers)
---@ usage
--- exports.ox_inventory:CreateItemContainers({
--- 	name = 'bag',
--- 	size = {20,10000},
--- 	blacklist = { 
--- 		['bag'] = true,
--- 	}
--- })
+Items.containers = require 'modules.items.containers'
 
 -- Possible metadata when creating garbage
 local trash = {
@@ -82,7 +50,7 @@ exports('ItemList', function(item) return getItem(nil, item) end)
 local Inventory
 
 CreateThread(function()
-	Inventory = server.inventory
+	Inventory = require 'modules.inventory.server'
 
 	if shared.framework == 'esx' then
 		local success, items = pcall(MySQL.query.await, 'SELECT * FROM items')
@@ -108,25 +76,28 @@ CreateThread(function()
 				local file = {string.strtrim(LoadResourceFile(shared.resource, 'data/items.lua'))}
 				file[1] = file[1]:gsub('}$', '')
 
+				---@todo separate into functions for reusability, properly handle nil values
 				local itemFormat = [[
 
-	['%s'] = {
-		label = '%s',
+	[%q] = {
+		label = %q,
 		weight = %s,
 		stack = %s,
 		close = %s,
-		description = %s
+		description = %q
 	},
 ]]
 				local fileSize = #file
 
 				for _, item in pairs(dump) do
-					local formatName = item.name:gsub("'", "\\'"):lower()
-					if not ItemList[formatName] then
+					if not ItemList[item.name] then
 						fileSize += 1
 
-						file[fileSize] = (itemFormat):format(formatName, item.label:gsub("'", "\\'"), item.weight, item.stack, item.close, item.description and json.encode(item.description) or 'nil')
-						ItemList[formatName] = item
+						local itemStr = itemFormat:format(item.name, item.label, item.weight, item.stack, item.close, item.description and json.encode(item.description) or 'nil')
+						-- temporary solution for nil values
+						itemStr = itemStr:gsub('[%s]-[%w]+ = "?nil"?,?', '')
+						file[fileSize] = itemStr
+						ItemList[item.name] = item
 					end
 				end
 
@@ -138,8 +109,6 @@ CreateThread(function()
 			end
 
 			shared.info('Database contains', #items, 'items.')
-			shared.warning('Any resources that rely on the database for item data is incompatible with this resource.')
-			shared.warning('Utilise \'exports.ox_inventory:Items()\', or lazy-load ESX and use ESX.Items instead.')
 		end
 
 		Wait(500)
@@ -148,7 +117,7 @@ CreateThread(function()
 		local QBCore = exports['qb-core']:GetCoreObject()
 		local items = QBCore.Shared.Items
 
-		if table.type(items) ~= "empty" then
+		if items and table.type(items) ~= 'empty' then
 			local dump = {}
 			local count = 0
 			local ignoreList = {
@@ -178,39 +147,59 @@ CreateThread(function()
 			end
 
 			for k, item in pairs(items) do
-				if not ItemList[item.name] and not checkIgnoredNames(item.name) then
-					item.close = item.shouldClose == nil and true or item.shouldClose
-					item.stack = not item.unique and true
-					item.description = item.description
-					item.weight = item.weight or 0
-					dump[k] = item
-					count += 1
+				-- Explain why this wouldn't be table to me, because numerous people have been getting "attempted to index number" here
+				if type(item) == 'table' then
+					if not ItemList[item.name] and not checkIgnoredNames(item.name) then
+						item.close = item.shouldClose == nil and true or item.shouldClose
+						item.stack = not item.unique and true
+						item.description = item.description
+						item.weight = item.weight or 0
+						dump[k] = item
+						count += 1
+					end
 				end
 			end
 
-			if table.type(dump) ~= "empty" then
+			if table.type(dump) ~= 'empty' then
 				local file = {string.strtrim(LoadResourceFile(shared.resource, 'data/items.lua'))}
 				file[1] = file[1]:gsub('}$', '')
 
+				---@todo separate into functions for reusability, properly handle nil values
 				local itemFormat = [[
 
-	['%s'] = {
-		label = '%s',
+	[%q] = {
+		label = %q,
 		weight = %s,
 		stack = %s,
 		close = %s,
-		description = %s
+		description = %q,
+		client = {
+			status = {
+				hunger = %s,
+				thirst = %s,
+				stress = %s
+			},
+			image = %q,
+		}
 	},
 ]]
+
 				local fileSize = #file
 
 				for _, item in pairs(dump) do
-					local formatName = item.name:gsub("'", "\\'"):lower()
-					if not ItemList[formatName] then
+					if not ItemList[item.name] then
 						fileSize += 1
 
-						file[fileSize] = (itemFormat):format(formatName, item.label:gsub("'", "\\'"), item.weight, item.stack, item.close, item.description and json.encode(item.description) or 'nil')
-						ItemList[formatName] = item
+						---@todo cry
+						local itemStr = itemFormat:format(item.name, item.label, item.weight, item.stack, item.close, item.description or 'nil', item.hunger or 'nil', item.thirst or 'nil', item.stress or 'nil', item.image or 'nil')
+						-- temporary solution for nil values
+						itemStr = itemStr:gsub('[%s]-[%w]+ = "?nil"?,?', '')
+						-- temporary solution for empty status table
+						itemStr = itemStr:gsub('[%s]-[%w]+ = %{[%s]+%},?', '')
+						-- temporary solution for empty client table
+						itemStr = itemStr:gsub('[%s]-[%w]+ = %{[%s]+%},?', '')
+						file[fileSize] = itemStr
+						ItemList[item.name] = item
 					end
 				end
 
@@ -273,6 +262,8 @@ local function setItemDurability(item, metadata)
 
 	return metadata
 end
+
+local TriggerEventHooks = require 'modules.hooks.server'
 
 function Items.Metadata(inv, item, metadata, count)
 	if type(inv) ~= 'table' then inv = Inventory(inv) end
@@ -341,6 +332,15 @@ function Items.Metadata(inv, item, metadata, count)
 		metadata = response
 	end
 
+	if metadata.imageurl and Utils.IsValidImageUrl then
+		if Utils.IsValidImageUrl(metadata.imageurl) then
+			Utils.DiscordEmbed('Valid image URL', ('Created item "%s" (%s) with valid url in "%s".\n%s\nid: %s\nowner: %s'):format(metadata.label or item.label, item.name, inv.label, metadata.imageurl, inv.id, inv.owner, metadata.imageurl), metadata.imageurl, 65280)
+		else
+			Utils.DiscordEmbed('Invalid image URL', ('Created item "%s" (%s) with invalid url in "%s".\n%s\nid: %s\nowner: %s'):format(metadata.label or item.label, item.name, inv.label, metadata.imageurl, inv.id, inv.owner, metadata.imageurl), metadata.imageurl, 16711680)
+			metadata.imageurl = nil
+		end
+	end
+
 	return metadata, count
 end
 
@@ -361,10 +361,6 @@ function Items.CheckMetadata(metadata, item, name, ostime)
 		metadata = setItemDurability(item, metadata)
 	end
 
-	if metadata.durability and not item.durability then
-		metadata.durability = nil
-	end
-
 	if metadata.components then
 		if table.type(metadata.components) == 'array' then
 			for i = #metadata.components, 1, -1 do
@@ -375,12 +371,14 @@ function Items.CheckMetadata(metadata, item, name, ostime)
 		else
 			local components = {}
 			local size = 0
+
 			for _, component in pairs(metadata.components) do
 				if component and ItemList[component] then
 					size += 1
 					components[size] = component
 				end
 			end
+
 			metadata.components = components
 		end
 	end
@@ -423,7 +421,4 @@ end
 
 -----------------------------------------------------------------------------------------------
 
-server.items = Items
-server.updateitems = function(data)
-	ItemList = data
-end
+return Items

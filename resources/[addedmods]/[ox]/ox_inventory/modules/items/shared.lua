@@ -40,14 +40,13 @@
 ---@field throwable? boolean
 ---@field model? string
 
-GlobalState.NewUsableItem = {}
-
 local function useExport(resource, export)
 	return function(...)
 		return exports[resource][export](nil, ...)
 	end
 end
 
+local ItemList = {}
 local isServer = IsDuplicityVersion()
 
 ---@param data OxItem
@@ -62,19 +61,19 @@ local function newItem(data)
 		data.stack = true
 	end
 
-	local client, server = data.client, data.server
-	---@cast client -nil
-	---@cast server -nil
+	local clientData, serverData = data.client, data.server
+	---@cast clientData -nil
+	---@cast serverData -nil
 
-	if not data.consume and (client and (client.status or client.usetime or client.export) or server?.export) then
+	if not data.consume and (clientData and (clientData.status or clientData.usetime or clientData.export) or serverData?.export) then
 		data.consume = 1
 	end
 
 	if isServer then
 		data.client = nil
 
-		if server?.export then
-			data.cb = useExport(string.strsplit('.', server.export))
+		if serverData?.export then
+			data.cb = useExport(string.strsplit('.', serverData.export))
 		end
 
 		if not data.durability then
@@ -86,152 +85,55 @@ local function newItem(data)
 		data.server = nil
 		data.count = 0
 
-		if client?.export then
-			data.export = useExport(string.strsplit('.', client.export))
+		if clientData?.export then
+			data.export = useExport(string.strsplit('.', clientData.export))
+		end
+
+		if clientData?.image then
+			clientData.image = clientData.image:match('^[%w]+://') and ('url(%s)'):format(clientData.image) or ('url(%s/%s)'):format(client.imagepath, clientData.image)
 		end
 	end
 
-	shared.items[data.name] = data
+	ItemList[data.name] = data
 end
 
-do
-	local ItemList = {}
-
-	for type, data in pairs(data('weapons')) do
-		for k, v in pairs(data) do
-			v.name = k
-			v.close = type == 'Ammo' and true or false
-
-			if type == 'Weapons' then
-				---@cast v OxWeapon
-				v.hash = joaat(v.model or k)
-				v.stack = v.throwable and true or false
-				v.durability = v.durability or 1
-				v.weapon = true
-			else
-				v.stack = true
-			end
-
-			v[type == 'Ammo' and 'ammo' or type == 'Components' and 'component' or type == 'Tints' and 'tint' or 'weapon'] = true
-
-			if isServer then v.client = nil else
-				v.count = 0
-				v.server = nil
-			end
-
-			ItemList[k] = v
-		end
-	end
-	
-	--GlobalState.NewItemcache = nil
-	shared.items = ItemList
-	local itemdata = data('items')
-	local itemcache = GlobalState.NewItemcache
-	if IsDuplicityVersion and not itemcache then
-		GlobalState.NewItemcache = {}
-	elseif not IsDuplicityVersion and itemcache then
-		for k,v in pairs(itemcache) do
-			itemdata[k] = v
-		end
-	end
-	for k, v in pairs(itemdata) do
+for type, data in pairs(data('weapons')) do
+	for k, v in pairs(data) do
 		v.name = k
-		newItem(v)
-	end
+		v.close = type == 'Ammo' and true or false
 
-	GlobalState.NewUsableItem = ItemList
-	
-	local AddUsableItem = function(name, data)
-		if not name then return end
-		if not data then return end
-		if not data.label then return end
-		if not weight then weight = 1 end
-		if shared.items[name] then return end
-		data.name = name
-		newItem(lib.table.deepclone(data))
-		if IsDuplicityVersion then
-			server.updateitems(shared.items)
-			server.updateserveritems(name,shared.items[name])
-			server.updateserverinventory(name,shared.items[name])
-			GlobalState.NewUsableItem = {name = name , item = data}
-			local itemcache = GlobalState.NewItemcache
-			shared.items[name].client = data.client
-			itemcache[name] = shared.items[name]
-			GlobalState.NewItemcache = itemcache
-			local file = {string.strtrim(LoadResourceFile(shared.resource, 'data/items.lua'))}
-			file[1] = file[1]:gsub('}$', '')
-			local item = shared.items[name]
-			local itemFormat = [[
-	['%s'] = {
-		label = '%s',
-		weight = %s,
-		stack = %s,
-		close = %s,
-		description = %s,
-		client = %s,
-	},
-]]
-			local fileSize = #file
-
-			fileSize += 1
-			local formatName = item.name:gsub("'", "\\'"):lower()
-			file[fileSize] = (itemFormat):format(formatName, item.label:gsub("'", "\\'"):lower(), item.weight, item.stack, item.close, item.description and json.encode(item.description) or 'nil', item.client and tableFormatter(item.client) or 'nil')
-
-			file[fileSize+1] = '}'
-			SaveResourceFile(shared.resource, 'data/items.lua', table.concat(file), -1)
-			shared.info(1, 'New item has been added')
+		if type == 'Weapons' then
+			---@cast v OxWeapon
+			v.model = v.model or k -- actually weapon type or such? model for compatibility
+			v.hash = joaat(v.model)
+			v.stack = v.throwable and true or false
+			v.durability = v.durability or 0.05
+			v.weapon = true
+		else
+			v.stack = true
 		end
-	end
-	if IsDuplicityVersion then
-		exports('AddUsableItem', AddUsableItem)
-		-- @ Usage
-		-- exports.ox_inventory:AddUsableItem('cheeseburger', {
-		-- 	label = 'Cheese Burger',
-		-- 	description = 'Burger with Cheese',
-		-- 	weight = 1,
-		-- 	client = {
-		-- 		anim = 'eating',
-		-- 		prop = 'burger',
-		-- 		usetime = 2500,
-		-- 		notification = 'You ate a delicious burger',
-		-- 	}
-		-- })
-	else
-		AddStateBagChangeHandler("NewUsableItem", "global", function(bagName, key, value)
-			Wait(0)
-			if not value then return end
-			--shared.items[value.name] = value.item
-			AddUsableItem(value.name,value.item)
-			client.updateitems(shared.items)
-			client.updateclientdata(shared.items)
-		end)
-		shared.GetItems = function()
-			return shared.items
-		end
-	end
 
-	tableFormatter = function(tbl, indent)
-		if not indent then indent = 0 end
-		local toprint = string.rep(" ", indent) .. "{\r\n"
-		indent = indent + 12
-		for k, v in pairs(tbl) do
-			toprint = toprint .. string.rep(" ", indent)
-			if (type(k) == "number") then
-				toprint = toprint .. "[" .. k .. "] = "
-			elseif (type(k) == "string") then
-				toprint = toprint  .. k ..  "= "   
-			end
-			if (type(v) == "number") then
-				toprint = toprint .. v .. ",\r\n"
-			elseif (type(v) == "string") then
-				toprint = toprint .. "\"" .. v .. "\",\r\n"
-			elseif (type(v) == "table") then
-				toprint = toprint .. tableFormatter(v, indent + 2) .. ",\r\n"
-			else
-				toprint = toprint .. "\"" .. tostring(v) .. "\",\r\n"
+		v[type == 'Ammo' and 'ammo' or type == 'Components' and 'component' or type == 'Tints' and 'tint' or 'weapon'] = true
+
+		if isServer then v.client = nil else
+			v.count = 0
+			v.server = nil
+			local clientData = v.client
+
+			if clientData?.image then
+				clientData.image = clientData.image:match('^[%w]+://') and ('url(%s)'):format(clientData.image) or ('url(%s/%s)'):format(client.imagepath, clientData.image)
 			end
 		end
-		toprint = toprint .. string.rep(" ", indent-2) .. "}"
-		return toprint
+
+		ItemList[k] = v
 	end
 end
+
+for k, v in pairs(data 'items') do
+	v.name = k
+	newItem(v)
+end
+
+ItemList.cash = ItemList.money
+
+return ItemList

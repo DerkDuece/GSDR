@@ -4,33 +4,41 @@ local Inventory = {}
 
 Inventory.Dumpsters = {218085040, 666561306, -58485588, -206690185, 1511880420, 682791951}
 
-if shared.target then
-	local function OpenDumpster(entity)
-		local netId = NetworkGetEntityIsNetworked(entity) and NetworkGetNetworkIdFromEntity(entity)
+function Inventory.OpenDumpster(entity)
+	local netId = NetworkGetEntityIsNetworked(entity) and NetworkGetNetworkIdFromEntity(entity)
 
-		if not netId then
-			local coords = GetEntityCoords(entity)
-			entity = GetClosestObjectOfType(coords.x, coords.y, coords.z, 0.1, GetEntityModel(entity), true, true, true)
-			netId = entity ~= 0 and NetworkGetNetworkIdFromEntity(entity)
-		end
-
-		if netId then
-			client.openInventory('dumpster', 'dumpster'..netId)
-		end
+	if not netId then
+		local coords = GetEntityCoords(entity)
+		entity = GetClosestObjectOfType(coords.x, coords.y, coords.z, 0.1, GetEntityModel(entity), true, true, true)
+		netId = entity ~= 0 and NetworkGetNetworkIdFromEntity(entity)
 	end
 
+	if netId then
+		client.openInventory('dumpster', 'dumpster'..netId)
+	end
+end
+
+if shared.target then
 	exports.qtarget:AddTargetModel(Inventory.Dumpsters, {
 		options = {
 			{
 				icon = 'fas fa-dumpster',
 				label = locale('search_dumpster'),
 				action = function(entity)
-					OpenDumpster(entity)
+					Inventory.OpenDumpster(entity)
 				end
 			},
 		},
 		distance = 2
 	})
+else
+	local dumpsters = table.create(0, #Inventory.Dumpsters)
+
+	for i = 1, #Inventory.Dumpsters do
+		dumpsters[Inventory.Dumpsters[i]] = true
+	end
+
+	Inventory.Dumpsters = dumpsters
 end
 
 local table = lib.table
@@ -137,10 +145,6 @@ Inventory.Evidence = setmetatable(data('evidence'), {
 	end
 })
 
-local function OpenStash(data)
-	exports.ox_inventory:openInventory('stash', data)
-end
-
 local function nearbyStash(self)
 	---@diagnostic disable-next-line: param-type-mismatch
 	DrawMarker(2, self.coords.x, self.coords.y, self.coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 30, 30, 150, 222, false, false, 0, true, false, false, false)
@@ -174,7 +178,7 @@ Inventory.Stashes = setmetatable(data('stashes'), {
 									label = stash.target.label or locale('open_stash'),
 									job = stash.groups,
 									action = function()
-										OpenStash({id=id})
+										exports.ox_inventory:openInventory('stash', stash.name)
 									end,
 									iconColor = stash.target.iconColor,
 								},
@@ -188,7 +192,7 @@ Inventory.Stashes = setmetatable(data('stashes'), {
 						coords = stash.coords,
 						distance = 16,
 						inv = 'stash',
-						invId = id,
+						invId = stash.name,
 						nearby = nearbyStash
 					})
 				end
@@ -197,4 +201,4 @@ Inventory.Stashes = setmetatable(data('stashes'), {
 	end
 })
 
-client.inventory = Inventory
+return Inventory

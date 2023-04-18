@@ -17,9 +17,10 @@ function server.hasGroup(inv, group)
 	end
 end
 
+---@diagnostic disable-next-line: duplicate-set-field
 function server.setPlayerData(player)
 	if not player.groups then
-		shared.warning(("server.setPlayerData did not receive any groups for '%s'"):format(player?.name or GetPlayerName(player)))
+		warn(("server.setPlayerData did not receive any groups for '%s'"):format(player?.name or GetPlayerName(player)))
 	end
 
 	return {
@@ -31,14 +32,15 @@ function server.setPlayerData(player)
 	}
 end
 
+---@diagnostic disable-next-line: duplicate-set-field
 function server.buyLicense()
-	shared.warning('Licenses are not supported for the current framework.')
+	warn('Licenses are not supported for the current framework.')
 end
 
 local Inventory
 
 CreateThread(function()
-	Inventory = server.inventory
+	Inventory = require 'modules.inventory.server'
 end)
 
 local function playerDropped(source)

@@ -1,10 +1,10 @@
 if not lib then return end
 
-local Items = server.items
-local Inventory = server.inventory
+local Items = require 'modules.items.server'
+local Inventory = require 'modules.inventory.server'
 local Shops = {}
 local locations = shared.target and 'targets' or 'locations'
-local AllShops = {}
+
 ---@class OxShopItem
 ---@field name string
 ---@field slot number
@@ -13,41 +13,24 @@ local AllShops = {}
 ---@field metadata? { [string]: any }
 ---@field license? string
 ---@field currency? string
----@field grade? number
+---@field grade? number | number[]
+---@field count? number
 
 ---@class OxShopServer : OxShop
 ---@field id string
 ---@field coords vector3
 ---@field items OxShopItem[]
+---@field slots number
+---@field [string] any
 
----@param shopName string
----@param shopDetails OxShop
+local function setupShopItems(id, shopType, shopName, groups)
+	local shop = id and Shops[shopType][id] or Shops[shopType] --[[@as OxShopServer]]
 
-local function createSingleShop(shopName,shopDetails,index,vendor)
-	local groups = shopDetails.groups or shopDetails.jobs
-	local data = Shops[shopName]
-	local dist = shared.target and shopDetails.targets?[index]?.distance or 1.5
-	local coord = shared.target and shopDetails.targets?[index]?.loc
-	if not vendor then
-		coord = shopDetails.coord or shopDetails?.locations[index]
-		if not Shops[shopName][index] then Shops[shopName][index] = {} end
-		data = Shops[shopName][index]
-	end
-	data = {
-		label = shopDetails.name,
-		groups = groups,
-		items = table.clone(shopDetails.inventory),
-		slots = #shopDetails.inventory,
-		type = 'shop',
-		coords = coord,
-		distance = dist,
-	}
-	if vendor then data.coords = nil data.distance = nil data.id = shopName else data.id = shopName..' '..index end
-	for j = 1, data.slots do
-		local slot = data.items[j]
+	for i = 1, shop.slots do
+		local slot = shop.items[i]
 
 		if slot.grade and not groups then
-			print(('^1attempted to restrict slot %s (%s) to grade %s, but %s has no job restriction^0'):format(i, slot.name, slot.grade, shopDetails.name))
+			print(('^1attempted to restrict slot %s (%s) to grade %s, but %s has no job restriction^0'):format(id, slot.name, json.encode(slot.grade), shopName))
 			slot.grade = nil
 		end
 
@@ -57,7 +40,7 @@ local function createSingleShop(shopName,shopDetails,index,vendor)
 			---@type OxShopItem
 			slot = {
 				name = Item.name,
-				slot = j,
+				slot = i,
 				weight = Item.weight,
 				count = slot.count,
 				price = (server.randomprices and not slot.currency or slot.currency == 'money') and (math.ceil(slot.price * (math.random(80, 120)/100))) or slot.price or 0,
@@ -67,112 +50,90 @@ local function createSingleShop(shopName,shopDetails,index,vendor)
 				grade = slot.grade
 			}
 
-			data.items[j] = slot
+			if slot.metadata then
+				slot.weight = Inventory.SlotWeight(Item, slot, true)
+			end
+
+			shop.items[i] = slot
 		end
-	end
-	if vendor then
-		Shops[shopName] = data
-	else
-		Shops[shopName][index] = data
 	end
 end
 
-local function createShop(shopName, shopDetails)
-	Shops[shopName] = {}
-	AllShops[shopName] = shopDetails
-	local shopLocations = shopDetails[locations] or shopDetails.locations
+---@param shopType string
+---@param properties OxShopServer
+local function registerShopType(shopType, properties)
+	local shopLocations = properties[locations] or properties.locations
 
 	if shopLocations then
-		---@diagnostic disable-next-line: undefined-field
-		local groups = shopDetails.groups or shopDetails.jobs
-		for i = 1, #shopLocations do
-			---@type OxShopServer
-			createSingleShop(shopName, shopDetails, i)
-		end
+		Shops[shopType] = properties
 	else
-		---@diagnostic disable-next-line: undefined-field
-		local groups = shopDetails.groups or shopDetails.jobs
-		---@type OxShopServer
-		createSingleShop(shopName, shopDetails, i, true)
+		Shops[shopType] = {
+			label = properties.name,
+			id = shopType,
+			groups = properties.groups or properties.jobs,
+			items = properties.inventory,
+			slots = #properties.inventory,
+			type = 'shop',
+		}
+
+		setupShopItems(nil, shopType, properties.name, properties.groups or properties.jobs)
 	end
 end
 
-for shopName, shopDetails in pairs(data('shops')) do
-	createShop(shopName, shopDetails)
+---@param shopType string
+---@param id number
+local function createShop(shopType, id)
+	local shop = Shops[shopType]
+
+	if not shop then return end
+
+	local shopLocations = shop[locations] or shop.locations
+	local groups = shop.groups or shop.jobs
+
+	if not shopLocations or not shopLocations[id] then return end
+
+	---@type OxShopServer
+	shop[id] = {
+		label = shop.name,
+		id = shopType..' '..id,
+		groups = groups,
+		items = table.clone(shop.inventory),
+		slots = #shop.inventory,
+		type = 'shop',
+		coords = shared.target and shop.targets?[id]?.loc or shopLocations[id],
+		distance = shared.target and shop.targets?[id]?.distance,
+	}
+
+	setupShopItems(id, shopType, shop.name, groups)
+
+	return shop[id]
 end
 
----@param shopName string
----@param shopDetails OxShop
-GlobalState.AllShops = AllShops
-exports('RegisterShop', function(shopName, shopDetails)
-	createShop(shopName, shopDetails)
-	GlobalState.AllShops = AllShops
+for shopType, shopDetails in pairs(data('shops')) do
+	registerShopType(shopType, shopDetails)
+end
+
+---@param shopType string
+---@param shopDetails OxShopServer
+exports('RegisterShop', function(shopType, shopDetails)
+	registerShopType(shopType, shopDetails)
 end)
-
--- exports.ox_inventory:RegisterShop('TestShop', {
--- 	name = 'Test shop',
--- 	inventory = {
--- 		{ name = 'burger', price = 10 },
--- 		{ name = 'water', price = 10 },
--- 		{ name = 'cola', price = 10 },
--- 	}, locations = {
--- 		vec3(223.832962, -792.619751, 30.695190),
--- 	},
--- 	groups = {
--- 		police = 0
--- 	},
--- })
--- Open on client with `exports.ox_inventory:openInventory('shop', {id=1, type='TestShop'})`
-
-exports('RegisterSingleShop', function(shopName, shopDetails, shopIndex, vendor, update)
-	local index = shopIndex or #Shops[shopName]+1
-	createSingleShop(shopName, shopDetails, shopIndex, vendor)
-	if update then
-		AllShops[shopName].locations[shopIndex] = shopDetails.coord
-		GlobalState.AllShops = AllShops
-	end
-end)
-
--- @ name : string @ inventory : table @ coord : vec3 @ index : number @ vendor : bool
--- exports.ox_inventory:RegisterSingleShop(shopname, {
--- 	name = 'General Store 1', 
--- 	inventory = {
--- 		{ name = 'burger', price = 50 }, 
--- 		{ name = 'water', price = 50 }
--- 	},
--- 	coord = vec3(25.66,-1347.91,29.49)
--- }, 1, false) -- shop index or leave blank, vendor @ bool
-
-exports('ModifyShop', function(data)
-	if not Shops[data.shopname] then return end
-	if not Shops[data.shopname][data.shopindex] then return end
-	for i,item in pairs(Shops[data.shopname][data.shopindex].items or {}) do
-		if item.metadata and item.metadata.name or item.name == data.item then
-			if Shops[data.shopname][data.shopindex].items[i][data.parameter] and tonumber(data.value) and data.parameter == 'count' then
-				Shops[data.shopname][data.shopindex].items[i][data.parameter] += data.value
-			else
-				Shops[data.shopname][data.shopindex].items[i][data.parameter] = data.value
-			end
-			break
-		end
-	end
-end)
-
--- exports.ox_inventory:ModifyShop({
--- 	shopname = 'General',
--- 	shopindex = 1,
--- 	item = 'burger',
--- 	value = 5, -- can be string or number. eg if count should be number. currency are string. this
--- 	parameter = 'count' -- count, price, currency. or any shop parameter. count will add if item count is existed
--- })
 
 lib.callback.register('ox_inventory:openShop', function(source, data)
 	local left, shop = Inventory(source)
 
 	if data then
-		shop = data.id and Shops[data.type][data.id] or Shops[data.type] --[[@as OxShopServer]]
+		shop = Shops[data.type]
 
-		if not shop.items then return end
+		if not shop then return end
+
+		if not shop.items then
+			shop = (data.id and shop[data.id] or createShop(data.type, data.id))
+
+			if not shop then return end
+		end
+
+		---@cast shop OxShopServer
 
 		if shop.groups then
 			local group = server.hasGroup(left, shop.groups)
@@ -194,18 +155,52 @@ local table = lib.table
 -- http://lua-users.org/wiki/FormattingNumbers
 -- credit http://richard.warburton.it
 local function comma_value(n)
-	local left,num,right = string.match(n,'^([^%d]*%d)(%d*)(.-)$')
+	local left, num, right = string.match(n,'^([^%d]*%d)(%d*)(.-)$')
 	return left..(num:reverse():gsub('(%d%d%d)','%1,'):reverse())..right
+end
+
+local function canAffordItem(inv, currency, price)
+	local canAfford = price >= 0 and Inventory.GetItem(inv, currency, false, true) >= price
+
+	return canAfford or {
+		type = 'error',
+		description = locale('cannot_afford', ('%s%s'):format((currency == 'money' and locale('$') or comma_value(price)), (currency == 'money' and comma_value(price) or ' '..Items(currency).label)))
+	}
+end
+
+local function removeCurrency(inv, currency, price)
+	Inventory.RemoveItem(inv, currency, price)
+end
+
+local TriggerEventHooks = require 'modules.hooks.server'
+
+local function isRequiredGrade(grade, rank)
+	if type(grade) == "table" then
+		for i=1, #grade do
+			if grade[i] == rank then
+				return true
+			end
+		end
+		return false
+	else
+		return rank >= grade
+	end
 end
 
 lib.callback.register('ox_inventory:buyItem', function(source, data)
 	if data.toType == 'player' then
 		if data.count == nil then data.count = 1 end
 		local playerInv = Inventory(source)
-		local split = playerInv.open:match('^.*() ')
-		local shop = split and Shops[playerInv.open:sub(0, split-1)][tonumber(playerInv.open:sub(split+1))] or Shops[playerInv.open]
+		local shopType, shopId = playerInv.open:match('^(.-) (%d-)$')
+
+		if not shopType then shopType = playerInv.open end
+
+		if shopId then shopId = tonumber(shopId) end
+
+		local shop = shopId and Shops[shopType][shopId] or Shops[shopType]
 		local fromData = shop.items[data.fromSlot]
 		local toData = playerInv.items[data.toSlot]
+
 		if fromData then
 			if fromData.count then
 				if fromData.count == 0 then
@@ -213,12 +208,13 @@ lib.callback.register('ox_inventory:buyItem', function(source, data)
 				elseif data.count > fromData.count then
 					data.count = fromData.count
 				end
-			elseif fromData.license and server.hasLicense and not server.hasLicense(playerInv, fromData.license) then
+			end
+			if fromData.license and server.hasLicense and not server.hasLicense(playerInv, fromData.license) then
 				return false, false, { type = 'error', description = locale('item_unlicensed') }
-
-			elseif fromData.grade then
+			end
+			if fromData.grade then
 				local _, rank = server.hasGroup(playerInv, shop.groups)
-				if fromData.grade > rank then
+				if not isRequiredGrade(fromData.grade, rank) then
 					return false, false, { type = 'error', description = locale('stash_lowgrade') }
 				end
 			end
@@ -233,20 +229,6 @@ lib.callback.register('ox_inventory:buyItem', function(source, data)
 			local metadata, count = Items.Metadata(playerInv, fromItem, fromData.metadata and table.clone(fromData.metadata) or {}, data.count)
 			local price = count * fromData.price
 
-			local hookPayload = {
-				source = source,
-				fromData = fromData,
-				toData = toData,
-				ShopName = playerInv.open:sub(0, split-1),
-				ShopIndex = playerInv.open:sub(split+1),
-				count = data.count,
-				price = fromData.price,
-				item = fromData.name,
-				metadata = metadata,
-				currency = fromData.currency or 'money'
-				
-			}
-			
 			if toData == nil or (fromItem.name == toItem.name and fromItem.stack and table.matches(toData.metadata, metadata)) then
 				local newWeight = playerInv.weight + (fromItem.weight + (metadata?.weight or 0)) * count
 
@@ -254,17 +236,29 @@ lib.callback.register('ox_inventory:buyItem', function(source, data)
 					return false, false, { type = 'error', description = locale('cannot_carry') }
 				end
 
-				local canAfford = price >= 0 and Inventory.GetItem(source, currency, false, true) >= price
+				local canAfford = canAffordItem(playerInv, currency, price)
 
-				if not canAfford then
-					return false, false, { type = 'error', description = locale('cannot_afford', ('%s%s'):format((currency == 'money' and locale('$') or comma_value(price)), (currency == 'money' and comma_value(price) or ' '..Items(currency).label))) }
+				if canAfford ~= true then
+					return false, false, canAfford
 				end
 
-				if not TriggerEventHooks('buyItem', hookPayload) then return end
+				if not TriggerEventHooks('buyItem', {
+					source = source,
+					shopType = shopType,
+					shopId = shopId,
+					toInventory = playerInv.id,
+					toSlot = data.toSlot,
+					itemName = fromData.name,
+					metadata = metadata,
+					count = count,
+					price = fromData.price,
+					totalPrice = price,
+					currency = currency,
+				}) then return false end
 
 				Inventory.SetSlot(playerInv, fromItem, count, metadata, data.toSlot)
 				playerInv.weight = newWeight
-				Inventory.RemoveItem(source, currency, price)
+				removeCurrency(playerInv, currency, price)
 
 				if fromData.count then
 					shop.items[data.fromSlot].count = fromData.count - count
