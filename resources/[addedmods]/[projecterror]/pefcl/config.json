@@ -5,8 +5,8 @@
     "identifierType": "license"
   },
   "frameworkIntegration": {
-    "enabled": true,
-    "resource": "qb-pefcl",
+    "enabled": false,
+    "resource": "your-resource",
     "syncInitialBankBalance": true
   },
   "database": {
@@ -81,7 +81,7 @@
     ]
   },
   "target": {
-    "type": "qb-target",
+    "type": "qtarget",
     "debug": false,
     "enabled": true,
     "bankZones": [
