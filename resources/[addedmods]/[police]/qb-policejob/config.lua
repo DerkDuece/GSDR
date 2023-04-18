@@ -50,7 +50,7 @@ Config.EvidencePedScenario = "PROP_HUMAN_SEAT_COMPUTER" -- If U change this u ne
 Config.Locations = {
     ["duty"] = {
         [1] = vector4(442.6802, -981.9631, 30.6895, 88.7578), --MRPD
-        [2] = vector4(1852.9075, 3688.9360, 34.2670, 205.9638), --BCSO Sandy
+        [2] = vector4(1833.24, 3677.58, 34.19, 216.01) --BCSO Sandy
     },
     ["vehicle"] = {
         [1] = { --MRPD
@@ -58,12 +58,13 @@ Config.Locations = {
             vehiclespawn = vector4(445.2, -986.15, 25.7, 265.32)
         },
         [2] = { -- Sandy
-            vehped = vector4(1867.3826, 3690.7957, 33.7625, 292.8421),
-            vehiclespawn = vector4(1870.12, 3698.43, 33.47, 209.73)
+            vehped = vector4(1821.06, 3680.45, 33.97, 32.99),
+            vehiclespawn = vector4(1817.68, 3689.51, 33.97, 297.7)
         },
     },
     ["stash"] = { --Personal Stash
         [1] = vector3(461.9494, -999.65, 29.6709), --MRPD
+		[2] = vector3(1821.82, 3668.93, 34.19) --BCSO Sandy
     },
     ["impound"] = {
         [1] = { --MRPD
@@ -87,20 +88,24 @@ Config.Locations = {
     },
     ["armory"] = {
         [1] = vector4(480.3087, -996.6514, 30.6896, 89.4523), --MRPD
+		[2] = vector4(1836.98, 3687.64, 34.19, 211.34) --Sandy
     },
     ["trash"] = { --Enable or Disablit at line:17
-        [1] = vector3(439.0907, -976.746, 30.776),
+        [1] = vector3(439.0907, -976.746, 30.776), --MRPD
+		[2] = vector3(1837.76, 3684.47, 34.19) --Sandy
     },
     ["fingerprint"] = {
-        [1] = vector3(474.71, -1013.88, 26.07) 
+        [1] = vector3(474.71, -1013.88, 26.07), --MRPD
+		[2] = vector3(1817.61, 3674.19, 34.19) --Sandy
     },
     ["evidence"] = {
-        [1] = vector4(472.5, -990.61, 25.75, 265.05),
+        [1] = vector4(472.5, -990.61, 25.75, 265.05), --MRPD
+		[2] = vector4(1831.11, 3679.96, 38.86, 31.2) --Sandy
     },
     ["stations"] = {
         [1] = {label = "L.S.P.D - Mission Row", coords = vector4(428.23, -984.28, 29.76, 3.5), Sprite = 60, Colour = 29},
         [2] = {label = "BolingBroke", coords = vector4(1845.903, 2585.873, 45.672, 272.249), Sprite = 252, Colour = 54},
-        [3] = {label = "B.C.S.O - Sandy", coords = vector4(1853.74, 3685.86, 34.27, 33.64), Sprite = 60, Colour = 28},
+        [3] = {label = "B.C.S.O - Sandy", coords = vector4(1853.74, 3685.86, 34.27, 33.64), Sprite = 60, Colour = 28}
     },
 }
 
@@ -218,7 +223,7 @@ Config.Items = {
     slots = 30,
     items = {
         [1] = {
-            name = "weapon_pistol",
+            name = "weapon_combatpistol",
             price = 0,
             amount = 1,
             info = {
@@ -298,7 +303,7 @@ Config.Items = {
         [7] = {
             name = "pistol_ammo",
             price = 0,
-            amount = 5,
+            amount = 10,
             info = {},
             type = "item",
             slot = 7,
@@ -307,7 +312,7 @@ Config.Items = {
         [8] = {
             name = "smg_ammo",
             price = 0,
-            amount = 5,
+            amount = 10,
             info = {},
             type = "item",
             slot = 8,
@@ -316,7 +321,7 @@ Config.Items = {
         [9] = {
             name = "shotgun_ammo",
             price = 0,
-            amount = 5,
+            amount = 10,
             info = {},
             type = "item",
             slot = 9,
@@ -325,7 +330,7 @@ Config.Items = {
         [10] = {
             name = "rifle_ammo",
             price = 0,
-            amount = 5,
+            amount = 10,
             info = {},
             type = "item",
             slot = 10,
