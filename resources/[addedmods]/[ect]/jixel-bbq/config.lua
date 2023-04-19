@@ -1,8 +1,8 @@
 Config = {
     Lan = "en",
     Notify = "qb",
-    Inv = "qb", -- change to ox if ox inv
-    img = "qb-inventory/html/images/", -- set this to what your inventory directory is
+    Inv = "ox", -- change to ox if ox inv
+    img = "GSDR/resources/[addedmods]/[ox]/ox_inventory/web/images", -- set this to what your inventory directory is
     Menu = "jixel",
     JimMenu = false,
     CookingTime = 10000,
