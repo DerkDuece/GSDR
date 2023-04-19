@@ -27,7 +27,7 @@ Config.EmergencyServicesDiscount = {
 }
 Config.Core = 'qb-core' -- Change this to your core resources (Ex: 'qbx-core' | 'qb-core'), must be qb based!
 Config.Ox = {
-    Inventory = false, -- Uses OX_Inventory's metadata instead of QB-Inventory's.
+    Inventory = true, -- Uses OX_Inventory's metadata instead of QB-Inventory's.
     Menu = false, -- Uses OX Libraries instead of qb-menu.
     Input = false, -- Uses Ox Input Dialog instead of qb-input.
     DrawText = false, -- Uses Ox DrawText instead of qb-core DrawText.
@@ -55,7 +55,7 @@ Config.VehicleShutoffOnLowFuel = { -- If enabled, vehicles will turn off when th
 
 -- Phone --
 Config.RenewedPhonePayment = false -- Enables use of Renewed-Phone Payment System and Notifications
-Config.NPWD = false -- Enables phone notifications for New-Phone-Who-Dis.
+Config.NPWD = true -- Enables phone notifications for New-Phone-Who-Dis.
 
 
 -- Syphoning --
