@@ -2,8 +2,6 @@ local QBCore = exports['qb-core']:GetCoreObject()
 
 local Chopped = false
 
-local HasItem = exports.ox_inventory:Search(search, item, metadata)
-
 local ItemList = {
     ["treebark"] = "treebark",
     ["treemulch"] = "treemulch",

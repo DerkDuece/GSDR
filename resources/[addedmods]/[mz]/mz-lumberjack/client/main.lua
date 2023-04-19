@@ -34,6 +34,16 @@ local function loadAnimDict(dict)
     end
 end
 
+function HasItem(source, item)
+    local player = GetPlayer(source)
+    local item = player.getInventoryItem(item)
+    if item ~= nil then
+        return item.count
+    else
+        return 0
+    end
+end
+
 -----------------
 --CHOPPING WOOD--
 -----------------
