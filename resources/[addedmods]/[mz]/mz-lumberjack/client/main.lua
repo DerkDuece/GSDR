@@ -22,6 +22,7 @@ local thicklogprocess = false
 local thickerlogprocess = false
 local makepalletprocess = false
 local makemulchbagprocess = false
+local HasItem = exports.ox_inventory:Search(source, 'count', items)
 
 RegisterNetEvent('mz-lumberjack:getLumberStage', function(stage, state, k)
     Config.TreeLocations[k][stage] = state
