@@ -1,6 +1,6 @@
 Config = {}
 
-Config.Framework = 'esx' -- qbcore | esx
+Config.Framework = 'qbcore' -- qbcore | esx
 
 Config.ActionTime = 5000
 
