@@ -1,0 +1,57 @@
+Lang["es"] = {
+    error = {
+        ["spawn_block"] = "Hay un vehículo bloqueando el spawn.",
+        ["not_rented"] = "No tienes ningún alquiler.",
+        ["rental_not_nearby"] = "Tu alquiler no está cerca.",
+        ["taxi_block"] = "Por favor, espera e inténtalo de nuevo en unos segundos.",
+        ["already_req"] = "Ya has solicitado un taxi. ¡Por favor, baja!",
+        ["not_inside"] = "No estás dentro del taxi.",
+        ["cancel_taxi"] = "Para obtener un alquiler, primero debes cancelar el taxi que has solicitado esperando abajo.",
+        ["seat_not_accessible"] = "No puedes entrar en el asiento del conductor",
+    },
+    success = {
+        ["rented_veh"] = "Has alquilado un vehículo con éxito.",
+        ["returned_rental"] = "Tu alquiler y depósito de seguridad han sido devueltos.",
+        ["reached_dropoff"] = "Has llegado a tu destino.",
+        ["taxi_arrived"] = "Tu taxi ha llegado y está esperando abajo.",
+        ["dropoff_updated"] = "La ubicación de la entrega se ha actualizado.",
+    },
+    menu = {
+        ["close"] = "Haz clic o presiona ESC para cerrar.",
+        ["return"] = "Volver.",
+        ["taxi_header"] = "Downtown Cab Co.",
+        ["end_ride"]  = "Cancelar tu viaje en taxi.",
+        ["choose_drop"]  = "Elige una ubicación de entrega.",
+        ["dropoff_header"] = "Ubicaciones de entrega disponibles.",
+        ["ped_taxi"] = "Solicitar un taxi.",
+        ["ped_rental"] = "Alquiler de vehículos.",
+        ["rental_head"] = "Vehículos disponibles para alquilar.",
+        ["rental_return"] = "Devolver el alquiler.",
+        ["pedMenu_head"] = "¿En qué puedo ayudarte?",
+        ["choose_taxi"] = "Elige el taxi que quieres.",
+        ["taxi_price"] = "Obtén este taxi por $ ",
+        ["rent_price"] = "Alquila esto por $ ",
+        ["taxi_fare"] = "La tarifa del taxi a esa ubicación será de $ ",
+    },
+    target = {
+        ["lsia_ped"] = "¿Necesitas ayuda?",
+    },
+    text = {
+        ["taxi_menu"] = "[E] Abrir menú de taxi",
+    },
+    mail = {
+        ["sender"] = "Downtown Cab Co.",
+        ["subject"] = "Detalles del taxi solicitado",
+        ["greet"] = "Hola",
+        ["model"] = "El taxi que has solicitado es", 
+        ["plate"] = "La matrícula es", 
+        ["location"] = "Tu taxi está esperando abajo debajo de la terminal de llegadas.", 
+    },
+    icon = {
+        ["close"] = "fas fa-circle-xmark",
+        ["taxi"] = "fas fa-taxi",
+        ["gps"] = "fas fa-location-dot",
+        ["left_arrow"] = "fas fa-arrow-left",
+        ["lsia_ped"] = "fas fa-circle-info",
+    }
+}

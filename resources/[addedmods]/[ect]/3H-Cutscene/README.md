@@ -1,16 +1,7 @@
-# 3H-CUTSCENE v1.0
+* To purchase additional scripts, please visit my Tebex page [Tebex] - https://3rror-hub-webstore.tebex.io
 
-# Preview
-![3H-Cutscene](https://user-images.githubusercontent.com/107671912/227001234-8b7f7ba0-9c8f-4a80-9bed-378525e65b61.png)
+* If you need support with any of my scripts, please join my Discord server [Discord] - https://discord.gg/NW4g4kkmqS
 
-* Check out my [Tebex](https://3rror-hub-webstore.tebex.io) page for purchasing any other script 
+* Please review the Documentation for detailed instructions on installing and configuring the script [Docementation] - https://3rror-hub.gitbook.io/docementation/
 
-* Join my [Discord](https://discord.gg/NW4g4kkmqS) for any support related to my scripts
-
-* Kindly go through the [Docementation](https://3rror-hub.gitbook.io/docementation/qbcore/3h-cutscene) for installing/configuring the script
- 
-# THANK YOUR FOR USING MY SCRIPT! :)
-
-* [Docementation] - https://3rror-hub.gitbook.io/docementation/
-* [Tebex] - https://3rror-hub-webstore.tebex.io
-* [Discord] - https://discord.gg/NW4g4kkmqS
+# Thank you for choosing my script!

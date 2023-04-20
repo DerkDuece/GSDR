@@ -1,0 +1,57 @@
+Lang["en"] = {
+    error = {
+        ["spawn_block"] = "There is a vehicle blocking the spawn.",
+        ["not_rented"] = "You don't have any rentals.",
+        ["rental_not_nearby"] = "Your rental is not nearby.",
+        ["taxi_block"] = "Kindly wait and try again in a few seconds!",
+        ["already_req"] = "You have already requested a taxi. Please go downstairs!",
+        ["not_inside"] = "You are not inside the taxi.",
+        ["cancel_taxi"] = "To get a rental, you must first cancel your requested taxi waiting downstairs.",
+        ["seat_not_accessible"] = "You cannot enter the driver seat",
+    },
+    success = {
+        ["rented_veh"] = "You have successfully rented a vehicle.",
+        ["returned_rental"] = "Your rental and safety deposit have been returned.",
+        ["reached_dropoff"] = "You have reached your drop-off location.",
+        ["taxi_arrived"] = "Your taxi has arrived and is waiting downstairs.",
+        ["dropoff_updated"] = "Drop-off location has been updated.",
+    },
+    menu = {
+        ["close"] = "Click or press ESC to close.",
+        ["return"] = "Go back.",
+        ["taxi_header"] = "Downtown Cab Co.",
+        ["end_ride"]  = "Cancel your taxi ride.",
+        ["choose_drop"]  = "Choose a drop-off location.",
+        ["dropoff_header"] = "Available drop-off locations.",
+        ["ped_taxi"] = "Request a taxi.",
+        ["ped_rental"] = "Vehicle rental.",
+        ["rental_head"] = "Available vehicles for rent.",
+        ["rental_return"] = "Return rental.",
+        ["pedMenu_head"] = "How may I help you?",
+        ["choose_taxi"] = "Choose the taxi you want.",
+        ["taxi_price"] = "Get this taxi for $ ",
+        ["rent_price"] = "Rent this for $ ",
+        ["taxi_fare"] = "The taxi fare to that location will be $ ",
+    },
+    target = {
+        ["lsia_ped"] = "Need some help?",
+    },
+    text = {
+        ["taxi_menu"] = "[E] Open taxi menu",
+    },
+    mail = {
+        ["sender"] = "Downtown Cab Co.",
+        ["subject"] = "Requested Taxi Details",
+        ["greet"] = "Hello",
+        ["model"] = "The taxi you requested is", 
+        ["plate"] = "The license plate is", 
+        ["location"] = "Your taxi is waiting downstairs below the arrival termninal.", 
+    },
+    icon = {
+        ["close"] = "fas fa-circle-xmark",
+        ["taxi"] = "fas fa-taxi",
+        ["gps"] = "fas fa-location-dot",
+        ["left_arrow"] = "fas fa-arrow-left",
+        ["lsia_ped"] = "fas fa-circle-info",
+    }
+}
