@@ -59,7 +59,7 @@ shared.VehicleKeys = function(plate,source) -- vehicle keys
 end
 
 shared.framework = 'QBCORE' -- ESX || QBCORE
-shared.inventory = 'qb-inventory' -- 'ox_inventory' or 'qb-inventory' https://github.com/renzuzu/qb-inventory
+shared.inventory = 'ox_inventory' -- 'ox_inventory' or 'qb-inventory' https://github.com/renzuzu/qb-inventory
 
 if GetResourceState('es_extended') == 'started' then
 	shared.framework = 'ESX'
