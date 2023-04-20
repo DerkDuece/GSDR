@@ -1,7 +1,7 @@
 Config = {
 	FrameworkExport = "qb-core", -- Set this too your core name, only change this if you have a custom version of QBCore. 
 	Debug = false, -- sends prints to the server console.
-	Inventory = {QB = true, OX = false}, -- Set QB to true if you use an inventory that uses QB functionality.
+	Inventory = {QB = false, OX = true}, -- Set QB to true if you use an inventory that uses QB functionality.
 	UseItem = {
 		QBItemCreation = true,
 		MetaData = true, 
