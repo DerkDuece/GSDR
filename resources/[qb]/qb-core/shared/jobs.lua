@@ -537,4 +537,33 @@ QBShared.Jobs = {
             },
         },
 	},
+    ["hornysburger"] = {
+		label = "Hornys Employee",
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            ['0'] = {
+                name = "Trainee",
+                payment = 90
+            },
+			['1'] = {
+                name = "Employee",
+                payment = 100
+            },
+			['2'] = {
+                name = "Burger Flipper",
+                payment = 110
+            },
+			['3'] = {
+                name = "Manager",
+                payment = 120
+            },
+			['4'] = {
+                name = "CEO",
+				isboss = true,
+                bankAuth = true,
+                payment = 135
+            },
+        },
+	},
 }
