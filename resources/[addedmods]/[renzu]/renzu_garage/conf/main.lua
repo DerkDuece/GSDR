@@ -9,7 +9,7 @@ Config.VehicleShopCoord = {
     [1] = vec3(-35.65,-1095.9,26.4), --x , y, z
     [2] = vec3(-1232.23,-349.45,37.32), --x , y, z
 } --x,y,z of the current vehicle shop
-Config.use_RenzuCustoms = false -- Use renzu_customs getter and setter for Vehicle Properties
+Config.use_RenzuCustoms = true -- Use renzu_customs getter and setter for Vehicle Properties
 Config.ReturnDamage = true -- return visual damage when restoring vehicle from garage
 Config.RefreshOwnedVehiclesOnStart = true -- refresh vehicles store state (return any lost vehicles every server start (not script restart))
 Config.ReturnPayment = 1000 -- a value to pay if vehicle is not in garage

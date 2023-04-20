@@ -1494,5 +1494,22 @@ QBShared.Items = {
 	["hb-tomato"] 		     	 	 = {["name"] = "hb-tomato", 					["label"] = "Tomato", 		     		["weight"] = 100, 		["type"] = "item", 		["image"] = "hb-tomato.png", 			["unique"] = false, 	["useable"] = false, 	["shouldClose"] = true,    ["combinable"] = nil,   ["description"] = "Ingredient"},
 	["hb-wraps"] 		    	 	 = {["name"] = "hb-wraps", 	    				["label"] = "Wraps", 		    		["weight"] = 100, 		["type"] = "item", 		["image"] = "hb-wraps.png", 			["unique"] = false, 	["useable"] = false, 	["shouldClose"] = true,    ["combinable"] = nil,   ["description"] = "Ingredient"},
 	["hb-carbonated-water"]     	 = {["name"] = "hb-carbonated-water", 			["label"] = "Carbonated Water", 		["weight"] = 100, 		["type"] = "item", 		["image"] = "hb-carbonated-water.png", 	["unique"] = false, 	["useable"] = false, 	["shouldClose"] = true,    ["combinable"] = nil,   ["description"] = "Ingredient"},
+
+	['keys'] = {
+		label = 'Vehicle Key',
+		weight = 0,
+		stack = false,
+		close = true,
+		description = 'Vehicle Key'
+	},
+	
+	['fakeplate'] = {
+		label = 'Fake Plate',
+		weight = 220,
+		client = {
+			export = 'renzu_garage.Fakeplate',
+		},
+	},
+
 }
 		
