@@ -7,7 +7,7 @@ Config.renzu_vehicleshopTable = false -- will use exports from vehicleshop vehic
 Config.usePopui = false -- POPUI or Drawmarker Floating Text https://github.com/renzuzu/renzu_popui
 Config.showmarker = true -- Drawmarker and FLoating Text
 Config.DisableRepair = false -- Disable Repairing before Showing Upgrade Menu
-Config.OwnedVehiclesOnly = false -- set this to False if you want to allow modifying of non owned vehicles, AKA local cars, spawned cars
+Config.OwnedVehiclesOnly = true -- set this to False if you want to allow modifying of non owned vehicles, AKA local cars, spawned cars
 Config.DoNotShowEmptyMods = false -- hide mod menu if no available mod for current vehicle
 --JOB
 -- Config.job = 'mechanic' -- Default job (job permission if job is not indicated here Config.Customs) -- OBSOLETE , Configure jobs here Config.Customs
