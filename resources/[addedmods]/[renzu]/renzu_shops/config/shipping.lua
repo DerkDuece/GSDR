@@ -6,7 +6,7 @@ shared.shipping = {
 	blip = {
 		id = 478, colour = 69, scale = 0.8
 	},
-	payperdistance = 5.45, -- in example its 10.05 $ per 1 distance
+	payperdistance = 0.50, -- in example its 10.05 $ per 1 distance
 	label = 'Fedex Express',
 	coord = vec3(69.42121887207,127.94171142578,79.455070495605),
 	spawn = vec4(76.887245178223,97.579162597656,79.158805847168,68.240699768066),
