@@ -109,7 +109,7 @@ Config.CarlockKey = 'J' -- Keyboard (changable in keybinds FIVEM setting)
 Message = Locale[Config.Locale]
 
 -- NOTIFY
-Config.Renzu_notify = true -- if false we will use default framework notification
+Config.Renzu_notify = false -- if false we will use default framework notification
 Config.Notify = function(type,msg,xPlayer)
     if Config.Oxlib and not IsDuplicityVersion() then
         if type == 'info' then type = 'inform' end -- nice logic
