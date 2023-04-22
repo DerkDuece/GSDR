@@ -1,0 +1,21 @@
+[ADDON]Volkswagen Caddy Pizza-Delivery [Danish/Dansk]
+
+Well. Found the car, made it to an Addon and reskinned it for Danish Pizza Dilvery, instead.
+I turned it to an Addon myself and reskinned it, but the model is not made by me. The credits are below.
+
+I made the car for Hyperion Network, which can be found on: https://byhyperion.net/
+
+But i removed the Hyperion tags, so it can be used by everyone. 
+
+Updates might come.
+
+
+Orginal Mod: https://gta5-mods.com/vehicles/volkswagen-caddy-template 
+
+Model From: squir.com/ 
+Wheels - BritishGamer88 
+Converted to GTAV - MOH-samtoxie 
+New materials/Textures - MOH-Samtoxie/Marco 
+Template - MOH-Marco 
+Skin: MCSmoke
+Accessories from scratch - MOH-Ide

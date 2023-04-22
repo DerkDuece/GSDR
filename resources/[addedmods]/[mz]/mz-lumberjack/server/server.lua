@@ -346,8 +346,6 @@ RegisterServerEvent('mz-lumberjack:server:MulchBark', function()
             else
                 if Config.NotifyType == 'qb' then
                     TriggerClientEvent('QBCore:Notify', src, "You do not have enough tree bark to mulch (Need "..Config.BarkAmount..")", 'error')
-                elseif Config.NotifyType == "okok" then
-                    TriggerClientEvent('okokNotify:Alert', source, "NEED BARK", "You do not have enough tree bark to mulch (Need "..Config.BarkAmount..")", 3500, 'error')
                 end
             end
         end
