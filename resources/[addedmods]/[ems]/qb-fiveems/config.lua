@@ -1,7 +1,7 @@
 Config              = {}
 
 Config.Hash = {
-	{hash = `ambulanceals`, detection = 2.4, depth = -1.0, height = 0.0},
+	{hash = `emsnspeedo`, detection = 2.4, depth = -1.0, height = 0.0},
 	{hash = `f450ambo`, detection = 2.4, depth = -1.0, height = 0.0},
 }
 
