@@ -116,7 +116,38 @@ if Config.EnableDefaultOptions then
                 ToggleDoor(entity, BackEngineVehicles[GetEntityModel(entity)] and 5 or 4)
             end,
             distance = 0.9
-        }
+        },
+		["Seating"] = {
+			type = "client",
+			event = "qb-fivemems:client:StretcherSeatMenu",
+			icon = "fas fa-ambulance",
+			label = "Stretcher Seating",
+			distance = 2.5
+		},
+		["Stretcher_Menu"] = {
+			type = "client",
+			event = "qb-fivemems:client:StretcherMenu",
+			icon = "fas fa-ambulance",
+			label = "Stretcher Menu",
+			job = "ambulance",
+			distance = 2.5
+		},
+		["EMS"] = {
+			type = "client",
+			event = "qb-fivemems:client:AmbulanceMenu",
+			icon = "fas fa-ambulance",
+			label = "EMS Menu",
+			job = "ambulance",
+			distance = 2.5
+		},
+		["Toggle_Hood"] = {
+			icon = "fa-duotone fa-engine",
+			label = "Toggle Hood",
+			action = function(entity)
+				ToggleDoor(entity, 4)
+			end,
+			distance = 2.5
+		}
     }
 
     Bones.Options['boot'] = {
@@ -127,7 +158,7 @@ if Config.EnableDefaultOptions then
                 ToggleDoor(entity, BackEngineVehicles[GetEntityModel(entity)] and 4 or 5)
             end,
             distance = 0.9
-        }
+        },
     }
 end
 
