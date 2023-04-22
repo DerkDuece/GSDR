@@ -42,10 +42,10 @@ VehicleShop = {
         shop_x = -35.469879150391,
         shop_y = -1100.3621826172,
         shop_z = 26.422359466553, -- coordinates for this garage
-        spawn_x = -32.283363342285,
-        spawn_y = -1091.0841064453,
-        spawn_z = 25.749485015869,
-        heading = 340.23065185547, -- Vehicle spawn location,
+        spawn_x = -47.36,
+        spawn_y = -1112.71,
+        spawn_z = 26.67,
+        heading = 74.13, -- Vehicle spawn location,
         displaycars = {
             [1] = {model = 'jester3', value = 100000, coord = vector4(-42.14, -1101.5, 26.66, 19.46)},
             [2] = {model = 'fmj', value = 1000000, coord = vector4(-54.58, -1097.09, 26.66, 31.02)},
@@ -53,32 +53,6 @@ VehicleShop = {
             [4] = {model = 'zentorno', value = 1000000, coord = vector4(-37.05, -1093.44, 26.66, 18.96)},
         }
     },
-
-    ['Police Vehicle Shop'] = { -- same with name
-        name = "Police Vehicle Shop", --MRPD police shop
-        title = "Police Vehicle Shop",
-        icon = 'https://i.imgur.com/t1OPuVL.png',
-        job = 'police',
-        type = 'carshop',
-        default_garage = 'Police Garage',
-        Dist = 3, -- distance (DEPRECATED)
-        Blip = {color = 38, sprite = 662, scale = 0.9},
-        shop_x = 456.89453125,
-        shop_y = -1020.8922729492,
-        shop_z = 28.290912628174, -- coordinates for this garage
-        spawn_x = 449.27224731445,
-        spawn_y = -1025.3255615234,
-        spawn_z = 27.905115127563,
-        heading = 2.6015937328339, -- Vehicle spawn location
-        plateprefix = 'LSPD', -- carefull using this, maximum should be 4, recommended is 3, use this only for limited vehicles, if you use this parameter in other shop, you might have a limited plates available, ex. LSPD1234 (max char of plate is 8) it means you only have 9999 vehicles possible with this LSPD
-        shop = { -- if not vehicle is setup in Database SQL, we will use this
-            {shop='Police Vehicle Shop',brand='Police Sedan',stock=50,price=100000,model='police',name="Police Car", grade = 1},
-            {shop='Police Vehicle Shop',brand='Police Sedan',stock=50,price=100000,model='police2',name="Police 2", grade = 1},
-            {shop='Police Vehicle Shop',brand='Police Sedan',stock=50,price=100000,model='police4',name="Police 4", grade = 3},
-            {shop='Police Vehicle Shop',brand='Police SUVs',stock=50,price=100000,model='police3',name="Police SUV",grade = 5},
-        },
-    },
-
     -- BOAT shop
     ['Yacht Club Boat Shop'] = { -- same with name
         name = "Yacht Club Boat Shop", --LEGION
@@ -105,34 +79,6 @@ VehicleShop = {
             {shop='Yacht Club Boat Shop',brand='Rich Boat',stock=50,price=100000,model='toro2',name="Toro 2"},
             {shop='Yacht Club Boat Shop',brand='Submarine',stock=50,price=100000,model='submersible',name="Submersible"},
             {shop='Yacht Club Boat Shop',brand='Submarine',stock=50,price=100000,model='submersible2',name="Submersible2"},
-        },
-    },
-    -- PLANE SHOP
-    ['DEVIN WESTON PLANE SHOP'] = { -- same with name
-        name = "DEVIN WESTON PLANE SHOP", --LEGION
-        title = "DEVIN PLANE SHOP",
-        icon = 'https://i.imgur.com/12rKk6E.png',
-        type = 'air', -- type of shop
-        job = 'all',
-        default_garage = 'Plane Hangar A',
-        Dist = 7, -- distance (DEPRECATED)
-        Blip = {color = 38, sprite = 423, scale = 0.9},
-        shop_x = -916.04522705078,
-        shop_y = -3025.2377929688,
-        shop_z = 13.945063591003, -- coordinates for this garage
-        spawn_x = -985.01806640625,
-        spawn_y = -3005.4670410156,
-        spawn_z = 14.783501625061,
-        heading = 54.631553649902, -- Vehicle spawn location
-        shop = { -- if not vehicle is setup in Database SQL, we will use this
-            {shop='DEVIN WESTON PLANE SHOP',brand='Military',stock=50,price=50000,model='hydra',name="Hydra"},
-            {shop='DEVIN WESTON PLANE SHOP',brand='Military',stock=50,price=100000,model='titan',name="Titan"},
-            {shop='DEVIN WESTON PLANE SHOP',brand='Private Plane',stock=50,price=100000,model='luxor2',name="Luxor 2"},
-            {shop='DEVIN WESTON PLANE SHOP',brand='Private Plane',stock=50,price=100000,model='luxor',name="Luxor"},
-            {shop='DEVIN WESTON PLANE SHOP',brand='Private Plane',stock=50,price=100000,model='nimbus',name="Nimbus"},
-            {shop='DEVIN WESTON PLANE SHOP',brand='Propeller Type',stock=50,price=100000,model='dodo',name="Dodo"},
-            {shop='DEVIN WESTON PLANE SHOP',brand='Propeller Type',stock=50,price=100000,model='duster',name="Duster"},
-            {shop='DEVIN WESTON PLANE SHOP',brand='Propeller Type',stock=50,price=100000,model='nokota',name="Nokota"},
         },
     },
 }
