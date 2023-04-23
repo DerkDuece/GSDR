@@ -1,8 +1,5 @@
 local inService, targetList, drawMarker, markerData, obj, existingActions = false, {}, false, nil, nil, nil
 
-local savedClothing
-local savedProps
-
 if Config.Framework == 'qbcore' then
 	QBCore = GetResourceState('qb-core') == 'started' and exports['qb-core']:GetCoreObject()
 
@@ -206,25 +203,29 @@ updateFunction = function()
 	end
 end
 
-changeClothing = function()	
-	savedClothing = exports['fivem-appearance']:getPedComponents(PlayerPedId())
-	savedProps = exports['fivem-appearance']:getPedProps(PlayerPedId())
-	local pedModel = exports['fivem-appearance']:getPedModel(PlayerPedId())
-	if pedModel == 'mp_m_freemode_01' then
-		exports['fivem-appearance']:setPedComponents(PlayerPedId(), Config.Clothes.male.components)
+changeClothing = function()
+	local gender = GetEntityModel(PlayerPedId())
+	local PlayerPed = PlayerPedId()
+	if gender == 'mp_m_freemode_01' then
+		for k, v in pairs(Config.Clothes.male.components) do
+			SetPedComponentVariation(PlayerPed, v['component_id'], v['drawable'], v['texture'], 0)
+		end
 	else
-		exports['fivem-appearance']:setPedComponents(PlayerPedId(), Config.Clothes.female.components)
+		for k, v in pairs(Config.Clothes.female.components) do
+			SetPedComponentVariation(PlayerPed, v['component_id'], v['drawable'], v['texture'], 0)
+		end
 	end
 end
 
 returnClothing = function()
-	playerPed = PlayerPedId()
-	exports['fivem-appearance']:setPedComponents(playerPed, savedClothing)
-	exports['fivem-appearance']:setPedProps(playerPed, savedProps)
-	local appearance = exports['fivem-appearance']:getPedAppearance(playerPed)
-	TriggerServerEvent('fivem-appearance:save', appearance)
-	savedClothing = nil
-	savedProps = nil
+	if Config.Framework == 'qbcore' then
+		TriggerServerEvent("qb-clothes:loadPlayerSkin") -- LOADING PLAYER'S CLOTHES
+		TriggerServerEvent("qb-clothing:loadPlayerSkin") -- LOADING PLAYER'S CLOTHES - Event 2
+	else
+		ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
+			TriggerEvent('skinchanger:loadSkin', skin)
+		end)
+	end
 end
 
 lib.callback.register('JD_CommunityService:inputCallback', function()

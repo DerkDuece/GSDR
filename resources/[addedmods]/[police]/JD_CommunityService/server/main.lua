@@ -4,7 +4,8 @@ local WebhookURL = ''
 if Config.Framework == 'qbcore' then
 	QBCore = exports['qb-core']:GetCoreObject()
 	function GetPlayer(source)
-		return QBCore.Functions.GetPlayer(source)
+		local Player = QBCore.Functions.GetPlayer(source)
+		return Player
 	end
 
 	function GetIdentifier(source)
@@ -23,7 +24,8 @@ if Config.Framework == 'qbcore' then
 elseif Config.Framework == 'esx' then
 	ESX = exports['es_extended']:getSharedObject()
 	function GetPlayer(source)
-		return ESX.GetPlayerFromId(source)
+		local Player = ESX.GetPlayerFromId(source)
+		return Player
 	end
 
 	function GetIdentifier(source)
@@ -64,8 +66,8 @@ end
 
 updateService = function(target, actions)
 	local _source = target -- cannot parse source to client trigger for some weird reason
-	local Player = GetPlayer(_source)
-	local identifier = Player.identifier
+
+	local identifier = GetIdentifier(_source)
 
 	local currentCount = MySQL.scalar.await('SELECT actions_remaining FROM communityservice WHERE identifier = ?', { identifier })
 	if currentCount then
@@ -77,15 +79,13 @@ end
 
 lib.callback.register('JD_CommunityService:completeService', function()
 	local _source = source -- cannot parse source to client trigger for some weird reason
-	local Player = GetPlayer(_source)
-	local identifier = Player.identifier
+	local identifier = GetIdentifier(_source)
 	MySQL.query.await('DELETE FROM communityservice WHERE identifier = ?', { identifier })
 end)
 
 lib.callback.register('JD_CommunityService:getCurrentActions', function()
 	local _source = source -- cannot parse source to client trigger for some weird reason
-	local Player = GetPlayer(_source)
-	local identifier = Player.identifier
+	local identifier = GetIdentifier(_source)
 	local count = MySQL.scalar.await('SELECT actions_remaining FROM communityservice WHERE identifier = ?', { identifier })
 	return count
 end)
@@ -94,8 +94,14 @@ RegisterCommand('communityService', function(source, args, rawCommand)
 	local _source = source -- cannot parse source to client trigger for some weird reason
 	local Player = GetPlayer(_source)
 
-	if Player.job.name ~= Config.PoliceJob then
-		return showNotification(source, 'No permissions to access this!')
+	if Config.Framework == 'qbcore' then
+		if Player.PlayerData.job.name ~= Config.PoliceJob then
+			return showNotification(source, 'No permissions to access this!')
+		end
+	else
+		if Player.job.name ~= Config.PoliceJob then
+			return showNotification(source, 'No permissions to access this!')
+		end
 	end
 
 	local input = lib.callback.await('JD_CommunityService:inputCallback', source)
@@ -116,42 +122,51 @@ end, false)
 RegisterCommand('releaseCommunityService', function(source, args, rawCommand)
 	local _source = source -- cannot parse source to client trigger for some weird reason
 	local Player = GetPlayer(_source)
-	local input = lib.callback.await('JD_CommunityService:inputCallbackRelease', source)
+	local input = lib.callback.await('JD_CommunityService:inputCallbackRelease', _source)
 	
-	if Player.job.name ~= Config.PoliceJob then
-		return showNotification(source, 'No permissions to access this!')
+	if Config.Framework == 'qbcore' then
+		if Player.PlayerData.job.name ~= Config.PoliceJob then
+			return showNotification(_source, 'No permissions to access this!')
+		end
+	else
+		if Player.job.name ~= Config.PoliceJob then
+			return showNotification(_source, 'No permissions to access this!')
+		end
 	end
 
-	local targetPlayer = GetPlayer(input[1])
+	local id = tonumber(input[1])
+	local targetPlayer = GetPlayer(id)
 
 	if targetPlayer == nil then
-		return showNotification(source, 'Invalid ID / No one sent!')
+		return showNotification(_source, 'Invalid ID / No one sent!')
 	end
 
 	if Config.EnableWebhook then
-		local realeased = GetPlayer(input[1])
+		local realeased = GetPlayer(id)
 		local realeaser = GetPlayer(_source)
 		local name = getPlayerName(realeased)
 		local name2 = getPlayerName(realeaser)
 		sendToDiscord(16753920, 'Community Service Alert', name .. ' was released from community service by ' ..
 		name2, 'Made by JackDUpModZ')
 	end
-	TriggerClientEvent('JD_CommunityService:releaseService', input[1])
+	TriggerClientEvent('JD_CommunityService:releaseService', id)
 end, true)
 
 RegisterCommand('releaseCommunityServiceAdmin', function(source, args, rawCommand)
 	if IsPlayerAceAllowed(source, 'communityService') then
 		local _source = source -- cannot parse source to client trigger for some weird reason
 		local input = lib.callback.await('JD_CommunityService:inputCallbackRelease', source)
-		local targetPlayer = GetPlayer(input[1])
+
+		local id = tonumber(input[1])
+		local targetPlayer = GetPlayer(id)
 
 		if targetPlayer == nil then
 			return showNotification(source, 'Invalid ID / No one sent!')
 		end
 
-		TriggerClientEvent('JD_CommunityService:releaseService', input[1])
+		TriggerClientEvent('JD_CommunityService:releaseService', id)
 		if Config.EnableWebhook then
-			local realeased = GetPlayer(input[1])
+			local realeased = GetPlayer(id)
 			local realeaser = GetPlayer(_source)
 			local name = getPlayerName(realeased)
 			local name2 = getPlayerName(realeaser)
@@ -164,8 +179,14 @@ lib.callback.register('JD_CommunityService:communityMenu', function()
 	local _source = source -- cannot parse source to client trigger for some weird reason
 	local Player = GetPlayer(_source)
 
-	if Player.job.name ~= Config.PoliceJob then
-		return showNotification(source, 'No permissions to access this!')
+	if Config.Framework == 'qbcore' then
+		if Player.PlayerData.job.name ~= Config.PoliceJob then
+			return showNotification(source, 'No permissions to access this!')
+		end
+	else
+		if Player.job.name ~= Config.PoliceJob then
+			return showNotification(source, 'No permissions to access this!')
+		end
 	end
 
 	local input = lib.callback.await('JD_CommunityService:inputCallback', source)
