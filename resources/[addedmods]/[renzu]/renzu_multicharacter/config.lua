@@ -2,7 +2,7 @@ Config = {}
 Config.Locale = 'en'
 Config.UseDefaultRegister = true -- if false you will use other registration resource ex. esx_identite,
 Config.RegisterHook = {
-	event = true,
+	event = false,
 	call = 'esx_identity:showRegisterIdentity' -- sample esx_identity compatibility. for more compatibilty see bottom.
 }
 
@@ -27,7 +27,7 @@ Config.CameraIntro = { -- camera locations when doing intro
 -- Allows players to delete their characters
 Config.CanDelete = true
 -- This is the default number of slots for EVERY player
-Config.Slots = 1
+Config.Slots = 3
 Config.commandslot = 'updatecharslots' -- /updatecharslots 7
 --------------------
 
