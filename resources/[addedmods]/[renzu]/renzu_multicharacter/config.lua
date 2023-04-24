@@ -7,7 +7,7 @@ Config.RegisterHook = {
 }
 
 -- SPAWN resource
-Config.SpawnSelector = true -- enable this if you want to use spawn selector
+Config.SpawnSelector = false -- enable this if you want to use spawn selector
 Config.SpawnSelectInNewOnly = false -- set this to true if you want to use SpawnSelector on new players only
 Config.SpawnSelectorExport = function(coord) -- by default it uses my spawn resource
 	return exports.renzu_spawn:Selector({x = coord.x, y = coord.y, z = coord.z, heading = coord.w})
@@ -112,7 +112,7 @@ Config.skinsupport = {
 	['illenium-appearance'] = true
 }
 
-Config.skin = 'none' -- do not replace this. this resource automatically detect your skin resourc if its supported.
+Config.skin = 'illenium-appearance' -- do not replace this. this resource automatically detect your skin resourc if its supported.
 local skincount = {}
 local lowpriority = 'skinchanger' -- for people who started 2 skin resource :facepalm
 for skin,_ in pairs(Config.skinsupport) do
