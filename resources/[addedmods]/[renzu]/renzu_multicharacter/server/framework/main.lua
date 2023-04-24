@@ -231,7 +231,7 @@ GiveStarterItems = function(source)
 					info.birthdate = Player.PlayerData.charinfo.birthdate
 					info.type = "Class C Driver License"
 				end
-				Player.Functions.AddItem(v.item, v.amount, false, info)
+				exports.ox_inventory:AddItem(inv, item, count, metadata, slot, cb)
 			end
 			starter[Player.PlayerData.citizenid] = true -- this is something can still be exploit by players as citizenid is random string every register, so put only a real starter pack like phone and etc.
 
