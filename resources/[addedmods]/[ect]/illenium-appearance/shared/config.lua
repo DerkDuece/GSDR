@@ -37,7 +37,7 @@ Config.EnablePedMenu = true
 Config.PedMenuGroup = "group.admin"
 
 Config.ShowNearestShopOnly = false
-Config.HideRadar = false -- Hides the minimap while the appearance menu is open
+Config.HideRadar = true -- Hides the minimap while the appearance menu is open
 Config.NearestShopBlipUpdateDelay = 10000
 
 Config.InvincibleDuringCustomization = true
