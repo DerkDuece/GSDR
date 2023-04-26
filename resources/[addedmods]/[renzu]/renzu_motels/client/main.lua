@@ -1,4 +1,4 @@
-
+local kvpname = GetCurrentServerEndpoint()..'_inshells'
 CreateBlips = function()
 	for k,v in pairs(config.motels) do
 		local blip = AddBlipForCoord(v.rentcoord.x,v.rentcoord.y,v.rentcoord.z)
@@ -76,7 +76,7 @@ end
 
 RegisterNetEvent('renzu_motels:Door', function(data)
 	if not data.Mlo then return end
-	local doorindex = data.index + (joaat(data.motel))
+	local doorindex = data.doorindex + (joaat(data.motel))
 	DoorSystemSetDoorState(doorindex, DoorSystemGetDoorState(doorindex) == 0 and 1 or 0, false, false)
 end)
 
@@ -91,6 +91,7 @@ Door = function(data)
         TriggerServerEvent('renzu_motels:Door', {
             motel = data.motel,
             index = data.index,
+			doorindex = data.doorindex,
             coord = data.coord,
 			Mlo = data.Mlo,
         })
@@ -166,6 +167,7 @@ LockPick = function(data)
 		TriggerServerEvent('renzu_motels:Door', {
             motel = data.motel,
             index = data.index,
+			doorindex = data.doorindex,
             coord = data.coord,
 			Mlo = data.Mlo
         })
@@ -747,19 +749,37 @@ MotelZone = function(data)
 		inMotelZone = true
 		Citizen.CreateThreadNow(function()
 			for index, doors in pairs(data.doors) do
-				for type, coord in pairs(doors) do
-					MotelFunction({
-						payment = data.payment or 'money',
-						uniquestash = data.uniquestash, 
-						shell = data.shell, 
-						Mlo = data.Mlo, 
-						type = type, 
-						index = index, 
-						coord = coord, 
-						label = config.Text[type], 
-						motel = data.motel, 
-						door = data.door
-					})
+				for type, door in pairs(doors) do
+					if type == 'door' then
+						for doorindex,v in pairs(door) do
+							MotelFunction({
+								payment = data.payment or 'money',
+								uniquestash = data.uniquestash, 
+								shell = data.shell, 
+								Mlo = data.Mlo, 
+								type = type, 
+								index = index,
+								doorindex = index + doorindex,
+								coord = v.coord, 
+								label = config.Text[type], 
+								motel = data.motel, 
+								door = v.model
+							})
+						end
+					else
+						MotelFunction({
+							payment = data.payment or 'money',
+							uniquestash = data.uniquestash, 
+							shell = data.shell, 
+							Mlo = data.Mlo, 
+							type = type, 
+							index = index, 
+							coord = door, 
+							label = config.Text[type], 
+							motel = data.motel, 
+							door = data.door
+						})
+					end
 				end
 			end
 			point = MotelRentalPoints(data) 
@@ -809,12 +829,14 @@ function Teleport(x, y, z, h ,exit)
 		DeleteEntity(house)
 		lib.callback.await('renzu_motels:SetRouting',false,data,'exit')
 		shelzones = {}
+		DeleteResourceKvp(kvpname)
+		LocalPlayer.state:set('inshell',false,true)
 	end
 end
 
-EnterShell = function(data)
+EnterShell = function(data,login)
 	local motels = GlobalState.Motels
-	if motels[data.motel].rooms[data.index].lock then
+	if motels[data.motel].rooms[data.index].lock and not login then
 		Notify('Door is Locked', 'error')
 		return false
 	end
@@ -826,7 +848,7 @@ EnterShell = function(data)
 	lib.callback.await('renzu_motels:SetRouting',false,data,'enter')
 	inhouse = true
 	Wait(1000)
-	local spawn = data.coord+vec3(0.0,0.0,1500.0)
+	local spawn = vec3(data.coord.x,data.coord.y,data.coord.z)+vec3(0.0,0.0,1500.0)
     local offsets = shelldata.offsets
 	local model = shelldata.shell
 	DoScreenFadeOut(500)
@@ -839,14 +861,19 @@ EnterShell = function(data)
 	while not HasModelLoaded(model) do
 	    Wait(1000)
 	end
+	local lastloc = GetEntityCoords(cache.ped)
 	house = CreateObject(model, spawn.x, spawn.y, spawn.z, false, false, false)
     FreezeEntityPosition(house, true)
-	LocalPlayer.state:set('lastloc',GetEntityCoords(cache.ped),false)
-	LocalPlayer.state:set('inhouse',GetEntityCoords(cache.ped),true)
-	SendNUIMessage({
-		type = 'door'
-	})
+	LocalPlayer.state:set('lastloc',data.lastloc or lastloc,false)
+	data.lastloc = data.lastloc or lastloc
+	if not login then
+		SendNUIMessage({
+			type = 'door'
+		})
+	end
 	Teleport(spawn.x + offsets.exit.x, spawn.y + offsets.exit.y, spawn.z+0.1, offsets.exit.h)
+	SetResourceKvp(kvpname,json.encode(data))
+
 	Citizen.CreateThreadNow(function()
 		ShellTargets(data,offsets,spawn,house)
 		while inhouse do
@@ -906,21 +933,26 @@ lib.onCache('weapon', function(weapon)
 			local _, bullet, _ = RayCastGamePlayCamera(200.0,1)
 			for k,data in pairs(config.motels) do
 				for k,v in pairs(data.doors) do
-					if #(vec3(bullet.x,bullet.y,bullet.z) - vec3(v.door.x,v.door.y,v.door.z)) < 2 and motels[data.motel].rooms[k].lock then
-						TriggerServerEvent('renzu_motels:Door', {
-							motel = data.motel,
-							index = k,
-							coord = v.door,
-							Mlo = data.Mlo,
-						})
-						local text
-						if data.Mlo then
-							local doorindex = k + (joaat(data.motel))
-							text = DoorSystemGetDoorState(doorindex) == 0 and 'You Destroy the Motel Door'
-						else
-							text = 'You Destroy the Motel Door'
+					if v.door then
+						for k2,v in pairs(v.door) do
+							if #(vec3(bullet.x,bullet.y,bullet.z) - vec3(v.coord.x,v.coord.y,v.coord.z)) < 2 and motels[data.motel].rooms[k].lock then
+								TriggerServerEvent('renzu_motels:Door', {
+									motel = data.motel,
+									index = k,
+									doorindex = k + k2,
+									coord = v.coord,
+									Mlo = data.Mlo,
+								})
+								local text
+								if data.Mlo then
+									local doorindex = (k + k2) + (joaat(data.motel))
+									text = DoorSystemGetDoorState(doorindex) == 0 and 'You Destroy the Motel Door'
+								else
+									text = 'You Destroy the Motel Door'
+								end
+								Notify(text,'warning')
+							end
 						end
-						Notify(text,'warning')
 					end
 				end
 				Wait(1000)
