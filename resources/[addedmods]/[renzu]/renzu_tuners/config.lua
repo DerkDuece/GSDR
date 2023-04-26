@@ -1,7 +1,7 @@
 -- renzu_tuners
 config = {}
 -- debug mode -- saves all vehicle including non owned vehicles
-config.debug = true -- enable commands for dev. /sethandling 100 (0-100), /setfuel 100 (0-100), /setmileage 1000 (0,10000) !! note this does not have permission checks
+config.debug = false -- enable commands for dev. /sethandling 100 (0-100), /setfuel 100 (0-100), /setmileage 1000 (0,10000) !! note this does not have permission checks
 config.sandboxmode = false -- different tuning and no degrations and other stuff. mostly used only when trying to tweak a vehicle handling meta in dyno.
 config.freeupgrade = true -- for upgrades. set to true best for standalone purpose or testing purpose, for roleplay use the crafting/jobmanage money. if false menu will requires you a specific item for each upgrades
 config.metadata = true -- use item metadata when crafting items if ox_inventory. if your inventory does not support it, set this to false.
@@ -24,7 +24,7 @@ config.upgradevariation = { -- enable/disable upgrade variation.
 
 config.enablecrafting = true -- crafting for items and parts,turbo, engine etc..
 config.purchasableUpgrade = false -- dont like crafting / item based? set this to true to use money to all item upgrades
-config.jobmanagemoney = false -- use job money if purchasableUpgrade. ex. esx_society, qb-management
+config.jobmanagemoney = true -- use job money if purchasableUpgrade. ex. esx_society, qb-management
 
 config.nosaveplate = { -- dont save this plate pattern unless debuging
 	['CFX'] = true,

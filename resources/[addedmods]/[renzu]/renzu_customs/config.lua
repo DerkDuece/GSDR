@@ -3,8 +3,8 @@ Config.Locale = "en"
 -- MAIN CONFIG START
 Config.framework = 'QBCORE' -- FRAMEWORK! , "ESX", "QBCORE"
 Config.Mysql = 'oxmysql' -- "ghmattisql", "mysql-async", "oxmysql"
-Config.renzu_vehicleshopTable = false -- will use exports from vehicleshop vehicles table renzu_vehicleshop/vehicles.lua for pricing and other data.
-Config.usePopui = false -- POPUI or Drawmarker Floating Text https://github.com/renzuzu/renzu_popui
+Config.renzu_vehicleshopTable = true -- will use exports from vehicleshop vehicles table renzu_vehicleshop/vehicles.lua for pricing and other data.
+Config.usePopui = true -- POPUI or Drawmarker Floating Text https://github.com/renzuzu/renzu_popui
 Config.showmarker = true -- Drawmarker and FLoating Text
 Config.DisableRepair = false -- Disable Repairing before Showing Upgrade Menu
 Config.OwnedVehiclesOnly = true -- set this to False if you want to allow modifying of non owned vehicles, AKA local cars, spawned cars

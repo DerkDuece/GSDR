@@ -1,5 +1,5 @@
 Config = {}
-Config.Mysql = 'mysql-async' -- mysql-async, ghmattisql, oxmysql
+Config.Mysql = 'oxmysql' -- mysql-async, ghmattisql, oxmysql
 Config.StatusMax      = 1000000
 Config.TickTime       = 10000 -- Client Update
 Config.UpdateInterval = 20000 -- Send Data to server interval
@@ -9,10 +9,10 @@ Config.SaveLoop = false -- save loop in server
 Config.Multiplier = 1.0 -- multiplier value of remove value for status
 -- change to license: , if you are using licensed in identifier
 Config.identifier = 'license:' 
-Config.multichar = false -- KASHACTERS, cd_multicharacter, etc...
+Config.multichar = true -- KASHACTERS, cd_multicharacter, etc...
 --IMPORTANT PART IF USING Multicharacter
 -- if multichar_advanced is false == using steam: format or the config.identifier
-Config.multichar_advanced = true -- Using Permanent Char1,Char2 up to Char5 identifier from database. ( This means the identifier reads by ESX or other framework will have Char1:BLAHBLAHBLAH instead of steam:BLAHBLAHBLAH ( from xPlayer.identifier for example))
+Config.multichar_advanced = false -- Using Permanent Char1,Char2 up to Char5 identifier from database. ( This means the identifier reads by ESX or other framework will have Char1:BLAHBLAHBLAH instead of steam:BLAHBLAHBLAH ( from xPlayer.identifier for example))
 Config.characterchosenevent = 'kashactersS:CharacterChosen' -- this event contains charid (IMPORTANT and will read only if using advanced)
 Config.charprefix = 'Char' -- dont change unless you know what you are doing
 Config.register_status = {
