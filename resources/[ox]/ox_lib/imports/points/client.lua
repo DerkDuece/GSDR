@@ -1,23 +1,18 @@
----@class PointProperties
+---@class CPoint
+---@field id number
 ---@field coords vector3
 ---@field distance number
+---@field currentDistance number
+---@field isClosest? boolean
+---@field remove fun()
 ---@field onEnter? fun(self: CPoint)
 ---@field onExit? fun(self: CPoint)
 ---@field nearby? fun(self: CPoint)
 ---@field [string] any
 
----@class CPoint : PointProperties
----@field id number
----@field currentDistance number
----@field isClosest? boolean
----@field remove fun()
-
----@type table<number, CPoint>
 local points = {}
----@type CPoint[]
 local nearbyPoints = {}
 local nearbyCount = 0
----@type CPoint?
 local closestPoint
 local tick
 
@@ -112,8 +107,6 @@ end
 
 lib.points = {
     ---@return CPoint
-    ---@overload fun(data: PointProperties): CPoint
-    ---@overload fun(coords: vector3, distance: number, data?: PointProperties): CPoint
 	new = function(...)
 		local args = {...}
 		local id = #points + 1
@@ -147,15 +140,10 @@ lib.points = {
 		return self
 	end,
 
-    getAllPoints = function() return points end,
-
-    getNearbyPoints = function() return nearbyPoints end,
-
-    ---@return CPoint?
-	getClosestPoint = function() return closestPoint end,
+    ---@return CPoint
+	closest = function()
+		return closestPoint
+	end
 }
-
----@deprecated
-lib.points.closest = lib.points.getClosestPoint
 
 return lib.points

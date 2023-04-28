@@ -3,32 +3,6 @@ local hostname = GetConvar('sv_projectName', 'fxserver')
 local buffer
 local bufferSize = 0
 
-local b = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-
-local function base64encode(data)
-    return ((data:gsub(".", function(x)
-        local r, b = "", x:byte()
-        for i = 8, 1, -1 do
-            r = r .. (b % 2 ^ i - b % 2 ^ (i - 1) > 0 and "1" or "0")
-        end
-        return r;
-    end) .. "0000"):gsub("%d%d%d?%d?%d?%d?", function(x)
-        if (#x < 6) then
-            return ""
-        end
-        local c = 0
-        for i = 1, 6 do
-            c = c + (x:sub(i, i) == "1" and 2 ^ (6 - i) or 0)
-        end
-        return b:sub(c + 1, c + 1)
-    end) .. ({"", "==", "="})[#data % 3 + 1])
-end
-
-local function getAuthorizationHeader(user, password)
-    return "Basic " .. base64encode(user .. ":" .. password)
-end
-
-
 local function badResponse(endpoint, status, response)
     warn(('unable to submit logs to %s (status: %s)\n%s'):format(endpoint, status, json.encode(response, { indent = true })))
 end
@@ -115,28 +89,14 @@ end
 
 if service == 'loki' then
     local lokiUser = GetConvar('loki:user', '')
-    local lokiPassword = GetConvar('loki:password', '')
-    local lokiEndpoint = GetConvar('loki:endpoint', '')
-    local startingPattern = '^http[s]?://'
-    local headers = {
-        ['Content-Type'] = 'application/json'
-    }
-
-    if lokiUser ~= '' then
-        headers['Authorization'] = getAuthorizationHeader(lokiUser, lokiPassword)
-    end
-
-    if not lokiEndpoint:find(startingPattern) then
-        lokiEndpoint = 'https://' .. lokiEndpoint
-    end
-
-    local endpoint = ('%s/loki/api/v1/push'):format(lokiEndpoint)
+    local lokiKey = GetConvar('loki:key', '')
+    local endpoint = ('https://%s:%s@%s/loki/api/v1/push'):format(lokiUser, lokiKey, GetConvar('loki:endpoint', ''))
 
     -- Converts a string of comma seperated kvp string to a table of kvps
     -- example `discord:blahblah,fivem:blahblah,license:blahblah` -> `{discord="blahblah",fivem="blahblah",license="blahblah"}`
     local function convertDDTagsToKVP(tags)
         if not tags or type(tags) ~= 'string' then
-            return {}
+            return {}    
         end
         local tempTable = { string.strsplit(',', tags) } -- outputs a number index table wth k:v strings as values
         local bTable = table.create(0, #tempTable) -- buffer table
@@ -166,7 +126,9 @@ if service == 'loki' then
                     if status ~= 204 then
                         badResponse(endpoint, status, ("%s"):format(status, postBody))
                     end
-                end, 'POST', postBody, headers)
+                end, 'POST', postBody, {
+                    ['Content-Type'] = 'application/json',
+                })
 
                 buffer = nil
             end)
@@ -191,9 +153,8 @@ if service == 'loki' then
         -- initialise stream payload
         local payload = {
             stream = {
-                server = hostname,
-                resource = cache.resource,
-                event = event
+                hostname = cache.resource,
+                service = event
             },
             values = {
                 {

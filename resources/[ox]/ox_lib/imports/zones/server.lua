@@ -1,6 +1,6 @@
 local glm = require 'glm'
 
----@type table<number, CZone>
+---@type { [number]: CZone }
 Zones = {}
 
 local function removeZone(self)
@@ -96,8 +96,6 @@ lib.zones = {
         Zones[data.id] = data
         return data
     end,
-
-    getAllZones = function() return Zones end,
 }
 
 return lib.zones
