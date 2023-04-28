@@ -1,7 +1,7 @@
 Config = {}
 
 Config.Lan = 'en' -- Language you want to use
-Config.Core = 'qbox' -- If you renamed the qb-core folder, change it here too
+Config.Core = 'qbx-core' -- If you renamed the qb-core folder, change it here too
 
 -- Resources
 Config.Notify = 'ox' -- Which notify system do you want to use: 'qb', 'okok', or 'ox'? 
