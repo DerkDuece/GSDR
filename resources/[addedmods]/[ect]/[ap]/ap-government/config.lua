@@ -1,5 +1,5 @@
 Config = {
-	FrameworkExport = "qb-core", -- Set this too your core name, only change this if you have a custom version of QBCore. 
+	FrameworkExport = "qbox", -- Set this too your core name, only change this if you have a custom version of QBCore. 
 	DiscordWebhook = {CandidateWinner = true, PollsOpen = true, CandidateStarted = true, CompanyRegisterd = true, CompanyGrantGiven = true, AppointmentRequest = true, AppointmentApprove = true, MayorTaxChange = true}, -- Set the webhooks you want to use to true.
 	Currency = '$', -- Set this to the currency your server uses.
 	UsingAPCourt = false, -- Set this to true if your using AP-COURT.
