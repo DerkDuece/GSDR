@@ -6,7 +6,7 @@ Config.Debug = false
 
 Config.RenderDistance = 100.0
 
-Config.IgnoreGroups = false -- Doesn't scan people who can see scan results.
+Config.IgnoreGroups = true -- Doesn't scan people who can see scan results.
 
 Config.ScannerLocations = {
     {

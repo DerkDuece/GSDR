@@ -2,7 +2,7 @@ ESX,QBCORE = nil, nil
 shared = {}
 shared.lang = 'en' -- look config/locales/%s.lua eg. 'en' for en.lua | to create new language, create a new file ex. es.lua
 -- use ox_inventory Shops UI (experimental feature) only with my forked ox_inventory REPO https://github.com/renzuzu/ox_inventory
-shared.oxShops = true -- if true this resource will use ox_inventory Shops UI instead of built in UI
+shared.oxShops = false -- if true this resource will use ox_inventory Shops UI instead of built in UI
 shared.allowplayercreateitem = false -- if false only admin can create new items via /stores
 shared.target = false -- if true all lib zones for markers and oxlib textui will be disable.
 shared.FinanceMinimum = 500000 -- minimum amount for financing to be enable
