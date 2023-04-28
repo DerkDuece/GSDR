@@ -25,15 +25,15 @@ Config.EmergencyServicesDiscount = {
         "ambulance",
     }
 }
-Config.Core = 'qbx-core' -- Change this to your core resources (Ex: 'qbx-core' | 'qb-core'), must be qb based!
+Config.Core = 'qb-core' -- Change this to your core resources (Ex: 'qbx-core' | 'qb-core'), must be qb based!
 Config.Ox = {
     Inventory = true, -- Uses OX_Inventory's metadata instead of QB-Inventory's.
-    Menu = true, -- Uses OX Libraries instead of qb-menu.
+    Menu = false, -- Uses OX Libraries instead of qb-menu.
     Input = false, -- Uses Ox Input Dialog instead of qb-input.
-    DrawText = true, -- Uses Ox DrawText instead of qb-core DrawText.
-    Progress = true -- Uses Ox ProgressBar instead of progressbar.
+    DrawText = false, -- Uses Ox DrawText instead of qb-core DrawText.
+    Progress = false -- Uses Ox ProgressBar instead of progressbar.
 }
-Config.TargetResource = "ox_target" -- Supported: { 'qb-target', 'ox_target'} -- Others must use the same format as QB-Target or manual configuration is required.
+Config.TargetResource = "qb-target" -- Supported: { 'qb-target', 'ox_target'} -- Others must use the same format as QB-Target or manual configuration is required.
 Config.PumpHose = true -- If true, it creates a hose from the pump to the nozzle the client is holding, to give it a more realistic feel.
 Config.RopeType = { -- Options: 1-2-3-4-5; 1: Khaki Color, Kind of Thick, 2: Very Thick Khaki Rope, 3: Very Thick Black Rope, 4: Very Thin Black Rope, 5: Same as 3
     ['fuel'] = 1,

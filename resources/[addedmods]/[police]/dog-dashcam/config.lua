@@ -1,6 +1,6 @@
 DashcamConfig = {}
 
-DashcamConfig.useMPH = true -- False will turn it to KMH	-- true
+DashcamConfig.useMPH = false -- False will turn it to KMH	-- true
 
 DashcamConfig.RestrictVehicles = false	-- true
 DashcamConfig.RestrictionType = "class" -- custom / class

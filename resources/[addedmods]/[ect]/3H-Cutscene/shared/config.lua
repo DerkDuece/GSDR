@@ -1,13 +1,13 @@
 Config = {}
 
 Config.Lan = 'en' -- Language you want to use
-Config.Core = 'qbx-core' -- If you renamed the qb-core folder, change it here too
+Config.Core = 'qb-core' -- If you renamed the qb-core folder, change it here too
 
 -- Resources
-Config.Notify = 'ox' -- Which notify system do you want to use: 'qb', 'okok', or 'ox'? 
-Config.Menu = 'ox' -- Which menu system do you want to use: 'qb' or 'ox'?
-Config.Text = 'ox' -- Which draw-text system do you want to use: 'qb' or 'ox'? 
-Config.Target = 'ox' -- Which target system do you want to use: 'qb' or 'ox'?
+Config.Notify = 'qb' -- Which notify system do you want to use: 'qb', 'okok', or 'ox'? 
+Config.Menu = 'qb' -- Which menu system do you want to use: 'qb' or 'ox'?
+Config.Text = 'qb' -- Which draw-text system do you want to use: 'qb' or 'ox'? 
+Config.Target = 'qb' -- Which target system do you want to use: 'qb' or 'ox'?
 Config.Fuel = 'cdn-fuel' -- Which fuel system are you using: 'LegacyFuel', 'ps-fuel', or 'cdn-fuel'?
 
 -- Cutscene

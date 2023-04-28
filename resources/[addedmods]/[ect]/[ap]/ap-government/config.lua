@@ -1,5 +1,5 @@
 Config = {
-	FrameworkExport = "qbx-core", -- Set this too your core name, only change this if you have a custom version of QBCore. 
+	FrameworkExport = "qb-core", -- Set this too your core name, only change this if you have a custom version of QBCore. 
 	DiscordWebhook = {CandidateWinner = true, PollsOpen = true, CandidateStarted = true, CompanyRegisterd = true, CompanyGrantGiven = true, AppointmentRequest = true, AppointmentApprove = true, MayorTaxChange = true}, -- Set the webhooks you want to use to true.
 	Currency = '$', -- Set this to the currency your server uses.
 	UsingAPCourt = false, -- Set this to true if your using AP-COURT.
@@ -14,7 +14,7 @@ Config = {
 	  }, 
 	  Job = true -- Set this too true for the CityHall(Government Staff) to control the voting.
 	},
-	JobManagementScriptName = "qbx-management", -- If your management script has compatibility with qb-management then change to the resource name.
+	JobManagementScriptName = "qb-management", -- If your management script has compatibility with qb-management then change to the resource name.
 	ApplicationLength = {
 	  [1] = 200, -- Keep this below 200 for Short description, This is for the length of the string in the application.
 	  [2] = 500, -- Keep this below 500 for Why do you want to be a candidate, This is for the length of the string in the application.
