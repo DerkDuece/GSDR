@@ -145,7 +145,6 @@ end)
 
 RegisterNetEvent('randol_pizzajob:client:deliverPizza', function()
     if HasPizza and Hired and not PizzaDelivered then
-        TriggerServerEvent('randol_pizzajob:server:Payment', DeliveriesCount)
         TriggerEvent('animations:client:EmoteCommandStart', {"knock"})
         PizzaDelivered = true
         QBCore.Functions.Progressbar("knock", "Delivering pizza", 7000, false, false, {
@@ -164,6 +163,8 @@ RegisterNetEvent('randol_pizzajob:client:deliverPizza', function()
             DeleteObject(prop)
             Wait(1000)
             ClearPedSecondaryTask(PlayerPedId())
+            Player.Functions.AddMoney("cash", 75)
+            TriggerClientEvent("QBCore:Notify", source, "You received $75 "success")
             QBCore.Functions.Notify("Pizza Delivered. Please wait for your next delivery!", "success") 
             SetTimeout(5000, function()    
                 NextDelivery()
@@ -242,17 +243,7 @@ RegisterNetEvent('randol_pizzajob:client:finishWork', function()
                 HasPizza = false
                 ownsVan = false
                 activeOrder = false
-                if DeliveriesCount > 0 then
-                   
-                else
-                    QBCore.Functions.Notify("You didn't complete any deliveries so you weren't paid.", "error")
-                    PullOutVehicle()
-                end
-                DeliveriesCount = 0
-            else
-                QBCore.Functions.Notify("You must return your work vehicle to get paid.", "error")
                 PullOutVehicle()
-                return
             end
         end
     end

@@ -104,12 +104,23 @@ return {
 
 	YouTool = {
 		--groups = 'police',
-		moneytype = 'black_money',
+		moneytype = 'money',
 		name = 'YouTool',
 		blip = {
 			id = 402, colour = 69, scale = 0.8
 		}, inventory = {
 			{ name = 'lockpick', price = 2000 ,grade = 0},
+			{ name = 'fishingrod', price = 200 },
+			{ name = 'fishbait', price = 50},
+			{ name = 'garden_shovel', price = 1000 },
+			{ name = 'garden_pitcher', price = 1000},
+			{ name = 'pickle_seed', price = 100 },
+			{ name = 'potato_seed', price = 100 },
+			{ name = 'tomato_seed', price = 100 },
+			{ name = 'wheat_seed', price = 100 },
+			{ name = 'carrot_seed', price = 100 },
+			{ name = 'corn_seed', price = 100 },
+			{ name = 'radio', price = 1000},
 
 		}, locations = {
 			vec3(2747.025390625,3473.0822753906,55.683399200439),
