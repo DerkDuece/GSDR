@@ -1,9 +1,9 @@
-const sawu_Hookers = new Vue({
-    el: "#sawu_Hookers",
+const mrf_Hookers = new Vue({
+    el: "#mrf_Hookers",
 
     data: {
         // Shared
-        ResourceName: "mrf-hookers",
+        ResourceName: "mrf_hookers",
         showHookersSelector: false,
         showPimpSelector: false,
         blowjob: null,
@@ -93,9 +93,9 @@ document.onreadystatechange = () => {
     if (document.readyState == "complete") {
         window.addEventListener("message", (event) => {
             if (event.data.type == "openPimpMenu") {
-                sawu_Hookers.OpenPimpMenu(event.data.blowjob, event.data.sex);
+                mrf_Hookers.OpenPimpMenu(event.data.blowjob, event.data.sex);
             } else if (event.data.type == "openHookerMenu") {
-                sawu_Hookers.OpenHookersMenu(event.data.blowjob, event.data.sex);
+                mrf_Hookers.OpenHookersMenu(event.data.blowjob, event.data.sex);
             }
         });
     }

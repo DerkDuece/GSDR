@@ -15,10 +15,10 @@ Config.Dispatch = {
     JobName = 'ambulance'
 }
 
--- setup yo whitelist.json for add more fire
+-- setup your whitelist.json for add more fire
 Config.Fire = {
-    fireSpreadChance = 5, -- Out of 100 chances, how many lead to fire spreading? (not exactly percents)
-    maximumSpreads = 5,
+    fireSpreadChance = 10, -- Out of 100 chances, how many lead to fire spreading? (not exactly percents)
+    maximumSpreads = 20,
     randomfire = {
         enableRandomFire = true, -- enable Random Fire
         interval = 1800000, -- Random fire spawn interval in ms
@@ -34,21 +34,15 @@ Config.Fire = {
         storeLast = 5, -- The client will store the last five dispatch coordinates for use with /remindme <dispatchNumber> (Only for playDispatch "chat")
         clearGpsRadius = 20.0, -- If you don't want to automatically clear the route upon arrival, leave this to false (Only for playDispatch "chat")
         --JobName = 'ambulance', -- Your Fire Job Name -- QB is "ambulance" or ESX job is "fd"
-        playSound = "Firestations", -- "inferno" / Firestations or "none" -- play Stations sound
+        playSound = "Firestations", -- "chat" or "inferno" / Firestations or "none" -- play Stations sound
         playDispatch = "ps-dispatch", -- "chat" or "ps-dispatch" or "core_dispatch"
-        Stations = {"els", "sls", "rh"},
-        Tones = {"fire", "medical"}
+        Stations = {"els", "sls", "rh"}, -- Stations sound
+        Tones = {"fire", "medical"} -- Page sound /pager fire or medical
     }
 }
 
 --Discord Webhooks
-Config.Discord = {
-    UseWebHooks = true,
-    WEB_HOOK = GetConvar("fire-log-webhook", ""),
-    STEAM_API = "",
-    WEB_IMAGE = "http://lslrpc.weebly.com/uploads/3/8/7/8/38783037/6642822_orig.jpg",
-    BOT_NAME = "Los Santos Fire Dispatch Service",
-}
+Config.WebHook = "https://discord.com/api/webhooks/1101993334492381264/wB7soumMDfbBBZT65CB1J95Ey6oE87xO0TzdNCfgB_uN0kbEdzjh6gGDSWOM86e77r79"
 
 -- Config Stations
 -- For stations sound,

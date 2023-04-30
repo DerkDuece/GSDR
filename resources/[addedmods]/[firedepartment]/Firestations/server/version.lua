@@ -9,6 +9,7 @@ CreateThread(function()
     if GetCurrentResourceName() ~= "Firestations" then
         resourceName = "Resource (" .. GetCurrentResourceName() .. ")"
         print("^0[^3WARNING^0] Rename the folder to \"Firestations\", otherwise the resource will NOT work properly")
+        StopResource(GetCurrentResourceName())
     end
 
     while true do
@@ -27,10 +28,11 @@ function CheckVersion(err, responseText, headers)
             print("^0.-----------------------------------------------.")
             print("^0|                 ^55STAR Studios               |")
             print("^0'-----------------------------------------------'")
-			print("^0[^3WARNING^0] " .. resourceName .. " is ^1NOT ^0up to date!")
-            print("^0[^3WARNING^0] Your Version: ^2" .. curVersion .. "^0")
-            print("^0[^3WARNING^0] Latest Version: ^2" .. repoVersion .. "^0")
+			print("^0[^1WARNING^0] " .. resourceName .. " is ^1NOT ^0up to date!")
+            print("^0[^1WARNING^0] Your Version: ^2" .. curVersion .. "^0")
+            print("^0[^1WARNING^0] Latest Version: ^2" .. repoVersion .. "^0")
             print("")
+            StopResource('Firestations')
         else
             Wait(4000)
             print("")

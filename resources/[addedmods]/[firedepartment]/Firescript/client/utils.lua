@@ -1,5 +1,5 @@
 --================================--
---      FIRE SCRIPT v2.0.1        --
+--      FIRE SCRIPT v2.0.2        --
 --  by GIMI (+ foregz, Albo1125)  --
 --  make some function by Wick	  --
 --      License: GNU GPL 3.0      --
@@ -13,7 +13,7 @@ function sendMessage(text)
 		{
 			templateId = "firescript",
 			args = {
-				"FireScript v2.0.1",
+				"FireScript v2.0.2",
 				text
 			}
 		}

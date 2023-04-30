@@ -1,5 +1,5 @@
 --================================--
---      FIRE SCRIPT v2.0.1        --
+--      FIRE SCRIPT v2.0.2        --
 --  by GIMI (+ foregz, Albo1125)  --
 --  make some function by Wick	  --
 --      License: GNU GPL 3.0      --
@@ -336,7 +336,7 @@ if Config.Fire.Dispatch.enabled == true then
 			elseif Config.Fire.Dispatch.playDispatch == "ps-dispatch" then
 				-- ps-dispatch
 				TriggerServerEvent("dispatch:server:notify", {
-					dispatchcodename = "fire", -- has to match the codes in sv_dispatchcodes.lua so that it generates the right blip
+					--dispatchcodename = "fire", -- has to match the codes in sv_dispatchcodes.lua so that it generates the right blip
 					dispatchCode = "10-25",
 					firstStreet = "[Dispatch] fire at " ..streetName,
 					callsign = "Structure Fires",
@@ -347,7 +347,21 @@ if Config.Fire.Dispatch.enabled == true then
 						z = coords.z
 					},
 					dispatchMessage = "Fire Reported",
-					job = Config.Dispatch.JobName
+					--job = Config.Dispatch.JobName
+					job = {'EMS', 'fire', 'ambulance'}, -- jobs that will get the alerts
+					alert = {
+						displayCode = "10-25", 
+						description = "A fire broke out", 
+						radius = 0, 
+						recipientList = {'EMS', 'fire', 'ambulance'}, 
+						blipSprite = 436, 
+						blipColour = 1, 
+						blipScale = 1.5, 
+						blipLength = 4, 
+						sound = "firesound", 
+						offset = "false", -- false
+						blipflash = "true"
+					}
 				})
 			
 			elseif Config.Fire.Dispatch.playDispatch == "core_dispatch" then	
@@ -392,9 +406,9 @@ if Config.Framework == "qb" then
 		PlayerJob = player.job
 		if PlayerJob or PlayerJob.name == Config.Dispatch.JobName then
 			if Config.Firestations then
-				print("YOU HAVE A SUPPORTED Firestations")
+				-- come from Firestations
 			else
-				TriggerServerEvent("fire:server:dispatch")
+				TriggerServerEvent("fire:server:Adddispatch")
 			end	
 		end
 		TriggerServerEvent('fireManager:requestSync')
@@ -402,7 +416,7 @@ if Config.Framework == "qb" then
 
 	RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
 		if Config.Firestations then
-			print("YOU HAVE A SUPPORTED Firestations")
+			-- come from Firestations
 		else	
 			TriggerServerEvent("fire:server:Removedispatch")
 		end
@@ -413,7 +427,7 @@ if Config.Framework == "qb" then
 	RegisterNetEvent('QBCore:Client:OnJobUpdate', function(JobInfo)
 		PlayerJob = JobInfo
 		if JobInfo.name == Config.Dispatch.JobName then
-			TriggerServerEvent("fire:server:dispatch")
+			TriggerServerEvent("fire:server:Removedispatch")
 		end
 	end)
 end

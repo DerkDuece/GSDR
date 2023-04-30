@@ -29,7 +29,7 @@ td {
 	color: #FFF;
 }
 
-#sawu_Hookers {
+#mrf_Hookers {
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -46,7 +46,7 @@ td {
 	background-color: rgba(15, 15, 15, 0.5);
 }
 
-#sawu_Hookers_Header {
+#mrf_Hookers_Header {
 	text-align: center;
 	padding: 15px;
 	background-color: rgba(20, 20, 20, 1);
@@ -57,7 +57,7 @@ td {
 	border-top-right-radius: 5px;
 }
 
-#sawu_Hookers_Body {
+#mrf_Hookers_Body {
 	overflow-y: auto;
 	min-height: 50%;
 	padding: 5px;

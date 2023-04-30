@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="http://cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.7/all/gauge.min.js"></script>
-<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>FireSirens</title>
 </head>
-<body style="background-color: rgba(0,0,0,0.0)">
+<body>
+	<script src="main.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="http://cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.7/all/gauge.min.js"></script>
 
-<canvas style="display:none; position:absolute; bottom:10px; right:10px;"
+	<canvas style="display:none; position:absolute; bottom:10px; right:10px;"
 		id="gauge"
 		data-type="radial-gauge"
         data-width="200"
@@ -38,57 +42,6 @@
         data-animation-duration="500"
         data-font-value="Led"
         data-animated-value="true"
-></canvas>
-<script type="text/javascript">
-$(function () {
-	window.addEventListener('message', function (event) {
-		if (event.data.type == "show") {
-			$("#gauge").css('display', "block");
-		} else if (event.data.type == "hide") {
-			$("#gauge").css('display', "none");
-		} else if (event.data.type == "set") {
-		    $("#gauge").attr("data-value", parseFloat(event.data.value));
-		} else if (event.data.type = "set-show") {
-            $("#gauge").css('display', "block");
-            $("#gauge").attr("data-value", parseFloat(event.data.value));
-        }
-	});
-});
-$(function() {
-				var FireSirens = [];
-
-				// Wait to receive message from client script
-				window.addEventListener("message", function(event2) {
-					if (event2.data.PayloadType == "PlayTone") {
-						var pager = null;
-						pager = new Audio("./sounds/" + event2.data.Payload + ".mp3");
-						pager.volume = 1.0;
-						pager.play();
-
-					} else if (event2.data.PayloadType == "PlaySiren") {
-						if (!FireSirens[event2.data.Payload[0]]) {
-							FireSirens[event2.data.Payload[0]] = new Audio("./sounds/" + event2.data.Payload[2] + ".mp3");
-							// Set volume to 0 assuming it will be updated in the next few frames
-							FireSirens[event2.data.Payload[0]].volume = 0.0;
-							FireSirens[event2.data.Payload[0]].play();
-							FireSirens[event2.data.Payload[0]].addEventListener("ended",function(){
-								// Send call back to remove siren
-								$.post("http://Firestations/RemoveSiren", JSON.stringify({
-									Name: event2.data.Payload[0],
-									ID: event2.data.Payload[1]
-								}));
-								FireSirens[event2.data.Payload[0]] = null;
-							});
-						}
-
-					} else if (event2.data.PayloadType == "SetSirenVolume") {
-						if (FireSirens[event2.data.Payload[0]]) {
-							FireSirens[event2.data.Payload[0]].volume = event2.data.Payload[1];
-						}
-					}
-				});
-
-			});
-</script>
+	></canvas>
 </body>
 </html>

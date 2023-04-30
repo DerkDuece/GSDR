@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Required file for FiveM -->
+		<script src="nui://game/ui/jquery.js"></script>
+		<!-- Hide NUI -->
+		<style>
+			html {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<script>
+			$(function () {
+				// Initialize audio array
+				PassAlarms = [];
+				// Wait to receive a message 
+				window.addEventListener("message", function (event) {
+					if (event.data.PayloadType == "AddAlarm") {
+						if (PassAlarms[event.data.Payload]) PassAlarms[event.data.Payload].pause();
+						
+						PassAlarms[event.data.Payload] = new Audio("./sounds/on.mp3");
+						PassAlarms[event.data.Payload].volume = 0.0;
+						PassAlarms[event.data.Payload].play();
+					} else if (event.data.PayloadType == "DeactivateAlarm") {
+						if (PassAlarms[event.data.Payload]) {
+							PassAlarms[event.data.Payload].pause();
+							PassAlarms[event.data.Payload] = new Audio("./sounds/off.mp3");
+							PassAlarms[event.data.Payload].volume = 0.0;
+							PassAlarms[event.data.Payload].play();
+							PassAlarms[event.data.Payload].addEventListener("ended",function(){
+								// Send call back to remove alarm
+								$.post("http://wk-pass/RemoveAlarm", JSON.stringify(event.data.Payload));
+							});
+						}
+					} else if (event.data.PayloadType == "RemoveAlarm") {
+						if (PassAlarms[event.data.Payload]) {
+							PassAlarms[event.data.Payload].pause();
+							PassAlarms[event.data.Payload] = null;
+						}
+					} else if (event.data.PayloadType == "Stage1") {
+						if (PassAlarms[event.data.Payload]) {
+							PassAlarms[event.data.Payload].pause();
+							PassAlarms[event.data.Payload] = new Audio("./sounds/stage1.mp3");
+							PassAlarms[event.data.Payload].volume = 0.0;
+							PassAlarms[event.data.Payload].play();
+						}
+					} else if (event.data.PayloadType == "Stage2") {
+						if (PassAlarms[event.data.Payload]) {
+							PassAlarms[event.data.Payload].pause();
+							PassAlarms[event.data.Payload] = new Audio("./sounds/stage2.mp3");
+							PassAlarms[event.data.Payload].volume = 0.0;
+							PassAlarms[event.data.Payload].loop = true;
+							PassAlarms[event.data.Payload].play();
+						}
+					} else if (event.data.PayloadType == "StopAlarm") {
+						if (PassAlarms[event.data.Payload]) PassAlarms[event.data.Payload].pause();
+
+						PassAlarms[event.data.Payload] = new Audio("./sounds/on.mp3");
+						PassAlarms[event.data.Payload].volume = 0.0;
+						PassAlarms[event.data.Payload].play();
+					} else if (event.data.PayloadType == "SetAlarmVolume") {
+						if (PassAlarms[event.data.Payload[0]]) PassAlarms[event.data.Payload[0]].volume = event.data.Payload[1];
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

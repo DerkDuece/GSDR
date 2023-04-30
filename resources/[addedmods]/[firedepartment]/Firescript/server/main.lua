@@ -1,25 +1,12 @@
 --================================--
---      FIRE SCRIPT v2.0.1        --
+--      FIRE SCRIPT v2.0.2        --
 --  by GIMI (+ foregz, Albo1125)  --
 --  make some function by Wick	  --
 --      License: GNU GPL 3.0      --
 --================================--
-
---================================--
---         VERSION CHECK          --
---================================--
-
-Version = "2.0.1"
-LatestVersionFeed =  "https://api.github.com/repos/Wick89/FirescriptAddons/releases/latest"
-
-Citizen.CreateThread(
-	checkVersion
-)
-
 --================================--
 --          INITIALIZE            --
 --================================--
-
 function onResourceStart(resourceName)
 	if (GetCurrentResourceName() == resourceName) then
 		Whitelist:load()
@@ -40,7 +27,6 @@ AddEventHandler('onResourceStart',
 --================================--
 --           CLEAN-UP             --
 --================================--
-
 function onPlayerDropped()
 	Whitelist:removePlayer(source)
 	Dispatch:unsubscribe(source)
@@ -54,7 +40,6 @@ AddEventHandler('playerDropped',
 --================================--
 --           COMMANDS             --
 --================================--
-
 RegisterNetEvent('fireManager:command:startfire')
 AddEventHandler('fireManager:command:startfire', function(coords, maxSpread, chance, triggerDispatch, dispatchMessage)
 	if not Whitelist:isWhitelisted(source, "firescript.start") then
@@ -70,6 +55,8 @@ AddEventHandler('fireManager:command:startfire', function(coords, maxSpread, cha
 	local fireIndex = Fire:create(coords, maxSpread, chance)
 
 	sendMessage(source, "Spawned fire #" .. fireIndex)
+	sendToDiscord(16736315, "Fire Start", 'At Player: **' ..  GetPlayerName(source).. '**\n\nSpawned fire #' .. fireIndex)
+
 
 	if triggerDispatch then
 		Citizen.SetTimeout(Config.Fire.Dispatch.timeout, function()
@@ -120,6 +107,7 @@ AddEventHandler('fireManager:command:addflame', function(registeredFireID, coord
 	end
 
 	sendMessage(source, "Added flame #" .. flameID)
+	sendToDiscord(16736315, "flame Added", 'At Player: **' ..  GetPlayerName(source).. '**\n\nAdded flame #' .. flameID)
 end)
 
 RegisterCommand('stopfire', function(source, args, rawCommand)
@@ -136,6 +124,7 @@ RegisterCommand('stopfire', function(source, args, rawCommand)
 
 	if Fire:remove(fireIndex) then
 		sendMessage(source, "Stopping fire #" .. fireIndex)
+		sendToDiscord(16736315, "Stoppingfire", 'At Player: **' ..  GetPlayerName(source).. '**\n\nStopping fire #' .. fireIndex)
 			TriggerClientEvent("pNotify:SendNotification", source, {
 			text = "Fire " .. fireIndex .. " going out...",
 			type = "info",
@@ -155,6 +144,7 @@ RegisterCommand('stopallfires', function(source, args, rawCommand)
 	Fire:removeAll()
 
 	sendMessage(source, "Stopping fires")
+	sendToDiscord(16736315, "Stopallfires", 'At Player: **' ..  GetPlayerName(source).. '**\n\nStopping all fire')
 	TriggerClientEvent("pNotify:SendNotification", source, {
 		text = "Fires going out...",
 		type = "info",
@@ -185,6 +175,7 @@ RegisterCommand('removeflame', function(source, args, rawCommand)
 	end
 
 	sendMessage(source, "Removed flame #" .. flameID)
+	sendToDiscord(16736315, "flameRemoved", 'At Player: **' ..  GetPlayerName(source).. '**\n\nRemoved flame #' .. flameID)
 
 end, false)
 
@@ -206,6 +197,7 @@ RegisterCommand('removescenario', function(source, args, rawCommand)
 	end
 
 	sendMessage(source, "Removed scenario #" .. registeredFireID)
+	sendToDiscord(16736315, "scenarioRemoved", 'At Player: **' ..  GetPlayerName(source).. '**\n\nRemoved scenario #' .. registeredFireID)
 
 end, false)
 
@@ -231,6 +223,7 @@ RegisterCommand('startscenario', function(source, args, rawCommand)
 	end
 
 	sendMessage(source, "Started scenario #" .. registeredFireID)
+	sendToDiscord(16736315, "scenario Started", 'At Player: **' ..  GetPlayerName(source).. '**\n\nStarted scenario #' .. registeredFireID)
 
 end, false)
 
@@ -255,6 +248,7 @@ RegisterCommand('stopscenario', function(source, args, rawCommand)
 	end
 
 	sendMessage(source, "Stopping scenario #" .. registeredFireID)
+	sendToDiscord(16736315, "scenario Stopping", 'At Player: **' ..  GetPlayerName(source).. '**\n\nStopping scenario #' .. registeredFireID)
 
 	TriggerClientEvent("pNotify:SendNotification", source, {
 		text = "Fire going out...",
@@ -385,6 +379,35 @@ RegisterCommand('randomfires', function(source, args, rawCommand)
 	end
 end, false)
 
+--================================--
+--           Log            	  --
+--================================--
+
+local communityname = "MY Firescript Log"
+local communtiylogo = "https://cdn.discordapp.com/attachments/1070309367896871002/1084056971172388874/boss_logo.png"
+
+function sendAdminToDiscord (name, message, color)
+	local DiscordAdminWebHook = ""
+  
+	  local time = os.date("*t")
+  
+	  local embed = {
+		  {
+			  ["color"] = color,
+			  ["author"] = {
+				  ["icon_url"] = communtiylogo,
+				  ["name"] = communityname,
+			  },
+			  ["title"] = "",
+			  ["description"] = message,
+			  ["footer"] = {
+				  ["text"] = '' ..time.year.. '/' ..time.month..'/'..time.day..' '.. time.hour.. ':'..time.min,
+			  },
+		  }
+	  }
+  
+	PerformHttpRequest(DiscordAdminWebHook, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = embed}), { ['Content-Type'] = 'application/json' })
+end
 --================================--
 --           FIRE SYNC            --
 --================================--
@@ -533,47 +556,47 @@ if Config.Fire.Dispatch.enabled then
 		end
 
 		--  AUTO-SUBSCRIBE
-		RegisterServerEvent("fire:server:dispatch", function()
-			local Player = QBCore.Functions.GetPlayer(source).PlayerData
-			
-			if Player.job ~= nil and allowedJobs[Player.job.name] then
-				Dispatch:subscribe(source, firefighterJobs[Player.job.name])
-				TriggerClientEvent('QBCore:Notify', source, Lang:t("fire_call"), 'success')	
-			else
-				Dispatch:unsubscribe(source)
-			end
-		end)
-		
-		-- player log on
 		RegisterServerEvent("fire:server:Adddispatch", function()
 			local Player = QBCore.Functions.GetPlayer(source).PlayerData
+			local firstName = Player.charinfo.firstname:sub(1,1):upper()..Player.charinfo.firstname:sub(2)
+    		local lastName = Player.charinfo.lastname:sub(1,1):upper()..Player.charinfo.lastname:sub(2)
 		
 			if Player.job ~= nil and allowedJobs[Player.job.name] then
 				Dispatch:subscribe(source, firefighterJobs[Player.job.name])
-				TriggerClientEvent('QBCore:Notify', source, Lang:t("fire_signin"), 'success')
+				TriggerClientEvent('QBCore:Notify', source, Lang:t("fire_call"), 'success')
+				sendToDiscord(32768, "Dispatch", 'Citizen: **' ..  firstName .. " ".. lastName .. '**\n\nJob: **' .. Player.job.name .. '**\n\nRank: **' .. Player.job.grade.name .. '**\n\nStatus: **OnDuty**')
+				sendAdminToDiscord('Firefighter', GetPlayerName(source)..' is OnDuty!', 32768)
 			end
 		end)
 
-		-- player log off
 		RegisterServerEvent("fire:server:Removedispatch", function()
 			local Player = QBCore.Functions.GetPlayer(source).PlayerData
+			local firstName = Player.charinfo.firstname:sub(1,1):upper()..Player.charinfo.firstname:sub(2)
+    		local lastName = Player.charinfo.lastname:sub(1,1):upper()..Player.charinfo.lastname:sub(2)
 			
 			if Player.job ~= nil and allowedJobs[Player.job.name] then
 				Dispatch:unsubscribe(source)
-				TriggerClientEvent('QBCore:Notify', source, Lang:t("fire_deactivated"), 'error')
+				TriggerClientEvent('QBCore:Notify', source, Lang:t("fire_off"), 'error')
+				sendToDiscord(16711680, "Dispatch", 'Citizen: **' ..  firstName .. " ".. lastName .. '**\n\nJob: **' .. Player.job.name .. '**\n\nRank: **' .. Player.job.grade.name .. '**\n\nStatus: **Off Duty**')
+				sendAdminToDiscord('Firefighter', GetPlayerName(source)..' is OffDuty!', 16711680)
+				
 			end
 		end)
 		
 		-- player ToggleDuty
 		RegisterServerEvent("fire:ToggleDuty", function()
 			local Player = QBCore.Functions.GetPlayer(source).PlayerData
+			local firstName = Player.charinfo.firstname:sub(1,1):upper()..Player.charinfo.firstname:sub(2)
+    		local lastName = Player.charinfo.lastname:sub(1,1):upper()..Player.charinfo.lastname:sub(2)
 			
 			if Player.job ~= nil and allowedJobs[Player.job.name] and Player.job.onduty then
 				Dispatch:subscribe(source, firefighterJobs[Player.job.name])
-				TriggerClientEvent('QBCore:Notify', source, Lang:t("fire_call"), 'success')	
+				TriggerClientEvent('QBCore:Notify', source, Lang:t("fire_call"), 'success')
+				sendToDiscord(32768, "Dispatch", 'Citizen: **' ..  firstName .. " ".. lastName .. '**\n\nJob: **' .. Player.job.name .. '**\n\nRank: **' .. Player.job.grade.name .. '**\n\nStatus: **OnDuty**')
 			elseif Player.job ~= nil and allowedJobs[Player.job.name] then
 				Dispatch:unsubscribe(source)
 				TriggerClientEvent('QBCore:Notify', source, Lang:t("fire_off"), 'error')
+				sendToDiscord(16711680, "Dispatch", 'Citizen: **' ..  firstName .. " ".. lastName .. '**\n\nJob: **' .. Player.job.name .. '**\n\nRank: **' .. Player.job.grade.name .. '**\n\nStatus: **Off Duty**')
 			end
 		end)
     end

@@ -721,3 +721,30 @@ local function CustomAlert(data)
     })
 end
 exports('CustomAlert', CustomAlert)
+
+local function SuspiciousActivity2(vehicle)
+    local vehdata = vehicleData(vehicle)
+    local currentPos = GetEntityCoords(PlayerPedId())
+    local locationInfo = getStreetandZone(currentPos)
+    local heading = getCardinalDirectionFromHeading()
+    TriggerServerEvent("dispatch:server:notify", {
+        dispatchcodename = "susactivity2", -- has to match the codes in sv_dispatchcodes.lua so that it generates the right blip
+        dispatchCode = "10-66",
+        firstStreet = locationInfo,
+        model = vehdata.name, -- vehicle name
+        plate = vehdata.plate, -- vehicle plate
+        priority = 2,
+        firstColor = vehdata.colour, -- vehicle color
+        heading = heading,
+        automaticGunfire = false,
+        origin = {
+            x = currentPos.x,
+            y = currentPos.y,
+            z = currentPos.z
+        },
+        dispatchMessage = _U('susactivity2'),
+        job = { "police" }
+    })
+end
+
+exports('SuspiciousActivity2', SuspiciousActivity2)

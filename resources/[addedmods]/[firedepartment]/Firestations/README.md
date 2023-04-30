@@ -20,7 +20,7 @@ FirefighterJob for QBCore
 - pager (Done)
 - vehicle(Done)
 - Turnout/scba (ReWork)
-- Hose (Done)
+- Hose (ReWork)
 - MyTools (DEV)
 
 ### Installation
@@ -33,4 +33,8 @@ FirefighterJob for QBCore
 - only if you have Config.Isconsumables = true
 # You are free to help 
 
-### New updated will be next Friday
+## Features
+- WIP on Pass, see more [My FireScript](https://github.com/Wick89/FirescriptAddons)
+- Discord Webhooks (DEV)
+- Add new firehosemodels
+- Hose (ReWork)

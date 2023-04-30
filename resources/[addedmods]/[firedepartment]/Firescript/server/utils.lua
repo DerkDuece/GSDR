@@ -1,44 +1,103 @@
 --================================--
---      FIRE SCRIPT v2.0.1        --
+--      FIRE SCRIPT v2.0.2        --
 --  by GIMI (+ foregz, Albo1125)  --
 --  make some function by Wick	  --
 --      License: GNU GPL 3.0      --
 --================================--
+QBCore = exports['qb-core']:GetCoreObject()
 
-function checkVersion()
-	PerformHttpRequest(
-		LatestVersionFeed,
-		function(errorCode, data, headers)
-			if tonumber(errorCode) == 200 then
-				data = json.decode(data)
-				if not data then
-					print("^3[FireScript]^7 Couldn't check version - no data returned!")
-					return
-				end
-				if data.tag_name == "v" .. Version then
-					--print("^2[FireScript]^7 Up to date.")
-					print(("^2[FireScript]^7 Is Up to date. v%s"):format(Version))
-					print(("^2[FireScript]^7 Support, Feedback: ^5discord.link/gK5YWumFqn"))
-				else
-					print(("^1[FireScript]^7 The script isn't up to date!"))
-					print(("^1[FireScript]^7 Please update to version %s."):format(data.tag_name))
-					print(("^1[FireScript]^7 from https://github.com/Wick89/FirescriptAddons"))
-				end
-			else
-				print(("^3[FireScript]^7 Couldn't check version! Error code %s."):format(errorCode))
-				print(LatestVersionFeed)
-			end
-		end,
-		'GET',
-		'',
+
+--Send the message to your discord server
+function sendToDiscord (color, name, message, footer)
+	local DiscordWebHook = Config.WebHook
+  
+	local embed = {
 		{
-			['User-Agent'] = ("FireScript v%s"):format(Version)
+			color = color,
+			title = "**".. name .."**",
+			description = message,
+			footer = {
+				text = footer,
+			},
 		}
-	)
+	}
+  
+	  PerformHttpRequest(Config.WebHook, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = embed}), { ['Content-Type'] = 'application/json' })
 end
 
--- Chat
+--================================--
+--         VERSION CHECK          --
+--================================--
+local curVersion = GetResourceMetadata(GetCurrentResourceName(), "version")
+local resourceName = "Resource (" .. GetCurrentResourceName() .. ")"
 
+CreateThread(function()
+    if GetCurrentResourceName() ~= "Firescript" then
+        resourceName = "Resource (" .. GetCurrentResourceName() .. ")"
+        print("^0[^3WARNING^0] Rename the folder to \"Firescript\", otherwise the resource will NOT work properly")
+		StopResource(GetCurrentResourceName())
+    end
+
+    while true do
+        PerformHttpRequest("https://api.github.com/repos/Wick89/FirescriptAddons/releases/latest", CheckVersion, "GET")
+        Wait(3600000)
+    end
+end)
+
+function CheckVersion(err, responseText, headers)
+    local repoVersion, repoURL = GetLatestVersion()
+
+    CreateThread(function()
+        if curVersion ~= repoVersion then
+            Wait(4000)
+			sendAdminToDiscord("Update found!\nUpdate url: "..repoURL.."\nCurrent version: 1.7\nNew version: "..repoVersion.."\nVersions behind: "..curVersion)
+			print("")
+            print("^0.-----------------------------------------------.")
+            print("^0|                 ^55STAR Studios                 |")
+            print("^0'-----------------------------------------------'")
+			print("^0[^1WARNING^0] " .. resourceName .. " is ^1NOT ^0up to date!")
+            print("^0[^1WARNING^0] Your Version: ^2" .. curVersion .. "^0")
+            print("^0[^1WARNING^0] Latest Version: ^2" .. repoVersion .. "^0")
+            print("^0[^1WARNING^0] Get the latest Version from: ^2" .. repoURL .. "^0")
+			print("")
+        else
+            Wait(4000)
+			print("")
+            print("^0.-----------------------------------------------.")
+            print("^0|                 ^55STAR Studios                 |")
+            print("^0'-----------------------------------------------'")
+            print("^0[^2INFO^0] " .. resourceName .. " is up to date! (^2" .. curVersion .. "^0)")
+			print("^2[Give] ^7Support, ^0Feedback: ^5discord.link/gK5YWumFqn")
+			print("")
+        end
+    end)
+end
+
+function GetLatestVersion()
+    local repoVersion, repoURL = nil, nil
+
+    PerformHttpRequest("https://api.github.com/repos/Wick89/FirescriptAddons/releases/latest", function(err, response, headers)
+        if err == 200 then
+            local data = json.decode(response)
+
+            repoVersion = data.tag_name
+            repoURL = data.html_url
+        else
+            repoVersion = curVersion
+            repoURL = "https://github.com/Wick89/FirescriptAddons"
+        end
+    end, "GET")
+
+    repeat
+        Wait(50)
+    until (repoVersion and repoURL)
+
+    return repoVersion, repoURL
+end
+
+--======================--
+--         Chat         --
+--======================--
 function sendMessage(source, text, customName)
 	if source > 0 then
 		TriggerClientEvent(
@@ -47,18 +106,19 @@ function sendMessage(source, text, customName)
 			{
 				templateId = "firescript",
 				args = {
-					((customName ~= nil) and customName or ("FireScript v%s"):format(Version)),
+					((customName ~= nil) and customName or ("FireScript v%s"):format(curVersion)),
 					text
 				}
 			}
 		)
 	else
-		print(("[FireScript v%s] %s"):format(Version, text))
+		print(("[FireScript v%s] %s"):format(curVersion, text))
 	end
 end
 
--- Table functions
-
+--==========================--
+--     Table functions  	--
+--==========================--
 function highestIndex(table, fireIndex)
 	if not table then
 		return
@@ -110,8 +170,9 @@ function table.random(t)
 	return randomKey, t[randomKey]
 end
 
--- JSON config
-
+--======================--
+--     JSON config  	--
+--======================--
 function saveData(data, keyword)
 	if type(keyword) ~= "string" then
 		return

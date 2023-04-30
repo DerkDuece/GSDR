@@ -1,7 +1,8 @@
+local QBCore = exports['qb-core']:GetCoreObject()
+
 -- ==========================FireFighter Job==========================
 -- ===============================By Wick===============================
 -- ======================================================================
-local QBCore = exports['qb-core']:GetCoreObject()
 
 -----------------------------------------------
 --              Tools                        --
@@ -53,32 +54,60 @@ end)
 
 
 RegisterNetEvent('qb-Firestations:rescuetools', function(data)
-	local MenuRescue = {
-		{
-			header = "👨‍🚒 | Rescue Menu | 👨‍🚒",
-			isMenuHeader = true
-		},
-		-- buy it here: https://store.londonstudios.net/category/resources
-		-- Spreaders from FireTools
-		{
-			header = "• Spreaders",
-			txt = "Grab & Retrieve Spreaders (buy it)",
-			params = {
-				event = "Client:toggleSpreaders",
-				args = {}
-			}
-		},
-		-- Truck Tools
-		{
-			header = "• Truck Tools",
-			txt = "Grab & Retrieve Tools",
-			params = {
-				event = "qb-Firestations:Tools",
-				args = {}
-			}
-		},
-	}
-	exports['qb-menu']:openMenu(MenuRescue)
+	if Config.MYTools == "MYTools" then
+		local MenuTools = {
+			{
+				header = "👨‍🚒 | Rescue Menu | 👨‍🚒",
+				isMenuHeader = true
+			},
+			{
+				header = "• Spreaders",
+				txt = "Grab & Retrieve Spreaders (WIP)",
+				params = {
+					event = "Client:toggleSpreaders",
+					args = {}
+				}
+			},
+			-- Truck Tools
+			{
+				header = "• Truck Tools",
+				txt = "Grab & Retrieve Tools",
+				params = {
+					event = "qb-Firestations:Tools",
+					args = {}
+				}
+			},
+		}
+	
+		exports['qb-menu']:openMenu(MenuTools)
+	
+	elseif Config.MYTools == "FireTools" then
+		local FireTools = {
+			{
+				header = "👨‍🚒 | Rescue Menu | 👨‍🚒",
+				isMenuHeader = true
+			},
+			{
+				header = "• Spreaders",
+				txt = "Grab & Retrieve Spreaders",
+				params = {
+					event = "Client:toggleSpreaders",
+					args = {}
+				}
+			},
+			-- Truck Tools
+			{
+				header = "• Truck Tools",
+				txt = "Grab & Retrieve Tools",
+				params = {
+					event = "qb-Firestations:Tools",
+					args = {}
+				}
+			},
+		}
+	
+		exports['qb-menu']:openMenu(FireTools)
+	end
 end)
 
 
@@ -140,7 +169,7 @@ CreateThread(function()
 					type = "Client",
 					event = "qb-Firestations:stash",
 					icon = "fas	fa-bolt",
-					label = "Fire Stash",
+					label = Lang:t('target.Stash'),
 					job = Config.JobName,
 				},
 			},
@@ -154,17 +183,34 @@ CreateThread(function()
 				type = "client",
 				event = "qb-Firestations:toolsmenu",
 				icon = "fas fa-fire-extinguisher",
-				label = "Tools menu",
+				label = Lang:t('target.toolsmenu'),
 				job = Config.JobName,
 			},
 			{ 
 				type = "client",
 				event = "qb-Firestations:turnoutMenu",
 				icon = "fas fa-fire-extinguisher",
-				label = "Turnout Gear Menu",
+				label = Lang:t('target.Gear'),
 				job = Config.JobName,
 			}
 		},
   		distance = 2.5,
 	})
+	if Config.ChangeOutfitOnvehicle == true then
+		---changeOutfit in Vehicles--
+		exports['qb-target']:AddTargetBone(Config.Vehicles, {
+			options = {
+				{ 
+					type = "client",
+					event = "qb-Firestations_client:changeOutfit",
+					icon = 'fas fa-shirt',
+					label = Lang:t('target.Outfit'),
+					job = Config.JobName,
+				},
+			},
+			distance = 2.5,
+		})
+	elseif Config.Isconsumables == false then
+		--why
+	end
 end)

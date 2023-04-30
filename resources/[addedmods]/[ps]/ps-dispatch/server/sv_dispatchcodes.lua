@@ -56,4 +56,5 @@ dispatchCodes = {
 	["carboosting"] =  {displayCode = '10-50', description = "Car Boosting In Progress", radius = 0, recipientList = {'police'}, blipSprite = 595, blipColour = 60, blipScale = 1.5, blipLength = 2, sound = "Lose_1st", sound2 = "GTAO_FM_Events_Soundset", offset = "false", blipflash = "false"},
 	["carjack"] =  {displayCode = '10-35', description = "Car Theft In Progress", radius = 0, recipientList = {'police'}, blipSprite = 595, blipColour = 60, blipScale = 1.5, blipLength = 2, sound = "Lose_1st", sound2 = "GTAO_FM_Events_Soundset", offset = "false", blipflash = "false"},
 	["explosion"] =  {displayCode = '10-80', description = "Explosion Reported", radius = 0, recipientList = {'police'}, blipSprite = 436, blipColour = 1, blipScale = 1.5, blipLength = 2, sound = "Lose_1st", sound2 = "GTAO_FM_Events_Soundset", offset = "false", blipflash = "false"},
+	["susactivity2"] =  {displayCode = '10-66', description = "Solicitation", radius = 0, recipientList = {'police'}, blipSprite = 279, blipColour = 48, blipScale = 1.0, blipLength = 0.75, sound = "Lose_1st", sound2 = "GTAO_FM_Events_Soundset", offset = "false", blipflash = "false"},
 }

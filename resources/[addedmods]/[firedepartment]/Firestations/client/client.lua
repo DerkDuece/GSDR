@@ -6,19 +6,9 @@ Fires = {}
 PlayerJob = {}
 OnDuty = false
 
-Fires.script = GetResourceState('firescript') ==  'started' and 'QBCORE'
+Fires.script = GetResourceState('Firescript') ==  'started' and 'QBCORE'
 if not Fires.script then warn('YOU DONT HAVE ANY SUPPORTED FIRESCRIPT') end
 
-
--- onResourceStart
-AddEventHandler('onResourceStart', function(resourceName)
-    if resourceName == GetCurrentResourceName() then
-        Wait(200)
-        PlayerJob = QBCore.Functions.GetPlayerData().job
-		gender = QBCore.Functions.GetPlayerData().charinfo.gender
-        isLoggedIn = true
-    end
-end)
 
 AddEventHandler('onResourceStop', function(resourceName)
 	if (GetCurrentResourceName() ~= resourceName) then return end
