@@ -14,6 +14,7 @@ RegisterNetEvent("delivery:attemptStart", function()
             local groupID = exports["ps-playergroups"]:GetGroupID()
             
             local model = GetHashKey("Rumpo")
+            TriggerEvent("vehiclekeys:client:SetOwner", plate)
             RequestModel(model)
             while not HasModelLoaded(model) do
                 Wait(0)

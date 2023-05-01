@@ -18,6 +18,7 @@ RegisterNetEvent("towing:attemptStart", function()
             
             local model = GetHashKey("flatbed")
             RequestModel(model)
+            TriggerEvent("vehiclekeys:client:SetOwner", plate)
             while not HasModelLoaded(model) do
                 Wait(0)
             end
