@@ -15,7 +15,7 @@ Config.CustomBindText = "F1"; // leave as "" if you don't want the bind text in 
 // Staff list
 Config.Staff = [
     {name: "Tichys", description: "Owner & Dev", color: "#ff0000", image: "https://cdn.discordapp.com/attachments/894588279591161926/997613293034287236/unnamed__1_-removebg-preview.png"},
-    {name: "DerkDeuce", description: "Owner", color: "#ff0000", image: "https://cdn.discordapp.com/attachments/894588279591161926/997613293034287236/unnamed__1_-removebg-preview.png"},
+    {name: "DerkDeuce", description: "Owner", color: "#ff0000", image: "https://cdn.discordapp.com/attachments/811699337079029802/1102723154889166959/659A4145-20E5-474D-BED5-129ABECAE1EC.jpg"},
 
 
 ];
