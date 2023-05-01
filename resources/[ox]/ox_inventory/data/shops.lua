@@ -177,5 +177,16 @@ return {
 		model = {
 			`prop_vend_soda_02`, `prop_vend_fridge01`, `prop_vend_water_01`, `prop_vend_soda_01`
 		}
-	}
+	},
+	DenaliGym = {
+		name = 'Gym Membership',
+		inventory = {
+			{ name = 'gym_membership', price = 500},
+			{ name = 'water_bottle'}
+		}, locations = {
+			vec3(-1255.53, -354.77, 36.96)
+		}, targets = {
+			
+		}
+	},
 }
