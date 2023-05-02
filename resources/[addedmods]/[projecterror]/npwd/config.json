@@ -1,12 +1,12 @@
 {
   "PhoneAsItem": {
     "enabled": false,
-    "exportResource": "qb-npwd",
-    "exportFunction": "HasPhone"
+    "exportResource": "my-core-resource",
+    "exportFunction": "myCheckerFunction"
   },
   "general": {
-    "useResourceIntegration": true,
-    "toggleKey": "M",
+    "useResourceIntegration": false,
+    "toggleKey": "f1",
     "toggleCommand": "phone",
     "defaultLanguage": "en"
   },
@@ -16,8 +16,8 @@
   },
   "database": {
     "useIdentifierPrefix": false,
-    "playerTable": "players",
-    "identifierColumn": "citizenid",
+    "playerTable": "users",
+    "identifierColumn": "identifier",
     "identifierType": "license",
     "profileQueries": true,
     "phoneNumberColumn": "phone_number"
@@ -27,7 +27,9 @@
     "enabled": true,
     "sentryEnabled": true
   },
-  "apps": ["pefcl"],
+  "defaultContacts": [],
+  "disabledApps": [],
+  "apps": ["npwd_advertisments"],
   "voiceMessage": {
     "enabled": false,
     "authorizationHeader": "PE-Secret",
