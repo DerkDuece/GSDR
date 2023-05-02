@@ -24,11 +24,11 @@ Config.BillVariation = true
 Config.InventoryForWeaponsImages = "lj-inventory"
 
 -- "LegacyFuel", "lj-fuel", "ps-fuel"
-Config.Fuel = "ps-fuel"
+Config.Fuel = "cdn-fuel"
 
 -- Google Docs Link
 Config.sopLink = {
-    ['police'] = '',
+    ['police'] = 'https://docs.google.com/document/d/1yAEgPrszFaJuFMzUT6XtSsga_xizFRMxahJ6KjjfeBE/edit?usp=sharing',
     ['ambulance'] = '',
     ['bcso'] = '',
     ['doj'] = '',
@@ -41,7 +41,7 @@ Config.sopLink = {
 
 -- Google Docs Link
 Config.RosterLink = {
-    ['police'] = '',
+    ['police'] = 'https://docs.google.com/spreadsheets/d/1KA3M0Xif9UzB4W3FWcC6QXHysQjXPZ_Qra2YHDVkkOc/edit?usp=sharing',
     ['ambulance'] = '',
     ['bcso'] = '',
     ['doj'] = '',

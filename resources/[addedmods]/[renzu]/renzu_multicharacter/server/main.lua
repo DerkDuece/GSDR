@@ -23,6 +23,7 @@ registercallback('renzu_multicharacter:createcharacter', function(source,data)
 		Login(source,data.slot,data.info)
 		SetPlayerRoutingBucket(source,0)
 		logout[source] = false
+		exports['um-idcard']:CreateMetaLicense(src, {'id_card','driver_license'})
 	else
 		registered[source] = data
 	end
