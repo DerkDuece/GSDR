@@ -14,11 +14,11 @@ Config.Fuel = 'cdn-fuel' -- Which fuel system are you using: 'LegacyFuel', 'ps-f
 Config.UseLamarPart = true -- If set as false, Lamar's cutscene segment will be excluded
 Config.EnableCommand = false -- Test efficiently - no need to create multiple characters with this command
 Config.Command = 'cutscene' -- Command to start the cutscene 
-Config.ToggleApartment = true -- For optimal use of qb-apartment, set it to true and modify the apartment file as instructed at https://3rror-hub.gitbook.io/docementation/qbcore/3h-cutscene/modifications
+Config.ToggleApartment = false -- For optimal use of qb-apartment, set it to true and modify the apartment file as instructed at https://3rror-hub.gitbook.io/docementation/qbcore/3h-cutscene/modifications
 Config.BlendTaxi = true -- If set to true, the player will be automatically transported to the taxi immediately after the cutscene ends
 Config.StatCoords = vector4(-1042.49, -2746.0, 21.36, 326.91) -- Coordinates where the player will be sent after the cutscene is ended if Config.BlendTaxi is false
 Config.EnableMessage = true -- Welcome your new players with a warm greeting
-Config.Message = "Hello, Welcome to Gold Standard"
+Config.Message = "Hello and Welcome to Gold Standard Roleplay"
 
 -- Airport Ped
 Config.EnablePed = true -- If Config.EnablePed is false, it will disable/despawn the ped with AI-taxi and rental menu 
