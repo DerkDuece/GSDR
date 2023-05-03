@@ -12,9 +12,6 @@ return {
 		targets = {
 			vec3(426.23623657227,-805.77111816406,29.438510894775),
 		},
-		blip = {
-			id = 59, colour = 69, scale = 0.8
-		},
 	},
 
 	['Balls8'] = {
@@ -91,9 +88,6 @@ return {
 		moneytype = 'money',
 		type = 'vehicle',
 		name = 'Vehicle Shop',
-		blip = {
-			id = 595, colour = 38, scale = 0.8
-		},
 		locations = {
 			vec3(-53.079696655273,-1096.7937011719,26.42),
 		},

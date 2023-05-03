@@ -88,7 +88,6 @@ Refund = {
         name = "pdm", --LEGION
         job = 'all',
         Dist = 7, -- distance
-        Blip = {color = 38, sprite = 219, scale = 0.6},
         shop_x = -46.320140838623,
         shop_y = -1095.1837158203,
         shop_z = 25.91579246521, -- coordinates for selling / refunding the vehicle
