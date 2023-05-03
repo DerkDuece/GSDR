@@ -27,7 +27,7 @@
     "enabled": true,
     "sentryEnabled": true
   },
-  "apps": ["pefcl", "npwd_qb_mail"],
+  "apps": ["pefcl", "npwd_qb_mail", "npwd_advertisements", "npwd_services"],
   "voiceMessage": {
     "enabled": false,
     "authorizationHeader": "PE-Secret",
