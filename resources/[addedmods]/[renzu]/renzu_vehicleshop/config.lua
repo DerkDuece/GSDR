@@ -42,10 +42,10 @@ VehicleShop = {
         shop_x = -35.469879150391,
         shop_y = -1100.3621826172,
         shop_z = 26.422359466553, -- coordinates for this garage
-        spawn_x = -32.283363342285,
-        spawn_y = -1091.0841064453,
-        spawn_z = 25.749485015869,
-        heading = 340.23065185547, -- Vehicle spawn location,
+        spawn_x = -43.64,
+        spawn_y = -1113.38,
+        spawn_z = 26.67,
+        heading = 76.81, -- Vehicle spawn location,
         displaycars = {
             [1] = {model = 'jester3', value = 100000, coord = vector4(-42.14, -1101.5, 26.66, 19.46)},
             [2] = {model = 'fmj', value = 1000000, coord = vector4(-54.58, -1097.09, 26.66, 31.02)},
@@ -138,7 +138,7 @@ VehicleShop = {
 }
 
 Config.EnableVehicleSelling = true -- allow your user to sell the vehicle and deletes it from database
-Config.RefundPercent = 70 -- 70% (percentage from original value)
+Config.RefundPercent = 30 -- 70% (percentage from original value)
 Refund = {
     ['pdm'] = { -- same with name
         name = "pdm", --LEGION
