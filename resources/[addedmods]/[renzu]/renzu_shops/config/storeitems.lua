@@ -125,11 +125,8 @@ return {
 		{ category = 'ammo',  name = 'ammo-9', price = 2, },
 		{ category = 'ammo',  name = 'ammo-rifle', price = 2, },
 		{ category = 'ammo',  name = 'ammo-shotgun', price = 2, },
-		{ category = 'ammo',  name = 'ammo-50', price = 2, },
 		{ category = 'ammo',  name = 'ammo-rifle2', price = 2, },
-		{ category = 'ammo',  name = 'ammo-45', price = 2, },
 		{ category = 'throwable',  name = 'WEAPON_BZGAS', price = 300 },
-		{ category = 'pistol',  name = 'WEAPON_PISTOL50', price = 300 },
 		{ category = 'drink',  name = 'energy_drink', price = 300 },
 
 		{ category = 'handheld',  name = 'WEAPON_FLASHLIGHT', price = 200 },
@@ -143,11 +140,6 @@ return {
 		{ lvl = 2, name = 'radio', category = 'handheld', price = 100, metadata = { description = 'pang pakunat' } },
 
 		{ lvl = 2, name = 'armour', category = 'Tools', price = 100, metadata = { description = 'pang pakunat' } },
-		{ lvl = 2, name = 'vision_helmet', category = 'Tools', price = 5000 },
-		{ lvl = 2, name = 'thermal_helmet', category = 'Tools', price = 5000 },
-		{ lvl = 2, name = 'gpstracker', category = 'Tools', price = 15000 },
-		
-
 
 	},
 
