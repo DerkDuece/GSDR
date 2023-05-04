@@ -2163,4 +2163,30 @@ return {
         description = "Your Description",
         client = {image = 'lawyerpass.png'}
     },
+	-- RAIDJOB2
+	['cw_raidjob_key'] = {
+		label = 'Case key',
+		weight = 0,
+		stack = true,
+		close = true,
+		allowArmed = true,
+		description = "Probably used for a case"
+	},
+	['cw_raidjob_case'] = {
+		label = 'Case',
+		weight = 0,
+		stack = true,
+		close = true,
+		allowArmed = true,
+		description = "Probably contains things"
+	},
+	['cw_raidjob_content'] = {
+		label = 'Documents',
+		weight = 0,
+		stack = true,
+		close = true,
+		allowArmed = true,
+		description = "Well above your paygrade"
+	},
+
 }
