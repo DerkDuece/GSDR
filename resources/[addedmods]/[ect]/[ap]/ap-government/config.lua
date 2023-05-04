@@ -2,7 +2,7 @@ Config = {
 	FrameworkExport = "qb-core", -- Set this too your core name, only change this if you have a custom version of QBCore. 
 	DiscordWebhook = {CandidateWinner = true, PollsOpen = true, CandidateStarted = true, CompanyRegisterd = true, CompanyGrantGiven = true, AppointmentRequest = true, AppointmentApprove = true, MayorTaxChange = true}, -- Set the webhooks you want to use to true.
 	Currency = '$', -- Set this to the currency your server uses.
-	UsingAPCourt = false, -- Set this to true if your using AP-COURT.
+	UsingAPCourt = true -- Set this to true if your using AP-COURT.
 	NotifyWinnerByPhone = true, -- Set true to email player of winning the election
 	displayVotingChatNotify = false, -- Set too true to show voting notiforcations in chat false for notify
 	AddJobsFromConfig = true, -- Set this to true if you want this script to add the jobs from Config.AddSharedJobs below to your shared jobs in qb-core. 
@@ -24,7 +24,7 @@ Config = {
 	Interactions = {qbTarget = false, qTarget = false, drawText = true}, -- Set the target system to true that you use.
 	Banking = {
 	  okokbanking = false, -- Set this to true if you own okokbanking and you want the tax to show as a transaction.
-	  other = false -- Set to true if you own a differnt banking script and want to add an export, to edit this open functions.lua and edit the banking function.
+	  other = true -- Set to true if you own a differnt banking script and want to add an export, to edit this open functions.lua and edit the banking function.
 	},
 	ExportNames = {
 	  menu = "qb-menu",
@@ -69,10 +69,10 @@ Config.Tax = {
 	MayorControl = {
 		enable = true,
 		TaxTypes = {
-	        ["Income"] = {enable = true, mayorControl = true, label = 'Income', percentageCap = 0.80, percentage = 0.15, AddCityHallFunds = true},		
-	        ["Housing"] = {enable = false, mayorControl = false, label = 'Housing', percentageCap = 0.15, percentage = 0.15, AddCityHallFunds = true},
-			["Vehicle"] = {enable = false, mayorControl = false, label = 'Vehicle', percentageCap = 0.15, percentage = 0.15, AddCityHallFunds = true},
-			["Item"] = {enable = true, mayorControl = true, label = 'Item', percentageCap = 0.80, percentage = 0.15, AddCityHallFunds = true},
+	        ["Income"] = {enable = true, mayorControl = true, label = 'Income', percentageCap = 10, percentage = 0.3, AddCityHallFunds = true},		
+	        ["Housing"] = {enable = false, mayorControl = false, label = 'Housing', percentageCap = 10, percentage = 5, AddCityHallFunds = true},
+			["Vehicle"] = {enable = false, mayorControl = false, label = 'Vehicle', percentageCap = 10, percentage = 5, AddCityHallFunds = true},
+			["Item"] = {enable = true, mayorControl = true, label = 'Item', percentageCap = 10, percentage = 0.15, AddCityHallFunds = true},
 		}
 	}
 }

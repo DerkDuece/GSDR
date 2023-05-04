@@ -86,17 +86,10 @@ return {
 	},
 	Ammunation = {
 		{ lvl = 1, name = 'ammo-9', category = 'ammo', price = 15, },
-		{ lvl = 1, name = 'ammo-rifle', category = 'ammo', price = 15, },
-		{ lvl = 1, name = 'ammo-rifle2', category = 'ammo', price = 15, },
 		{ lvl = 1, name = 'ammo-shotgun', category = 'ammo', price = 15, },
-		{ lvl = 1, name = 'ammo-50', category = 'ammo', price = 15, },
-		{ lvl = 1, name = 'ammo-45', category = 'ammo', price = 15, },
 		{ lvl = 1, name = 'WEAPON_KNIFE', category = 'handheld', price = 5000 },
 		{ lvl = 1, name = 'WEAPON_BAT', category = 'handheld', price = 3500 },
 		{ lvl = 1, name = 'WEAPON_PISTOL', category = 'Handgun', price = 25000, metadata = { registered = true }, license = 'weapon' },
- 		{ lvl = 2, name = 'WEAPON_APPISTOL', category = 'Handgun', price = 10000, metadata = { registered = true }, license = 'weapon' },
-		{ lvl = 2, name = 'WEAPON_BZGAS', category = 'throwable', price = 5000, metadata = { registered = true }, license = 'weapon' },
-		{ lvl = 2, name = 'WEAPON_COMBATPDW', category = 'machine guns', price = 18000, metadata = { registered = true }, license = 'weapon' },
 	},
 
 	VehicleShop = MultiCategory(

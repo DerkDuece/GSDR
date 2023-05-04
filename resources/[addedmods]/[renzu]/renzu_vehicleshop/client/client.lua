@@ -20,6 +20,21 @@ livery = nil
 shopcoords = {}
 brand = nil
 shoptype = nil
+Citizen.CreateThread(function()
+    Framework()
+    Playerloaded()
+    for k, v in pairs (VehicleShop) do
+        local blip = AddBlipForCoord(v.shop_x, v.shop_y, v.shop_z)
+        SetBlipSprite (blip, v.Blip.sprite)
+        SetBlipDisplay(blip, 4)
+        SetBlipScale  (blip, v.Blip.scale)
+        SetBlipColour (blip, v.Blip.color)
+        SetBlipAsShortRange(blip, true)
+        BeginTextCommandSetBlipName('STRING')
+        AddTextComponentSubstringPlayerName("Vehicle Shop: "..v.name.."")
+        EndTextCommandSetBlipName(blip)
+    end
+end)
 
 RegisterNetEvent('renzu_vehicleshop:manage')
 AddEventHandler('renzu_vehicleshop:manage', function(xPlayer)
