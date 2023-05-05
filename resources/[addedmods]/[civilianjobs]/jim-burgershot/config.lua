@@ -1,4 +1,3 @@
-print("^2Jim^7-^2Burgershot ^7v^42^7.^44^7.^49 ^7- ^2BurgerShot Job Script by ^1Jimathy^7")
 
 Config = {
 	Debug = false,  -- True to show debug boxes and messages

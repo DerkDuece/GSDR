@@ -1,4 +1,3 @@
-print("^2Jim^7-^2CatCafe ^7v^41^7.^48^7.^46^5hotfix ^7- ^2CatCafe Script by ^1Jimathy^7")
 
 Config = {
 	Debug = false, -- false to remove green boxes
