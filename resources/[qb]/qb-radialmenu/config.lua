@@ -456,6 +456,16 @@ Config.VehicleSeats = {
 }
 
 Config.JobInteractions = {
+    ["gruppesechs"] = {
+        {
+            id = 'returnTruck',
+            title = 'Return Truck',
+            icon = 'torii-gate',
+            type = 'client',
+            event = 'gruppesechs:returnTruck',
+            shouldClose = true
+        },
+    },
     ["ambulance"] = {
         {
             id = 'statuscheck',

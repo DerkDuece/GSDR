@@ -572,4 +572,15 @@ QBShared.Jobs = {
             ['4'] = { name = 'Manager', isboss = true, payment = 150 },
         },
     },
+	['gruppesechs'] = {
+        label = 'Gruppe 6',
+        defaultDuty = true,
+        offDutyPay = false,
+        grades = {
+            ['0'] = {
+                name = 'Collector',
+                payment = 50
+            },
+        },
+    },        
 }
