@@ -7,8 +7,6 @@ return {
 		{ lvl = 1, name = 'donut', price = 30 , category = 'food'},
 		{ lvl = 1, name = 'sandwich', price = 30 , category = 'food'},
 		{ lvl = 2, name = 'lighter', price = 20 , category = 'misc'},
-		{ lvl = 2, name = 'redw', price = 1000 , category = 'TOBACCO'},
-		{ lvl = 2, name = 'marlboro', price = 1000 , category = 'TOBACCO'},
 
 		{ lvl = 2, name = 'phone', price = 1000 , category = 'gadget'},
 		{ lvl = 2, name = 'latte', price = 150 , category = 'beverages'},
@@ -127,6 +125,8 @@ return {
 		{ category = 'ammo',  name = 'ammo-shotgun', price = 2, },
 		{ category = 'ammo',  name = 'ammo-rifle2', price = 2, },
 		{ category = 'throwable',  name = 'WEAPON_BZGAS', price = 300 },
+		{ category = 'handheld',  name = 'handcuffs', price = 300 },
+		{ category = 'handheld', name = 'bodycam', price = 50 },
 		{ category = 'drink',  name = 'energy_drink', price = 300 },
 
 		{ category = 'handheld',  name = 'WEAPON_FLASHLIGHT', price = 200 },

@@ -2188,5 +2188,28 @@ return {
 		allowArmed = true,
 		description = "Well above your paygrade"
 	},
+	['orange'] = {
+		label = 'Fresh Orange',
+		weight = 25,
+		client = {
+			status = { hunger = 500 },
+			anim = 'eating',
+			prop = { model = `ng_proc_food_ornge1a`, pos = vec3(0.02, 0.02, -0.04), rot = vec3(0.0, 0.0, 0.0) },
+			usetime = 2500,
+			notification = 'You ate a delicious orange'
+		},
+	},
+
+	['orange_juice'] = {
+		label = 'Orange Juice',
+		weight = 100,
+		client = {
+			status = { thirst = 100000 },
+			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
+			prop = { model = `prop_cs_script_bottle_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
+			usetime = 2500,
+			notification = 'You have refreshed your self with a nice cold bottle of orange juice'
+		}
+	},
 
 }
