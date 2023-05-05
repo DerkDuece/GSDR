@@ -259,8 +259,8 @@ garagecoord = {
         heading = 82.327735900879,
         default_vehicle = { -- the vehicle listed here is like a goverment property and can be used for patrol etc. (this can be used in other garage, public or other job garage)
             [1] = {model = 'ambulance', name = 'Ambulance', type = 'car', grade = 1, plateprefix = 'HP'}, -- minimum grade
-            [2] = {model = 'gauntlet', name = 'Gauntlet', type = 'car', grade = 1, plateprefix = 'HP'}, -- minimum grade
-            [3] = {model = 'double', name = 'Double', type = 'car', grade = 1, plateprefix = 'HP'}, -- minimum grade
+            [2] = {model = 'ambulance2', name = 'Ambulance', type = 'car', grade = 1, plateprefix = 'HP'}, -- minimum grade
+            [3] = {model = 'emsstalker', name = 'Supervisor', type = 'car', grade = 7, plateprefix = 'HP'}, -- minimum grade
         },
         spawns = {
             [1] = vector4(296.26379394531,-604.16204833984,43.097145080566,70.580841064453),

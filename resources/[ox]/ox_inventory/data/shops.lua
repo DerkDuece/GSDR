@@ -139,7 +139,7 @@ return {
 	Medicine = {
 		name = 'Medicine Cabinet',
 		groups = {
-			['ambulance'] = 0
+			['ambulance'] = 1
 		},
 		blip = {
 			id = 403, colour = 69, scale = 0.8

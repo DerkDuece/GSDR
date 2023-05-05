@@ -18,7 +18,7 @@ Webhook = {
 		Thumbnail = 'https://cdn.discordapp.com/attachments/1090968541534109756/1090968598043971614/yp.png',
 			
 		-- What is the webhook that will be used to post the ad?
-		Hook = '', 
+		Hook = 'https://discord.com/api/webhooks/1103676481261027440/-ZO0k1IAfrVvT5Ub4blekvFaqOwvDgECrF9cQx57Beo-gfkbMI__xKolKmzsSkSbSVZF', 
 		
 	},
 
@@ -41,7 +41,7 @@ Webhook = {
 		Thumbnail = 'https://cdn.discordapp.com/attachments/1090968541534109756/1090968598278848582/twt.png',
 			
 		-- What is the webhook that will be used to post the tweets?
-		Hook = '', 
+		Hook = 'https://discord.com/api/webhooks/1103676251136327731/vTUMzviUdW3kF0CRc6igvJEIwrtJvfacVgrP6jp4SmAcjWGQwX-rdJRtWGR6SjxtXVDX', 
 		
 	},
 
@@ -64,7 +64,7 @@ Webhook = {
 		Thumbnail = 'https://cdn.discordapp.com/attachments/1090968541534109756/1090968598572433438/insta.png',
 			
 		-- What is the webhook that will be used to post the insta post's?
-		Hook = '', 
+		Hook = 'https://discord.com/api/webhooks/1103676374562132100/_PwXYonfmhAS3DuzpKNECAXl2xVRrpLLttyi5_nCM6abDZ6azAy4spFWonyksYqFXjVf', 
 		
 	},
 

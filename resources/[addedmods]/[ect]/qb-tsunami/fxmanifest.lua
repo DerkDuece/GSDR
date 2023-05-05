@@ -16,8 +16,7 @@ server_scripts {
 }
 
 dependencies {
-    'qb-core',
-    'qb-phone'
+    'qb-core'
 }
 
 lua54 'yes'
