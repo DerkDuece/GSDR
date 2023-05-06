@@ -28,7 +28,7 @@ Config.Fuel = "cdn-fuel"
 
 -- Google Docs Link
 Config.sopLink = {
-    ['police'] = 'https://docs.google.com/document/d/1xS09o2yH6-rmO5QK9V_0WIYtK6Rp8sadzBpDRaU3nUM/edit?usp=sharing,
+    ['police'] = 'https://docs.google.com/document/d/1xS09o2yH6-rmO5QK9V_0WIYtK6Rp8sadzBpDRaU3nUM/edit?usp=sharing',
     ['ambulance'] = '',
     ['bcso'] = '',
     ['doj'] = '',
@@ -41,7 +41,7 @@ Config.sopLink = {
 
 -- Google Docs Link
 Config.RosterLink = {
-    ['police'] = 'https://docs.google.com/spreadsheets/d/1KA3M0Xif9UzB4W3FWcC6QXHysQjXPZ_Qra2YHDVkkOc/edit?usp=sharing,
+    ['police'] = 'https://docs.google.com/spreadsheets/d/1KA3M0Xif9UzB4W3FWcC6QXHysQjXPZ_Qra2YHDVkkOc/edit?usp=sharing',
     ['ambulance'] = '',
     ['bcso'] = '',
     ['doj'] = '',
