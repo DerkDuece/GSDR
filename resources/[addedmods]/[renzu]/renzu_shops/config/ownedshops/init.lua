@@ -24,7 +24,7 @@ return {
 	['BlackMarketArms'] = request('config/ownedshops/BlackMarketArms'),
 	--['Burgershot'] = request('config/ownedshops/Burgershot'),
 	--['EclipseSupply'] = request('config/ownedshops/EclipseSupply'),
-	--['Pharmacy'] = request('config/ownedshops/Pharmacy'),
+	['Pharmacy'] = request('config/ownedshops/Pharmacy'),
 	['PoliceArmoury'] = request('config/ownedshops/PoliceArmoury'),
 	['MechanicSupply'] = request('config/ownedshops/MechanicSupply'),
 	--['BeanMachine'] = request('config/ownedshops/BeanMachine'),

@@ -177,7 +177,7 @@ return {
 		}
 	},
 
-	Medicine = {
+	Pharmacy = {
 		name = 'Medicine Cabinet',
 		groups = 'ambulance',
 		blip = {

@@ -143,7 +143,7 @@ return {
 
 	},
 
-	Medicine = { -- Medical Supply
+	Pharmacy = { -- Medical Supply
 		{ category = 'drink',  name = 'energy_drink', price = 300 },
 		{ category = 'handheld',  name = 'WEAPON_FLASHLIGHT', price = 200 },
 		{ category = 'handheld',  name = 'WEAPON_STUNGUN', price = 300, metadata = { registered = true, serial = 'MED'} },
