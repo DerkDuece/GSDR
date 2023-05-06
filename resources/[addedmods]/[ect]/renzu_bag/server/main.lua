@@ -1,4 +1,4 @@
-ESX = exports['es_extended']:getSharedObject()
+QBCore = exports['qb-core']:GetCoreObject()
 
 CreateStash = function(data)
 	CreateInventoryHooks(data.serial)

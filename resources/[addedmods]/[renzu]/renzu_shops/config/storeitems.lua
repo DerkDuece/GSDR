@@ -144,14 +144,13 @@ return {
 	},
 
 	Pharmacy = { -- Medical Supply
-		{ category = 'drink',  name = 'energy_drink', price = 300 },
 		{ category = 'handheld',  name = 'WEAPON_FLASHLIGHT', price = 200 },
 		{ category = 'handheld',  name = 'WEAPON_STUNGUN', price = 300, metadata = { registered = true, serial = 'MED'} },
 		{ lvl = 2, name = 'radio', category = 'handheld', price = 100, metadata = { description = 'A radio for all your eating needs' } },
 		{ lvl = 2, name = 'armour', category = 'Tools', price = 100, metadata = { description = 'Armor for all your armor needs' } },
-		{ category = 'handheld',  name = 'medikit', price = 100},
+		{ category = 'handheld',  name = 'firstaid', price = 100},
 		{ category = 'handheld',  name = 'bandage', price = 100},
-		{ category = 'handheld',  name = 'painkiller', price = 100},
+		{ category = 'handheld',  name = 'painkillers', price = 100},
 
 	},
 
