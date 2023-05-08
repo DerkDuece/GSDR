@@ -2267,4 +2267,12 @@ return {
 			}
 		},
 	},
+    ['lawyerid'] = {
+        label = 'Bar License ID Card.',
+        weight = 1,
+        consume = 0,
+        stack = false,
+        close = true,
+        description = nil
+    },
 }

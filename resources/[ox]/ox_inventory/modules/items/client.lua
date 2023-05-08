@@ -139,3 +139,12 @@ exports('Items', GetItem)
 exports('ItemList', GetItem)
 
 return Items
+
+--- AP COURT STUFF ------
+Item('lawyerid', function(data, slot)
+  ox_inventory:useItem(data, function(data)
+    if data ~= nil then
+      TriggerServerEvent('ap-court:server:usingLawyerCard', data)
+    end
+  end)
+end)
