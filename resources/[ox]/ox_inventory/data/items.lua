@@ -2244,4 +2244,27 @@ return {
 			}
 		}
 	},
+	['sim_card'] = {
+		label = 'Sim Card',
+		weight = 10,
+		stack = false,
+		close = true,
+		description = nil,
+		consume = 0,
+		client = {
+			remove = function()
+				exports['r_simcards']:checkSim()
+			end,
+			add = function()
+				exports['r_simcards']:checkSim()
+			end,
+		},
+		server = {
+			export = 'r_simcards.sim_card',
+			metadata = {
+				number = nil,
+				ssn = nil
+			}
+		},
+	},
 }

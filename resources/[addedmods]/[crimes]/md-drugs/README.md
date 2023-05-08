@@ -19,6 +19,7 @@ Dependacies
 [3] ps-buffs
 [4] ps-ui
 [5] qb-target
+[6] polyzone
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -28,7 +29,7 @@ How to install like a fuckin bosssssss
 3) change all the locations in the config. it will automatically create the box -2 and +2 on the z in the target.lua so you dont have to do all that! Every city should have different locations to fit well with your city
 4) upload images
 5) add items here	
- 
+ ```
  ----- md-coke
  ["coke"] 		 	 	 	     = {["name"] = "coke",           				["label"] = "Raw Cocaine", 				["weight"] = 1000,		["type"] = "item", 		["image"] = "coke.png", 				["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,   ["combinable"] = nil,    ["description"] = "Processed cocaine"},
  ["coca_leaf"] 		 	 	 	 = {["name"] = "coca_leaf",           			["label"] = "Cocaine leaves",	 		["weight"] = 1500,		["type"] = "item", 		["image"] = "coca_leaf.png", 			["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,   ["combinable"] = nil,    ["description"] = "Cocaine leaves that must be processed !"},
@@ -217,6 +218,15 @@ How to install like a fuckin bosssssss
 ["triplepress"] 				 = {["name"] = "triplepress", 			    	["label"] = "Triple Pill Press", 			    ['weight'] = 100, 		["type"] = "item", 		["image"] = "pillpress.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,                     ["description"] = ""},
 ["quadpress"] 					 = {["name"] = "quadpress", 			    	["label"] = "Quad Pill Press", 			        ['weight'] = 100, 		["type"] = "item", 		["image"] = "pillpress.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,                     ["description"] = ""},
 
+["cokeburner"] 				     = {["name"] = "cokeburner", 			    	["label"] = "Nokia Burner", 		     ['weight'] = 100, 		["type"] = "item", 		["image"] = "cokeburner.png", 			    ["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,                     ["description"] = ""},
+["crackburner"] 				     = {["name"] = "crackburner", 			    	["label"] = "Juke Burner", 		     ['weight'] = 100, 		["type"] = "item", 		["image"] = "crackburner.png", 			    ["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,                     ["description"] = ""},
+["heroinburner"] 				     = {["name"] = "heroinburner", 			    	["label"] = "Razr Burner", 		     ['weight'] = 100, 		["type"] = "item", 		["image"] = "heroinburner.png", 			    ["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,                     ["description"] = ""},
+["lsdburner"] 				     = {["name"] = "lsdburner", 			    	["label"] = "SideKick Burner", 		     ['weight'] = 100, 		["type"] = "item", 		["image"] = "lsdburner.png", 			    ["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,                     ["description"] = ""},
+
+
+
+
+```
 6) enjoy
 
 
