@@ -1,4 +1,4 @@
-ESX = exports['es_extended']:getSharedObject()
+QBCore = exports['qb-core']:GetCoreObject()
 local loaded = false
 Citizen.CreateThread(function()
 	PlayerData = ESX.GetPlayerData()

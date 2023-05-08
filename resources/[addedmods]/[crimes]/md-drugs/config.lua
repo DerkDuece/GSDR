@@ -6,8 +6,8 @@ Config.rewardItemheroin = "poppyresin"
 Config.rewardshrooms = "shrooms"
 Config.respawnTime = 150 -- Seconds
 Config.cd = false ---- if you use cd-dispatch
-Config.ps = false --- if you use ps dispatch
-Config.gks = true -- true if you use gks, false if you use qb or renewed phone
+Config.ps = true --- if you use ps dispatch
+Config.gks = false -- true if you use gks, false if you use qb or renewed phone
 Config.Dirty = 'marked_money' -- whatever you use for dirty money
 
 
