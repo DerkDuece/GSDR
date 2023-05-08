@@ -1,0 +1,13 @@
+{"level":"debug","message":"Boot service started","module":"boot","timestamp":"2023-05-08T15:29:58.006Z"}
+{"level":"debug","message":"Marketplace service started","module":"marketplace","timestamp":"2023-05-08T15:29:58.013Z"}
+{"level":"debug","message":"Player Service started","module":"player","timestamp":"2023-05-08T15:29:58.013Z"}
+{"level":"debug","message":"Call service started","module":"calls","timestamp":"2023-05-08T15:29:58.015Z"}
+{"level":"debug","message":"Messages service started","module":"messages","timestamp":"2023-05-08T15:29:58.015Z"}
+{"level":"debug","message":"Notes service started","module":"notes","timestamp":"2023-05-08T15:29:58.015Z"}
+{"level":"debug","message":"Contacts service started","module":"contact","timestamp":"2023-05-08T15:29:58.016Z"}
+{"level":"debug","message":"Photo service started","module":"photo","timestamp":"2023-05-08T15:29:58.031Z"}
+{"level":"debug","message":"Twitter service started","module":"twitter","timestamp":"2023-05-08T15:29:58.031Z"}
+{"level":"debug","message":"Match service started","module":"match","timestamp":"2023-05-08T15:29:58.032Z"}
+{"level":"debug","message":"Beginning database schema validation","module":"boot","timestamp":"2023-05-08T15:29:59.488Z"}
+{"level":"info","message":"Successfully started","timestamp":"2023-05-08T15:29:59.496Z"}
+{"level":"error","message":"Error executing (SHOW TABLES WHERE `Tables_in_GSDR`LIKE ? [\"players\"]) with error message Access denied for user 'root'@'localhost' (using password: YES)","module":"DBInterface","timestamp":"2023-05-08T15:29:59.565Z"}

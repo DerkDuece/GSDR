@@ -2,7 +2,7 @@ Config = {
 	FrameworkExport = "qb-core", -- Set this too your core name, only change this if you have a custom version of QBCore. 
 	DiscordWebhook = {CandidateWinner = true, PollsOpen = true, CandidateStarted = true, CompanyRegisterd = true, CompanyGrantGiven = true, AppointmentRequest = true, AppointmentApprove = true, MayorTaxChange = true}, -- Set the webhooks you want to use to true.
 	Currency = '$', -- Set this to the currency your server uses.
-	UsingAPCourt = true -- Set this to true if your using AP-COURT.
+	UsingAPCourt = true, -- Set this to true if your using AP-COURT.
 	NotifyWinnerByPhone = true, -- Set true to email player of winning the election
 	displayVotingChatNotify = false, -- Set too true to show voting notiforcations in chat false for notify
 	AddJobsFromConfig = true, -- Set this to true if you want this script to add the jobs from Config.AddSharedJobs below to your shared jobs in qb-core. 
