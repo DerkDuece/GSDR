@@ -39,7 +39,7 @@ Config.Peds = {
 
 
 -- Car
-Config.Fuel = "LegacyFuel"                                          -- Name of your fuel script
+Config.Fuel = "cdn-fuel"                                          -- Name of your fuel script
 Config.VehicleKeysTrigger = "vehiclekeys:client:SetOwner"           -- Trigger to give vehiclekeys
 Config.VehicleName = "tractor2"
 
