@@ -1,1 +1,0 @@
-If you want to be able to cycle through liveries for the Dinka Thrust replace the existing vehicles.meta in: Grand Theft Auto V\mods\update\x64\dlcpacks\pthrust\dlc.rpf\common\data\levels\gta5\vehicles.meta
