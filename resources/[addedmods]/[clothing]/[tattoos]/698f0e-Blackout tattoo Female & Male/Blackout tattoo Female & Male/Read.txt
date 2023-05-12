@@ -1,0 +1,30 @@
+Hola! Gracias por descargarte este archivo.
+Este archivo se sustituye con esta ruta:
+Se puede sustituir como una textura o el archivo entero.
+Es un archivo que comparte tanto la mujer como el hombre.
+Es una textura muy sencilla, y como veo que mucha gente se crea el Blackout full a base de añadir muchos tatuajes, pues dejo este por aquí.
+Siento por mi inglés, estoy usando un traductor.
+Gracias <3
+
+update\x64\dlcpacks\mpairraces\dlc.rpf\x64\models\cdimages\mpairraces_ped_mp_overlay_txds.rpf
+mp_airraces_tattoo_003
+
+-
+update\x64\dlcpacks\mpimportexport\dlc.rpf\x64\models\cdimages\mpimportexport_ped_mp_overlay_txds.rpf
+mp_importexport_tat_003
+----------------------
+
+Hi! Thank you for downloading this file.
+This file is replaced with this path:
+It can be substituted as a texture or the entire file.
+It is a file shared by both women and men.
+It is a very simple texture, and since I see that many people create the full Blackout by adding many tattoos, well I leave this one here.
+Sorry for my English, I am using a translator.
+Thanks <3
+
+update\x64\dlcpacks\mpairraces\dlc.rpf\x64\models\cdimages\mpairraces_ped_mp_overlay_txds.rpf
+mp_airraces_tattoo_003
+
+-
+update\x64\dlcpacks\mpimportexport\dlc.rpf\x64\models\cdimages\mpimportexport_ped_mp_overlay_txds.rpf
+mp_importexport_tat_003

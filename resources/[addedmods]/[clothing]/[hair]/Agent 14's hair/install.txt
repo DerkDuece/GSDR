@@ -1,0 +1,10 @@
+Agent 14's hair by Alex Ashfold
+Version 1.0
+
+====Install====
+
+Files from ¨mp_m_freemode_01_mp_m_vinewood¨ goes into:
+mods\update\x64\dlcpacks\mpvinewood\dlc.rpf\x64\models\cdimages\mpvinewood_male.rpf\mp_m_freemode_01_mp_m_vinewood
+
+Files from ¨mpvinewood_ped_mp_overlay_txds.rpf¨ goes into:
+mods\update\x64\dlcpacks\mpvinewood\dlc.rpf\x64\models\cdimages\mpvinewood_ped_mp_overlay_txds.rpf
