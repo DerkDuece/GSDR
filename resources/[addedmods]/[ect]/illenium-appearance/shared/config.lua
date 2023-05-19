@@ -14,7 +14,7 @@ Config.RCoreTattoosCompatibility = false
 
 Config.AsynchronousLoading = false -- Change this to false if you want the NUI data to load before displaying the appearance UI
 
-Config.UseTarget = false
+Config.UseTarget = true
 
 Config.TextUIOptions = {
     position = "left-center"
@@ -58,17 +58,17 @@ Config.GenderBasedOnPed = true
 
 Config.AlwaysKeepProps = false
 
-Config.PersistUniforms = false -- Keeps Job / Gang Outfits on player reconnects / logout
+Config.PersistUniforms = true -- Keeps Job / Gang Outfits on player reconnects / logout
 Config.OnDutyOnlyClothingRooms = false -- Set to `true` to make the clothing rooms accessible only to players who are On Duty
 
 Config.BossManagedOutfits = false -- Allows Job / Gang bosses to manage their own job / gang outfits
 
 Config.ReloadSkinCooldown = 5000
 
-Config.AutomaticFade = false -- Enables automatic fading and hides the Fade section from Hair
+Config.AutomaticFade = true -- Enables automatic fading and hides the Fade section from Hair
 
 -- ACE Permissions Config
-Config.EnableACEPermissions = false
+Config.EnableACEPermissions = true
 Config.ACEResetCooldown = 5000
 Config.ACEListCooldown = 60 * 60 * 1000 -- 1 Hour
 
@@ -116,7 +116,7 @@ Config.Blips = {
         Name = "Tattoo Shop",
     },
     ["surgeon"] = {
-        Show = false,
+        Show = true,
         Sprite = 102,
         Color = 4,
         Scale = 0.7,
