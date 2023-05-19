@@ -186,7 +186,7 @@ Config.BlacklistedScenarios = {
 }
 
 Config.BlacklistedVehs = {
-    [`SHAMAL`] = true,
+    [`SHAMAL`] = false,
     [`LUXOR`] = true,
     [`LUXOR2`] = true,
     [`JET`] = true,
