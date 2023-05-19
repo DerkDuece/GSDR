@@ -13,34 +13,34 @@ Config.Dirty = 'marked_money' -- whatever you use for dirty money
 
 
 ------------- Cocaine locations
-Config.makecokepowder = vector3(-2049.78, -1031.84, 8.97) --  where to take coca leaves to make powder
-Config.cutcokeone = vector3(93.51, 3754.22, 40.77) -- cutting stage 1 coke with baking soda
-Config.cutcoke2 = vector3(711.38, -969.46, 30.4) -- cuting stage two with baking soda
-Config.cutcoke3 = vector3(-495.98, 188.95, 83.16) -- cutting stage three with baking soda
-Config.bagcoke = vector3(90.31, 3745.46, 40.77) -- bag stage one
-Config.bagcoke2 = vector3(706.07, -966.91, 30.41) -- bag stage two
-Config.bagcoke3 = vector3(-492.51, 189.57, 83.16)
+Config.makecokepowder = vector3(-1764.61, 439.93, 127.4) --  where to take coca leaves to make powder
+Config.cutcokeone = vector3(-1763.51, 437.31, 127.41) -- cutting stage 1 coke with baking soda
+Config.cutcoke2 = vector3(-1765.75, 434.22, 127.24) -- cuting stage two with baking soda
+Config.cutcoke3 = vector3(-1770.02, 433.16, 127.21) -- cutting stage three with baking soda
+Config.bagcoke = vector3(-1771.91, 432.68, 127.22) -- bag stage one
+Config.bagcoke2 = vector3(-1773.25, 432.39, 127.23) -- bag stage two
+Config.bagcoke3 = vector3(-1775.89, 431.79, 127.3)
 ---------------- Crack locations
-Config.makecrack = vector3(537.16, -1931.63, 24.99) -- make crack with baking soda with cut coke 1-3
-Config.bagcrack = vector3(536.27, -1935.95, 24.99) ---  bag crack 1-3 stages
+Config.makecrack = vector3(-1778.91, 433.04, 127.4) -- make crack with baking soda with cut coke 1-3
+Config.bagcrack = vector3(-1779.98, 434.88, 127.52) ---  bag crack 1-3 stages
 ------------------------- LSD Locations
-Config.lysergicacid = vector3(3539.33, 3660.05, 28.12) -- get lysergic acid
-Config.diethylamide = vector3(3536.66, 3662.85, 28.12) -- get diethylamide
-Config.gettabs = vector3(2482.3, 3722.59, 43.93) -- buy tab paper
+Config.lysergicacid = vector3(-1781.53, 435.78, 127.83) -- get lysergic acid
+Config.diethylamide = vector3(-1783.48, 436.89, 128.11) -- get diethylamide
+Config.gettabs = vector3(-1785.17, 439.18, 128.11) -- buy tab paper
 Config.acidrefine = vector3(-1785.49, 439.74, 128.11) -- refine your acid
-Config.buylsdlabkit = vector3(2328.99, 2571.5, 46.71) --  buy lab kit
-Config.maketabs1 = vector3(3558.67, 3672.39, 28.12) -- make tabs 1
-Config.maketabs2 = vector3(3561.14, 3673.05, 28.12) -- make tabs 2
-Config.maketabs3 = vector3(3562.73, 3675.66, 28.12) -- make tabs 3
-Config.maketabs4 = vector3(3559.8, 3675.91, 28.12) -- make tabs 4
-Config.maketabs5 = vector3(3561.76, 3670.58, 28.12) -- make tabs 5
-Config.maketabs6 = vector3(3561.38, 3668.42, 28.12) -- make tabs 6
+Config.buylsdlabkit = vector3(-1786.48, 441.65, 128.11) --  buy lab kit
+Config.maketabs1 = vector3(-1788.23, 443.56, 128.29) -- make tabs 1
+Config.maketabs2 = vector3(-1789.92, 442.71, 128.31) -- make tabs 2
+Config.maketabs3 = vector3(-1791.06, 446.85, 128.35) -- make tabs 3
+Config.maketabs4 = vector3(-1790.66, 449.93, 128.31) -- make tabs 4
+Config.maketabs5 = vector3(-1790.38, 452.14, 128.31) -- make tabs 5
+Config.maketabs6 = vector3(-1790.03, 454.5, 128.31) -- make tabs 6
 
 ------------------------- Heroin Locations
-Config.dryplant = vector3(1390.02, 3608.81, 38.94) -- turn resin into powder
-Config.buyheroinlabkit = vector3(438.48, 3570.55, 33.89) -- buy heroin lab kit
-Config.cutheroinone = vector3(1389.7, 3603.43, 38.94) -- cut heroin stage 1-3 with baking soda
-Config.fillneedle = vector3(1391.82, 3606.19, 38.94) -- fill needles with heroin
+Config.dryplant = vector3(-1793.77, 455.84, 128.31) -- turn resin into powder
+Config.buyheroinlabkit = vector3(-1796.64, 455.88, 128.31) -- buy heroin lab kit
+Config.cutheroinone = vector3(-1799.01, 456.01, 128.31) -- cut heroin stage 1-3 with baking soda
+Config.fillneedle = vector3(-1802.74, 456.65, 128.29) -- fill needles with heroin
 
 ------------ XTC
 Config.isosafrole = vector3(0, 0, 0) -- where to steal isosafrole

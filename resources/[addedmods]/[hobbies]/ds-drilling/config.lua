@@ -2,7 +2,7 @@ Config = {}
 
 Config.Platforms = json.decode(LoadResourceFile(GetCurrentResourceName(), "Platforms.json")) -- don't touch this
 Config.DefaultQuantity = 1000 -- default quantity for all platforms
-Config.UseEyeTarget = false -- enable or disable eye target for all platforms
+Config.UseEyeTarget = true -- enable or disable eye target for all platforms
 Config.UseDrawText =  true -- enable or disable draw text for all platforms
 
 Config.RequireJob = false --- enable this if you want to use job only.
