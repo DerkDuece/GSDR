@@ -1,6 +1,19 @@
 Config = {}
 -- Config thêm job và event chỉ đường vào đây, vpn = true sẽ yêu cầu VPN để hiển thị
 Config.JobCenter = {
+    ['fishing'] = {
+        vpn = false,
+        label = "Fishing",
+        event = "kd-fishing:client:fishgps",
+        mem = 4,
+        count = 0,
+        salary = 'high', -- Change it according to the fishing job salary level of your server
+        time = {
+            first = 5000,
+            second = 10000,
+        },
+        icon = "fas fa-fish"
+    },
     ['towing'] = {
         vpn = false,
         label = "Towing",
