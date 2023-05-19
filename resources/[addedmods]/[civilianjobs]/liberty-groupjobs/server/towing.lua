@@ -86,7 +86,7 @@ RegisterServerEvent("towing:stopGroupJob", function(groupID)
                 if Config.BuffsEnabled and exports["ps-buffs"]:HasBuff(cid, Config.BuffName) then
                     payout = payout * ((Config.BuffAmount/100) + 1)
                 end
-                m.Functions.AddMoney("cash", payout, 'Towing')
+                m.Functions.AddMoney("bank", payout, 'Towing')
                 TriggerClientEvent("QBCore:Notify", members[i], "You were paid $"..payout.." for the towing work you've done", "success")
             end
         end

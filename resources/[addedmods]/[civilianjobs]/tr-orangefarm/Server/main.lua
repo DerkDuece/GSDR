@@ -168,7 +168,7 @@ local function LoadQBVersion()
                         end
                     end
                 end
-                Player.Functions.AddMoney("cash", price)
+                Player.Functions.AddMoney("bank", price)
                 TriggerClientEvent('QBCore:Notify', src, Config.Text["successfully_sold"], "success")
             end
         end
@@ -198,7 +198,7 @@ local function LoadQBVersion()
                         end
                     end
                 end
-                Player.Functions.AddMoney("cash", price)
+                Player.Functions.AddMoney("bank", price)
                 TriggerClientEvent('QBCore:Notify', src, Config.Text["successfully_sold1"], "success")
             end
         end

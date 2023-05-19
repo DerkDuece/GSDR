@@ -6,13 +6,13 @@ RegisterNetEvent('cad-delivery:cash', function(currentJobPay, value)
 	local _source = source
 	local Player = QBCore.Functions.GetPlayer(_source)
 	if value == "job" then
-		exports.pefcl:addBankBalance(source, currentJobPay)
+		Player.Functions.AddMoney("bank", currentJobPay, "postal-job")
 		TriggerClientEvent("QBCore:Notify", _source, "You recieved payslip of $" .. currentJobPay)
 	elseif value == "add" then
-		exports.pefcl:addCash(source, currentJobPay)
+		Player.Functions.AddMoney("bank", currentJobPay, "postal-deposit-return")
 		TriggerClientEvent("QBCore:Notify", _source, "Your $" .. currentJobPay .. " deposit was returned.")
 	elseif value == "remove" and Player.PlayerData.money.cash >= currentJobPay then
-		exports.pefcl:removeCash(source, currentJobPay)
+		Player.Functions.RemoveMoney("bank", currentJobPay, "postal-deposit-pay")
 		TriggerClientEvent("QBCore:Notify", _source, "Your $" .. currentJobPay .. " was taken as deposit.")
 	end
 end)
