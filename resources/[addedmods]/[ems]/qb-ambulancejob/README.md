@@ -7,13 +7,16 @@ EMS Job and Death/Wound Logic for QB-Core Framework :ambulance:
 - [qb-target](https://github.com/BerkieBb/qb-target) (Optional)
 - [PolyZone](https://github.com/mkafrin/PolyZone) (Required)
 
-## Showcase
-- [walk trough](https://www.youtube.com/watch?v=LWKerWlh3g4)
+# Server.cfg Convar Update
+- Global DrawTextUi Option
+```
+setr UseTarget false
+``` 
 
-## Features
-- [More Config Option](https://youtu.be/9Qn4qRrGi7A)
-- Ped Integratios
-- [Ranjit's emsbag](https://github.com/Ranjit-Develops/Ranjit-EMS-bag) integration
+- Global Target Option
+```
+setr UseTarget true
+```
 
 
 # License
