@@ -16,17 +16,17 @@ Config.Blips = {
     -- Job ped
     {title = 'Farming', colour = 5, id = 1, coords = vector3(2309.68, 4885.79, 41.81), scale = 0.6, useblip = true},
     -- Blips Farmer Coffee
-    {title = 'Farm Coffee', colour = 5, id = 1, coords = vector3(2298.27, 5140.95, 52.49), scale = 0.6, useblip = true},
+    {title = 'Farm Coffee', colour = 5, id = 1, coords = vector3(2298.27, 5140.95, 52.49), scale = 0.6, useblip = false},
     -- Blips Pick Up Seeds Potatoes
-    {title = 'Farm Potatoes', colour = 5, id = 1, coords = vector3(2138.98, 5143.56, 50.07), scale = 0.6, useblip = true},
+    {title = 'Farm Potatoes', colour = 5, id = 1, coords = vector3(2138.98, 5143.56, 50.07), scale = 0.6, useblip = false},
     -- Blips Pick Up Seeds Strawberry
-    {title = 'Farm Strawberry', colour = 5, id = 1, coords = vector3(262.12, 6652.21, 29.92), scale = 0.6, useblip = true},
+    {title = 'Farm Strawberry', colour = 5, id = 1, coords = vector3(262.12, 6652.21, 29.92), scale = 0.6, useblip = false},
     -- Processing
-    {title = 'Process Seeds', colour = 5, id = 1, coords = vector3(2406.68, 5019.28, 46.15), scale = 0.6, useblip = true},
+    {title = 'Process Seeds', colour = 5, id = 1, coords = vector3(2406.68, 5019.28, 46.15), scale = 0.6, useblip = false},
     -- Blips Process Apple Seeds
-    {title = 'Farm Apples / Oranges', colour = 5, id = 1, coords = vector3(352.43, 6520.76, 28.48), scale = 0.6, useblip = true},
+    {title = 'Farm Apples / Oranges', colour = 5, id = 1, coords = vector3(352.43, 6520.76, 28.48), scale = 0.6, useblip = false},
     -- Blips Make Juices
-    {title = 'Make Juices', colour = 5, id = 1, coords = vector3(2016.89, 4986.67, 42.1), scale = 0.6, useblip = true},
+    {title = 'Make Juices', colour = 5, id = 1, coords = vector3(2016.89, 4986.67, 42.1), scale = 0.6, useblip = false},
 }
 
 -- Ped settings

@@ -2,18 +2,6 @@
 -- location indexes
 return {
 
-	['ClothingShop'] = {
-		moneytype = 'money',
-		name = 'ClothingShop',
-
-		locations = {
-			vec3(425.44613647461,-805.49926757813,29.49),
-		},
-		targets = {
-			vec3(426.23623657227,-805.77111816406,29.438510894775),
-		},
-	},
-
 	['Balls8'] = {
 		moneytype = 'money',
 		name = '8Balls',
@@ -115,6 +103,8 @@ return {
 			{ name = 'carrot_seed', price = 100 },
 			{ name = 'corn_seed', price = 100 },
 			{ name = 'radio', price = 1000},
+			{ name = 'advancedlockpick', price = 5000 },
+			{ name = 'laptop', price = 2500 },
 
 		}, locations = {
 			vec3(2747.025390625,3473.0822753906,55.683399200439),
@@ -168,12 +158,11 @@ return {
 			{ name = 'WEAPON_CARBINERIFLE', price = 800, grade = 5, metadata = { registered = true, serial = 'POL' }, license = 'weapon', grade = 3 },
 			{ name = 'WEAPON_STUNGUN', price = 300, metadata = { registered = true, serial = 'POL'} },
 			{ name = 'WEAPON_PUMPSHOTGUN', price = 600, metadata = { registered = true, serial = 'POL'} },
-			{ name = 'WEAPON_COMBATPDW', price = 700, metadata = { registered = true, serial = 'POL'} },
 
 			{ lvl = 2, name = 'armour', category = 'Tools', price = 200, metadata = { description = 'pang pakunat' } },
 
 		}, locations = {
-			vec3(436.74884033203,-989.70672607422,32.475814819336)
+			vec3(482.58, -995.72, 30.69)
 		}
 	},
 

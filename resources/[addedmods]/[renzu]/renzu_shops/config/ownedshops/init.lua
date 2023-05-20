@@ -30,7 +30,7 @@ return {
 	--['BeanMachine'] = request('config/ownedshops/BeanMachine'),
 	['PondCafe'] = request('config/ownedshops/PondCafe'),
 	['Balls8'] = request('config/ownedshops/Balls8'),
-	['ClothingShop'] = request('config/ownedshops/ClothingShop'),
+	--['ClothingShop'] = request('config/ownedshops/ClothingShop'),
 	--['Petshop'] = request('config/ownedshops/Petshop'),
 	['LiquorStore'] = request('config/ownedshops/LiquorStore'),
 

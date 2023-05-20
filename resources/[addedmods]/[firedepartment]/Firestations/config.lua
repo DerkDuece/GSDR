@@ -220,23 +220,6 @@ Config.turnout = {
 -- stations Locations on map and Vehicles spawn example
 Config.Locations = {
     ["stations"] = {
-        -- example
-        -- Rockford Station
-        {
-            coords = vector4(-633.8, -101.22, 38.05, 114.82), -- ped for NPC
-            spawn = vector4(-645.96, -112.16, 37.9, 118.87), -- Vehicles spawn
-            -- stations blip
-            label = "Rockford Station 1",  -- label for blip
-            blipid = 686, -- id for blip
-        },
-        -- Sandy
-        {
-            coords = vector4(1681.43, 3596.74, 36.48, 212.09),
-            spawn = vector4(1693.86, 3590.73, 36.53, 215.63),
-           -- stations blip
-            label = "Fire Dept 32", 
-            blipid = 717,
-        },
         -- Davis Fire DEPT
         {
             coords = vector4(219.39, -1651.29, 29.82, 159.25),
@@ -251,14 +234,6 @@ Config.Locations = {
             spawn = vector4(326.71, -572.47, 28.8, 330.76),
             -- stations are in Pillbox<!
             --blipid = 47,
-        },
-        -- Fire Dept 7
-        {
-            coords = vector4(1193.38, -1495.59, 34.84, 268.58),
-            spawn = vector4(1197.02, -1506.51, 34.69, 87.45),
-            -- stations blip
-            label = "Fire Dept 7",
-            blipid = 692,
         },
     },
     ["Duty"] = { 

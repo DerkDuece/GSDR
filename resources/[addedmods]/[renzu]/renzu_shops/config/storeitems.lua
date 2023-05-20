@@ -81,6 +81,10 @@ return {
 		{ name = 'WEAPON_ASSAULTRIFLE', price = 85000, category = 'Weapon', currency = 'black_money', stock = 15 },
 		{ name = 'WEAPON_PISTOL50', price = 55000, category = 'Weapon', currency = 'black_money', stock = 15 },
 		{ name = 'WEAPON_ASSAULTSMG', price = 75000, category = 'Weapon', currency = 'black_money', stock = 15 },
+		{ name = '', price =, stock =},
+
+
+
 	},
 	
 	LiquorStore = {
@@ -103,7 +107,6 @@ return {
 		{ category = 'handheld',  name = 'handcuffs', price = 300 },
 		{ category = 'handheld', name = 'bodycam', price = 50 },
 		{ category = 'drink',  name = 'energy_drink', price = 300 },
-
 		{ category = 'handheld',  name = 'WEAPON_FLASHLIGHT', price = 200 },
 		{ category = 'handheld',  name = 'WEAPON_NIGHTSTICK', price = 100 },
 		{ category = 'Pistol',  name = 'WEAPON_PISTOL', price = 500, metadata = { registered = true, serial = 'POL' }, },
@@ -111,9 +114,7 @@ return {
 		{ category = 'Rifle',  name = 'WEAPON_SPECIALCARBINE', price = 800, grade = 5, metadata = { registered = true, serial = 'POL' },  grade = 3 },
 		{ category = 'handheld',  name = 'WEAPON_STUNGUN', price = 300, metadata = { registered = true, serial = 'POL'} },
 		{ category = 'Shotguns',  name = 'WEAPON_PUMPSHOTGUN', price = 600, metadata = { registered = true, serial = 'POL'} },
-		{ category = 'SMG',  name = 'WEAPON_COMBATPDW', price = 700 },
 		{ lvl = 2, name = 'radio', category = 'handheld', price = 100, metadata = { description = 'pang pakunat' } },
-
 		{ lvl = 2, name = 'armour', category = 'Tools', price = 100, metadata = { description = 'pang pakunat' } },
 
 	},
