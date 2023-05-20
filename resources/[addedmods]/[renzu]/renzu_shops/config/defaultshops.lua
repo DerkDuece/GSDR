@@ -143,7 +143,7 @@ return {
 	},
 
 	PoliceArmoury = {
-		moneytype = 'policecredit',
+		moneytype = 'money',
 		name = 'Police Armoury',
 		groups = 'police',
 		blip = {
