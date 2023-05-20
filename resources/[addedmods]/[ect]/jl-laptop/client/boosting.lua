@@ -693,7 +693,7 @@ end)
 
 
 RegisterNetEvent('jl-laptop:client:setvehicleFuel', function(veh)
-    exports['LegacyFuel']:SetFuel(car, 100.0)
+    exports['cdn-fuel']:SetFuel(car, 100.0)
 end)
 
 RegisterNUICallback("boosting/getqueue", function(_, cb)

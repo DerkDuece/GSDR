@@ -38,7 +38,7 @@ Farming script for QBCore
 
 - If you are using lj-fuel or a different fuel system
 
-- Change LegacyFuel to whatever fuel system in **mr-farming/Config,lua**
+- Change cdn-fuel to whatever fuel system in **mr-farming/Config,lua**
 
 ## qb-smallresources/config.lua
 - ConsumeablesDrink

@@ -8,7 +8,7 @@ Config.Notify = 'qb' -- Which notify system do you want to use: 'qb', 'okok', or
 Config.Menu = 'qb' -- Which menu system do you want to use: 'qb' or 'ox'?
 Config.Text = 'qb' -- Which draw-text system do you want to use: 'qb' or 'ox'? 
 Config.Target = 'qb' -- Which target system do you want to use: 'qb' or 'ox'?
-Config.Fuel = 'cdn-fuel' -- Which fuel system are you using: 'LegacyFuel', 'ps-fuel', or 'cdn-fuel'?
+Config.Fuel = 'cdn-fuel' -- Which fuel system are you using: 'cdn-fuel', 'ps-fuel', or 'cdn-fuel'?
 
 -- Cutscene
 Config.UseLamarPart = true -- If set as false, Lamar's cutscene segment will be excluded

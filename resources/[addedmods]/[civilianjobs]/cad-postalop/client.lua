@@ -73,7 +73,7 @@ function SpawnGoPostal(x, y, z, h)
 	SetEntityAsMissionEntity(goPostalVehicle, true, true)
 	SetVehicleEngineOn(goPostalVehicle, true)
 	SetVehicleColours(goPostalVehicle, 131, 74)
-	exports['LegacyFuel']:SetFuel(goPostalVehicle, 100.0)
+	exports['cdn-fuel']:SetFuel(goPostalVehicle, 100.0)
 	local plate = GetVehicleNumberPlateText(goPostalVehicle)
 	TriggerEvent("vehiclekeys:client:SetOwner", plate)
 end
