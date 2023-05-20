@@ -149,18 +149,23 @@ return {
 		blip = {
 			id = 110, colour = 84, scale = 0.8
 		}, inventory = {
-			{ name = 'ammo-9', price = 2, },
-			{ name = 'ammo-rifle', price = 2, },
-			{ name = 'ammo-shotgun', price = 2, },
-			{ name = 'WEAPON_FLASHLIGHT', price = 200 },
-			{ name = 'WEAPON_NIGHTSTICK', price = 100 },
-			{ name = 'WEAPON_PISTOL', price = 500, metadata = { registered = true, serial = 'POL' }, license = 'weapon' },
-			{ name = 'WEAPON_CARBINERIFLE', price = 800, grade = 5, metadata = { registered = true, serial = 'POL' }, license = 'weapon', grade = 3 },
-			{ name = 'WEAPON_STUNGUN', price = 300, metadata = { registered = true, serial = 'POL'} },
-			{ name = 'WEAPON_PUMPSHOTGUN', price = 600, metadata = { registered = true, serial = 'POL'} },
-
-			{ lvl = 2, name = 'armour', category = 'Tools', price = 200, metadata = { description = 'pang pakunat' } },
-
+			{ category = 'ammo',  name = 'ammo-9', price = 2, },
+			{ category = 'ammo',  name = 'ammo-rifle', price = 2, },
+			{ category = 'ammo',  name = 'ammo-shotgun', price = 2, },
+			{ category = 'ammo',  name = 'ammo-rifle2', price = 2, },
+			{ category = 'throwable',  name = 'WEAPON_BZGAS', price = 300 },
+			{ category = 'handheld',  name = 'handcuffs', price = 300 },
+			{ category = 'handheld', name = 'bodycam', price = 50 },
+			{ category = 'drink',  name = 'energy_drink', price = 300 },
+			{ category = 'handheld',  name = 'WEAPON_FLASHLIGHT', price = 200 },
+			{ category = 'handheld',  name = 'WEAPON_NIGHTSTICK', price = 100 },
+			{ category = 'Pistol',  name = 'WEAPON_PISTOL', price = 500, metadata = { registered = true, serial = 'POL' }, },
+			{ category = 'Rifle',  name = 'WEAPON_CARBINERIFLE', price = 800, grade = 5, metadata = { registered = true, serial = 'POL' },  grade = 3 },
+			{ category = 'Rifle',  name = 'WEAPON_SPECIALCARBINE', price = 800, grade = 5, metadata = { registered = true, serial = 'POL' },  grade = 3 },
+			{ category = 'handheld',  name = 'WEAPON_STUNGUN', price = 300, metadata = { registered = true, serial = 'POL'} },
+			{ category = 'Shotguns',  name = 'WEAPON_PUMPSHOTGUN', price = 600, metadata = { registered = true, serial = 'POL'} },
+			{ lvl = 2, name = 'radio', category = 'handheld', price = 100, metadata = { description = 'pang pakunat' } },
+			{ lvl = 2, name = 'armour', category = 'Tools', price = 100, metadata = { description = 'pang pakunat' } },	
 		}, locations = {
 			vec3(482.58, -995.72, 30.69)
 		}
