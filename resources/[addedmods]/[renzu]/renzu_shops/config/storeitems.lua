@@ -81,9 +81,21 @@ return {
 		{ name = 'WEAPON_ASSAULTRIFLE', price = 85000, category = 'Weapon', currency = 'black_money', stock = 15 },
 		{ name = 'WEAPON_PISTOL50', price = 55000, category = 'Weapon', currency = 'black_money', stock = 15 },
 		{ name = 'WEAPON_ASSAULTSMG', price = 75000, category = 'Weapon', currency = 'black_money', stock = 15 },
-		{ name = '', price =, stock =},
-
-
+        { name = 'weapon_microsmg', price = 13000 ,category = 'Weapon', currency = 'black_money', stock = 1 },
+        { name = 'weapon_machinepistol', price = 14000,category = 'Weapon', currency = 'black_money', stock = 1 },
+        { name = 'weapon_minismg', price = 12500 ,category = 'Weapon', currency = 'black_money', stock = 1 },
+        { name = 'weapon_ceramicpistol', price = 10000 , category = 'Weapon', currency = 'black_money', stock = 5 },
+        { name = 'weapon_revolver', price = 8000 ,category = 'Weapon', currency = 'black_money', stock = 2 },
+        { name = 'weapon_pistol50', price = 10000,category = 'Weapon', currency = 'black_money', stock = 2 },
+        { name = 'weapon_appistol', price = 15000,category = 'Weapon', currency = 'black_money', stock = 1 },
+        { name = 'weapon_switchblade', price = 2500 , category = 'Weapon', currency = 'black_money', stock = 2 },
+        { name = 'weapon_knuckle', price = 2500 , category = 'Weapon', currency = 'black_money', stock = 2 },
+        { name = 'weapon_pipebomb', price = 8000 , category = 'Weapon', currency = 'black_money', stock = 3 },
+        { name = 'weapon_molotov', price = 2000, category = 'Weapon', currency = 'black_money', stock = 5 },
+        { name = 'weapon_dbshotgun', price = 10000, category = 'Weapon', currency = 'black_money', stock = 2 },
+        { name = 'weapon_compactrifle', price = 18000, category = 'Weapon', currency = 'black_money', stock = 2 },
+        { name = 'weapon_tacticalrifle', price = 25000, category = 'Weapon', currency = 'black_money', stock = 1 },
+        { name = 'weapon_assaultrifle', price = 20000, category = 'Weapon', currency = 'black_money', stock = 1 },
 
 	},
 	
