@@ -69,7 +69,7 @@ Config.RepairCost = 1500 -- repair cost
 Config.Customs = { -- Multiple Shop Start
 
     ['Bennys'] = { -- Shop id -- Sample bennys (IPL coordinates) Change this to your liking (CHANGE COORDINATES IF CUSTOM BENNYS MAP)
-		job = 'mechanic', -- job name permmision for this shop
+		job = 'Benny', -- job name permmision for this shop
 		min_grade = 0, -- min grade to access the whole shop feature
 		radius = 30, -- radius for whole shop
 		stockroom = {coord = vector4(-227.70811462402,-1322.9874267578,30.890409469604,90.902221679688), grade = 0}, -- vector 4 why the F is this vector4, x,y,z,w (heading)
