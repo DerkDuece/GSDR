@@ -3,7 +3,7 @@ Config = {}
 Config.Platforms = json.decode(LoadResourceFile(GetCurrentResourceName(), "Platforms.json")) -- don't touch this
 Config.DefaultQuantity = 1000 -- default quantity for all platforms
 Config.UseEyeTarget = true -- enable or disable eye target for all platforms
-Config.UseDrawText =  true -- enable or disable draw text for all platforms
+Config.UseDrawText =  false -- enable or disable draw text for all platforms
 
 Config.RequireJob = false --- enable this if you want to use job only.
 Config.JobName = "mining" --- job name Note: make sure you add job in your server accordingly your framework.
@@ -34,7 +34,7 @@ Config.Seller = {
 }
 Config.SellingPrices = {
     ["kerosene"] = {label = "Kerosene", price = math.random(100,150)},
-    ["gasoline"] = {label = "Gasoline", price = math.random(100,150)},
+    ["gasoline"] = {label = "Gasoline", price = math.random(35,50)},
 }
 
 
