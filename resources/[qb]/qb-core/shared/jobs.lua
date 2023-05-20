@@ -305,34 +305,36 @@ QBShared.Jobs = {
                 payment = 400
             },
         },
-        ['Benny'] = {
-            label = 'Mechanic',
-            type = "mechanic",
-            defaultDuty = true,
-            offDutyPay = false,
-            grades = {
-                ['0'] = {
-                    name = 'Trainee',
-                    payment = 200
-                },
-                ['1'] = {
-                    name = 'Mechanic',
-                    payment = 250
-                },
-                ['2'] = {
-                    name = 'Snr. Mechanic',
-                    payment = 275
-                },
-                ['3'] = {
-                    name = 'Supervisor',
-                    payment = 350
-                },
-                ['4'] = {
-                    name = 'Manager',
-                    isboss = true,
-                    payment = 400
-                },
-            },		
+	
+	},
+	['benny'] = {
+		label = 'Mechanic',
+        type = "mechanic",
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            ['0'] = {
+                name = 'Trainee',
+                payment = 200
+            },
+			['1'] = {
+                name = 'Mechanic',
+                payment = 250
+            },
+			['2'] = {
+                name = 'Snr. Mechanic',
+                payment = 275
+            },
+			['3'] = {
+                name = 'Supervisor',
+                payment = 350
+            },
+			['4'] = {
+                name = 'Manager',
+				isboss = true,
+                payment = 400
+            },
+        },
 	},
 	['Tuners'] = {
 		label = 'Mechanic',
