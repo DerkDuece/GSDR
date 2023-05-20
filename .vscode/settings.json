@@ -1,0 +1,12 @@
+{
+    "Lua.runtime.version": "LuaJIT",
+    "Lua.diagnostics.globals": [
+        "ngx"
+    ],
+    "Lua.workspace.library": [
+        "c:\\Users\\Tichm\\.vscode\\extensions\\overextended.cfxlua-vscode-1.6.1\\Lua\\runtime",
+        "c:\\Users\\Tichm\\.vscode\\extensions\\overextended.cfxlua-vscode-1.6.1\\Lua\\natives\\CFX-NATIVE",
+        "c:\\Users\\Tichm\\.vscode\\extensions\\overextended.cfxlua-vscode-1.6.1\\Lua\\natives\\GTAV",
+        "${3rd}/OpenResty/library"
+    ]
+}
