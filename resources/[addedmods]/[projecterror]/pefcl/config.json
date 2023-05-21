@@ -6,7 +6,7 @@
   },
   "frameworkIntegration": {
     "enabled": true,
-    "resource": "pefcl-esx",
+    "resource": "qb-pefcl",
     "syncInitialBankBalance": true
   },
   "database": {
