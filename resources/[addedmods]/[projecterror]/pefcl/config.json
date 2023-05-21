@@ -5,8 +5,8 @@
     "identifierType": "license"
   },
   "frameworkIntegration": {
-    "enabled": true,
-    "resource": "qb-pefcl",
+    "enabled": false,
+    "resource": "",
     "syncInitialBankBalance": true
   },
   "database": {
