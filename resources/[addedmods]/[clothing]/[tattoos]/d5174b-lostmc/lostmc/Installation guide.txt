@@ -1,4 +1,0 @@
-Om du vill använda den till en fivem server så är det bara dra mp_stunt_tat_034.ytd in i en stream mapp 
-Om du vill använda den till single player så kan du bara dra in lostmc.oiv i openiv
-
-
