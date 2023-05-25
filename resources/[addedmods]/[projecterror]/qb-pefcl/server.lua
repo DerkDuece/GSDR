@@ -2,17 +2,17 @@ local QBCore = exports["qb-core"]:GetCoreObject()
 
 local function addCash(src, amount)
 	local Player = QBCore.Functions.GetPlayer(src)
-	Player.Functions.AddMoney("cash", amount)
+	exports.ox_inventory:AddItem("money", amount)
 end
 
 local function removeCash(src, amount)
 	local Player = QBCore.Functions.GetPlayer(src)
-	Player.Functions.RemoveMoney("cash", amount)
+	exports.ox_inventory:RemoveItem("money", amount)
 end
 
 local function getCash(src)
 	local Player = QBCore.Functions.GetPlayer(src)
-	return Player.PlayerData.money["cash"] or 0
+	return Player.PlayerData.money["money"] or 0
 end
 
 local function loadPlayer(src, citizenid, name)
