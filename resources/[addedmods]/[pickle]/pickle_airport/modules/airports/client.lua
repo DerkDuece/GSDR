@@ -19,9 +19,7 @@ function StartNPCFlight(from, index)
             local ped = CreateNPC(`g_m_m_armboss_01`, start.x, start.y, start.z, 0.0, true, true)
 
             Plane = CreateVeh(`luxor`, start.x, start.y, start.z, heading - 180.0, false, true)
-            
             SetEntityCoords(ped, start.x, start.y, start.z)
-
             TaskWarpPedIntoVehicle(ped, Plane, -1)
             TaskWarpPedIntoVehicle(PlayerPedId(), Plane, 1)
         
