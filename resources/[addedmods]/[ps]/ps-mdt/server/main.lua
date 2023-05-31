@@ -46,7 +46,6 @@ if Config.UseWolfknightRadar == true then
 		local bolo, title, boloId = GetBoloStatus(plate)
 		local warrant, owner, incidentId = GetWarrantStatus(plate)
 		local driversLicense = PlayerData.metadata['licences'].driver
-		local driverunlicensed = nil
 
 		if bolo == true then
 			TriggerClientEvent('QBCore:Notify', src, 'BOLO ID: '..boloId..' | Title: '..title..' | Registered Owner: '..vehicleOwner..' | Plate: '..plate, 'error', Config.WolfknightNotifyTime)
@@ -55,18 +54,26 @@ if Config.UseWolfknightRadar == true then
 			TriggerClientEvent('QBCore:Notify', src, 'WANTED - INCIDENT ID: '..incidentId..' | Registered Owner: '..owner..' | Plate: '..plate, 'error', Config.WolfknightNotifyTime)
 		end
 
-		if driversLicense == false and vehicleOwner then
+		if Config.PlateScanForDriversLicense and driversLicense == false and vehicleOwner then
 			TriggerClientEvent('QBCore:Notify', src, 'NO DRIVERS LICENCE | Registered Owner: '..vehicleOwner..' | Plate: '..plate, 'error', Config.WolfknightNotifyTime)
 		end
 
-
-		if bolo or warrant or not driversLicense then
-
-		TriggerClientEvent("wk:togglePlateLock", src, cam, true, 1)
+		if bolo or warrant or (Config.PlateScanForDriversLicense and not driversLicense) then
+			TriggerClientEvent("wk:togglePlateLock", src, cam, true, 1)
 		end
-
 	end)
 end
+
+AddEventHandler('onResourceStart', function(resourceName)
+    if GetCurrentResourceName() ~= resourceName then return end
+	Wait(3000)
+	if Config.MugShotWebhook == '' then
+		print("\27[31mA webhook is missing in: Config.MugShotWebhook\27[0m")
+    end
+    if Config.ClockinWebhook == '' then
+		print("\27[31mA webhook is missing in: Config.ClockinWebhook\27[0m")
+	end
+end)
 
 RegisterNetEvent("ps-mdt:server:OnPlayerUnload", function()
 	--// Delete player from the MDT on logout
@@ -87,7 +94,7 @@ AddEventHandler('playerDropped', function(reason)
 
     -- Auto clock out if the player is off duty
      if IsPoliceOrEms(job) and PlayerData.job.onduty then
-		MySQL.query('UPDATE mdt_clocking SET clock_out_time = NOW(), total_time = TIMESTAMPDIFF(SECOND, clock_in_time, NOW()) WHERE user_id = @user_id ORDER BY id DESC LIMIT 1', {
+		MySQL.query.await('UPDATE mdt_clocking SET clock_out_time = NOW(), total_time = TIMESTAMPDIFF(SECOND, clock_in_time, NOW()) WHERE user_id = @user_id ORDER BY id DESC LIMIT 1', {
 			['@user_id'] = PlayerData.citizenid
 		})
 
@@ -172,7 +179,7 @@ RegisterNetEvent("ps-mdt:server:ClockSystem", function()
 		sendToDiscord(65280, "MDT Clock-In", 'Player: **' ..  firstName .. " ".. lastName .. '**\n\nJob: **' .. PlayerData.job.name .. '**\n\nRank: **' .. PlayerData.job.grade.name .. '**\n\nStatus: **On Duty**', "ps-mdt | Made by Project Sloth")
     else
 		TriggerClientEvent('QBCore:Notify', source, "You're clocked-out", 'success')
-		MySQL.query('UPDATE mdt_clocking SET clock_out_time = NOW(), total_time = TIMESTAMPDIFF(SECOND, clock_in_time, NOW()) WHERE user_id = @user_id ORDER BY id DESC LIMIT 1', {
+		MySQL.query.await('UPDATE mdt_clocking SET clock_out_time = NOW(), total_time = TIMESTAMPDIFF(SECOND, clock_in_time, NOW()) WHERE user_id = @user_id ORDER BY id DESC LIMIT 1', {
 			['@user_id'] = PlayerData.citizenid
 		})
 
@@ -243,7 +250,7 @@ QBCore.Functions.CreateCallback('mdt:server:SearchProfile', function(source, cb,
                     people[citizenIdIndexMap[conv.cid]].convictions = people[citizenIdIndexMap[conv.cid]].convictions + #charges
                 end
             end
-			TriggerClientEvent('mdt:client:searchProfile', src, people, false, people[1].fingerprint)
+			TriggerClientEvent('mdt:client:searchProfile', src, people, false)
 
             return cb(people)
         end
@@ -656,8 +663,8 @@ RegisterNetEvent('mdt:server:deleteWeapons', function(id)
 	if id then
 		local src = source
 		local Player = QBCore.Functions.GetPlayer(src)
-		if Config.LogPerms[Player.PlayerData.job.name] then
-			if Config.LogPerms[Player.PlayerData.job.name][Player.PlayerData.job.grade.level] then
+		if Config.RemoveWeaponsPerms[Player.PlayerData.job.name] then
+			if Config.RemoveWeaponsPerms[Player.PlayerData.job.name][Player.PlayerData.job.grade.level] then
 				local fullName = Player.PlayerData.charinfo.firstname .. ' ' .. Player.PlayerData.charinfo.lastname
 				MySQL.update("DELETE FROM `mdt_weaponinfo` WHERE id=:id", { id = id })
 				TriggerEvent('mdt:server:AddLog', "A Weapon Info was deleted by "..fullName.." with the ID ("..id..")")
@@ -674,8 +681,8 @@ RegisterNetEvent('mdt:server:deleteReports', function(id)
 	if id then
 		local src = source
 		local Player = QBCore.Functions.GetPlayer(src)
-		if Config.LogPerms[Player.PlayerData.job.name] then
-			if Config.LogPerms[Player.PlayerData.job.name][Player.PlayerData.job.grade.level] then
+		if Config.RemoveReportPerms[Player.PlayerData.job.name] then
+			if Config.RemoveReportPerms[Player.PlayerData.job.name][Player.PlayerData.job.grade.level] then
 				local fullName = Player.PlayerData.charinfo.firstname .. ' ' .. Player.PlayerData.charinfo.lastname
 				MySQL.update("DELETE FROM `mdt_reports` WHERE id=:id", { id = id })
 				TriggerEvent('mdt:server:AddLog', "A Report was deleted by "..fullName.." with the ID ("..id..")")
@@ -691,8 +698,8 @@ end)
 RegisterNetEvent('mdt:server:deleteIncidents', function(id)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-    if Config.LogPerms[Player.PlayerData.job.name] then
-        if Config.LogPerms[Player.PlayerData.job.name][Player.PlayerData.job.grade.level] then
+    if Config.RemoveIncidentPerms[Player.PlayerData.job.name] then
+        if Config.RemoveIncidentPerms[Player.PlayerData.job.name][Player.PlayerData.job.grade.level] then
             local fullName = Player.PlayerData.charinfo.firstname .. ' ' .. Player.PlayerData.charinfo.lastname
             MySQL.update("DELETE FROM `mdt_convictions` WHERE `linkedincident` = :id", {id = id})
             MySQL.update("UPDATE `mdt_convictions` SET `warrant` = '0' WHERE `linkedincident` = :id", {id = id}) -- Delete any outstanding warrants from incidents
@@ -1690,22 +1697,42 @@ end)
 QBCore.Functions.CreateCallback('getWeaponInfo', function(source, cb)
     local Player = QBCore.Functions.GetPlayer(source)
     local weaponInfos = {}
-    for _, item in pairs(Player.PlayerData.items) do
-        if item.type == "weapon" then
-            local invImage = ("https://cfx-nui-%s/html/images/%s"):format(Config.InventoryForWeaponsImages, item.image)
-            if invImage then
-                local weaponInfo = {
-                    serialnumber = item.info.serie,
-                    owner = Player.PlayerData.charinfo.firstname .. " " .. Player.PlayerData.charinfo.lastname,
-                    weaponmodel = QBCore.Shared.Items[item.name].label,
-                    weaponurl = invImage,
-                    notes = "Self Registered",
-                    weapClass = "Class 1",
-                }
-                table.insert(weaponInfos, weaponInfo)
-            end
-        end
-    end
+	if Config.InventoryForWeaponsImages == "ox_inventory" then
+		local inv = exports.ox_inventory:GetInventoryItems(source)
+		for _, item in pairs(inv) do
+			if string.find(item.name, "WEAPON_") then
+				local invImage = ("https://cfx-nui-ox_inventory/web/images/%s.png"):format(item.name)
+				if invImage then
+					weaponInfo = {
+						serialnumber = item.metadata.serial,
+						owner = Player.PlayerData.charinfo.firstname .. " " .. Player.PlayerData.charinfo.lastname,
+						weaponmodel = QBCore.Shared.Items[string.lower(item.name)].label,
+						weaponurl = invImage,
+						notes = "Self Registered",
+						weapClass = "Class 1",
+					}
+					break
+				end
+			end
+		end
+	else -- qb/lj
+		for _, item in pairs(Player.PlayerData.items) do
+			if item.type == "weapon" then
+				local invImage = ("https://cfx-nui-%s/html/images/%s"):format(Config.InventoryForWeaponsImages, item.image)
+				if invImage then
+					local weaponInfo = {
+						serialnumber = item.info.serie,
+						owner = Player.PlayerData.charinfo.firstname .. " " .. Player.PlayerData.charinfo.lastname,
+						weaponmodel = QBCore.Shared.Items[item.name].label,
+						weaponurl = invImage,
+						notes = "Self Registered",
+						weapClass = "Class 1",
+					}
+					table.insert(weaponInfos, weaponInfo)
+				end
+			end
+		end	
+	end
     cb(weaponInfos)
 end)
 
@@ -1713,26 +1740,35 @@ RegisterNetEvent('mdt:server:registerweapon', function(serial, imageurl, notes, 
     exports['ps-mdt']:CreateWeaponInfo(serial, imageurl, notes, owner, weapClass, weapModel)
 end)
 
+local function giveCitationItem(src, citizenId, fine, incidentId)
+	local Player = QBCore.Functions.GetPlayerByCitizenId(citizenId)
+	local PlayerName = Player.PlayerData.charinfo.firstname .. ' ' .. Player.PlayerData.charinfo.lastname
+	local Officer = QBCore.Functions.GetPlayer(src)
+	local OfficerFullName = '(' .. Officer.PlayerData.metadata.callsign .. ') ' .. Officer.PlayerData.charinfo.firstname .. ' ' .. Officer.PlayerData.charinfo.lastname
+
+	local date = os.date("%Y-%m-%d %H:%M")
+	local info = {
+		citizenId = citizenId,
+		fine = "$"..fine,
+		date = date,
+		incidentId = "#"..incidentId,
+		officer = OfficerFullName,
+	}
+	Player.Functions.AddItem('mdtcitation', 1, false, info)
+	TriggerClientEvent('QBCore:Notify', src, PlayerName.." received a citation!")
+	TriggerClientEvent('inventory:client:ItemBox', Player.PlayerData.source, QBCore.Shared.Items['mdtcitation'], "add")
+	TriggerEvent('mdt:server:AddLog', "A Fine was writen by "..OfficerFullName.." and was sent to "..PlayerName..", the Amount was $".. fine ..". (ID: "..incidentId.. ")")
+end
+
+-- Removes money from the players bank and gives them a citation item
 RegisterNetEvent('mdt:server:removeMoney', function(citizenId, fine, incidentId)
 	local src = source
 	local Player = QBCore.Functions.GetPlayerByCitizenId(citizenId)
-	local Officer = QBCore.Functions.GetPlayer(src)
-	local fullname = '(' .. Officer.PlayerData.metadata.callsign .. ') ' .. Officer.PlayerData.charinfo.firstname .. ' ' .. Officer.PlayerData.charinfo.lastname
+	
 	if not antiSpam then
-		local date = os.date("%Y-%m-%d %H:%M")
 		if Player.Functions.RemoveMoney('bank', fine, 'lspd-fine') then
-			TriggerClientEvent('QBCore:Notify', src, citizenId.." received a citation!")
 			TriggerClientEvent('QBCore:Notify', Player.PlayerData.source, fine.."$ was removed from your bank!")
-			local info = {
-				citizenId = citizenId,
-				fine = "$"..fine,
-				date = date,
-				incidentId = "#"..incidentId,
-				officer = fullname,
-			}
-			Player.Functions.AddItem('mdtcitation', 1, false, info)
-			TriggerClientEvent('inventory:client:ItemBox', Player.PlayerData.source, QBCore.Shared.Items['mdtcitation'], "add")
-			TriggerEvent('mdt:server:AddLog', "A Fine was writen by "..fullname.." and was sent to "..citizenId..", the Amount was $".. fine ..". (ID: "..incidentId.. ")")
+			giveCitationItem(src, citizenId, fine, incidentId)
 		else
 			TriggerClientEvent('QBCore:Notify', Player.PlayerData.source, "Something went wrong!")
 		end
@@ -1743,6 +1779,12 @@ RegisterNetEvent('mdt:server:removeMoney', function(citizenId, fine, incidentId)
 	else
 		TriggerClientEvent('QBCore:Notify', src, "On cooldown!")
 	end
+end)
+
+-- Gives the player a citation item
+RegisterNetEvent('mdt:server:giveCitationItem', function(citizenId, fine, incidentId)
+	local src = source
+	giveCitationItem(src, citizenId, fine, incidentId)
 end)
 
 function getTopOfficers(callback)
@@ -1770,18 +1812,22 @@ AddEventHandler("mdt:requestOfficerData", function()
 end)
 
 function sendToDiscord(color, name, message, footer)
-	local embed = {
-		  {
-			  color = color,
-			  title = "**".. name .."**",
-			  description = message,
-			  footer = {
-				  text = footer,
-			  },
-		  }
-	  }
-  
-	PerformHttpRequest(Config.ClockinWebhook, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = embed}), { ['Content-Type'] = 'application/json' })
+	if Config.ClockinWebhook == '' then
+		print("\27[31mA webhook is missing in: Config.ClockinWebhook\27[0m")
+	else
+		local embed = {
+			{
+				color = color,
+				title = "**".. name .."**",
+				description = message,
+				footer = {
+					text = footer,
+				},
+			}
+		}
+	
+		PerformHttpRequest(Config.ClockinWebhook, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = embed}), { ['Content-Type'] = 'application/json' })
+	end
 end
 
 function format_time(time)

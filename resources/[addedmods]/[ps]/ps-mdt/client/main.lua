@@ -288,8 +288,8 @@ RegisterNUICallback("searchProfiles", function(data, cb)
 end)
 
 
-RegisterNetEvent('mdt:client:searchProfile', function(sentData, isLimited, fingerprint)
-    SendNUIMessage({ action = "updateFingerprintData", fingerprint = fingerprint })
+RegisterNetEvent('mdt:client:searchProfile', function(sentData, isLimited)
+    SendNUIMessage({ action = "updateFingerprintData" })
 end)
 
 RegisterNUICallback("saveProfile", function(data, cb)
@@ -407,6 +407,7 @@ RegisterNUICallback("sendFine", function(data, cb)
         else
             -- Uses QB-Core /bill command
             ExecuteCommand(('bill %s %s'):format(targetSourceId, fine))
+            TriggerServerEvent("mdt:server:giveCitationItem", citizenId, fine, incidentId)
         end
     end
 end)
