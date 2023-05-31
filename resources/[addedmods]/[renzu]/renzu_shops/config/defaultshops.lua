@@ -93,7 +93,7 @@ return {
 		}, inventory = {
 			{ name = 'lockpick', price = 2000 ,grade = 0},
 			{ name = 'fishingrod', price = 200 },
-			{ name = 'legalbait', price = 50},
+			{ name = 'legalbait', price = 1},
 			{ name = 'garden_shovel', price = 1000 },
 			{ name = 'garden_pitcher', price = 1000},
 			{ name = 'pickle_seed', price = 100 },

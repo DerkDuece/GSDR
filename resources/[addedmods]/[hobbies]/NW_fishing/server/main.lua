@@ -22,7 +22,7 @@ RegisterNetEvent('NW_fishing:cashbag', function(clientPass)
 	Player(tonumber(src)).state:set('CanGetFish', false,  true)
 
     local xPlayer = QBCore.Functions.GetPlayer(src)
-	exports.ox_inventory:AddItem('money',math.random(5, 15))
+	exports.ox_inventory:AddItem(source, 'money' ,math.random(5, 15))
 	TriggerEvent("NW_Fishing:CatchLog", src, "cash")
 end)
 
@@ -103,7 +103,7 @@ RegisterServerEvent('NW_fishing:sv_sellfish', function(lootTable,legal, clientPa
         end
     end
 	if pay ~= 0 then
-		exports.ox_inventory:AddItem('money',pay)
+		exports.ox_inventory:AddItem(source, 'money',pay)
 		TriggerClientEvent("NW_Fishing:Notify", src, Config.locale["money_add"]..tostring(pay), true)
 	else
 		TriggerClientEvent("NW_Fishing:Notify", src, Config.locale["nothing_sell"])
