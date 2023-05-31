@@ -281,5 +281,21 @@ Config.CarItems = {
     [11] = {
         item = "sparkplugs",
         price = math.random(270, 310)
+    },
+    [12] = {
+        item = "car_hood",
+        price = math.random(300, 400)
+    },
+    [13] = {
+        item = "car_tire",
+        price = math.random(50, 100)
+    },
+    [14] = {
+        item = "car_door",
+        price = math.random(150, 200)
+    },
+    [15] = {
+        item = "car_trunk",
+        price = math.random(200, 300)
     }
 }

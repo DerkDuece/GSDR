@@ -2,7 +2,7 @@ Config = {}
 
 Config.Language = "en"
 
-Config.Debug = true
+Config.Debug = false
 
 Config.Plant = {
     WaterPerUse = 10, -- How many water points it should add to the plant.
