@@ -1,107 +1,69 @@
 # qb-policejob
 Police Job for QB-Core Framework :police_officer:
 
-# License
-
-    QBCore Framework
-    Copyright (C) 2021 Joshua Eger
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>
-
 ## Dependencies
-- [qb-core](https://github.com/qbcore-framework/qb-core)
-- [qb-bossmenu](https://github.com/qbcore-framework/qb-bossmenu)  (Deprecated) - For the boss menu
-- [qb-management](https://github.com/qbcore-framework/qb-management) (Replaces qb-bossmenu) - For the boss/gang menu
-- [qb-garages](https://github.com/qbcore-framework/qb-garages) - For the vehicle spawner
-- [qb-clothing](https://github.com/qbcore-framework/qb-clothing) - For the locker room
-- [qb-phone](https://github.com/qbcore-framework/qb-phone) - For the MEOS app and notifications etc.
-- [qb-smallresources](https://github.com/qbcore-framework/qb-smallresources) (Replaces qb-log) - qb-log was added to qb-smallresources
-- [qb-menu](https://github.com/qbcore-framework/qb-menu) - For the vehicle menus
-- [qb-input](https://github.com/qbcore-framework/qb-input) - For accessing evidence stashes
+- [qb-core](https://github.com/Qbox-project/qb-core)
+- [qb-management](https://github.com/Qbox-project/qb-management) - For the boss menu
+- [qb-garages](https://github.com/Qbox-project/qb-garages) - For the vehicle spawner
+- [qb-clothing](https://github.com/Qbox-project/qb-clothing) - For the locker room
+- [qb-phone](https://github.com/Qbox-project/qb-phone) - For the MEOS app and notifications etc.
+- [qb-smallresources](https://github.com/Qbox-project/qb-smallresources) - For logging certain events
+- [ox_lib](https://github.com/overextended/ox_lib) - For UI elements and cached data
 
-
-## Showcase
-- [Video](https://www.youtube.com/watch?v=0kt5zgQ3i4A) 
-- [Config.lua](https://youtu.be/ajM93jKdKFM)
+## Screenshots
+*We need new ones*
 
 ## Features
-- Multi departmetn optios
-- Option for peds
-- More Config options
+- Classical requirements like on duty/off duty, clothing, vehicle, stash etc.
+- Citizen ID based armory (Whitelisted)
+- Fingerprint test
+- Evidence locker (stash)
+- Whitelisted vehicles
+- Speed radars across the map
+- Stormram
+- Impounding player vehicle (permanent / for an amount of money)
+- Integrated jail system
+- Bullet casings
+- GSR
+- Blood drop
+- Evidence bag & Money bag
+- Police radar
+- Handcuff as an item (Can used via command too. Check Commands section.)
+- Emergency services can see each other on map
 
-## Ox_target
-if u want to use [ox_target](https://github.com/overextended/ox_target/releases) then u need to chang somthings on ox_target.
+### Commands
+- /spikestrip - Places spike strip on ground.
+- /grantlicense - Give access to a license for a user.
+- /revokelicense - Revoke access to a license for a user.
+- /pobject [cone/barrier/roadsign/tent/light/delete] - Places or deletes an object on/from ground.
+- /cuff - Cuffs/Uncuffs nearby player
+- /escort - Escorts nearby plyer.
+- /callsign [text] - Sets the player a callsign on database.
+- /clearcasings - Clears nearby bullet casings.
+- /jail [id] [time] - Sends a player to the jail.
+- /unjail [id] - Takes the player out of jail.
+- /clearblood - Clears nearby blood drops.
+- /seizecash - Seizes nearby player's cash. (Puts in money bag)
+- /sc - Puts soft cuff on nearby player.
+- /cam [cam] - Shows the selected security cam display.
+- /flagplate [plate] [reason] - Flags the vehicle.
+- /unflagplate [plate] - Removes the flag of a vehicle.
+- /plateinfo [plate] - Displays if a vehicle is marked or not.
+- /depot [price] - Depots nearby vehicle. Player can take it after paying the cost.
+- /impound - Impounds nearby vehicle permanently.
+- /paytow [id] - Makes payment to the tow driver.
+- /paylawyer [id] - Makes payment to the lawyer.
+- /anklet - Places anklet (tracking device) on nearby player.
+- /ankletlocation [citizenId] - Get the location of the player with the specified citizenId.
+- /takedna [id] - Takes a DNA sample from the player.
+- /911p [message] - Sends a report to the police.
 
-qb-target.lua/ line 18
+## Installation
+### Manual
+- Download the script and put it in the `[qb]` directory.
+- Add the following code to your server.cfg/resouces.cfg
 
-Before
-```lua
- v.groups = v.job
 ```
-
-After
-```lua
-v.groups = v.job or v.jobType
+ensure qb-core
+ensure qb-policejob
 ```
-
-framework/qb.lua replace the folowing event
-"PlayerHasGroups" whit the provided code below
-```lua
-function PlayerHasGroups(filter)
-    local _type = type(filter)
-
-    if _type == 'string' then
-        local job = playerData.job.name == filter
-        local jobType = playerData.job.type == filter
-        local gang = playerData.gang.name == filter
-        local citizenId = playerData.citizenid == filter
-
-        if job or gang or citizenId or jobType then
-            return true
-        end
-    elseif _type == 'table' then
-        local tabletype = table.type(filter)
-
-        if tabletype == 'hash' then
-            for name, grade in pairs(filter) do
-                local job = playerData.job.name == name
-                local jobType = playerData.job.type == name
-                local gang = playerData.gang.name == name
-                local citizenId = playerData.citizenid == name
-
-                if job and grade <= playerData.job.grade.level or gang and grade <= playerData.gang.grade.level or citizenId or jobType  then
-                    return true
-                end
-            end
-        elseif tabletype == 'array' then
-            for i = 1, #filter do
-                local name = filter[i]
-                local job = playerData.job.name == name
-                local jobType = playerData.job.type == name
-                local gang = playerData.gang.name == name
-                local citizenId = playerData.citizenid == name
-
-                if job or gang or citizenId or jobType then
-                    return true
-                end
-            end
-        end
-    end
-end
-```
-
-## ToDo
-- Secur veh spawning events
-- fix heli.lua
-- Add gread for garage

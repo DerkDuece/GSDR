@@ -4,20 +4,20 @@ RegisterNetEvent('police:client:CheckDistance', function()
         local playerId = GetPlayerServerId(player)
         TriggerServerEvent("police:server:SetTracker", playerId)
     else
-        QBCore.Functions.Notify(Lang:t("error.none_nearby"), "error")
+        lib.notify({description = Lang:t("error.none_nearby"), type = "error"})
     end
 end)
 
 RegisterNetEvent('police:client:SetTracker', function(bool)
     local trackerClothingData = {
         outfitData = {
-            ["accessory"]   = { item = -1, texture = 0},  -- Nek / Das
+            accessory = { item = -1, texture = 0 },  -- Neck / Tie
         }
     }
 
     if bool then
         trackerClothingData.outfitData = {
-            ["accessory"] = { item = 13, texture = 0}
+            accessory = { item = 13, texture = 0 }
         }
 
         TriggerEvent('qb-clothing:client:loadOutfit', trackerClothingData)
@@ -27,15 +27,12 @@ RegisterNetEvent('police:client:SetTracker', function(bool)
 end)
 
 RegisterNetEvent('police:client:SendTrackerLocation', function(requestId)
-    local ped = PlayerPedId()
-    local coords = GetEntityCoords(ped)
-
-    TriggerServerEvent('police:server:SendTrackerLocation', coords, requestId)
+    TriggerServerEvent('police:server:SendTrackerLocation', GetEntityCoords(cache.ped), requestId)
 end)
 
 RegisterNetEvent('police:client:TrackerMessage', function(msg, coords)
-    PlaySound(-1, "Lose_1st", "GTAO_FM_Events_Soundset", 0, 0, 1)
-    QBCore.Functions.Notify(msg, 'police')
+    PlaySound(-1, "Lose_1st", "GTAO_FM_Events_Soundset", false, 0, true)
+    lib.notify({ description = msg, type = 'inform' })
     local transG = 250
     local blip = AddBlipForCoord(coords.x, coords.y, coords.z)
     SetBlipSprite(blip, 458)
@@ -48,7 +45,7 @@ RegisterNetEvent('police:client:TrackerMessage', function(msg, coords)
     EndTextCommandSetBlipName(blip)
     while transG ~= 0 do
         Wait(180 * 4)
-        transG = transG - 1
+        transG -= 1
         SetBlipAlpha(blip, transG)
         if transG == 0 then
             SetBlipSprite(blip, 2)

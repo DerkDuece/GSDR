@@ -1,62 +1,51 @@
-local lastRadar = nil
-local HasAlreadyEnteredMarker = false
--- Determines if player is close enough to trigger cam
-function HandlespeedCam(speedCam, hasBeenBusted)
-	local myPed = PlayerPedId()
-	local playerPos = GetEntityCoords(myPed)
-	local isInMarker  = false
-	if #(playerPos - vector3(speedCam.x, speedCam.y, speedCam.z)) < 20.0 then
-		isInMarker  = true
-	end
+if not Config.UseRadars then return end
 
-	if isInMarker and not HasAlreadyEnteredMarker and lastRadar == nil then
-		HasAlreadyEnteredMarker = true
-		lastRadar = hasBeenBusted
+local SpeedCams = {}
 
-		local vehicle = GetPlayersLastVehicle() -- gets the current vehicle the player is in.
-		if IsPedInAnyVehicle(myPed, false) then
-			if GetPedInVehicleSeat(vehicle, -1) == myPed then
-				if GetVehicleClass(vehicle) ~= 18 then
-                    local plate = QBCore.Functions.GetPlate(vehicle)
-					QBCore.Functions.TriggerCallback('police:IsPlateFlagged', function(result)
-						if result then
-							local coords = GetEntityCoords(PlayerPedId())
-							local blipsettings = {
-								x = coords.x,
-								y = coords.y,
-								z = coords.z,
-								sprite = 488,
-								color = 1,
-								scale = 0.9,
-								text = "Speed camera #"..hasBeenBusted.." - Marked vehicle"
-							}
-							local s1, s2 = GetStreetNameAtCoord(coords.x, coords.y, coords.z)
-							local street1 = GetStreetNameFromHashKey(s1)
-							local street2 = GetStreetNameFromHashKey(s2)
-							TriggerServerEvent("police:server:FlaggedPlateTriggered", hasBeenBusted, plate, street1, street2, blipsettings)
-						end
-                    end, plate)
-				end
-			end
+local function SpeedRange(speed)
+	speed = math.ceil(speed)
+	for k, v in pairs(Config.SpeedFines) do
+		if speed < v.maxspeed then
+			TriggerServerEvent('police:server:Radar', k)
+			TriggerServerEvent("InteractSound_SV:PlayOnSource", 'speedcamera', 0.25)
+			break
 		end
-	end
-
-	if not isInMarker and HasAlreadyEnteredMarker and lastRadar == hasBeenBusted then
-		HasAlreadyEnteredMarker = false
-		lastRadar = nil
 	end
 end
 
+local function HandlespeedCam(speedCam, radar)
+	if not cache.vehicle or cache.seat ~= -1 or GetVehicleClass(cache.vehicle) == 18 then return end
+	local plate = QBCore.Functions.GetPlate(cache.vehicle)
+	local speed = GetEntitySpeed(cache.vehicle) * (Config.MPH and 2.236936 or 3.6)
+	local OverLimit = speed - speedCam.speed
+
+	QBCore.Functions.TriggerCallback('police:IsPlateFlagged', function(result)
+ 		if not result then return end
+		local s1, s2 = GetStreetNameAtCoord(speedCam.coords.x, speedCam.coords.y, speedCam.coords.z)
+		local street = GetStreetNameFromHashKey(s1)
+		local street2 = GetStreetNameFromHashKey(s2)
+		if street2 then
+			street = street .. ' | ' .. street2
+		end
+		TriggerServerEvent("police:server:FlaggedPlateTriggered", radar, plate, street)
+	end, plate)
+
+	if not Config.SpeedFines or OverLimit < 0 then return end
+	SpeedRange(OverLimit)
+end
+
+
 CreateThread(function()
-	while true do
-		Wait(1)
-		if IsPedInAnyVehicle(PlayerPedId(), false) then
-			for key, value in pairs(Config.Radars) do
-				HandlespeedCam(value, key)
-			end
-			Wait(200)
-		else
-			Wait(2500)
+	for _,value in pairs(Config.Radars) do
+		SpeedCams[#SpeedCams+1] = lib.points.new({
+			coords = value.coords.xyz,
+			distance = 20.0,
+			speed = value.speedlimit,
+		})
+	end
+	for k, v in pairs(SpeedCams) do
+		function v:onEnter()
+			HandlespeedCam(self, k)
 		end
 	end
 end)
