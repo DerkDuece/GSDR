@@ -1,21 +1,23 @@
 ![Codine Development Fuel Script Banner](https://i.imgur.com/qVOMMvW.png)
 
-# _CDN-Fuel (2.1.0)_ 
+# _CDN-Fuel (2.1.4)_ 
 
-A highly in-depth fuel system for FiveM with support for the QBCore Framework & QBox Remastered.
+A highly in-depth fuel system for **FiveM** with support for the **QBCore Framework & QBox Remastered**.
 
 # _Lastest Patch Information_
 *Additions:*
-- Emergency Services Discounts (Config Enabled)
-- Air & Water Vehicle Fueling (Config Enabled)
-- Hose Attached To Nozzle (Config Enabled)
-- OX Library Support (Menu/Input/Inventory/Target) Additions.
-- QBox Framework now supported.
-- Electric Vehicles turn off when at 0 fuel. (Config Enabled)
+- Various Optimizations Throughout
+- Config Option for Having Owners Pickup Reserves they Purchase
 
 *Fixes:*
-- Bank Payment Double Taxing Payments.
-- Paleto Locations PolyZone issue.
+- Blip Color on Normal Blip not working.
+- [Jerry Can Flipped Orientation](https://github.com/dnelyk/cdn-grub-updates/assets/95599217/0489397e-99c9-43d9-8aab-0d4a45463cfd)
+- Various Syphoning Issues (Item Data / Input / Menu etc)
+- Various Jerry Can Issues (Similar to Syphon Issues)
+- Station Owners Not Recieving Full Price on Discounted Purchases
+
+*Removals:*
+- NPWD "Support" as there are various large issues.
 
 <br>
 <br>
@@ -79,7 +81,7 @@ Next, we're going to drag the sounds from the *cdn-fuel/assets/sounds* folder in
 
 ### Step 3:
 
-Next, we're going to open our entire resources folder in whichever IDE you use, (we will be using Visual Studio Code for this example) and replace all of your current exports titled "cdn-fuel", "ps-fuel" or "lj-fuel", with "cdn-fuel". Then you want to ensure cdn-fuel in your server's config file. 
+Next, we're going to open our entire resources folder in whichever IDE you use, (we will be using Visual Studio Code for this example) and replace all of your current exports titled "LegacyFuel", "ps-fuel" or "lj-fuel", with "cdn-fuel". Then you want to ensure cdn-fuel in your server's config file. 
 <br> <br>
 ![step 3](https://i.imgur.com/VZnQpcS.gif)
 
@@ -320,6 +322,45 @@ Now, set the *Config.FuelTargetExport* in *cdn-fuel/shared/config.lua* to **true
 <br> 
 
 ![Step5 Part 1421942151251](https://i.imgur.com/InBl500.png)
+
+## ___Recommended Snippets:___
+
+We highly recommend you add the following snippet to your engine toggle command. It will make it to where players cannot turn their vehicle on if they have no fuel! Seems pretty important to us!
+
+##### ***Engine Toggle Snippet***
+```Lua
+-- FOR QB-VEHICLEKEYS, FUNCTION ToggleEngine();
+local NotifyCooldown = false
+function ToggleEngine(veh)
+    if veh then
+        local EngineOn = GetIsVehicleEngineRunning(veh)
+        if not isBlacklistedVehicle(veh) then
+            if HasKeys(QBCore.Functions.GetPlate(veh)) or AreKeysJobShared(veh) then
+                if EngineOn then
+                    SetVehicleEngineOn(veh, false, false, true)
+                else
+                    if exports['cdn-fuel']:GetFuel(veh) ~= 0 then
+                        SetVehicleEngineOn(veh, true, false, true)
+                    else
+                        if not NotifyCooldown then
+                            RequestAmbientAudioBank("DLC_PILOT_ENGINE_FAILURE_SOUNDS", 0)
+                            PlaySoundFromEntity(l_2613, "Landing_Tone", PlayerPedId(), "DLC_PILOT_ENGINE_FAILURE_SOUNDS", 0, 0)
+                            NotifyCooldown = true
+                            QBCore.Functions.Notify('No fuel..', 'error')
+                            Wait(1500)
+                            StopSound(l_2613)
+                            Wait(3500)
+                            NotifyCooldown = false
+                        end
+                    end                
+                end
+            end
+        end
+    end
+end
+```
+
+<br> 
 
 ### You are now officially done installing!
 

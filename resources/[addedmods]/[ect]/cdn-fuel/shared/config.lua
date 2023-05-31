@@ -2,20 +2,44 @@ Config = {}
 Config.FuelDebug = false -- Used for debugging, although there are not many areas in yet (Default: false) + Enables Setfuel Commands (0, 50, 100). 
 Config.PolyDebug = false -- Enables Polyzone Debugging to see PolyZones!
 Config.ShowNearestGasStationOnly = true -- When enabled, only the nearest gas stations will be shown on the map.
-Config.LeaveEngineRunning = true -- When true, the vehicle's engine will be left running upon exit if the player *HOLDS* F.
+Config.LeaveEngineRunning = false -- When true, the vehicle's engine will be left running upon exit if the player *HOLDS* F.
 Config.VehicleBlowUp = true -- When true, there will be a configurable chance of the vehicle blowing up, if you fuel while the engine is on.
 Config.BlowUpChance = 5 -- Percentage for Chance of Engine Explosion (Default: 5% or 5)
-Config.CostMultiplier = 3.0 -- Amount to multiply 1 by. This indicates fuel price. (Default: $3.0/l or 3.0)
+Config.CostMultiplier = 3 -- Amount to multiply 1 by. This indicates fuel price. (Default: $3.0/l or 3.0)
 Config.GlobalTax = 15.0 -- The tax, in %, that people will be charged at the pump. (Default: 15% or 15.0)
 Config.FuelNozzleExplosion = false -- When true, it enables the fuel pump exploding when players run away with the nozzle. Highly recommeded to be false.
 Config.FuelDecor = "_FUEL_LEVEL" -- Do not touch! (Default: "_FUEL_LEVEL")
 Config.RefuelTime = 600 -- Highly recommended to leave at 600. This value will be multiplied times the amount the player is fueling for the progress bar and cancellation logic! DON'T GO BELOW 250, performance WILL drop!
 Config.FuelTargetExport = false -- DO NOT USE WITH OX_TARGET! This is only used to fix this qb-target issue: https://github.com/CodineDev/cdn-fuel/issues/3. <br> <br> If you don't have this issue and haven't installed this exports in qb-target, then this should be false. Otherwise there will be an error.
 
+-- 2.1.1 Update --
+Config.OwnersPickupFuel = false -- If an owner buys fuel, they will have to go pick it up at a configured location.
+Config.PossibleDeliveryTrucks = {
+    "hauler",
+    "phantom",
+    -- "phantom3", --  This is an fast version of the normal phantom.
+    "packer",
+}
+Config.DeliveryTruckSpawns = { -- https://i.imgur.com/VS22i8R.jpeg
+    ['trailer'] = vector4(1724.0, -1649.7, 112.57, 194.24),
+    ['truck'] = vector4(1727.08, -1664.01, 112.62, 189.62),
+    ['PolyZone'] = {
+        ['coords'] = {
+            vector2(1724.62, -1672.36),
+            vector2(1719.01, -1648.33),
+            vector2(1730.99, -1645.62),
+            vector2(1734.42, -1673.32),
+        },
+        ['minz'] = 110.0,
+        ['maxz'] = 115.0,
+    }
+}
+-- 2.1.1 End
+
 -- 2.1.0 Update
 Config.EmergencyServicesDiscount = {
     ['enabled'] = true, -- Enables Emergency Services Getting a discount based on the value below for Refueling & Electricity Charging Cost
-    ['discount'] = 23, -- % Discount off of price (before tax).
+    ['discount'] = 25, -- % Discount off of price.
     ['emergency_vehicles_only'] = true, -- Only allows discounts to be applied to Emergency Vehicles
     ['ondutyonly'] = true, -- Discount only applies while on duty.
     ['job'] = {
@@ -27,22 +51,21 @@ Config.EmergencyServicesDiscount = {
 }
 Config.Core = 'qb-core' -- Change this to your core resources (Ex: 'qbx-core' | 'qb-core'), must be qb based!
 Config.Ox = {
-    Inventory = true, -- Uses OX_Inventory's metadata instead of QB-Inventory's.
+    Inventory = false, -- Uses OX_Inventory's metadata instead of QB-Inventory's.
     Menu = false, -- Uses OX Libraries instead of qb-menu.
     Input = false, -- Uses Ox Input Dialog instead of qb-input.
     DrawText = false, -- Uses Ox DrawText instead of qb-core DrawText.
     Progress = false -- Uses Ox ProgressBar instead of progressbar.
 }
 Config.TargetResource = "qb-target" -- Supported: { 'qb-target', 'ox_target'} -- Others must use the same format as QB-Target or manual configuration is required.
-Config.PumpHose = true -- If true, it creates a hose from the pump to the nozzle the client is holding, to give it a more realistic feel.
+Config.PumpHose = false -- If true, it creates a hose from the pump to the nozzle the client is holding, to give it a more realistic feel.
 Config.RopeType = { -- Options: 1-2-3-4-5; 1: Khaki Color, Kind of Thick, 2: Very Thick Khaki Rope, 3: Very Thick Black Rope, 4: Very Thin Black Rope, 5: Same as 3
     ['fuel'] = 1,
     ['electric'] = 1,
 }
 Config.FaceTowardsVehicle = true -- Ped will turn towards the entity's boot bone for refueling, sometimes can result in incorrect nozzle placement when refueling.
 Config.VehicleShutoffOnLowFuel = { -- If enabled, vehicles will turn off when the reach 0 fuel. This works well in conjuction with disallowing people to turn on a vehicle with 0 fuel.
-    ['enabled'] = true, -- Is the loop for shutting vehicles off when the fuel level is low turned on?
-    ['shutOffLevel'] = 5, -- At this fuel level, the vehicle will shut off. Default: 0, Recommended: 0-5.
+    ['shutOffLevel'] = 0, -- At this fuel level, the vehicle will shut off. Default: 0, Recommended: 0-5.
     ['sounds'] = {
         ['enabled'] = true, -- Are Sounds Enabled when vehicle has no fuel?
         -- Find sound banks and sounds here: https://pastebin.com/A8Ny8AHZ.
@@ -55,8 +78,6 @@ Config.VehicleShutoffOnLowFuel = { -- If enabled, vehicles will turn off when th
 
 -- Phone --
 Config.RenewedPhonePayment = false -- Enables use of Renewed-Phone Payment System and Notifications
-Config.NPWD = true -- Enables phone notifications for New-Phone-Who-Dis.
-
 
 -- Syphoning --
 Config.UseSyphoning = false -- Follow the Syphoning Install Guide to enable this option!
@@ -78,7 +99,6 @@ Config.JerryCanAnimDict = 'weapon@w_sp_jerrycan' -- Used for Syphoning & Jerry C
 Config.JerryCanAnim = 'fire' -- Used for Syphoning & Jerry Can
 Config.RefuelAnimation = "gar_ig_5_filling_can" -- This is for refueling and charging.
 Config.RefuelAnimationDictionary = "timetable@gardener@filling_can" -- This is for refueling and charging.
-
 
 --- Player Owned Gas (Gasoline) Ergonomic Refueling Stations (Poggers) ---
 Config.PlayerOwnedGasStationsEnabled = true -- When true, peds will be located at all gas stations, and players will be able to talk with peds & purchase gas stations, having to manage fuel supplies.
@@ -124,35 +144,33 @@ Config.ElectricSprite = 620 -- This is for when the player is in an electric cha
 Config.ElectricChargerModel = true -- If you wish, you can set this to false to add your own props, or use a ymap for the props instead.
 
 -- Basic Configuration Settings
-
+-- Turn on Config.FuelDebug and use this command to get the name for here: getVehNameForBlacklist
 Config.NoFuelUsage = { -- This is for you to put vehicles that you don't want to use fuel.
-    "example",
-    "example",
-    "example",
+    "bmx",
 }
 
 Config.Classes = { -- Class multipliers. If you want SUVs to use less fuel, you can change it to anything under 1.0, and vise versa.
 	[0] = 1.0, -- Compacts
-	[1] = 1.1, -- Sedans
-	[2] = 1.5, -- SUVs
+	[1] = 1.0, -- Sedans
+	[2] = 1.0, -- SUVs
 	[3] = 1.0, -- Coupes
-	[4] = 1.2, -- Muscle
-	[5] = 1.2, -- Sports Classics
-	[6] = 1.2, -- Sports
-	[7] = 1.3, -- Super
-	[8] = 0.7, -- Motorcycles
+	[4] = 1.0, -- Muscle
+	[5] = 1.0, -- Sports Classics
+	[6] = 1.0, -- Sports
+	[7] = 1.0, -- Super
+	[8] = 1.0, -- Motorcycles
 	[9] = 1.0, -- Off-road
-	[10] = 1.2, -- Industrial
-	[11] = 1.2, -- Utility
-	[12] = 1.2, -- Vans
+	[10] = 1.0, -- Industrial
+	[11] = 1.0, -- Utility
+	[12] = 1.0, -- Vans
 	[13] = 0.0, -- Cycles
 	[14] = 1.0, -- Boats
-	[15] = 1.5, -- Helicopters
-	[16] = 1.5, -- Planes
+	[15] = 1.0, -- Helicopters
+	[16] = 1.0, -- Planes
 	[17] = 1.0, -- Service
 	[18] = 1.0, -- Emergency
 	[19] = 1.0, -- Military
-	[20] = 1.2, -- Commercial
+	[20] = 1.0, -- Commercial
 	[21] = 1.0, -- Trains
 }
 
@@ -177,10 +195,10 @@ Config.AirAndWaterVehicleFueling = {
         [1] = {
             ['PolyZone'] = {
                 ['coords'] = {
-                    vector2(455.01, -986.64),
-                    vector2(443.77, -986.87),
-                    vector2(444.06, -975.21),
-                    vector2(454.93, -975.38),
+                    vector2(439.96, -973.0),
+                    vector2(458.09, -973.04),
+                    vector2(458.26, -989.47),
+                    vector2(439.58, -989.94),
                 },
                 ['minmax'] = {
                     ['min'] = 40,
@@ -691,37 +709,38 @@ Config.AirAndWaterVehicleFueling = {
             }
         },
         -- La Mesa Landing Pad (Custom)
-        [19] = {
-            ['PolyZone'] = {
-                ['coords'] = {
-                    vector2(830.66, -1378.54),
-                    vector2(834.87, -1382.59),
-                    vector2(834.81, -1388.5),
-                    vector2(830.75, -1392.54),
-                    vector2(824.96, -1392.58),
-                    vector2(820.8, -1388.39),
-                    vector2(820.84, -1382.65),
-                    vector2(824.97, -1378.52)
-                },
-                ['minmax'] = {
-                    ['min'] = 35.67,
-                    ['max'] = 38.67
-                },
-            },
-            ['draw_text'] = "[G] Refuel Aircraft",
-            ['type'] = 'air',
-            ['whitelist'] = {
-                ['enabled'] = false,
-                ['on_duty_only'] = true,
-                ['whitelisted_jobs'] = {
-                    'police', 'ambulance',
-                }
-            },
-            ['prop'] = {
-                ['model'] = 'prop_gas_pump_1c',
-                ['coords'] = vector4(827.55, -1378.57, 36.67, 1.11)
-            }
-        }
+        -- Does not work in conjunction with Gabz Trooper PD.
+        -- [19] = {
+        --     ['PolyZone'] = {
+        --         ['coords'] = {
+        --             vector2(830.66, -1378.54),
+        --             vector2(834.87, -1382.59),
+        --             vector2(834.81, -1388.5),
+        --             vector2(830.75, -1392.54),
+        --             vector2(824.96, -1392.58),
+        --             vector2(820.8, -1388.39),
+        --             vector2(820.84, -1382.65),
+        --             vector2(824.97, -1378.52)
+        --         },
+        --         ['minmax'] = {
+        --             ['min'] = 35.67,
+        --             ['max'] = 38.67
+        --         },
+        --     },
+        --     ['draw_text'] = "[G] Refuel Aircraft",
+        --     ['type'] = 'air',
+        --     ['whitelist'] = {
+        --         ['enabled'] = false,
+        --         ['on_duty_only'] = true,
+        --         ['whitelisted_jobs'] = {
+        --             'police', 'ambulance',
+        --         }
+        --     },
+        --     ['prop'] = {
+        --         ['model'] = 'prop_gas_pump_1c',
+        --         ['coords'] = vector4(827.55, -1378.57, 36.67, 1.11)
+        --     }
+        -- }
     },
     ['refuel_button'] = 47, -- "G" Button for Draw Text.
     ['nozzle_length'] = 20.0, -- The max distance you can go from the "Special Pump" before the nozzle in returned to the pump.
@@ -740,7 +759,7 @@ Config.GasStations = { -- Configuration options for various gas station related 
         minz = 28.2,
         maxz = 30.3,
         pedmodel = "a_m_m_indian_01",
-        cost = 400000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
             x = 167.06, 
@@ -763,7 +782,7 @@ Config.GasStations = { -- Configuration options for various gas station related 
         minz = 28.2,
         maxz = 30.4,
         pedmodel = "a_m_m_indian_01",
-        cost = 600000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
             x = -40.94, 
@@ -785,7 +804,7 @@ Config.GasStations = { -- Configuration options for various gas station related 
         minz = 17.4,
         maxz = 21.04,
         pedmodel = "a_m_m_indian_01",
-        cost = 500000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
             x = -531.2, 
@@ -799,16 +818,17 @@ Config.GasStations = { -- Configuration options for various gas station related 
     },
     [4] = {
         zones = { 
-            vector2(-696.97, -948.86),
-            vector2(-737.88, -950.76),
-            vector2(-741.67, -942.80),
-            vector2(-729.55, -910.61),
-            vector2(-696.21, -909.85)
+            vector2(-696.77, -948.94),
+            vector2(-739.47, -951.07),
+            vector2(-734.73, -906.5),
+            vector2(-711.0, -906.76),
+            vector2(-710.65, -903.27),
+            vector2(-696.82, -903.21),
         },
         minz = 18.0,
         maxz = 20.4,
         pedmodel = "a_m_m_indian_01",
-        cost = 600000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
             x = -705.66, 
@@ -828,9 +848,9 @@ Config.GasStations = { -- Configuration options for various gas station related 
             vector2(300.76, -1286.36)
         },
         minz = 28.1,
-        maxz = 30.3,
+        maxz = 31.3,
         pedmodel = "a_m_m_indian_01",
-        cost = 500000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
             x = 288.83, 
@@ -853,7 +873,7 @@ Config.GasStations = { -- Configuration options for various gas station related 
         minz = 25.1,
         maxz = 28.1,
         pedmodel = "a_m_m_indian_01",
-        cost = 400000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
             x = 816.42, 
@@ -877,7 +897,7 @@ Config.GasStations = { -- Configuration options for various gas station related 
         minz = 34.1,
         maxz = 36.3,
         pedmodel = "a_m_m_indian_01",
-        cost = 400000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
             x = 1211.13, 
@@ -891,16 +911,16 @@ Config.GasStations = { -- Configuration options for various gas station related 
     },
     [8] = {
         zones = {
-            vector2(1146.21, -316.29),
-            vector2(1151.52, -348.48),
-            vector2(1192.42, -357.20),
-            vector2(1195.83, -344.70),
-            vector2(1188.64, -314.02)
+            vector2(1188.28, -306.38),
+            vector2(1145.24, -314.19),
+            vector2(1150.81, -346.52),
+            vector2(1195.44, -353.92),
+            vector2(1197.01, -340.55),
         },
-        minz = 68.1,
-        maxz = 70.2,
+        minz = 67.1,
+        maxz = 70.7,
         pedmodel = "a_m_m_indian_01",
-        cost = 500000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
             x = 1163.64, 
@@ -924,7 +944,7 @@ Config.GasStations = { -- Configuration options for various gas station related 
         minz = 101.9,
         maxz = 104.8,
         pedmodel = "a_m_m_indian_01",
-        cost = 400000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
             x = 642.08, 
@@ -946,7 +966,7 @@ Config.GasStations = { -- Configuration options for various gas station related 
         minz = 45.0,
         maxz = 47.3,
         pedmodel = "a_m_m_indian_01",
-        cost = 400000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
             x = -1428.4, 
@@ -970,7 +990,7 @@ Config.GasStations = { -- Configuration options for various gas station related 
         minz = 12.0,
         maxz = 14.3,
         pedmodel = "a_m_m_indian_01",
-        cost = 400000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
             x = -2074.28, 
@@ -990,10 +1010,10 @@ Config.GasStations = { -- Configuration options for various gas station related 
             vector2(-113.59, 6409.91)
         },
         minz = 30.34,
-        maxz = 32.5,
+        maxz = 33.5,
         pumpheightadd = 1.5, --  For Config.PumpHose
         pedmodel = "a_m_m_indian_01",
-        cost = 300000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
             x = -93.02, 
@@ -1017,13 +1037,13 @@ Config.GasStations = { -- Configuration options for various gas station related 
         minz = 30.7,
         maxz = 33.4,
         pedmodel = "a_m_m_indian_01",
-        cost = 400000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
-            x = 169.42, 
-            y = 6638.16,
-            z = 31.7,
-            h = 97.6,
+            x = 170.44, 
+            y = 6633.74,
+            z = 30.59,
+            h = 221.95,
         },
         electriccharger = nil,
         electricchargercoords = vector4(181.14, 6636.17, 30.61, 179.96),
@@ -1031,15 +1051,15 @@ Config.GasStations = { -- Configuration options for various gas station related 
     },
     [14] = {
         zones = {
-            vector2(1691.67, 6427.27),
-            vector2(1722.73, 6411.74),
-            vector2(1708.33, 6385.61),
-            vector2(1678.41, 6402.65)
+            vector2(1684.5, 6413.73),
+            vector2(1693.67, 6431.38),
+            vector2(1721.72, 6428.14),
+            vector2(1710.47, 6402.65)
         },
         minz = 31.4,
         maxz = 34.2,
         pedmodel = "a_m_m_indian_01",
-        cost = 300000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
             x = 1698.62, 
@@ -1063,7 +1083,7 @@ Config.GasStations = { -- Configuration options for various gas station related 
         maxz = 43.17,
         pumpheightadd = 1.5, --  For Config.PumpHose
         pedmodel = "a_m_m_indian_01",
-        cost = 300000,
+        cost = 100000,
         shutoff = false, 
         pedcoords = {
             x = 1704.59, 
@@ -1086,7 +1106,7 @@ Config.GasStations = { -- Configuration options for various gas station related 
         maxz = 33.60, 
         pumpheightadd = 1.5, --  For Config.PumpHose
         pedmodel = "a_m_m_indian_01",
-        cost = 400000,
+        cost = 100000,
         shutoff = false, 
         pedcoords = {
             x = 2001.33, 
@@ -1100,6 +1120,29 @@ Config.GasStations = { -- Configuration options for various gas station related 
     },
     [17] = {
         zones = {
+            vector2(1774.24, 3308.71),
+            vector2(1752.65, 3345.83),
+            vector2(1784.47, 3357.95),
+            vector2(1808.71, 3321.21)
+        },
+        minz = 39.0,
+        maxz = 44.6,
+        pumpheightadd = 1.5, --  For Config.PumpHose
+        pedmodel = "a_m_m_indian_01",
+        cost = 100000,
+        shutoff = false,
+        pedcoords = {
+            x = 1776.57, 
+            y = 3327.36,
+            z = 40.43,
+            h = 297.57,
+        },
+        electriccharger = nil,
+        electricchargercoords = vector4(1770.86, 3337.97, 40.43, 301.1),
+        label = "Sandy Shores Globe Oil",
+    },
+    [18] = {
+        zones = {
             vector2(2671.21, 3290.53),
             vector2(2649.62, 3254.55),
             vector2(2682.95, 3237.50),
@@ -1109,7 +1152,7 @@ Config.GasStations = { -- Configuration options for various gas station related 
         maxz = 56.4,
         pumpheightadd = 1.5, --  For Config.PumpHose
         pedmodel = "a_m_m_indian_01",
-        cost = 300000,
+        cost = 100000,
         shutoff = false, 
         pedcoords = {
             x = 2673.98, 
@@ -1121,7 +1164,32 @@ Config.GasStations = { -- Configuration options for various gas station related 
         electricchargercoords = vector4(2690.25, 3265.62, 54.24, 58.98),
         label = "Senora Freeway Xero",
     },
-    [18] = {
+    [19] = {
+        zones = {
+            vector2(1188.64, 2651.89),
+            vector2(1202.27, 2663.64),
+            vector2(1212.50, 2661.74),
+            vector2(1217.05, 2651.52),
+            vector2(1210.61, 2633.33),
+            vector2(1201.52, 2638.26)
+        },
+        minz = 36.7,
+        maxz = 38.85,
+        pumpheightadd = 1.5, --  For Config.PumpHose
+        pedmodel = "a_m_m_indian_01",
+        cost = 100000,
+        shutoff = false,
+        pedcoords = {
+            x = 1201.68, 
+            y = 2655.24,
+            z = 36.85,
+            h = 322.97,
+        },
+        electriccharger = nil,
+        electricchargercoords  = vector4(1208.26, 2649.46, 36.85, 222.32),
+        label = "Harmony Globe Oil",
+    },
+    [20] = {
         zones = {
             vector2(1026.14, 2669.70),
             vector2(1028.03, 2640.91),
@@ -1132,7 +1200,7 @@ Config.GasStations = { -- Configuration options for various gas station related 
         maxz = 40.55,
         pumpheightadd = 1.5, --  For Config.PumpHose
         pedmodel = "a_m_m_indian_01",
-        cost = 300000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
             x = 1039.44, 
@@ -1144,7 +1212,7 @@ Config.GasStations = { -- Configuration options for various gas station related 
         electricchargercoords = vector4(1033.32, 2662.91, 38.55, 95.38),
         label = "Route 68 Globe Oil",
     },
-    [19] = {
+    [21] = {
         zones = {
             vector2(269.70, 2606.44),
             vector2(275.38, 2585.23),
@@ -1156,7 +1224,7 @@ Config.GasStations = { -- Configuration options for various gas station related 
         maxz = 45.95,
         pumpheightadd = 1.5, --  For Config.PumpHose
         pedmodel = "a_m_m_indian_01",
-        cost = 300000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
             x = 265.89, 
@@ -1168,7 +1236,30 @@ Config.GasStations = { -- Configuration options for various gas station related 
         electricchargercoords = vector4(267.96, 2599.47, 43.69, 5.8),
         label = "Route 68 Workshop Globe Oil",
     },
-    [20] = {
+    [22] = {
+        zones = {
+            vector2(46.59, 2795.45),
+            vector2(27.65, 2775.76),
+            vector2(49.24, 2754.55),
+            vector2(68.56, 2778.03)
+        },
+        minz = 56.8,
+        maxz = 58.9,
+        pumpheightadd = 1.5, --  For Config.PumpHose
+        pedmodel = "a_m_m_indian_01",
+        cost = 100000,
+        shutoff = false,
+        pedcoords = {
+            x = 46.53, 
+            y = 2789.05,
+            z = 56.88,
+            h = 143.93,
+        },
+        electriccharger = nil,
+        electricchargercoords = vector4(50.21, 2787.38, 56.88, 147.2),
+        label = "Route 68 Xero",
+    },
+    [23] = {
         zones = {
             vector2(-2562.12, 2340.53),
             vector2(-2560.98, 2299.62),
@@ -1179,7 +1270,7 @@ Config.GasStations = { -- Configuration options for various gas station related 
         minz = 32.05,
         maxz = 34.08,
         pedmodel = "a_m_m_indian_01",
-        cost = 300000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
             x = -2544.04,
@@ -1191,7 +1282,31 @@ Config.GasStations = { -- Configuration options for various gas station related 
         electricchargercoords = vector4(-2570.04, 2317.1, 32.22, 21.29),
         label = "Route 68 Ron",
     },
-    [21] = {
+    [24] = {
+        zones = {
+            vector2(2545.08, 2601.14),
+            vector2(2556.06, 2573.11),
+            vector2(2545.83, 2568.56),
+            vector2(2531.06, 2601.14),
+            vector2(2540.91, 2599.24)
+        },
+        minz = 36.94,
+        maxz = 38.94,
+        pumpheightadd = 1.5, --  For Config.PumpHose
+        pedmodel = "a_m_m_indian_01",
+        cost = 100000,
+        shutoff = false,
+        pedcoords = {
+            x = 2545.02, 
+            y = 2591.72,
+            z = 36.96,
+            h = 113.52,
+        },
+        electriccharger = nil,
+        electricchargercoords = vector4(2545.81, 2586.18, 36.94, 83.74),
+        label = "Rex's Diner Globe Oil",
+    },
+    [25] = {
         zones = {
             vector2(2540.15, 373.86),
             vector2(2538.26, 345.83),
@@ -1202,19 +1317,19 @@ Config.GasStations = { -- Configuration options for various gas station related 
         minz = 107.4,
         maxz = 109.4,
         pedmodel = "a_m_m_indian_01",
-        cost = 400000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
-            x = 2553.6,
-            y = 389.77,
-            z = 108.62,
-            h = 233.79,
+            x = 2559.36,
+            y = 373.68,
+            z = 107.62,
+            h = 272.2,
         },
         electriccharger = nil,
         electricchargercoords = vector4(2561.24, 357.3, 107.62, 266.65),
         label = "Palmino Freeway Ron",
     },
-    [22] = {
+    [26] = {
         zones = {
             vector2(-1838.64, 787.12),
             vector2(-1796.97, 821.97),
@@ -1224,7 +1339,7 @@ Config.GasStations = { -- Configuration options for various gas station related 
         minz = 136.64,
         maxz = 139.9,
         pedmodel = "a_m_m_indian_01",
-        cost = 400000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
             x = -1825.33,
@@ -1236,7 +1351,7 @@ Config.GasStations = { -- Configuration options for various gas station related 
         electricchargercoords = vector4(-1819.22, 798.51, 137.16, 315.13),
         label = "North Rockford LTD",
     },
-    [23] = {
+    [27] = {
         zones = {
             vector2(-354.55, -1452.65),
             vector2(-354.17, -1499.62),
@@ -1246,7 +1361,7 @@ Config.GasStations = { -- Configuration options for various gas station related 
         minz = 29.5,
         maxz = 31.9,
         pedmodel = "a_m_m_indian_01",
-        cost = 300000,
+        cost = 100000,
         shutoff = false,
         pedcoords = {
             x = -342.37,

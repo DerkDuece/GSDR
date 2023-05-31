@@ -1,4 +1,4 @@
-local QBCore = exports['qb-core']:GetCoreObject()
+local QBCore = exports[Config.Core]:GetCoreObject()
 
 function GetFuel(vehicle)
 	return DecorGetFloat(vehicle, Config.FuelDecor)
@@ -19,6 +19,9 @@ function LoadAnimDict(dict)
 end
 
 function GlobalTax(value)
+	if Config.GlobalTax < 0.1 then
+		return 0
+	end
 	local tax = (value / 100 * Config.GlobalTax)
 	return tax
 end
@@ -68,8 +71,8 @@ function CreateBlip(coords, label)
 		SetBlipSprite(blip, electricbolt) -- This is where the fuel thing will get changed into the electric bolt instead of the pump.
 		SetBlipColour(blip, 5)
 	else
-		SetBlipColour(blip, 4)
 		SetBlipSprite(blip, 361)
+		SetBlipColour(blip, 4)
 	end
 	SetBlipScale(blip, 0.6)
 	SetBlipDisplay(blip, 4)
@@ -80,14 +83,71 @@ function CreateBlip(coords, label)
 	return blip
 end
 
+function GetClosestVehicle(coords)
+    local ped = PlayerPedId()
+    local vehicles = GetGamePool('CVehicle')
+    local closestDistance = -1
+    local closestVehicle = -1
+    if coords then
+        coords = type(coords) == 'table' and vec3(coords.x, coords.y, coords.z) or coords
+    else
+        coords = GetEntityCoords(ped)
+    end
+    for i = 1, #vehicles, 1 do
+        local vehicleCoords = GetEntityCoords(vehicles[i])
+        local distance = #(vehicleCoords - coords)
+        if closestDistance == -1 or closestDistance > distance then
+            closestVehicle = vehicles[i]
+            closestDistance = distance
+        end
+    end
+    return closestVehicle, closestDistance
+end
+
+
 function IsPlayerNearVehicle()
 	if Config.FuelDebug then
 		print("Checking if player is near a vehicle!")
 	end
-	local vehicle = QBCore.Functions.GetClosestVehicle()
+	local vehicle = GetClosestVehicle()
 	local closestVehCoords = GetEntityCoords(vehicle)
 	if #(GetEntityCoords(PlayerPedId(), closestVehCoords)) > 3.0 then
 		return true
 	end
 	return false
+end
+
+function IsVehicleBlacklisted(veh)
+	if Config.FuelDebug then print("checking if vehicle is blacklisted") end
+	if veh and veh ~= 0 then
+		veh = string.lower(GetDisplayNameFromVehicleModel(GetEntityModel(veh)))
+		if Config.FuelDebug then print(veh) end
+		-- Puts Vehicles In Blacklist if you have electric charging on.
+		if not Config.ElectricVehicleCharging then
+			for i = 1, #Config.ElectricVehicles, 1 do
+				local cur = Config.ElectricVehicles[i]
+				if cur == veh then
+					print("Vehicle: "..cur.." is in the Blacklist.")
+					return true
+				end
+			end
+		end
+
+		for i = 1, #Config.NoFuelUsage, 1 do
+			local cur = Config.NoFuelUsage[i]
+			if cur == veh then
+				if Config.FuelDebug then
+					print("Vehicle: "..cur.." is in the Blacklist.")
+				end
+				-- If the veh equals a vehicle in the list then return true.
+				return true
+			end
+		end
+		-- Default False
+		if Config.FuelDebug then print("Vehicle is not blacklisted.") end
+		return false
+	else
+		if Config.FuelDebug then print("veh is nil!") end
+		return false
+	end
 end
