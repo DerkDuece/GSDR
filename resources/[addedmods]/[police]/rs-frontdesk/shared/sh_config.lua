@@ -9,8 +9,8 @@ Config.Locations = {
         Required = 1, -- How many players with this job are required to be online to make a request/alert (You'll need to add events that track the amount of players online with that job. Police / Ambulance is setup by default)
         Zone = { -- Polyzone Info
             name = "MRPD Front Desk", -- Name of the menu title
-            coords = vector3(442.32, -982.06, 31.6), -- Boxzone Coords
-            length = 1.5, width = 1, -- Boxzone Length / Width
+            coords = vector3(442.44, -979.91, 30.69), -- Boxzone Coords
+            length = 0.8, width = 0.6, -- Boxzone Length / Width
             heading = 335, -- Boxzone Heading
             minZ = 30.49, -- Boxzone MinZ
             maxZ = 31.29 -- Boxzone MaxZ
