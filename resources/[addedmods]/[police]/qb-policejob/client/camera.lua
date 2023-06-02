@@ -1,6 +1,5 @@
 local currentCameraIndex = 0
 local createdCamera = 0
-local currentScaleform = -1
 
 local function GetCurrentTime()
     local hours = GetClockHours()
@@ -14,7 +13,43 @@ local function GetCurrentTime()
     return tostring(hours .. ":" .. minutes)
 end
 
-local function CreateInstructionalScaleform(scaleform)
+local function ChangeSecurityCamera(x, y, z, r)
+    if createdCamera ~= 0 then
+        DestroyCam(createdCamera, 0)
+        createdCamera = 0
+    end
+
+    local cam = CreateCam("DEFAULT_SCRIPTED_CAMERA", 1)
+    SetCamCoord(cam, x, y, z)
+    SetCamRot(cam, r.x, r.y, r.z, 2)
+    RenderScriptCams(1, 0, 0, 1, 1)
+    Wait(250)
+    createdCamera = cam
+end
+
+local function CloseSecurityCamera()
+    DestroyCam(createdCamera, 0)
+    RenderScriptCams(0, 0, 1, 1, 1)
+    createdCamera = 0
+    ClearTimecycleModifier("scanline_cam_cheap")
+    SetFocusEntity(GetPlayerPed(PlayerId()))
+    if Config.SecurityCameras.hideradar then
+        DisplayRadar(true)
+    end
+    FreezeEntityPosition(GetPlayerPed(PlayerId()), false)
+end
+
+local function InstructionButton(ControlButton)
+    ScaleformMovieMethodAddParamPlayerNameString(ControlButton)
+end
+
+local function InstructionButtonMessage(text)
+    BeginTextCommandScaleformString("STRING")
+    AddTextComponentScaleform(text)
+    EndTextCommandScaleformString()
+end
+
+local function CreateInstuctionScaleform(scaleform)
     scaleform = RequestScaleformMovie(scaleform)
     while not HasScaleformMovieLoaded(scaleform) do
         Wait(0)
@@ -28,10 +63,8 @@ local function CreateInstructionalScaleform(scaleform)
 
     PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
     PushScaleformMovieFunctionParameterInt(1)
-    ScaleformMovieMethodAddParamPlayerNameString(GetControlInstructionalButton(1, 194, true))
-    BeginTextCommandScaleformString("STRING")
-    AddTextComponentScaleform(Lang:t('info.close_camera'))
-    EndTextCommandScaleformString()
+    InstructionButton(GetControlInstructionalButton(1, 194, true))
+    InstructionButtonMessage(Lang:t('info.close_camera'))
     PopScaleformMovieFunctionVoid()
 
     PushScaleformMovieFunction(scaleform, "DRAW_INSTRUCTIONAL_BUTTONS")
@@ -45,40 +78,6 @@ local function CreateInstructionalScaleform(scaleform)
     PopScaleformMovieFunctionVoid()
 
     return scaleform
-end
-
-local function ChangeSecurityCamera(x, y, z, r)
-    if createdCamera ~= 0 then
-        DestroyCam(createdCamera, false)
-        createdCamera = 0
-    end
-
-    if currentScaleform ~= -1 then
-        SetScaleformMovieAsNoLongerNeeded(currentScaleform)
-        currentScaleform = -1
-    end
-
-    local cam = CreateCam("DEFAULT_SCRIPTED_CAMERA", true)
-    SetCamCoord(cam, x, y, z)
-    SetCamRot(cam, r.x, r.y, r.z, 2)
-    RenderScriptCams(true, false, 0, true, true)
-    Wait(250)
-    createdCamera = cam
-    currentScaleform = CreateInstructionalScaleform("instructional_buttons")
-end
-
-local function CloseSecurityCamera()
-    DestroyCam(createdCamera, false)
-    RenderScriptCams(false, false, 1, true, true)
-    createdCamera = 0
-    SetScaleformMovieAsNoLongerNeeded(currentScaleform)
-    currentScaleform = -1
-    ClearTimecycleModifier()
-    SetFocusEntity(cache.ped)
-    if Config.SecurityCameras.hideradar then
-        DisplayRadar(true)
-    end
-    FreezeEntityPosition(cache.ped, false)
 end
 
 -- Events
@@ -95,12 +94,12 @@ RegisterNetEvent('police:client:ActiveCamera', function(cameraId)
             connected = Config.SecurityCameras.cameras[cameraId].isOnline,
             time = GetCurrentTime(),
         })
-        local firstCamX = Config.SecurityCameras.cameras[cameraId].coords.x
-        local firstCamY = Config.SecurityCameras.cameras[cameraId].coords.y
-        local firstCamZ = Config.SecurityCameras.cameras[cameraId].coords.z
-        local firstCamR = Config.SecurityCameras.cameras[cameraId].r
-        SetFocusArea(firstCamX, firstCamY, firstCamZ, firstCamX, firstCamY, firstCamZ)
-        ChangeSecurityCamera(firstCamX, firstCamY, firstCamZ, firstCamR)
+        local firstCamx = Config.SecurityCameras.cameras[cameraId].coords.x
+        local firstCamy = Config.SecurityCameras.cameras[cameraId].coords.y
+        local firstCamz = Config.SecurityCameras.cameras[cameraId].coords.z
+        local firstCamr = Config.SecurityCameras.cameras[cameraId].r
+        SetFocusArea(firstCamx, firstCamy, firstCamz, firstCamx, firstCamy, firstCamz)
+        ChangeSecurityCamera(firstCamx, firstCamy, firstCamz, firstCamr)
         currentCameraIndex = cameraId
         DoScreenFadeIn(250)
     elseif cameraId == 0 then
@@ -119,13 +118,13 @@ RegisterNetEvent('police:client:ActiveCamera', function(cameraId)
 end)
 
 RegisterNetEvent('police:client:DisableAllCameras', function()
-    for k in pairs(Config.SecurityCameras.cameras) do
+    for k, _ in pairs(Config.SecurityCameras.cameras) do
         Config.SecurityCameras.cameras[k].isOnline = false
     end
 end)
 
 RegisterNetEvent('police:client:EnableAllCameras', function()
-    for k in pairs(Config.SecurityCameras.cameras) do
+    for k, _ in pairs(Config.SecurityCameras.cameras) do
         Config.SecurityCameras.cameras[k].isOnline = true
     end
 end)
@@ -146,9 +145,10 @@ end)
 CreateThread(function()
     while true do
         local sleep = 2000
-        if createdCamera ~= 0 and currentScaleform ~= -1 then
-            sleep = 0
-            DrawScaleformMovieFullscreen(currentScaleform, 255, 255, 255, 255, 0)
+        if createdCamera ~= 0 then
+            sleep = 5
+            local instructions = CreateInstuctionScaleform("instructional_buttons")
+            DrawScaleformMovieFullscreen(instructions, 255, 255, 255, 255, 0)
             SetTimecycleModifier("scanline_cam_cheap")
             SetTimecycleModifierStrength(1.0)
 
