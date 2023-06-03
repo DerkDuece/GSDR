@@ -12,8 +12,8 @@ Config.Locations = {
             coords = vector3(442.44, -979.91, 30.69), -- Boxzone Coords
             length = 0.8, width = 0.6, -- Boxzone Length / Width
             heading = 335, -- Boxzone Heading
-            minZ = 30.49, -- Boxzone MinZ
-            maxZ = 31.29 -- Boxzone MaxZ
+            minZ = 25.49, -- Boxzone MinZ
+            maxZ = 35 -- Boxzone MaxZ
         },
         Menu = { -- Menu Info ( Set Header, Text, Icon, Event, and Event Type )
             [1] = { Header = 'Assistance', Txt = '', Icon = 'fas fa-hand', Event = 'rs-frontdesk:client:RequestAssistance', Args = 'assistance' },
@@ -26,7 +26,7 @@ Config.Locations = {
         Required = 1, -- How many players with this job are required to be online to make a request/alert (You'll need to add events that track the amount of players online with that job. Police / Ambulance is setup by default)
         Zone = {
             name = "Pillbox Front Desk",
-            coords = vector3(311.81, -593.42, 43.28),
+            coords = vector3(311.81, -593.42, 41.28),
             length = 0.8, width = 0.8,
             heading = 337,
             minZ = 42,

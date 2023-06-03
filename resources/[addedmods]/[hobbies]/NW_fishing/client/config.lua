@@ -130,6 +130,8 @@ Config.FishTable = {
             [5] = {["name"] = "catfish",        ["prop"] = "a_c_fish",                      ["ped"] = true, ["diff"] = "medium",     ["chance"] = 5,     ["trash"] = false},
             [6] = {["name"] = "shad",           ["prop"] = "a_c_fish",                      ["ped"] = true, ["diff"] = "medium",     ["chance"] = 5,     ["trash"] = false},
             [7] = {["name"] = "rainbowfish",    ["prop"] = "a_c_fish",                      ["ped"] = true, ["diff"] = "medium",     ["chance"] = 5,     ["trash"] = false},
+            [8] = {["name"] = "seaturtle",      ["prop"] = "a_c_fish",                      ["ped"] = true, ["diff"] = "hard",     ["chance"] = 2,     ["trash"] = false},
+
 
         },
     },
@@ -186,6 +188,7 @@ Config.FishTable = {
           [5] = {["name"] = "catfish",        ["prop"] = "a_c_fish",                      ["ped"] = true, ["diff"] = "medium",     ["chance"] = 5,     ["trash"] = false},
           [6] = {["name"] = "shad",           ["prop"] = "a_c_fish",                      ["ped"] = true, ["diff"] = "medium",     ["chance"] = 5,     ["trash"] = false},
           [7] = {["name"] = "rainbowfish",    ["prop"] = "a_c_fish",                      ["ped"] = true, ["diff"] = "medium",     ["chance"] = 5,     ["trash"] = false},
+          [8] = {["name"] = "seaturtle",      ["prop"] = "a_c_fish",                      ["ped"] = true, ["diff"] = "hard",     ["chance"] = 2,     ["trash"] = false},
 
       },
   },
