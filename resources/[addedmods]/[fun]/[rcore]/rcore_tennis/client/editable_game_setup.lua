@@ -93,24 +93,24 @@ function HandleStartPlayingPoint(ped, coords, courtIdx, positionName, serverPoin
         if isModifier and joinTenisKey then
             DisplayTenisTutorial()
         elseif not isModifier and joinTenisKey then
-            TriggerServerEvent('lsrp_tennis:requestPosition', courtIdx, positionName)
+            TriggerServerEvent('rcore_tennis:requestPosition', courtIdx, positionName)
             Wait(3000)
         end
     end
 end
 
-RegisterNetEvent('lsrp_tennis:setServeSide')
-AddEventHandler('lsrp_tennis:setServeSide', function(side)
+RegisterNetEvent('rcore_tennis:setServeSide')
+AddEventHandler('rcore_tennis:setServeSide', function(side)
     PlayerSettings.serveSide = side
 end)
 
-RegisterNetEvent('lsrp_tennis:setServeAllowed')
-AddEventHandler('lsrp_tennis:setServeAllowed', function(state)
+RegisterNetEvent('rcore_tennis:setServeAllowed')
+AddEventHandler('rcore_tennis:setServeAllowed', function(state)
     PlayerSettings.canServe = state
 end)
 
-RegisterNetEvent('lsrp_tennis:grantPosition')
-AddEventHandler('lsrp_tennis:grantPosition', function(courtName, positionName, serveSide)
+RegisterNetEvent('rcore_tennis:grantPosition')
+AddEventHandler('rcore_tennis:grantPosition', function(courtName, positionName, serveSide)
     PlayerSettings = {}
     PlayerSettings.courtName = courtName
     PlayerSettings.side = positionName
@@ -138,8 +138,8 @@ end)
 
 
 Headshots = {}
-RegisterNetEvent('lsrp_tennis:syncPlayers')
-AddEventHandler('lsrp_tennis:syncPlayers', function(syncData)
+RegisterNetEvent('rcore_tennis:syncPlayers')
+AddEventHandler('rcore_tennis:syncPlayers', function(syncData)
     for courtName, playerData in pairs(syncData) do
 
         if not TennisCourts[courtName].players then
@@ -159,8 +159,8 @@ AddEventHandler('lsrp_tennis:syncPlayers', function(syncData)
     end
 end)
 
-RegisterNetEvent('lsrp_tennis:startCourt')
-AddEventHandler('lsrp_tennis:startCourt', function(syncData)
+RegisterNetEvent('rcore_tennis:startCourt')
+AddEventHandler('rcore_tennis:startCourt', function(syncData)
     ShowPlayerCard()
             
     local youServerId = GetPlayerServerId(PlayerId())

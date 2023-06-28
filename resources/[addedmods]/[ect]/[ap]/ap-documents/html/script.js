@@ -1,12 +1,34 @@
 $("#docsUI").hide();
 
 let config = {};
+let LawfirmsData = {};
+let T1gerData = {};
+let UsingT1ger = false;
+let ClientIdentifier = "";
+let DocName = "";
+let LawfirmID = 0;
+let UsingLawfirms = "";
+let IsSigning = false;
 
 addEventListener("message", async function (event) {
   var eventData = event.data;
 
   if (eventData.type == "openDocumentUI") {
-    showDocumentsUI();
+    if (eventData.lawfirms == true) {
+      UsingLawfirms = eventData.firmdocument
+      LawfirmsData = eventData.document
+      ClientIdentifier = eventData.identifier
+      IsSigning = eventData.signiture
+      LawfirmID = eventData.firmID
+      DocName = eventData.docname
+      showDocumentsUI();
+    } else if (eventData.isT1ger == true) {
+      T1gerData = eventData.tigerData
+      UsingT1ger = eventData.isT1ger
+      showDocumentsUI();
+    } else {
+      showDocumentsUI();
+    }
   } else if (eventData.type == "closeDocumentUI") {
     closeDocumentsUI();
   }
@@ -47,7 +69,7 @@ async function fetchConfigData() {
         inputField.label
       }</label>
           <input ${
-            config.type === "show" ? `disabled value="${inputField.value}"` : ""
+            config.type === "show" || config.type === "sign" || config.type === "retainer" || config.type === "contract" ? `disabled value="${inputField.value}"` : ""
           } type="text" id="${
         inputField.id
       }" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm block w-full p-2.5" placeholder="${
@@ -68,13 +90,13 @@ async function fetchConfigData() {
         extendedInputField.label
       }</label>
         <textarea ${
-          config.type === "show" ? `disabled` : ""
+          config.type === "show" || config.type === "sign" || config.type === "retainer" ? `disabled` : ""
         } rows="3" type="text" id="${
         extendedInputField.id
       }" class="mb-2 mt-0 resize-none bg-gray-50 border border-gray-300 text-gray-900 text-sm block w-full p-2.5" placeholder="${
         extendedInputField.placement
       }" ${extendedInputField?.required === "true" ? `required` : ``}>${
-        config.type === "show" ? extendedInputField.value : ""
+        config.type === "show" || config.type === "sign" || config.type === "retainer" ? extendedInputField.value : ""
       }</textarea>
       </div>
     `;
@@ -87,7 +109,7 @@ async function fetchConfigData() {
         extendedInputField.label
       }</label>
         <input ${
-          config.type === "show"
+          config.type === "show" || config.type === "sign" || config.type === "retainer"
             ? `disabled value="${extendedInputField.value}"`
             : ""
         } type="text" id="${
@@ -165,7 +187,7 @@ async function fetchConfigData() {
             ${tosText}
           </div>
           ${
-            config.type == "show"
+            config.type == "show" || IsSigning == true
               ? `<img src="${config.sign}" class="h-[110px] m-3 mb-0 mr-0 ml-auto cursor-crosshair border" />`
               : `<canvas id="sig-canvas" height="110" class="m-3 mb-0 mr-0 ml-auto border border-sky-500"></canvas>`
           }
@@ -215,10 +237,21 @@ async function fetchConfigData() {
 
       let sign = localStorage.getItem("esign");
 
-      $.post(
-        `https://${GetParentResourceName()}/printDoc`,
-        JSON.stringify({ information, extended_information, sign })
-      );
+      if (config.type == "sign") {
+        $.post('https://ap-lawfirms/updateDocument', JSON.stringify({sign, LawfirmsData, ClientIdentifier, LawfirmID, DocName}));
+      } else if (config.type == "contract") {
+        $.post('https://ap-lawfirms/updateContract', JSON.stringify({sign, LawfirmsData, ClientIdentifier, LawfirmID, extended_information}));
+      } else if (config.type == "firmcreate") {
+        $.post('https://ap-lawfirms/updateClientContract', JSON.stringify({information, extended_information, sign, LawfirmsData, ClientIdentifier, LawfirmID, DocName}));
+      } else if (config.type == "retainer") {
+        $.post('https://ap-lawfirms/createRetainer', JSON.stringify({sign, LawfirmsData, ClientIdentifier, LawfirmID, DocName}));
+      } else if (config.type == "create" || config.type == "show") {
+        $.post(
+          `https://${GetParentResourceName()}/printDoc`,
+          JSON.stringify({ information, extended_information, sign })
+        );
+      }
+      IsSigning = false;
       closeDocumentsUI();
     });
   });
@@ -231,9 +264,21 @@ function showDocumentsUI() {
 
 function closeDocumentsUI() {
   $("#docsUI").hide();
+  IsSigning = false;
   config = {};
+  LawfirmsData = {};
+  ClientIdentifier = "";
+  DocName = "";
+  LawfirmID = 0;
+  UsingLawfirms = "";
   localStorage.removeItem("esign");
-  $.post(`https://${GetParentResourceName()}/close`);
+  if (UsingT1ger == true) {
+    $.post(`https://${GetParentResourceName()}/tigerclose`, JSON.stringify({T1gerData}));
+    T1gerData = {};
+    UsingT1ger = false;
+  } else {
+    $.post(`https://${GetParentResourceName()}/close`);
+  }
 }
 
 function clearCanvas() {

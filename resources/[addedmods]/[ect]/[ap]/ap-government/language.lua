@@ -20,31 +20,42 @@ LangClient = {
         ['removeCandidate_error'] = "You need to fill in the reason!",
     },
     menus = {
+        ['applyCandidate_ap_court_title'] = "Application",
         ['applyCandidate_ap_court_header'] = "Candidate App: [<span style='color:Red;'>NOT AUTHORISED</span>]",
+        ['applyCandidate_ap_court_header_OX'] = "Candidate App: NOT AUTHORISED",
         ['applyCandidate_ap_court_txt'] = "You are not able to apply to become a candidate, this is because you have a criminal record on file. You can apply for this position if your record gets wiped.",
         
         ['applyCandidate_state_six_header'] = "Candidate Status: [<span style='color:Red;'>REMOVED</span>]",
+        ['applyCandidate_state_six_header_OX'] = "Candidate Status: REMOVED",
         ['applyCandidate_state_six_txt'] = "You have been removed due to: %s, you will not be able to reapply until the next election.",
 
         ['applyCandidate_state_five_header_one'] = "Voting Status: [<span style='color:Green;'>WINNER</span>]",
+        ['applyCandidate_state_five_header_one_OX'] = "Voting Status: WINNER",
         ['applyCandidate_state_five_header_two'] = "Start %s Job",
         ['applyCandidate_state_five_txt_one'] = "Congratulation, you are the winner and had the max amount of votes.",
         ['applyCandidate_state_five_txt_two'] = "Click here to be assigned the %s job.",
         
         ['applyCandidate_state_four_header'] = "Voting Status: [<span style='color:Green;'>STARTED</span>]",
+        ['applyCandidate_state_four_header_OX'] = "Voting Status: STARTED",
         ['applyCandidate_state_four_txt'] = "Amount of votes: <span style='color:Green;'>%s</span>",
+        ['applyCandidate_state_four_txt_OX'] = "Amount of votes: %s",
 
         ['applyCandidate_state_three_header'] = "Candidate Status: [<span style='color:Green;'>APPROVED</span>]",
+        ['applyCandidate_state_three_header_OX'] = "Candidate Status: APPROVED",
         ['applyCandidate_state_three_txt'] = "Your application has been approved, your candidacy has now started. You will now be able to advertise yourself to the public for when the poll starts.",
 
         ['applyCandidate_state_two_header'] = "Candidate Status: [<span style='color:Red;'>DENIED</span>]",
+        ['applyCandidate_state_two_header_OX'] = "Candidate Status: DENIED",
         ['applyCandidate_state_two_txt'] = "Thank you for your intrest but your application has been denied due to: %s, you will not be able to reapply until the next election.",
 
         ['applyCandidate_state_one_header'] = "Candidate Status: [<span style='color:Green;'>APPLIED</span>]",
+        ['applyCandidate_state_one_header_OX'] = "Candidate Status: APPLIED",
         ['applyCandidate_state_one_txt'] = "Thank you for applying to be a candidate your application is pending checks from the government staff.",
         
         ['applyCandidate_state_zero_header_one'] = "Candidate Applications: [<span style='color:Green;'>OPEN</span>]",
+        ['applyCandidate_state_zero_header_one_OX'] = "Candidate Applications: OPEN",
         ['applyCandidate_state_zero_header_two'] = "Candidate Applications: [<span style='color:Red;'>CLOSED</span>]",
+        ['applyCandidate_state_zero_header_two_OX'] = "Candidate Applications: CLOSED",
         ['applyCandidate_state_zero_txt_one'] = "If you feel like your a suitable candidate, please click to apply.",
         ['applyCandidate_state_zero_txt_two'] = "Candidate applications are currently closed, please keep an eye out for announcments.",
 
@@ -53,6 +64,7 @@ LangClient = {
         ['viewRequestedCandidates_txt_one'] = " ",
         ['viewRequestedCandidates_txt_two'] = "Click to see more information!",
 
+        ['getCandidateInfo_title'] = "Candidate information",
         ['getCandidateInfo_header_one'] = "Candidate Name",
         ['getCandidateInfo_header_two'] = "Short Description?",
         ['getCandidateInfo_header_three'] = "Why did you apply?",
@@ -66,6 +78,7 @@ LangClient = {
         ['getCandidateInfo_txt_five'] = "Click here to add the candidate to the candidacy list.",
         ['getCandidateInfo_txt_six'] = "Click here to remove %s application from this voting poll.",
 
+        ['votingOptions_title'] = "Voting Settings",
         ['votingOptions_header_one'] = "Finish Voting Polls",
         ['votingOptions_header_two'] = "Start Voting Polls",
         ['votingOptions_header_three'] = "Start Candidate Process",
@@ -73,6 +86,7 @@ LangClient = {
         ['votingOptions_txt_two'] = "Click here to enable the public to use the voting booths and for the voting to start.",
         ['votingOptions_txt_three'] = "Click here to select the type of election you want to start.",
 
+        ['startVoting_title'] = "Voting Types",
         ['startVoting_header'] = "Poll: %s",
         ['startVoting_txt'] = "Click here to start the voting.",
 
@@ -80,6 +94,7 @@ LangClient = {
         ['viewCandidates_header_two'] = "Name: %s",
         ['viewCandidates_txt'] = "Click here to manage this candidate.",
 
+        ['manageCandidate_title'] = "Candidate Description",
         ['manageCandidate_header_one'] = "Candidates Name:",
         ['manageCandidate_header_two'] = "Short Description?",
         ['manageCandidate_header_three'] = "Why do you want to be a candidate?",
@@ -97,6 +112,7 @@ LangClient = {
         ['manageCandidate_txt_seven'] = "Click here to remove candidate from the poll.",
         ['manageCandidate_txt_eight'] = "Click here to go back a menu.",
 
+        ['majorOffice_title'] = "Mayor Settings",
         ['majorOffice_header_one'] = "Tax Settings",
         ['majorOffice_header_two'] = "Business Tax Accounts",
         ['majorOffice_header_three'] = "Add/Manage Business",
@@ -108,6 +124,7 @@ LangClient = {
         ['majorOffice_txt_four'] = "Click here to manage funds.",
         ['majorOffice_txt_five'] = "Click here to view/manage current appointments.",
 
+        ['taxAccounts_title'] = "Tax Accounts",
         ['taxAccounts_header_one'] = "View All Business Accounts",
         ['taxAccounts_header_two'] = "View Unpaid Tax Accounts",
         ['taxAccounts_header_three'] = "Back",
@@ -121,6 +138,7 @@ LangClient = {
         ['viewallbusinesstax_txt_one'] = "Click here to view this business.",
         ['viewallbusinesstax_txt_two'] = "Click here to go back one menu.",
 
+        ['viewalltaxaccountsnow_title'] = "Account Information",
         ['viewalltaxaccountsnow_state_one'] = "Company Not Registerd",
         ['viewalltaxaccountsnow_state_two'] = "%s",
         ['viewalltaxaccountsnow_header_one'] = "Business Name:",
@@ -130,6 +148,8 @@ LangClient = {
         ['viewalltaxaccountsnow_header_five'] = "Back",
         ['viewalltaxaccountsnow_txt_one'] = "%s",
         ['viewalltaxaccountsnow_txt_two'] = "Amount: $<span style='color:Green;'>%s</span>",
+        ['viewalltaxaccountsnow_txt_two_OX'] = "Amount: $%s",
+        ['viewalltaxaccountsnow_txt_three_OX'] = "Amount: $%s",
         ['viewalltaxaccountsnow_txt_three'] = "Amount: $<span style='color:Red;'>%s</span>",
         ['viewalltaxaccountsnow_txt_four'] = "Name: %s",
         ['viewalltaxaccountsnow_txt_five'] = "Click to go back one menu.",
@@ -140,6 +160,7 @@ LangClient = {
         ['viewunpaidtaxaccounts_txt_one'] = "Click here to manage this unpaid tax account.",
         ['viewunpaidtaxaccounts_txt_two'] = "Click here to go back one menu.",
 
+        ['fundsmenu_title'] = "Cityhall Funds",
         ['fundsmenu_header_one'] = "Current Funds Amount:",
         ['fundsmenu_header_two'] = "Withdrawal",
         ['fundsmenu_header_three'] = "Deposit",
@@ -149,6 +170,7 @@ LangClient = {
         ['fundsmenu_txt_three'] = "Click here to deposit funds.",
         ['fundsmenu_txt_four'] = "Click here to go back one menu.",
 
+        ['manageUnpaidTaxAccounts_title'] = "Unpaid Tax Accounts",
         ['manageUnpaidTaxAccounts_state_one'] = "%s",
         ['manageUnpaidTaxAccounts_state_two'] = "Company Not Registerd",
         ['manageUnpaidTaxAccounts_header_one'] = "Business Name:",
@@ -161,7 +183,9 @@ LangClient = {
         ['manageUnpaidTaxAccounts_header_eight'] = "Back",
         ['manageUnpaidTaxAccounts_txt_one'] = "%s",
         ['manageUnpaidTaxAccounts_txt_two'] = "Amount: $<span style='color:Green;'>%s</span>",
+        ['manageUnpaidTaxAccounts_txt_two_OX'] = "Amount: $%s",
         ['manageUnpaidTaxAccounts_txt_three'] = "Amount: $<span style='color:Red;'>%s</span>",
+        ['manageUnpaidTaxAccounts_txt_three_OX'] = "Amount: $%s",
         ['manageUnpaidTaxAccounts_txt_four'] = "Name: %s",
         ['manageUnpaidTaxAccounts_txt_five'] = "Click here to take an instant payment of unpaid tax, if the company does not have the funds you should seek a county court judgement.",
         ['manageUnpaidTaxAccounts_txt_six'] = "Click here to clear the companys outstanding tax amount.",
@@ -174,6 +198,7 @@ LangClient = {
         ['taxSettings_txt_one'] = "Click here to manage this tax type.",
         ['taxSettings_txt_two'] = "Click here to go back a menu.",
 
+        ['taxcontrol_title'] = "Tax Management",
         ['taxcontrol_control_percent_one'] = "Current: %s%s",
         ['taxcontrol_control_percent_two'] = "Current: %s%s",
         ['taxcontrol_header_one'] = "Tax Name:",
@@ -191,6 +216,7 @@ LangClient = {
         ['registerBusiness_txt_one'] = "Company Name: %s",
         ['registerBusiness_txt_two'] = "Click here to go back a menu.",
 
+        ['registerplayercompany_title'] = "Company Management",
         ['registerplayercompany_header_one'] = "Company Name:",
         ['registerplayercompany_header_two'] = "Transfer Ownership",
         ['registerplayercompany_header_three'] = "Business Grant",
@@ -212,13 +238,16 @@ LangClient = {
         ['appointments_state_two_txt_three'] = "Click here to cancel the appointment.",
 
         ['appointments_state_one_header_one'] = "Appointment Status: [<span style='color:MediumSeaGreen;'>PENDING</span>]",
+        ['appointments_state_one_header_one_OX'] = "Appointment Status: PENDING",
         ['appointments_state_one_header_two'] = "Cancel Appointment",
         ['appointments_state_one_txt_one'] = "Your appointment is pending the waiting list, once an appointment has been confirmed your status will change.",
         ['appointments_state_one_txt_two'] = "Click here to cancel the appointment.",
 
+        ['appointments_title'] = "Government Appointments",
         ['appointments_state_zero_header'] = "Arrange Appointment",
         ['appointments_state_zero_txt'] = "Click here to arrange an appointment with the mayor's office.",
 
+        ['appointmentsManage_title'] = "Appointment System",
         ['appointmentsManage_header_one'] = "Requested Appointments",
         ['appointmentsManage_header_two'] = "Scheduled Appointments",
         ['appointmentsManage_header_three'] = "Back",
@@ -240,6 +269,7 @@ LangClient = {
         ['requestedAppointments_txt_two'] = "Click here to manage this appointment request.",
         ['requestedAppointments_txt_three'] = "Click here to go back a menu.",
 
+        ['manageAppointment_setup_title'] = "Appointment Information",
         ['manageAppointment_setup_header_one'] = "Name: %s",
         ['manageAppointment_setup_header_two'] = "Reason:",
         ['manageAppointment_setup_header_three'] = "Issue Appointment",
@@ -251,6 +281,7 @@ LangClient = {
         ['manageAppointment_setup_txt_four'] = "Click here to cancel this appointment request.",
         ['manageAppointment_setup_txt_five'] = "Click here to go back to the types of appointments.",
 
+        ['manageAppointment_manage_title'] = "Manage Appointment",
         ['manageAppointment_manage_header_one'] = "Name: %s",
         ['manageAppointment_manage_header_two'] = "Reason:",
         ['manageAppointment_manage_header_three'] = "Finish Appointment",
@@ -262,6 +293,7 @@ LangClient = {
         ['manageAppointment_manage_txt_four'] = "Click here to cancel this scheduled appointment.",
         ['manageAppointment_manage_txt_five'] = "Click here to go back to the types of appointments.",
 
+        ['grants_title'] = "Company Grants",
         ['grants_header_one'] = "Issue Grant",
         ['grants_header_two'] = "Grant History",
         ['grants_header_three'] = "Back",
@@ -269,6 +301,7 @@ LangClient = {
         ['grants_txt_two'] = "Click here to view the history of grants this business has had.",
         ['grants_txt_three'] = "Click here to go back to the business menu.",
 
+        ['grantHistory_title'] = "Company Grants",
         ['grantHistory_header_one'] = "%s Grant History",
         ['grantHistory_header_two'] = "Date: %s",
         ['grantHistory_header_three'] = "Back",
@@ -276,6 +309,7 @@ LangClient = {
         ['grantHistory_txt_two'] = "Amount: %s%s | Reason Of Grant: %s",
         ['grantHistory_txt_three'] = "Click here to go back a menu.",
 
+        ['staffVotingMenu_title'] = "Staff Voting Management",
         ['staffVotingMenu_header_one'] = "View Candidate Applications",
         ['staffVotingMenu_header_two'] = "View Current Candidates",
         ['staffVotingMenu_header_three'] = "Voting Options",

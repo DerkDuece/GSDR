@@ -9,12 +9,12 @@ Config.VehicleShopCoord = {
     [1] = vec3(-35.65,-1095.9,26.4), --x , y, z
     [2] = vec3(-1232.23,-349.45,37.32), --x , y, z
 } --x,y,z of the current vehicle shop
-Config.use_RenzuCustoms = true -- Use renzu_customs getter and setter for Vehicle Properties
+Config.use_RenzuCustoms = false -- Use renzu_customs getter and setter for Vehicle Properties
 Config.ReturnDamage = true -- return visual damage when restoring vehicle from garage
 Config.RefreshOwnedVehiclesOnStart = true -- refresh vehicles store state (return any lost vehicles every server start (not script restart))
 Config.ReturnPayment = 1000 -- a value to pay if vehicle is not in garage
 Config.floatingtext = true -- use native floating text and marker to interact with garages (popui and floatingtext must be opposite settings) (popui must be false if this is true)
-Config.UsePopUI = true -- Create a Thread for checking playercoords and Use POPUI to Trigger Event, set this to false if using rayzone. Popui is originaly built in to RayZone -- DOWNLOAD https://github.com/renzuzu/renzu_popui
+Config.UsePopUI = false -- Create a Thread for checking playercoords and Use POPUI to Trigger Event, set this to false if using rayzone. Popui is originaly built in to RayZone -- DOWNLOAD https://github.com/renzuzu/renzu_popui
 Config.Quickpick = true -- if false system will create a garage shell and spawn every vehicle you preview
 Config.UniqueCarperGarage = false -- if false, show all vehicles to all garage location! else if true, Vehicles Saved in Garage A cannot be take out from Garage B for example.
 Config.GarageKeys = true -- Enable Player to Give Public Garage Keys to enable vehicle sharing
@@ -74,7 +74,7 @@ Config.GarageKeysCommand = 'garagekeys' -- command to call garagekeys UI
 
 -- Vehicle Keys --
 Config.VehicleKeysCommand = 'vehiclekeys' -- command to call vehiclekeys ui
-Config.EnableKeySystem = false -- Main Key System Config, if this is disable , a lot of feature of lock and hotwire will not work
+Config.EnableKeySystem = true -- Main Key System Config, if this is disable , a lot of feature of lock and hotwire will not work
 Config.LockAllLocalVehicle = true -- lock all vehicles in area if not unlocked state (This are not looped, its being locked only when you Press F) (if you are using F Keybind in other script, this might not work properly) ex. in renzu_hud, F is being used, you may need to disable it there.
 Config.LockParkedLocalVehiclesOnly = true -- if this is true and Config.LockAllLocalVehicle is true, its useless, this is useful if Config.LockAllLocalVehicle is false and this is true
 Config.EnableLockpick = true -- enable lock pick item and command function
@@ -98,7 +98,7 @@ Config.AlertJob = 'police'
 Config.FailAlert = function() -- linden outlaw alert are preconfigured (please correct this , i might be wrong) https://github.com/thelindat/linden_outlawalert
     local data = {displayCode = '211', description = 'Carjacking', isImportant = 0, recipientList = {Config.AlertJob}, length = '10000', infoM = 'fa-info-circle', info = 'Ongoing Carnapping'}
     local dispatchData = {dispatchData = data, caller = 'Alarm', coords = GetEntityCoords(PlayerPedId())}
-    exports['ps-dispatch']:VehicleTheft(vehicle)
+    TriggerServerEvent('wf-alerts:svNotify', dispatchData)
     print("SENT ALERT")
 end
 
@@ -109,7 +109,7 @@ Config.CarlockKey = 'J' -- Keyboard (changable in keybinds FIVEM setting)
 Message = Locale[Config.Locale]
 
 -- NOTIFY
-Config.Renzu_notify = false -- if false we will use default framework notification
+Config.Renzu_notify = true -- if false we will use default framework notification
 Config.Notify = function(type,msg,xPlayer)
     if Config.Oxlib and not IsDuplicityVersion() then
         if type == 'info' then type = 'inform' end -- nice logic

@@ -1,23 +1,13 @@
--- if "STANDALONE" is on true, nothing under will take effect.
-Framework = {
-    STANDALONE = false,
+Framework = 2 --[ 1 = ESX / 2 = QBCore / 3 = Other ] Choose your framework
 
-    ESX = false,
-    QBCORE = true,
+FrameworkTriggers = {
+    notify = '', -- [ ESX = 'esx:showNotification' / QBCore = 'QBCore:Notify' ] Set the notification event, if left blank, default will be used
+    object = '', --[ ESX = 'esx:getSharedObject' / QBCore = 'QBCore:GetObject' ] Set the shared object event, if left blank, default will be used (deprecated for QBCore)
+    resourceName = '', -- [ ESX = 'es_extended' / QBCore = 'qb-core' ] Set the resource name, if left blank, automatic detection will be performed
 }
 
-UseOxInventory = false
-
--- if "DISABLE_MYSQL" is on true, nothing under will take effect.
-MySQLFramework = {
-    DISABLE_MYSQL = false,
-
-    MYSQL_ASYNC = true,
-    GHMATTI_MYSQL = false,
-    OXMYSQL = false,
-}
-
-DiscordLogWebhook = ''
+UseOxInventory = nil
+DisableMysql = false
 
 -- If True, will use old non-additive rendering style
 -- the sprays will look a bit "out of place" and won't blend into it's wall well
@@ -46,6 +36,17 @@ Config = {
 
     DisableText = false,
 
+
+    -- Renders a sphere representing the blacklist zone
+    BlacklistZoneDebug = false,
+
+    BlacklistZones = {
+        -- {
+        --     pos = vector3(449.49, -987.4, 30.68),
+        --     range = 30.0,
+        -- }
+    },
+
     Text = {
         CANCEL = 'Cancel',
         SPRAY_ERRORS = {
@@ -53,6 +54,8 @@ Config = {
             TOO_FAR = 'The surface is too far',
             INVALID_SURFACE = 'It cannot be sprayed on this surface',
             AIM = 'Aim the spray at a flat wall',
+            CANT_OVERLAP = 'Graffiti can\'t overlap',
+            IN_BLACKLIST_ZONE = 'You can\'t grafitti in this area',
         },
         NO_SPRAY_NEARBY = 'There is no spray nearby to remove',
         NEED_SPRAY = 'You do not have any spray to spray with',
@@ -304,3 +307,7 @@ SIMPLE_COLORS = {}
 for idx, c in pairs(COLORS) do
     SIMPLE_COLORS[idx] = c.rgb
 end
+
+FW_ESX = 1
+FW_QBCORE = 2
+FW_OTHER = 3

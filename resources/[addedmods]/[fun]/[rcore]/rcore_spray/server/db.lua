@@ -1,4 +1,8 @@
 Citizen.CreateThread(function()
+    if DisableMysql then
+        return
+    end
+    
     MySQL.Sync.execute([[
         CREATE TABLE IF NOT EXISTS `sprays` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -61,7 +65,7 @@ Citizen.CreateThread(function()
             print("^3RCORE SPRAY^0: ^1Please restart rcore_spray^0")
     end
 
-    if Framework.ESX then
+    if Framework == FW_ESX then
         local sprayExists = MySQL.Sync.fetchScalar([[
             SELECT count(*) FROM items WHERE name='spray'
         ]])

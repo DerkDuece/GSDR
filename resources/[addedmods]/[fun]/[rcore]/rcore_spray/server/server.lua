@@ -2,6 +2,8 @@ SPRAYS = {}
 
 FastBlacklist = {}
 
+DiscordLogWebhook = ''
+
 Citizen.CreateThread(function()
     if Config.Blacklist then
         for _, word in pairs(Config.Blacklist) do
@@ -20,7 +22,12 @@ end
 
 function AddSpray(Source, spray)
     local i = 1
-    local nowTime = tonumber(math.floor(MySQL.Sync.fetchScalar('SELECT NOW()')/1000))
+    local nowTime = 0
+    
+    if not DisableMysql then
+        nowTime = tonumber(math.floor(MySQL.Sync.fetchScalar('SELECT NOW()')/1000))
+    end
+
     while true do
         if not SPRAYS[i] then
             spray.createdAt = nowTime
@@ -121,16 +128,12 @@ function RemoveSprayAtPosition(Source, pos)
     end
 end
 
-AddEventHandler('rcore_sprays:removeSpray', function(tag, pos)
-    print("spray remove", tag, pos)
-end)
-
 RegisterNetEvent('rcore_spray:addSpray')
 AddEventHandler('rcore_spray:addSpray', function(spray)
     local Source = source
     
     if spray.text or spray.image then
-        if Framework.STANDALONE then
+        if Framework == FW_OTHER then
             AddSpray(Source, spray)
             return
         end
@@ -203,6 +206,10 @@ Citizen.CreateThread(function()
 end)
 
 Citizen.CreateThread(function()
+    if DisableMysql then
+        return
+    end
+
     while true do
         Wait(30000)
 
@@ -223,7 +230,7 @@ AddEventHandler('rcore_spray:playerSpawned', function()
     TriggerLatentClientEvent('rcore_spray:setSprays', Source, 1000000, SPRAYS)
 end)
 
-if not Framework.STANDALONE then
+if Framework ~= FW_OTHER then
     Citizen.CreateThread(function()
         while not RegisterUsableItem do Wait(100) end
         RegisterUsableItem("spray", function(playerId)
@@ -233,7 +240,7 @@ if not Framework.STANDALONE then
 end
 
 RegisterCommand('spray', function(source, args)
-    if Framework.STANDALONE then
+    if Framework == FW_OTHER then
         StartSpraying(source)
         return
     end

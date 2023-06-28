@@ -6,9 +6,9 @@ Config = {
 	Framework = 2, --[ 1 = ESX / 2 = QBCore / 3 = Other ] Choose your framework
 
 	FrameworkTriggers = {
-		notify = 'QBCore:Notify', -- [ ESX = 'esx:showNotification' / QBCore = 'QBCore:Notify' ] Set the notification event, if left blank, default will be used
-		object = 'QBCore:GetObject', --[ ESX = 'esx:getSharedObject' / QBCore = 'QBCore:GetObject' ] Set the shared object event, if left blank, default will be used (deprecated for QBCore)
-		resourceName = 'qb-core', -- [ ESX = 'es_extended' / QBCore = 'qb-core' ] Set the resource name, if left blank, automatic detection will be performed
+		notify = '', -- [ ESX = 'esx:showNotification' / QBCore = 'QBCore:Notify' ] Set the notification event, if left blank, default will be used
+		object = '', --[ ESX = 'esx:getSharedObject' / QBCore = 'QBCore:GetObject' ] Set the shared object event, if left blank, default will be used (deprecated for QBCore)
+		resourceName = '', -- [ ESX = 'es_extended' / QBCore = 'qb-core' ] Set the resource name, if left blank, automatic detection will be performed
 	},
 
 	AllowWager = true,
@@ -31,10 +31,10 @@ Config = {
 	UseBTTarget = false,
 
 	-- QB-Target
-	UseQBTarget = true,
+	UseQBTarget = false,
 
 	-- OxTarget
-	UseOxTarget = false,
+	UseOxTarget = true,
 
 	-- If set to true, players will need basketball in their inventory to play
 	RequireBasketball = false,
@@ -194,7 +194,6 @@ BasketballHoops = {
 		threePointFwdDist = 0.2,
 		threePointSideDist = 0.12,
 		threePointRadius = 4.35,
-		hideBlip = true,
 	},
 	{
 		pos = vector3(1239.038, -1636.49, 51.02588), 
@@ -205,7 +204,6 @@ BasketballHoops = {
 		threePointFwdDist = 0.0,
 		threePointSideDist = 0.0,
 		threePointRadius = 30.35,
-		hideBlip = true,
 	},
 	{
 		pos = vector3(-213.765, -1523.489, 30.60864), 
@@ -216,7 +214,6 @@ BasketballHoops = {
 		threePointFwdDist = 0.0,
 		threePointSideDist = 0.0,
 		threePointRadius = 5.95,
-		hideBlip = true,
 	},
 	{
 		pos = vector3(-232.5229, -1545.844, 30.60864), 
@@ -260,7 +257,6 @@ BasketballHoops = {
 		threePointFwdDist = 0.0,
 		threePointSideDist = 0.0,
 		threePointRadius = 6.0,
-		hideBlip = true,
 	},
 	{
 		pos = vector3(-931.7396, -711.652, 18.91345), 
@@ -337,7 +333,6 @@ BasketballHoops = {
 		threePointFwdDist = 1.35,
 		threePointSideDist = -0.08,
 		threePointRadius = 6.0,
-		hideBlip = true,
 	},
 	{
 		pos = vector3(-2954.641, 34.54525, 10.60788), 
@@ -348,7 +343,6 @@ BasketballHoops = {
 		threePointFwdDist = -0.7,
 		threePointSideDist = 0.03,
 		threePointRadius = 3.35,
-		hideBlip = true,
 	},
 	{
 		pos = vector3(-2938.064, 26.81527, 10.60788), 
@@ -370,7 +364,6 @@ BasketballHoops = {
 		threePointFwdDist = 0.0,
 		threePointSideDist = 0.0,
 		threePointRadius = 30.35,
-		hideBlip = true,
 	},
 	{
 		pos = vector3(-463.3439, 697.6946, 152.0661), 
@@ -381,7 +374,6 @@ BasketballHoops = {
 		threePointFwdDist = 0.0,
 		threePointSideDist = 0.0,
 		threePointRadius = 30.35,
-		hideBlip = true,
 	},
 	{
 		pos = vector3(-1103.956, 547.2898, 101.6781), 
@@ -392,7 +384,6 @@ BasketballHoops = {
 		threePointFwdDist = 0.0,
 		threePointSideDist = 0.0,
 		threePointRadius = 30.35,
-		hideBlip = true,
 	},
 	{
 		pos = vector3(-1938.21, 3288.614, 31.94385), 
@@ -447,7 +438,6 @@ BasketballHoops = {
 		threePointFwdDist = 0.0,
 		threePointSideDist = 0.0,
 		threePointRadius = 30.35,
-		hideBlip = true,
 	},
 		
 }

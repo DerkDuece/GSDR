@@ -8,17 +8,17 @@ Config.Notify = 'qb' -- Which notify system do you want to use: 'qb', 'okok', or
 Config.Menu = 'qb' -- Which menu system do you want to use: 'qb' or 'ox'?
 Config.Text = 'qb' -- Which draw-text system do you want to use: 'qb' or 'ox'? 
 Config.Target = 'qb' -- Which target system do you want to use: 'qb' or 'ox'?
-Config.Fuel = 'cdn-fuel' -- Which fuel system are you using: 'cdn-fuel', 'ps-fuel', or 'cdn-fuel'?
+Config.Fuel = 'cdn-fuel' -- Which fuel system are you using: 'LegacyFuel', 'ps-fuel', or 'cdn-fuel'?
 
 -- Cutscene
 Config.UseLamarPart = true -- If set as false, Lamar's cutscene segment will be excluded
 Config.EnableCommand = false -- Test efficiently - no need to create multiple characters with this command
 Config.Command = 'cutscene' -- Command to start the cutscene 
-Config.ToggleApartment = false -- For optimal use of qb-apartment, set it to true and modify the apartment file as instructed at https://3rror-hub.gitbook.io/docementation/qbcore/3h-cutscene/modifications
-Config.BlendTaxi = true -- If set to true, the player will be automatically transported to the taxi immediately after the cutscene ends
+Config.ToggleApartment = true -- For optimal use of qb-apartment, set it to true and modify the apartment file as instructed at https://3rror-hub.gitbook.io/docementation/qbcore/3h-cutscene/modifications
+Config.BlendTaxi = false -- If set to true, the player will be automatically transported to the taxi immediately after the cutscene ends
 Config.StatCoords = vector4(-1042.49, -2746.0, 21.36, 326.91) -- Coordinates where the player will be sent after the cutscene is ended if Config.BlendTaxi is false
 Config.EnableMessage = true -- Welcome your new players with a warm greeting
-Config.Message = "Hello and Welcome to Gold Standard Roleplay"
+Config.Message = "Hello dear, welcome to our server"
 
 -- Airport Ped
 Config.EnablePed = true -- If Config.EnablePed is false, it will disable/despawn the ped with AI-taxi and rental menu 
@@ -168,7 +168,7 @@ Config.RentalVehicles = { -- Available rental vehicles. You can add as many as y
 
 -- Airport Blip
 Config.Blip = {
-	Enable = false, -- Enables the blip
+	Enable = true, -- Enables the blip
 	Coords = vector3(-1037.88, -2738.34, 20.17), -- Coordinates of the blip
 	Sprite = 423, -- Type of the airport blip | You can get the blip codes from here: https://docs.fivem.net/docs/game-references/blips/
 	Scale = 0.7, -- Size of the airport blip

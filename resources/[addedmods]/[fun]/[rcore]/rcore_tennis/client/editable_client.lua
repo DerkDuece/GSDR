@@ -129,7 +129,7 @@ function HandleServingFuly(ped, courtPtr, side)
                         local finalStrength = (scaleformData.finalStrength or 0.25) * 1.1
 
                         TriggerServerEvent(
-                            'lsrp_tennis:setBallData', 
+                            'rcore_tennis:setBallData', 
                             PlayerSettings.courtName, CONST_HIT_NORMAL, GetEntityCoords(courtPtr.entity), hitVector * finalStrength, 'SERVE'
                         )
                     elseif timePassed > 5000 then
@@ -146,7 +146,7 @@ function HandleServingFuly(ped, courtPtr, side)
             elseif isF then -- drop ball
                 HideServingScaleform()
                 TriggerServerEvent(
-                    'lsrp_tennis:setBallData', 
+                    'rcore_tennis:setBallData', 
                     PlayerSettings.courtName, CONST_HIT_NORMAL, GetEntityCoords(courtPtr.entity), GetEntityForwardVector(ped), 'DROP'
                 )
                 ClearPedTasks(ped)
@@ -163,10 +163,15 @@ end
 function StartTennisWorker(ped, courtPtr, side)
     local coords = GetEntityCoords(ped)
 
+    StartAudioScene("TENNIS_SCENE");
+
+    RequestScriptAudioBank("SCRIPT\\Tennis", false, -1)
+    RequestScriptAudioBank("SCRIPT\\TENNIS_VER2_A", false, -1)
+
     LoadAnimDict("mini@tennis")
     LoadAnimDict("weapons@tennis@male")
 
-    EnsureRacketEntity(ped, coords)
+    TriggerServerEvent('rcore_tennis:requestRacket')
 
     TaskPlayAnim(ped, 'mini@tennis', 'idle_fh', 4.0, 4.0, -1, 1, 1.0, false, false, false)
 
@@ -271,7 +276,6 @@ function StartTennisWorker(ped, courtPtr, side)
                 StopPlayingTennis()
             end
         end
-
     end
 end
 
@@ -289,7 +293,7 @@ function HandleServePoint(ped, coords, courtIdx, positionName, serverPointCoords
     if #(coords - serverPointCoords) < 1.3 then
         DisplayHelpTextThisFrame('LS_TEN_STRT2', 0)
         if IsControlJustPressed(0, Config.Control.SERVE.key) or IsDisabledControlJustPressed(0, Config.Control.SERVE.key) then
-            TriggerServerEvent('lsrp_tennis:requestBallInHand')
+            TriggerServerEvent('rcore_tennis:requestBallInHand')
         end
     end
 end
@@ -328,10 +332,16 @@ end
 
 function StopPlayingTennis()
     local ped = PlayerPedId()
-    ClearRacket()
+    TriggerServerEvent('rcore_tennis:deleteRacket')
     ClearPedTasks(ped)
     PlayerSettings = nil
-    TriggerServerEvent('lsrp_tennis:releaseMyPosition')
+    TriggerServerEvent('rcore_tennis:releaseMyPosition')
+    
+    StopAudioScene("TENNIS_SCENE");
+
+    ReleaseNamedScriptAudioBank("SCRIPT\\Tennis", false, -1)
+    ReleaseNamedScriptAudioBank("SCRIPT\\TENNIS_VER2_A", false, -1)
+
 end
 
 function HandleAttemptHitBall(ped, courtName, hitType)
@@ -487,7 +497,7 @@ function PlayHitBallAnim(ped, name, side, distName, hitType, courtPtr, predicted
             local finalHeading = courtPtr.courtHeading + (PlayerSettings.side == CONST_SIDE_A and 180.0 or 0.0)
             local newVelocity = ComputeAfterHitVelocity(finalHeading, distName)
 
-            TriggerServerEvent('lsrp_tennis:setBallData', PlayerSettings.courtName, hitType, predictedBallPos, newVelocity, 'HIT')
+            TriggerServerEvent('rcore_tennis:setBallData', PlayerSettings.courtName, hitType, predictedBallPos, newVelocity, 'HIT')
         end
     end)
 end
@@ -541,8 +551,8 @@ function IsBallInFrontOfPlayer(ped, ballPos)
 end
 
 
-RegisterNetEvent('lsrp_tennis:gameWon')
-AddEventHandler('lsrp_tennis:gameWon', function(wonByPosition)
+RegisterNetEvent('rcore_tennis:gameWon')
+AddEventHandler('rcore_tennis:gameWon', function(wonByPosition)
     if PlayerSettings then
         PlaySoundFrontend(-1, "TENNIS_MATCH_POINT", "HUD_AWARDS", true)
 
@@ -554,8 +564,8 @@ AddEventHandler('lsrp_tennis:gameWon', function(wonByPosition)
     end
 end)
 
-RegisterNetEvent('lsrp_tennis:pointWon')
-AddEventHandler('lsrp_tennis:pointWon', function(wonByPosition)
+RegisterNetEvent('rcore_tennis:pointWon')
+AddEventHandler('rcore_tennis:pointWon', function(wonByPosition)
     if PlayerSettings then
         PlaySoundFrontend(-1, "TENNIS_POINT_WON", "HUD_AWARDS", true)
 
@@ -567,8 +577,8 @@ AddEventHandler('lsrp_tennis:pointWon', function(wonByPosition)
     end
 end)
 
-RegisterNetEvent('lsrp_tennis:secondServe')
-AddEventHandler('lsrp_tennis:secondServe', function()
+RegisterNetEvent('rcore_tennis:secondServe')
+AddEventHandler('rcore_tennis:secondServe', function()
     if PlayerSettings then
         PlaySoundFrontend(-1, "LOSER", "HUD_AWARDS", true)
         ShowFreemodeMessage(Config.Translation.SECOND_SERVE, 5000)

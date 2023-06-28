@@ -2,7 +2,7 @@ fx_version 'adamant'
 games { 'gta5' }
 
 mod 'QB AP GOVERNMENT'
-version '1.0'
+version '1.1'
 
 lua54 'yes'
 
@@ -13,6 +13,7 @@ files {
 }
 
 shared_scripts {
+  --'@ox_lib/init.lua', -- If you use OX Dialog uncomment this.
   'config.lua',
   'language.lua'
 }

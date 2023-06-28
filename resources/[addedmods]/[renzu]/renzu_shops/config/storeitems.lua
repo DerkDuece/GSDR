@@ -7,8 +7,11 @@ return {
 		{ lvl = 1, name = 'donut', price = 30 , category = 'food'},
 		{ lvl = 1, name = 'sandwich', price = 30 , category = 'food'},
 		{ lvl = 2, name = 'lighter', price = 20 , category = 'misc'},
+		{ lvl = 2, name = 'redw', price = 1000 , category = 'TOBACCO'},
+		{ lvl = 2, name = 'marlboro', price = 1000 , category = 'TOBACCO'},
 
 		{ lvl = 2, name = 'phone', price = 1000 , category = 'gadget'},
+		{ lvl = 2, name = 'radio', price = 1000 , category = 'gadget'},
 		{ lvl = 2, name = 'latte', price = 150 , category = 'beverages'},
 
 		{ lvl = 1, name = 'tomatosauce', price = 15 , category = 'ingredients'},
@@ -29,9 +32,44 @@ return {
 		{ lvl = 1, name = 'martini', price = 5 , category = 'liquor'},
 		{ lvl = 1, name = 'bread', price = 15 , category = 'ingredients'},
 		{ lvl = 1, name = 'hotdog', price = 25 , category = 'ingredients'},
-		{ lvl = 1, name = 'bakingsoda', price = 20, category = 'ingredients'},
-		{ lvl = 1, name = 'empty_weed_bag', price = 10, category = 'misc'},
+		{ lvl = 1, name = 'fishingrod', price = 200 , category = 'fishing'},
+		{ lvl = 1, name = 'fishbait', price = 50, category = 'fishing'},
+		{ lvl = 1, name = 'garden_shovel', price = 1000 , category = 'seeds'},
+		{ lvl = 1, name = 'garden_pitcher', price = 1000, category = 'seeds'},
+		{ lvl = 1, name = 'pickle_seed', price = 100 , category = 'seeds'},
+		{ lvl = 1, name = 'potato_seed', price = 100 , category = 'seeds'},
+		{ lvl = 1, name = 'tomato_seed', price = 100 , category = 'seeds'},
+		{ lvl = 1, name = 'wheat_seed', price = 100 , category = 'seeds'},
+		{ lvl = 1, name = 'carrot_seed', price = 100 , category = 'seeds'},
+		{ lvl = 1, name = 'corn_seed', price = 100 , category = 'seeds'},
 	
+		
+		{ lvl = 1, name = 'playerbooth', price = 50000 , category = 'misc', 
+			metadata = { -- ox_inventory supported only
+				name = 'marketbooth',
+				label = 'Market Booth', -- custom label name to set from metadatas
+				model = `ch_prop_ch_gazebo_01`,
+				description = 'can be used for market booth',
+				type = 'legal',
+				blacklists = { -- blacklist the list of items here from appearing to shop
+					['weapon_pistol'] = true, -- lowercase only
+				},
+			}
+		},
+		{ lvl = 1, name = 'playerbooth', price = 50000 , category = 'misc', 
+			metadata = { -- ox_inventory supported only
+				name = 'blackmarketbooth',
+				label = 'Black Market Booth', -- custom label name to set from metadatas
+				model = `ch_prop_ch_gazebo_01`,
+				description = 'can be used for black market booth',
+				type = 'illegal',
+				whitelists = { -- if whitelist. only this items will appear on the shops
+					['weapon_pistol'] = true, -- lowercase only
+				}
+			}
+		},
+
+
 		-- metadatas type item
 		{ lvl = 1, name = 'burger', price = 80 , category = 'food', metadata = { -- ox_inventory supported only
 				label = 'Cheese Burger', -- custom label name to set from metadatas
@@ -59,10 +97,17 @@ return {
 	},
 	Ammunation = {
 		{ lvl = 1, name = 'ammo-9', category = 'ammo', price = 15, },
+		{ lvl = 1, name = 'ammo-rifle', category = 'ammo', price = 15, },
+		{ lvl = 1, name = 'ammo-rifle2', category = 'ammo', price = 15, },
 		{ lvl = 1, name = 'ammo-shotgun', category = 'ammo', price = 15, },
+		{ lvl = 1, name = 'ammo-50', category = 'ammo', price = 15, },
+		{ lvl = 1, name = 'ammo-45', category = 'ammo', price = 15, },
 		{ lvl = 1, name = 'WEAPON_KNIFE', category = 'handheld', price = 5000 },
 		{ lvl = 1, name = 'WEAPON_BAT', category = 'handheld', price = 3500 },
 		{ lvl = 1, name = 'WEAPON_PISTOL', category = 'Handgun', price = 25000, metadata = { registered = true }, license = 'weapon' },
+ 		{ lvl = 2, name = 'WEAPON_APPISTOL', category = 'Handgun', price = 10000, metadata = { registered = true }, license = 'weapon' },
+		{ lvl = 2, name = 'WEAPON_BZGAS', category = 'throwable', price = 5000, metadata = { registered = true }, license = 'weapon' },
+		{ lvl = 2, name = 'WEAPON_COMBATPDW', category = 'machine guns', price = 18000, metadata = { registered = true }, license = 'weapon' },
 	},
 
 	VehicleShop = MultiCategory(
@@ -81,22 +126,6 @@ return {
 		{ name = 'WEAPON_ASSAULTRIFLE', price = 85000, category = 'Weapon', currency = 'black_money', stock = 15 },
 		{ name = 'WEAPON_PISTOL50', price = 55000, category = 'Weapon', currency = 'black_money', stock = 15 },
 		{ name = 'WEAPON_ASSAULTSMG', price = 75000, category = 'Weapon', currency = 'black_money', stock = 15 },
-        { name = 'weapon_microsmg', price = 13000 ,category = 'Weapon', currency = 'black_money', stock = 1 },
-        { name = 'weapon_machinepistol', price = 14000,category = 'Weapon', currency = 'black_money', stock = 1 },
-        { name = 'weapon_minismg', price = 12500 ,category = 'Weapon', currency = 'black_money', stock = 1 },
-        { name = 'weapon_ceramicpistol', price = 10000 , category = 'Weapon', currency = 'black_money', stock = 5 },
-        { name = 'weapon_revolver', price = 8000 ,category = 'Weapon', currency = 'black_money', stock = 2 },
-        { name = 'weapon_pistol50', price = 10000,category = 'Weapon', currency = 'black_money', stock = 2 },
-        { name = 'weapon_appistol', price = 15000,category = 'Weapon', currency = 'black_money', stock = 1 },
-        { name = 'weapon_switchblade', price = 2500 , category = 'Weapon', currency = 'black_money', stock = 2 },
-        { name = 'weapon_knuckle', price = 2500 , category = 'Weapon', currency = 'black_money', stock = 2 },
-        { name = 'weapon_pipebomb', price = 8000 , category = 'Weapon', currency = 'black_money', stock = 3 },
-        { name = 'weapon_molotov', price = 2000, category = 'Weapon', currency = 'black_money', stock = 5 },
-        { name = 'weapon_dbshotgun', price = 10000, category = 'Weapon', currency = 'black_money', stock = 2 },
-        { name = 'weapon_compactrifle', price = 18000, category = 'Weapon', currency = 'black_money', stock = 2 },
-        { name = 'weapon_tacticalrifle', price = 25000, category = 'Weapon', currency = 'black_money', stock = 1 },
-        { name = 'weapon_assaultrifle', price = 20000, category = 'Weapon', currency = 'black_money', stock = 1 },
-
 	},
 	
 	LiquorStore = {
@@ -114,11 +143,13 @@ return {
 		{ category = 'ammo',  name = 'ammo-9', price = 2, },
 		{ category = 'ammo',  name = 'ammo-rifle', price = 2, },
 		{ category = 'ammo',  name = 'ammo-shotgun', price = 2, },
+		{ category = 'ammo',  name = 'ammo-50', price = 2, },
 		{ category = 'ammo',  name = 'ammo-rifle2', price = 2, },
+		{ category = 'ammo',  name = 'ammo-45', price = 2, },
 		{ category = 'throwable',  name = 'WEAPON_BZGAS', price = 300 },
-		{ category = 'handheld',  name = 'handcuffs', price = 300 },
-		{ category = 'handheld', name = 'bodycam', price = 50 },
+		{ category = 'pistol',  name = 'WEAPON_PISTOL50', price = 300 },
 		{ category = 'drink',  name = 'energy_drink', price = 300 },
+
 		{ category = 'handheld',  name = 'WEAPON_FLASHLIGHT', price = 200 },
 		{ category = 'handheld',  name = 'WEAPON_NIGHTSTICK', price = 100 },
 		{ category = 'Pistol',  name = 'WEAPON_PISTOL', price = 500, metadata = { registered = true, serial = 'POL' }, },
@@ -126,19 +157,15 @@ return {
 		{ category = 'Rifle',  name = 'WEAPON_SPECIALCARBINE', price = 800, grade = 5, metadata = { registered = true, serial = 'POL' },  grade = 3 },
 		{ category = 'handheld',  name = 'WEAPON_STUNGUN', price = 300, metadata = { registered = true, serial = 'POL'} },
 		{ category = 'Shotguns',  name = 'WEAPON_PUMPSHOTGUN', price = 600, metadata = { registered = true, serial = 'POL'} },
+		{ category = 'SMG',  name = 'WEAPON_COMBATPDW', price = 700 },
 		{ lvl = 2, name = 'radio', category = 'handheld', price = 100, metadata = { description = 'pang pakunat' } },
+
 		{ lvl = 2, name = 'armour', category = 'Tools', price = 100, metadata = { description = 'pang pakunat' } },
+		{ lvl = 2, name = 'vision_helmet', category = 'Tools', price = 5000 },
+		{ lvl = 2, name = 'thermal_helmet', category = 'Tools', price = 5000 },
+		{ lvl = 2, name = 'gpstracker', category = 'Tools', price = 15000 },
+		
 
-	},
-
-	Pharmacy = { -- Medical Supply
-		{ category = 'handheld',  name = 'WEAPON_FLASHLIGHT', price = 200 },
-		{ category = 'handheld',  name = 'WEAPON_STUNGUN', price = 300, metadata = { registered = true, serial = 'MED'} },
-		{ lvl = 2, name = 'radio', category = 'handheld', price = 100, metadata = { description = 'A radio for all your eating needs' } },
-		{ lvl = 2, name = 'armour', category = 'Tools', price = 100, metadata = { description = 'Armor for all your armor needs' } },
-		{ category = 'handheld',  name = 'firstaid', price = 100},
-		{ category = 'handheld',  name = 'bandage', price = 100},
-		{ category = 'handheld',  name = 'painkillers', price = 100},
 
 	},
 

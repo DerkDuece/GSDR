@@ -1,4 +1,5 @@
 $("#ui").hide();
+$("#applyUI").hide();
 
 var candidates = [];
 
@@ -13,6 +14,8 @@ addEventListener("message", async function (event) {
   if (eventData.type == "show") {
     await getCandidatesData();
     showUI();
+  } else if (eventData.type == "showCandidatesApp") {
+    $("#applyUI").show();
   } else if (poy.type == "close") {
     closeUI();
   }
@@ -20,7 +23,7 @@ addEventListener("message", async function (event) {
 
 async function getCandidatesData() {
   await $.post(
-    "https://ap-government/getCandidate",
+    `https://${GetParentResourceName()}/getCandidate`,
     JSON.stringify({}),
     function (candidatesInfo) {
       candidatesInfo.forEach((candidateInfo) => {
@@ -191,18 +194,18 @@ function submit() {
   document.getElementById("yourVote").innerText = `Your vote: ${name}`;
 
   if (chosenCandidateName !== "") {
-    $.post("https://ap-government/voteForSomeone", JSON.stringify({ citizen }));
+    $.post(`https://${GetParentResourceName()}/voteForSomeone`, JSON.stringify({ citizen }));
 
     setTimeout(function () {
       closeUI();
-    }, 10000);
+    }, 5000);
   } else {
-    $.post("https://ap-government/error");
+    $.post(`https://${GetParentResourceName()}/error`);
   }
 
   setTimeout(function () {
     closeUI();
-  }, 10000);
+  }, 5000);
 }
 
 function closeUI() {
@@ -212,7 +215,7 @@ function closeUI() {
   chosenCandidateName = "";
   chosenCandidateID = 0;
 
-  $.post("https://ap-government/close");
+  $.post(`https://${GetParentResourceName()}/close`);
 
   resetUI();
   $("#ui").hide();
@@ -229,7 +232,116 @@ function resetUI() {
   document.getElementById("candidatePage").style.display = "none";
 }
 
+document.onkeyup = function (event) {
+  const charCode = event.key;
+  if (charCode == "Escape") {
+    closeUI();
+    closeCandidateAppUI();
+  }
+};
+
 function showUI() {
   $("#ui").show();
   changePage(1);
+}
+
+function clearInputs() {
+  $("#firstQ").val("");
+  $("#secondQ").val("");
+  $("#thirdQ").val("");
+}
+
+$("#clearBtn").click(function () {
+  return clearInputs();
+});
+
+$("#submitAppBtn").click(function () {
+  let btnGroup = $("#applyAsCandidateBtnsGroup");
+  let questionsDiv = $("#questions");
+
+  let q1El = $("#firstQ");
+  let q2El = $("#secondQ");
+  let q3El = $("#thirdQ");
+
+  let q1Label = $("#q1Label");
+  let q2Label = $("#q2Label");
+  let q3Label = $("#q3Label");
+
+  let q1Val = $.trim(q1El.val());
+  let q2Val = $.trim(q2El.val());
+  let q3Val = $.trim(q3El.val());
+
+  let q1Len = getWordCount(q1Val);
+  let q2Len = getWordCount(q2Val);
+  let q3Len = getWordCount(q3Val);
+
+  if (q1Len > 200 || 20 > q1Len) {
+    q1El.addClass(
+      "bg-red-50 border border-red-500 text-red-900 placeholder-red-700"
+    );
+    q1Label.addClass("text-red-900");
+
+    return q1El.val("");
+  } else {
+    q1El.addClass("bg-green-50 border border-green-500 text-green-900");
+    q1Label.addClass("text-green-700");
+  }
+
+  if (q2Len > 500 || 30 > q2Len) {
+    q2El.addClass(
+      "bg-red-50 border border-red-500 text-red-900 placeholder-red-700"
+    );
+    q2Label.addClass("text-red-900");
+
+    return q2El.val("");
+  } else {
+    q2El.addClass("bg-green-50 border border-green-500 text-green-900");
+    q2Label.addClass("text-green-700");
+  }
+
+  if (q3Len > 500 || 30 > q3Len) {
+    q3El.addClass(
+      "bg-red-50 border border-red-500 text-red-900 placeholder-red-700"
+    );
+    q3Label.addClass("text-red-900");
+
+    return q3El.val("");
+  } else {
+    q3El.addClass("bg-green-50 border border-green-500 text-green-900");
+    q3Label.addClass("text-green-700");
+  }
+
+  btnGroup.hide();
+
+  questionsDiv.hide();
+
+  $("#afterSubmittingApplicationText").removeClass("hidden");
+
+  returnApplicationData(q1Val, q2Val, q3Val);
+  closeCandidateAppUI();
+});
+
+function returnApplicationData(q1, q2, q3) {
+  return $.post(
+    `https://${GetParentResourceName()}/submitCandidateApplication`,
+    JSON.stringify({ q1, q2, q3 })
+  );
+}
+
+function getWordCount(str) {
+  return str.split(" ").length;
+}
+
+function closeCandidateAppUI() {
+  $.post(`https://${GetParentResourceName()}/close`);
+
+  resetAppUI();
+  $("#applyUI").hide();
+}
+
+function resetAppUI() {
+  let btnGroup = $("#applyAsCandidateBtnsGroup");
+  let questionsDiv = $("#questions");
+
+  $("#afterSubmittingApplicationText").addClass("hidden");
 }

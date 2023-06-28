@@ -54,6 +54,19 @@ FORBIDDEN_MATERIALS = {
 SPRAYS = {}
 CloseSprays = {}
 
+rotCam = nil
+wantedSprayLocation = nil
+wantedSprayRotation = nil
+currentSprayRotation = nil
+wantedSprayScale = nil
+
+currentSprayLocation = nil
+currentSprayRotation = nil
+currentSprayScale = nil
+
+currentComputedRotation = vector3(0,0,0)
+currentComputedLocation = vector3(0,0,0)
+
 RegisterNetEvent('rcore_spray:setSprays')
 AddEventHandler('rcore_spray:setSprays', function(s)
     SPRAYS = s
@@ -127,12 +140,20 @@ Citizen.CreateThread(function()
     }
 
     while true do
-        Citizen.Wait(0)
+        local anyCloseSprays = #CloseSprays > 0
 
-        local ped = PlayerPedId()
-        local coords = GetEntityCoords(ped)
+        if anyCloseSprays or IsSpraying then
+            Wait(0)
+        else
+            Wait(300)
+        end
 
-        RenderSortedSprays(coords, CloseSprays)
+        if anyCloseSprays then
+            local ped = PlayerPedId()
+            local coords = GetEntityCoords(ped)
+
+            RenderSortedSprays(coords, CloseSprays)
+        end
 
         if IsSpraying then
             for _, key in pairs(disabledKeys) do
@@ -203,27 +224,13 @@ Citizen.CreateThread(function()
     end
 end)
 
-rotCam = nil
-wantedSprayLocation = nil
-wantedSprayRotation = nil
-currentSprayRotation = nil
-wantedSprayScale = nil
-
-currentSprayLocation = nil
-currentSprayRotation = nil
-currentSprayScale = nil
-
-currentComputedRotation = vector3(0,0,0)
-currentComputedLocation = vector3(0,0,0)
-
 Citizen.CreateThread(function()
     rotCam = CreateCam("DEFAULT_SCRIPTED_CAMERA", 0)
     local ttl = 30
 
     while true do
-        Wait(0)
-
         if wantedSprayLocation and wantedSprayRotation and wantedSprayScale and IsSpraying then
+            Wait(0)
             if ttl >= 0 then
                 ttl = ttl - 1
             end
@@ -232,6 +239,8 @@ Citizen.CreateThread(function()
                 ttl = 30
                 RunRecomputeTick()
             end
+        else
+            Wait(300)
         end
     end
 end)
@@ -252,7 +261,7 @@ function RunRecomputeTick()
     currentSprayScale = wantedSprayScale
 end
 
-if Framework.STANDALONE then
+if Framework == FW_OTHER then
     RegisterCommand('removespray', function(source, args)
         TriggerEvent('rcore_spray:removeClosestSpray')
     end, false)

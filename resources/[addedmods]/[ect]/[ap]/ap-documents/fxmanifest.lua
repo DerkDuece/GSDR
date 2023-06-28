@@ -2,7 +2,7 @@ fx_version 'adamant'
 games { 'gta5' }
 
 mod 'QB AP DOCUMENTS'
-version '1.0'
+version '1.2'
 
 lua54 'yes'
 
@@ -13,6 +13,7 @@ files {
 }
 
 shared_scripts {
+  --'@ox_lib/init.lua', -- UNCOMMENT THIS IF YOUR USING OX LIBS
   'config.lua',
   'shared/documents.lua'
 }
@@ -24,12 +25,14 @@ client_scripts {
 
 server_scripts {
   '@mysql-async/lib/MySQL.lua',
-  'server/main.lua'
+  'server/main.lua',
+  'server/custominventory.lua'
 }
 
 escrow_ignore {
 	'config.lua',
   'shared/documents.lua',
-  'client/menu.lua'
+  'client/menu.lua',
+  'server/custominventory.lua'
 }
 dependency '/assetpacks'

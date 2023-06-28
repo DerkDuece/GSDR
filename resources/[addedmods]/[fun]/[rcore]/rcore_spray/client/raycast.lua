@@ -5,6 +5,41 @@ LastComputedRayEndCoords = nil
 LastComputedRayNormal = nil
 LastError = nil
 
+if Config.BlacklistZoneDebug then
+    Citizen.CreateThread(function()
+        while true do
+            Wait(0)
+
+            for _, zone in pairs(Config.BlacklistZones) do
+                DrawMarker(
+                    28, 
+                    zone.pos.x, zone.pos.y, zone.pos.z, 
+                    0.0, 0.0, 0.0, 
+                    0.0, 0.0, 0.0, 
+                    zone.range, zone.range, zone.range, 
+                    255, 255, 255, 100, 
+                    false, false, false, false, nil, nil, false)
+            end
+        end
+    end)
+end
+
+function IsInBlacklistZone(pos)
+    if Config.BlacklistZones and #Config.BlacklistZones > 0 then
+        for _, zone in pairs(Config.BlacklistZones) do
+            if not zone.pos or not zone.range then
+                print("ERROR: Blacklist zone is missing either pos or range")
+            end
+
+            if #(zone.pos - pos) <= zone.range then
+                return true
+            end
+        end
+
+        return false
+    end
+end
+
 function FindRaycastedSprayCoords()
     local ped = PlayerPedId()
     local coords = GetEntityCoords(ped)
@@ -17,11 +52,14 @@ function FindRaycastedSprayCoords()
 
         local result, error, rayEndCoords, rayNormal = FindRaycastedSprayCoordsNotCached(ped, coords, rayStart, rayDirection)
 
-
+        if rayEndCoords and IsInBlacklistZone(rayEndCoords) then
+            result = false
+            error = Config.Text.SPRAY_ERRORS.IN_BLACKLIST_ZONE or "You can't grafitti in this area"
+        end
 
         if rayEndCoords and IsOverlappingSpray(rayEndCoords) then
             result = false
-            error = "Graffiti can't overlap"
+            error = Config.Text.SPRAY_ERRORS.CANT_OVERLAP or "Graffiti can't overlap"
         end
 
         if result then

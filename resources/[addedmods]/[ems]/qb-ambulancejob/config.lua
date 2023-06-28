@@ -34,7 +34,7 @@ Config.MajorArmoredBleedChance = 45 -- The chance, in percent, that a player wil
 Config.MaxInjuryChanceMulti = 3 -- How many times the HealthDamage value above can divide into damage taken before damage is forced to be applied
 Config.DamageMinorToMajor = 35 -- How much damage would have to be applied for a minor weapon to be considered a major damage event. Put this at 100 if you want to disable it
 Config.AlertShowInfo = 2 -- How many injuries a player must have before being alerted about them
-Config.FuelScript = 'LegacyFuel' -- Fuel script u use (defaut: LegacyFuel)
+Config.FuelScript = 'cdn-fuel' -- Fuel script u use (defaut: LegacyFuel)
 --Ranjit-EMS-bag config
 Config.Bag = {
 	Job = {

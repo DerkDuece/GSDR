@@ -15,7 +15,7 @@ Config = {
     StopHorizontalBounceTreshold = 1.0,
     BallElasticity = 1.2,
     Tutorial = {
-        {text = 'Tennis will ~y~start~s~ when two players ~y~join~s~, one on each side.', time = 5000},
+        {text = 'Tenis will ~y~start~s~ when two players ~y~join~s~, one on each side.', time = 5000},
         {text = 'To serve, ~y~enter the checkpoint~s~, press ~y~E~s~ to start serving.', time = 5000},
         {text = 'When serving, ~y~move to a position~s~ from which you want to serve and ~y~press Left Mouse Button~s~', time = 5000},
         {text = '~y~Select power~s~ with which you want to serve and use ~y~WSAD~s~ to aim where you want to shoot.', time = 5000},
@@ -126,7 +126,7 @@ TennisCourts = {
         courtLength = 11.89,
 
         centerConstant = 0.097,
-        showBlip = false,
+        showBlip = true,
     },
     pbluff_1_green = {
         z = 10.64,
@@ -143,7 +143,7 @@ TennisCourts = {
         courtLength = 11.89,
 
         centerConstant = -0.097,
-        showBlip = false,
+        showBlip = true,
     },
     pbluff_2_blue = {
         z = 10.64,
@@ -207,7 +207,7 @@ TennisCourts = {
         courtLength = 11.89,
 
         centerConstant = 0.305,
-        showBlip = false,
+        showBlip = true,
     },
     rockf_b_2 = {
         z = 49.71,
@@ -284,7 +284,7 @@ TennisCourts = {
         courtLength = 11.95,
 
         centerConstant = 0.0,
-        showBlip = false,
+        showBlip = true,
     },
     richman_2 = {
         z = 58.58,
@@ -315,7 +315,7 @@ TennisCourts = {
         courtLength = 11.88,
 
         centerConstant = 0.0,
-        showBlip = false,
+        showBlip = true,
     },
     morningwood = {
         z = 48.23,
@@ -331,7 +331,7 @@ TennisCourts = {
         courtLength = 11.88,
 
         centerConstant = -0.095,
-        showBlip = false,
+        showBlip = true,
     },
     rockf_c_1 = {
         z = 65.759999999999,
@@ -347,7 +347,7 @@ TennisCourts = {
         courtLength = 11.88,
 
         centerConstant = -0.095,
-        showBlip = false,
+        showBlip = true,
     },
     rockf_c_2 = {
         z = 60.67,
@@ -408,7 +408,7 @@ TennisCourts = {
         courtLength = 11.93,
 
         centerConstant = 0.0,
-        showBlip = false,
+        showBlip = true,
     },
     alta_2 = {
         z = 52.79,
@@ -439,7 +439,7 @@ TennisCourts = {
         courtLength = 11.86,
 
         centerConstant = -0.02,
-        showBlip = false,
+        showBlip = true,
     },
     vespucci_1 = {
         z = 3.39,
@@ -455,7 +455,7 @@ TennisCourts = {
         courtLength = 11.90,
 
         centerConstant = -0.015,
-        showBlip = false,
+        showBlip = true,
     },
     vespucci_2 = {
         z = 3.39,
@@ -575,7 +575,7 @@ TennisCourts = {
         courtWidth = 8.0,
         courtLength = 11.89,
         centerConstant = 0.09,
-        showBlip = false,
+        showBlip = true,
     },
     rockford = {
         z = 101.709999,
@@ -590,7 +590,7 @@ TennisCourts = {
         courtWidth = 8.0,
         courtLength = 11.89,
         centerConstant = 0.09,
-        showBlip = false,
+        showBlip = true,
     },
 
     puerta = {
@@ -606,8 +606,25 @@ TennisCourts = {
         courtWidth = 8.0,
         courtLength = 11.89,
         centerConstant = 0.0,
-        showBlip = false,
+        showBlip = true,
     },
+
+    
+    -- brofx_14 = {
+    --     z = 6.67,
+    --     ballPos = nil,
+    --     ballVelocity = nil,
+    --     spin = CONST_HIT_NORMAL,
+    --     predictedCollisionCoords = nil,
+    --     collisionSuspendedUntil = 0,
+    --     isCollisionActive = false,
+    --     courtCenter = vec3(-1592.640137, 822.013245, 185.000),
+    --     courtHeading = 24.841,
+    --     courtWidth = 8.0,
+    --     courtLength = 11.89,
+    --     centerConstant = 0.0,
+    --     showBlip = true,
+    -- },
 
     
 }

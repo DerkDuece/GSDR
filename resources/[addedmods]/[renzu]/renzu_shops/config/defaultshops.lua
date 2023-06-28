@@ -2,6 +2,21 @@
 -- location indexes
 return {
 
+	['ClothingShop'] = {
+		moneytype = 'money',
+		name = 'ClothingShop',
+
+		locations = {
+			vec3(425.44613647461,-805.49926757813,29.49),
+		},
+		targets = {
+			vec3(426.23623657227,-805.77111816406,29.438510894775),
+		},
+		blip = {
+			id = 59, colour = 69, scale = 0.8
+		},
+	},
+
 	['Balls8'] = {
 		moneytype = 'money',
 		name = '8Balls',
@@ -76,35 +91,27 @@ return {
 		moneytype = 'money',
 		type = 'vehicle',
 		name = 'Vehicle Shop',
+		blip = {
+			id = 595, colour = 38, scale = 0.8
+		},
 		locations = {
 			vec3(-53.079696655273,-1096.7937011719,26.42),
+			vec3(-797.6484375,-1512.2006835938,1.595212),
 		},
 		targets = {
 			vec3(-54.497680664063,-1097.7269287109,26.323600769043),
+			vec3(-797.6484375,-1512.2006835938,1.595212697982),
 		}
 	},
 
 	YouTool = {
 		--groups = 'police',
-		moneytype = 'money',
+		moneytype = 'black_money',
 		name = 'YouTool',
 		blip = {
 			id = 402, colour = 69, scale = 0.8
 		}, inventory = {
 			{ name = 'lockpick', price = 2000 ,grade = 0},
-			{ name = 'fishingrod', price = 200 },
-			{ name = 'legalbait', price = 1},
-			{ name = 'garden_shovel', price = 1000 },
-			{ name = 'garden_pitcher', price = 1000},
-			{ name = 'pickle_seed', price = 100 },
-			{ name = 'potato_seed', price = 100 },
-			{ name = 'tomato_seed', price = 100 },
-			{ name = 'wheat_seed', price = 100 },
-			{ name = 'carrot_seed', price = 100 },
-			{ name = 'corn_seed', price = 100 },
-			{ name = 'radio', price = 1000},
-			{ name = 'advancedlockpick', price = 5000 },
-			{ name = 'laptop', price = 2500 },
 
 		}, locations = {
 			vec3(2747.025390625,3473.0822753906,55.683399200439),
@@ -143,47 +150,27 @@ return {
 	},
 
 	PoliceArmoury = {
-		moneytype = 'money',
+		moneytype = 'policecredit',
 		name = 'Police Armoury',
 		groups = 'police',
 		blip = {
 			id = 110, colour = 84, scale = 0.8
 		}, inventory = {
-			{ category = 'ammo',  name = 'ammo-9', price = 2, },
-			{ category = 'ammo',  name = 'ammo-rifle', price = 2, },
-			{ category = 'ammo',  name = 'ammo-shotgun', price = 2, },
-			{ category = 'ammo',  name = 'ammo-rifle2', price = 2, },
-			{ category = 'throwable',  name = 'WEAPON_BZGAS', price = 300 },
-			{ category = 'handheld',  name = 'handcuffs', price = 300 },
-			{ category = 'handheld', name = 'bodycam', price = 50 },
-			{ category = 'drink',  name = 'energy_drink', price = 300 },
-			{ category = 'handheld',  name = 'WEAPON_FLASHLIGHT', price = 200 },
-			{ category = 'handheld',  name = 'WEAPON_NIGHTSTICK', price = 100 },
-			{ category = 'Pistol',  name = 'WEAPON_PISTOL', price = 500, metadata = { registered = true, serial = 'POL' }, },
-			{ category = 'Rifle',  name = 'WEAPON_CARBINERIFLE', price = 800, grade = 5, metadata = { registered = true, serial = 'POL' },  grade = 3 },
-			{ category = 'Rifle',  name = 'WEAPON_SPECIALCARBINE', price = 800, grade = 5, metadata = { registered = true, serial = 'POL' },  grade = 3 },
-			{ category = 'handheld',  name = 'WEAPON_STUNGUN', price = 300, metadata = { registered = true, serial = 'POL'} },
-			{ category = 'Shotguns',  name = 'WEAPON_PUMPSHOTGUN', price = 600, metadata = { registered = true, serial = 'POL'} },
-			{ lvl = 2, name = 'radio', category = 'handheld', price = 100, metadata = { description = 'pang pakunat' } },
-			{ lvl = 2, name = 'armour', category = 'Tools', price = 100, metadata = { description = 'pang pakunat' } },	
-		}, locations = {
-			vec3(482.58, -995.72, 30.69)
-		}
-	},
+			{ name = 'ammo-9', price = 2, },
+			{ name = 'ammo-rifle', price = 2, },
+			{ name = 'ammo-shotgun', price = 2, },
+			{ name = 'WEAPON_FLASHLIGHT', price = 200 },
+			{ name = 'WEAPON_NIGHTSTICK', price = 100 },
+			{ name = 'WEAPON_PISTOL', price = 500, metadata = { registered = true, serial = 'POL' }, license = 'weapon' },
+			{ name = 'WEAPON_CARBINERIFLE', price = 800, grade = 5, metadata = { registered = true, serial = 'POL' }, license = 'weapon', grade = 3 },
+			{ name = 'WEAPON_STUNGUN', price = 300, metadata = { registered = true, serial = 'POL'} },
+			{ name = 'WEAPON_PUMPSHOTGUN', price = 600, metadata = { registered = true, serial = 'POL'} },
+			{ name = 'WEAPON_COMBATPDW', price = 700, metadata = { registered = true, serial = 'POL'} },
 
-	Pharmacy = {
-		name = 'Medicine Cabinet',
-		groups = 'ambulance',
-		blip = {
-			id = 403, colour = 69, scale = 0.8
-		}, inventory = {
-			{ name = 'firstaid', price = 0 },
-			{ name = 'bandage', price = 0 },
-			{ name = 'painkillers', price = 0},
-		}, locations = {
-			vec3(306.3687, -601.5139, 43.28406)
-		}, targets = {
+			{ lvl = 2, name = 'armour', category = 'Tools', price = 200, metadata = { description = 'pang pakunat' } },
 
+		}, locations = {
+			vec3(454.99395751953,-983.08898925781,30.689611434)
 		}
 	},
 

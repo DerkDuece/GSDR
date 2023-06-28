@@ -1,7 +1,7 @@
 fx_version 'bodacious'
 games { 'gta5' }
 
-version '1.2.0'
+version '1.3.2'
 
 client_scripts {
     'config.lua',
@@ -21,5 +21,6 @@ escrow_ignore {
     'client/editable_client.lua',
     'client/editable_racket.lua',
     'client/blip.lua',
+    'server/racket.lua',
 }
 dependency '/assetpacks'

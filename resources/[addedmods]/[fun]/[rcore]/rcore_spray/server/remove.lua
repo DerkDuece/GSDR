@@ -1,4 +1,4 @@
-if not Framework.STANDALONE then
+if Framework ~= FW_OTHER then
     Citizen.CreateThread(function()
         while not RegisterUsableItem do Wait(100) end
         RegisterUsableItem("spray_remover", function(playerId)
@@ -11,7 +11,7 @@ RegisterNetEvent('rcore_spray:remove')
 AddEventHandler('rcore_spray:remove', function(pos)
     local Source = source
 
-    if Framework.STANDALONE then
+    if Framework == FW_OTHER then
         RemoveSprayAtPosition(Source, pos)
         return
     end

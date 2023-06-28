@@ -3,7 +3,7 @@ game 'gta5'
 
 description 'rcore spray'
 
-version '2.7.1'
+version '2.9.1'
 
 client_scripts {
 	'config.lua',
@@ -20,18 +20,16 @@ client_scripts {
 server_scripts {
 	'config.lua',
 
-	'server/bridge/detector.js',
 	'@mysql-async/lib/MySQL.lua',
 
-	'server/bridge/*.lua',
-
-	'server/mysql/ghmattimysql.lua',
-	'server/mysql/disabledmysql.lua',
-	'server/mysql/oxmysql.lua',
+	'server/framework/*.lua',
+	'server/db/bridge.lua',
 
 	'server/db.lua',
 	'server/server.lua',
 	'server/remove.lua',
+	
+    'object.lua',
 }
 
 lua54 "yes"
@@ -39,8 +37,8 @@ lua54 "yes"
 escrow_ignore {
 	'config.lua',
 
-	'server/bridge/*.lua',
-	'server/mysql/*.lua',
+	'server/framework/*.lua',
+	'server/db/*.lua',
 
 	'server/*.lua',
 

@@ -67,7 +67,7 @@ function HandleHorse(pedCoords, hoopData, groundPedCoords, playerIdx)
         
                     if pathPoints then
                         hoopData.State.Status = STATUS_THROWN
-                        TriggerServerEvent('rcore_basketball:throwBall', pathPoints, scoredTime, {ThrowPos = groundPedCoords})
+                        TriggerServerEvent('rcore_basketball:throwBall', pathPoints, scoredTime or 'nil', {ThrowPos = groundPedCoords})
                         PlayThrowAnim(PlayerPedId(), hoopData.index)
                     end
                 end
@@ -97,7 +97,7 @@ function HandleHorse(pedCoords, hoopData, groundPedCoords, playerIdx)
             
                         if pathPoints then
                             hoopData.State.Status = STATUS_THROWN
-                            TriggerServerEvent('rcore_basketball:throwBall', pathPoints, scoredTime)
+                            TriggerServerEvent('rcore_basketball:throwBall', pathPoints, scoredTime or 'nil')
                             PlayThrowAnim(PlayerPedId(), hoopData.index)
                         end
                     end
@@ -156,7 +156,7 @@ function HandleFreeThrow(pedCoords, hoopData, groundPedCoords, playerIdx)
                     points = 1
                 end
 
-                TriggerServerEvent('rcore_basketball:throwBall', pathPoints, scoredTime, {ThrowPos = groundPedCoords, Points = points})
+                TriggerServerEvent('rcore_basketball:throwBall', pathPoints, scoredTime or 'nil', {ThrowPos = groundPedCoords, Points = points})
                 PlayThrowAnim(PlayerPedId(), hoopData.index)
             end
         end
@@ -207,7 +207,7 @@ function HandleAroundTheWorld(pedCoords, hoopData, groundPedCoords, playerIdx)
 
             if pathPoints then
                 hoopData.State.Status = STATUS_THROWN
-                TriggerServerEvent('rcore_basketball:throwBall', pathPoints, scoredTime)
+                TriggerServerEvent('rcore_basketball:throwBall', pathPoints, scoredTime or 'nil')
                 PlayThrowAnim(PlayerPedId(), hoopData.index)
             end
         end

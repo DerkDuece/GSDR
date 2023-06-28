@@ -18,6 +18,9 @@ return {
 				--[3] = {name = 'cola', price = 80, metadata = {name = 'ecoladiet', thirst = 250000, label = 'Diet Coke', image = 'cola'}}
 			}
 		},
+		blip = {
+			id = 375, colour = 69, scale = 0.6
+		},
 		pos = vec3(-0.7,0.1,-0.6),
 		rot = vec3(-1.5,2.3,-87.199999999999),
 	},

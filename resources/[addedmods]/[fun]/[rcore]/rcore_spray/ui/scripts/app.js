@@ -36,7 +36,7 @@ $(document).ready(function(){
     });
 
     $('.input input').keyup(function() {
-        let text = $(this).val()
+        let text = $(this).val().trim();
 
         if(!text || text.length == 0) {
             $('.graffiti-example').text(defaultGraffiti);
