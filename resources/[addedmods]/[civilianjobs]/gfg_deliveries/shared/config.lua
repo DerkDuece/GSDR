@@ -78,8 +78,8 @@ Config.DeliveryTypes = {
             type = "item",                                      -- Determines the reward type, supported options are "bank" and "item". (Optional)
             itemName = "money",                                 -- Determines the item reward name, only used if 'reward.type' is 'item'. (Optional)
             distanceMultiplier = 0.2,                           -- Determines the distance multiplier. (Optional)
-            boxWorth = 25,                                      -- Determines the value for each package delivered. (Optional)
-            amount = 100                                        -- Determines the value for each stop completed. (Optional)
+            boxWorth = 50,                                      -- Determines the value for each package delivered. (Optional)
+            amount = 150                                        -- Determines the value for each stop completed. (Optional)
         },
         stops = {                                               -- Determines stop variables.
             minAmount = 5,                                      -- Determines the minimum amount of stops.
@@ -116,8 +116,8 @@ Config.DeliveryTypes = {
         },
         reward = {
             distanceMultiplier = 0.2,
-            boxWorth = 35,
-            amount = 125
+            boxWorth = 50,
+            amount = 175
         },
         stops = {
             minAmount = 5,
@@ -158,8 +158,8 @@ Config.DeliveryTypes = {
             amount = 150
         },
         stops = {
-            minAmount = 1,
-            maxAmount = 3,
+            minAmount = 3,
+            maxAmount = 5,
             blip = {
                 color = 2,
             },
@@ -219,8 +219,8 @@ Config.DeliveryTypes = {
             amount = 150
         },
         stops = {
-            minAmount = 1,
-            maxAmount = 3,
+            minAmount = 2,
+            maxAmount = 5,
             blip = {
                 color = 6,
             },

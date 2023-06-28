@@ -87,6 +87,8 @@ end)
 AddEventHandler('playerDropped', function(reason)
     local src = source
     local PlayerData = GetPlayerData(src)
+	if PlayerData == nil then return end -- Player not loaded in correctly and dropped early
+
     local time = os.date("%Y-%m-%d %H:%M:%S")
     local job = PlayerData.job.name
     local firstName = PlayerData.charinfo.firstname:sub(1,1):upper()..PlayerData.charinfo.firstname:sub(2)
@@ -340,7 +342,15 @@ QBCore.Functions.CreateCallback('mdt:server:GetProfileData', function(source, cb
 	local apartmentData = GetPlayerApartment(target.citizenid)
 
 	if Config.UsingDefaultQBApartments and apartmentData then
-		apartmentData = apartmentData[1].label .. ' (' ..apartmentData[1].name..')'
+		if apartmentData[1] then
+			apartmentData = apartmentData[1].label .. ' (' ..apartmentData[1].name..')'
+		else
+			TriggerClientEvent("QBCore:Notify", src, 'The citizen does not have an apartment.', 'error')
+			print('The citizen does not have an apartment. Set Config.UsingDefaultQBApartments to false.')
+		end
+	else
+		TriggerClientEvent("QBCore:Notify", src, 'The citizen does not have an apartment.', 'error')
+		print('The citizen does not have an apartment. Set Config.UsingDefaultQBApartments to false.')
 	end
 
 	local person = {
@@ -1374,12 +1384,15 @@ end)
 
 RegisterNetEvent('mdt:server:callAttach', function(callid)
 	local src = source
+	local plyState = Player(source).state
+	local Radio = plyState.radioChannel or 0
 	local Player = QBCore.Functions.GetPlayer(src)
 	local playerdata = {
 		fullname = Player.PlayerData.charinfo.firstname.. " "..Player.PlayerData.charinfo.lastname,
 		job = Player.PlayerData.job,
 		cid = Player.PlayerData.citizenid,
-		callsign = Player.PlayerData.metadata.callsign
+		callsign = Player.PlayerData.metadata.callsign,
+		radio = Radio
 	}
 	local JobType = GetJobType(Player.PlayerData.job.name)
 	if JobType == 'police' or JobType == 'ambulance' then
@@ -1755,7 +1768,10 @@ local function giveCitationItem(src, citizenId, fine, incidentId)
 		officer = OfficerFullName,
 	}
 	Player.Functions.AddItem('mdtcitation', 1, false, info)
-	TriggerClientEvent('QBCore:Notify', src, PlayerName.." received a citation!")
+	TriggerClientEvent('QBCore:Notify', src, PlayerName.." (" ..citizenId.. ") received a citation!")
+	if Config.QBManagementUse then 
+		exports['qb-management']:AddMoney(Officer.PlayerData.job.name, fine) 
+	end
 	TriggerClientEvent('inventory:client:ItemBox', Player.PlayerData.source, QBCore.Shared.Items['mdtcitation'], "add")
 	TriggerEvent('mdt:server:AddLog', "A Fine was writen by "..OfficerFullName.." and was sent to "..PlayerName..", the Amount was $".. fine ..". (ID: "..incidentId.. ")")
 end
