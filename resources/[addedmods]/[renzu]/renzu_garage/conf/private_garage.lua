@@ -1,5 +1,5 @@
 -- PRIVATE GARAGE CONFIG
-Config.Private_Garage = true -- Enable Private Garage system
+Config.Private_Garage = false -- Enable Private Garage system
 Config.Allowednotowned = true -- allowed non owned vehicle to be stored... ex. stolen cars?
 Config.GiveAccessCommand = 'giveaccess' -- command to give temporary access to your vehicle private garage : Usage: /giveaccess IDPLAYER (you must use this when you are inside your private garage)
 
