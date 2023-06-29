@@ -193,14 +193,9 @@ garagecoord = {
         spawn_z = 28.840564727783,
         heading = 85.93824005127,
         default_vehicle = { -- the vehicle listed here is like a goverment property and can be used for patrol etc. (this can be used in other garage, public or other job garage)
-            [1] = {model = 'police', name = 'Crown Vic', type = 'car', grade = 1, plateprefix = 'LSPD'}, -- minimum grade
-            [2] = {model = 'police3', name = 'Taurus', type = 'car', grade = 1, plateprefix = 'LSPD'}, -- minimum grade
-            [3] = {model = 'police4', name = 'Unmarked Stanier', type = 'car', grade = 3, plateprefix = 'LSPD'}, -- minimum grade
-            [4] = {model = 'char', name = '2018 Charger', type = 'car', grade = 3, plateprefix = 'LSPD'},
-            [5] = {model = 'poldemonrb', name = '2018 Dodge Demon', type = 'car', grade = 4, plateprefix = 'LSPD'},
-            [6] = {model = 'zr1rb', name = '2018 Corvette', type = 'car', grade = 4, plateprefix = 'LSPD'},
-            [7] = {model = 'mach1rb', name = '2021 Mustang', type = 'car', grade = 4, plateprefix = 'LSPD'},
-            [8] = {model = 'explorer', name = 'Explorer', type = 'car', grade = 1, plateprefix = 'LSPD'},
+            [1] = {model = 'police', name = 'Police', type = 'car', grade = 1, plateprefix = 'LSPD'}, -- minimum grade
+            [2] = {model = 'police2', name = 'Police 2', type = 'car', grade = 1, plateprefix = 'LSPD'}, -- minimum grade
+            [3] = {model = 'police3', name = 'Police 3', type = 'car', grade = 1, plateprefix = 'LSPD'}, -- minimum grade
         },
         spawns = {
             [1] = vector4(446.27514648438,-1025.2941894531,28.239305496216,5.9499230384827),
@@ -264,8 +259,8 @@ garagecoord = {
         heading = 82.327735900879,
         default_vehicle = { -- the vehicle listed here is like a goverment property and can be used for patrol etc. (this can be used in other garage, public or other job garage)
             [1] = {model = 'ambulance', name = 'Ambulance', type = 'car', grade = 1, plateprefix = 'HP'}, -- minimum grade
-            [2] = {model = 'ambulance2', name = 'Ambulance', type = 'car', grade = 1, plateprefix = 'HP'}, -- minimum grade
-            [3] = {model = 'emsstalker', name = 'Supervisor', type = 'car', grade = 7, plateprefix = 'HP'}, -- minimum grade
+            [2] = {model = 'gauntlet', name = 'Gauntlet', type = 'car', grade = 1, plateprefix = 'HP'}, -- minimum grade
+            [3] = {model = 'double', name = 'Double', type = 'car', grade = 1, plateprefix = 'HP'}, -- minimum grade
         },
         spawns = {
             [1] = vector4(296.26379394531,-604.16204833984,43.097145080566,70.580841064453),

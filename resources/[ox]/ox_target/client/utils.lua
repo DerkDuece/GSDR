@@ -102,27 +102,10 @@ function utils.hasExport(export)
     end)
 end
 
-local playerItems
+local playerItems = {}
 
 function utils.getItems()
-    if not playerItems then
-        playerItems = {}
-    end
-
     return playerItems
-end
-
-if utils.hasExport('ox_inventory.Items') then
-    playerItems = setmetatable({}, {
-        __index = function(self, index)
-            self[index] = exports.ox_inventory:Search('count', index) or 0
-            return self[index]
-        end
-    })
-
-    AddEventHandler('ox_inventory:itemCount', function(name, count)
-        playerItems[name] = count
-    end)
 end
 
 ---@param filter string | string[] | table<string, number>
@@ -170,5 +153,28 @@ end
 function utils.hasPlayerGotGroup(filter)
     return true
 end
+
+SetTimeout(0, function()
+    if utils.hasExport('ox_inventory.Items') then
+        setmetatable(playerItems, {
+            __index = function(self, index)
+                self[index] = exports.ox_inventory:Search('count', index) or 0
+                return self[index]
+            end
+        })
+
+        AddEventHandler('ox_inventory:itemCount', function(name, count)
+            playerItems[name] = count
+        end)
+    end
+
+    if utils.hasExport('ox_core.GetPlayerData') then
+        require 'client.framework.ox'
+    elseif utils.hasExport('es_extended.getSharedObject') then
+        require 'client.framework.esx'
+    elseif utils.hasExport('qb-core.GetCoreObject') then
+        require 'client.framework.qb'
+    end
+end)
 
 return utils

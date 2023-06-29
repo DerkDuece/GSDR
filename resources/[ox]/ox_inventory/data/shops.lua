@@ -7,7 +7,7 @@
 ---@field inventory { name: string, price: number, count?: number, currency?: string }
 ---@field locations? vector3[]
 ---@field targets? { loc: vector3, length: number, width: number, heading: number, minZ: number, maxZ: number, distance: number, debug?: boolean, drawSprite?: boolean }[]
----@field groups? string | string[] | { [string]: number }
+---@field groups? string | string[] | table<string, number>
 ---@field model? number[]
 
 return {
@@ -139,7 +139,7 @@ return {
 	Medicine = {
 		name = 'Medicine Cabinet',
 		groups = {
-			['ambulance'] = 1
+			['ambulance'] = 0
 		},
 		blip = {
 			id = 403, colour = 69, scale = 0.8
@@ -177,16 +177,5 @@ return {
 		model = {
 			`prop_vend_soda_02`, `prop_vend_fridge01`, `prop_vend_water_01`, `prop_vend_soda_01`
 		}
-	},
-	DenaliGym = {
-		name = 'Gym Membership',
-		inventory = {
-			{ name = 'gym_membership', price = 500},
-			{ name = 'water_bottle'}
-		}, locations = {
-			vec3(-1255.53, -354.77, 36.96)
-		}, targets = {
-			
-		}
-	},
+	}
 }

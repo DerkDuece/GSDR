@@ -69,7 +69,7 @@ exports('setPlayerInventory', server.setPlayerInventory)
 AddEventHandler('ox_inventory:setPlayerInventory', server.setPlayerInventory)
 
 ---@param playerPed number
----@param coordinates vector3|table[]
+---@param coordinates vector3|vector3[]
 ---@param distance? number
 ---@return vector3|false
 local function getClosestStashCoords(playerPed, coordinates, distance)
@@ -79,7 +79,7 @@ local function getClosestStashCoords(playerPed, coordinates, distance)
 
 	if type(coordinates) == 'table' then
 		for i = 1, #coordinates do
-			local coords = coordinates[i]
+			local coords = coordinates[i] --[[@as vector3]]
 
 			if #(coords - playerCoords) < distance then
 				return coords
@@ -206,6 +206,13 @@ lib.callback.register('ox_inventory:openInventory', function(source, invType, da
 	return openInventory(source, invType, data)
 end)
 
+---@param netId number
+lib.callback.register('ox_inventory:isVehicleATrailer', function(source, netId)
+	local entity = NetworkGetEntityFromNetworkId(netId)
+	local retval = GetVehicleType(entity)
+	return retval == 'trailer'
+end)
+
 ---@param playerId number
 ---@param invType string
 ---@param data string|number|table
@@ -298,9 +305,7 @@ lib.callback.register('ox_inventory:useItem', function(source, itemName, slot, m
 		if item and data and data.count > 0 and data.name == item.name then
 			data = {name=data.name, label=label, count=data.count, slot=slot, metadata=data.metadata}
 
-			if item.weapon then
-				inventory.weapon = inventory.weapon ~= slot and slot or nil
-			elseif item.ammo then
+			if item.ammo then
 				if inventory.weapon then
 					local weapon = inventory.items[inventory.weapon]
 
@@ -323,7 +328,7 @@ lib.callback.register('ox_inventory:useItem', function(source, itemName, slot, m
 				else
 					return TriggerClientEvent('ox_lib:notify', source, { type = 'error', description = locale('item_not_enough', item.name) })
 				end
-			elseif server.UseItem then
+			elseif not item.weapon and server.UseItem then
 				-- This is used to call an external useItem function, i.e. ESX.UseItem / QBCore.Functions.CanUseItem
 				-- If an error is being thrown on item use there is no internal solution. We previously kept a list
 				-- of usable items which led to issues when restarting resources (for obvious reasons), but config
@@ -335,6 +340,10 @@ lib.callback.register('ox_inventory:useItem', function(source, itemName, slot, m
 			data.consume = consume
 
 			local success = lib.callback.await('ox_inventory:usingItem', source, data)
+
+			if item.weapon then
+				inventory.weapon = success and slot or nil
+			end
 
 			if not success then return end
 
