@@ -173,7 +173,7 @@ Framework = {
     -- 3 = Standalone (⚠️ check https://documentation.rcore.cz/paid-resources/rcore_casino/standalone-version)
     -- 4 = Custom (⚠️ check https://documentation.rcore.cz/paid-resources/rcore_casino/custom-framework)
 
-    Active = 1,
+    Active = 2,
     -- Please follow the installation tutorial: --
     -- https://documentation.rcore.cz/paid-resources/rcore_casino
 
