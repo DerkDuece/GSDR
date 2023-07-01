@@ -13,7 +13,7 @@ Config = {
 
 	AllowWager = true,
 
-	OxInventory = false,
+	OxInventory = true,
 
 	HorseLetters = {'H', 'O', 'R', 'S', 'E'},
 
@@ -194,6 +194,7 @@ BasketballHoops = {
 		threePointFwdDist = 0.2,
 		threePointSideDist = 0.12,
 		threePointRadius = 4.35,
+		hideBlip = true,
 	},
 	{
 		pos = vector3(1239.038, -1636.49, 51.02588), 
@@ -204,6 +205,7 @@ BasketballHoops = {
 		threePointFwdDist = 0.0,
 		threePointSideDist = 0.0,
 		threePointRadius = 30.35,
+		hideBlip = true,
 	},
 	{
 		pos = vector3(-213.765, -1523.489, 30.60864), 
@@ -214,6 +216,7 @@ BasketballHoops = {
 		threePointFwdDist = 0.0,
 		threePointSideDist = 0.0,
 		threePointRadius = 5.95,
+		hideBlip = true,
 	},
 	{
 		pos = vector3(-232.5229, -1545.844, 30.60864), 
@@ -257,6 +260,7 @@ BasketballHoops = {
 		threePointFwdDist = 0.0,
 		threePointSideDist = 0.0,
 		threePointRadius = 6.0,
+		hideBlip = true,
 	},
 	{
 		pos = vector3(-931.7396, -711.652, 18.91345), 
