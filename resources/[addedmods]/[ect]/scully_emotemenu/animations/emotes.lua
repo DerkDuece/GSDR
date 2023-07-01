@@ -1,5 +1,4 @@
-AnimationList = {}
-AnimationList.Emotes = {
+return {
     {
         Label = 'Adjust',
         Command = 'adjust',
@@ -5166,7 +5165,7 @@ AnimationList.Emotes = {
     {
         Label = 'Zombie Crawl',
         Command = 'zombiecrawl',
-        Animation = 'crawl_0-2',
+        Animation = 'crawl_01',
         Dictionary = 'zombies_animations',
         Options = {
             Flags = {

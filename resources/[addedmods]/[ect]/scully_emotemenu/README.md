@@ -17,6 +17,8 @@ For support join my discord here: https://discord.gg/scully
 
 # Features
 
+- Over 20 translations
+
 - Search option
 
 - Custom animations
@@ -53,26 +55,31 @@ For support join my discord here: https://discord.gg/scully
 
 - Ability to make certain synchronized emotes skip the request
 
+- Ability to add walk styles and expressions to your radial menu
+
+- Prop extractor for anticheat systems
+
 # Exports
 
 | Export Name | Parameter(s) | Type | Description |
 | ------------- | ------------- | ------------- | ------------- |
-| [ToggleMenu](docs/exports/client/ToggleMenu.md) | None | Client | Toggle the animation menu |
-| [CloseMenu](docs/exports/client/CloseMenu.md) | None | Client | Close the animation menu |
-| [GetCurrentExpression](docs/exports/client/GetCurrentExpression.md) | None | Client | Get the players current expression |
-| [SetExpression](docs/exports/client/SetExpression.md) | String (Expression Name) | Client | Set the players expression |
-| [ResetExpression](docs/exports/client/ResetExpression.md) | None | Client | Reset the players expression to default |
-| [GetCurrentWalk](docs/exports/client/GetCurrentWalk.md) | None | Client | Get the players current walk style |
-| [SetWalk](docs/exports/client/SetWalk.md) | String (Walk Name) | Client | Set the players walk style |
-| [ResetWalk](docs/exports/client/ResetWalk.md) | None | Client | Reset the players walk style to default |
-| [IsInAnimation](docs/exports/client/IsInAnimation.md) | None | Client | Check if the player is currently playing an animation |
-| [RegisterEmote](docs/exports/client/RegisterEmote.md) | Table (Emote Data) | Client | Register an animation from an external resource |
-| [PlayRegisteredEmote](docs/exports/client/PlayRegisteredEmote.md) | String (Emote Name) | Client | Play a registered animation |
-| [Play](docs/exports/client/Play.md) | Table (Emote Data), Number (Variant) | Client | Play an animation |
-| [PlayByCommand](docs/exports/client/PlayByCommand.md) | String (Emote Command), Number (Variant) | Client | Play an animation using the command |
-| [CancelAnimation](docs/exports/client/CancelAnimation.md) | None | Client | Stop playing an animation |
-| [IsLimited](docs/exports/client/IsLimited.md) | None | Client | Check if the player is currently limited |
-| [ToggleLimitation](docs/exports/client/ToggleLimitation.md) | Boolean (Limited) | Client | Toggle player limitations |
+| [toggleMenu](docs/exports/client/toggleMenu.md) | None | Client | Toggle the emote menu |
+| [closeMenu](docs/exports/client/closeMenu.md) | None | Client | Close the emote menu |
+| [getCurrentExpression](docs/exports/client/getCurrentExpression.md) | None | Client | Get the players current expression |
+| [setExpression](docs/exports/client/setExpression.md) | String (Expression Name) | Client | Set the players expression |
+| [resetExpression](docs/exports/client/resetExpression.md) | None | Client | Reset the players expression to default |
+| [getCurrentWalk](docs/exports/client/getCurrentWalk.md) | None | Client | Get the players current walk style |
+| [setWalk](docs/exports/client/setWalk.md) | String (Walk Name) | Client | Set the players walk style |
+| [resetWalk](docs/exports/client/resetWalk.md) | None | Client | Reset the players walk style to default |
+| [isInEmote](docs/exports/client/isInEmote.md) | None | Client | Check if the player is currently playing an animation |
+| [getLastEmote](docs/exports/client/getLastEmote.md) | None | Client | Get the emote a player last used |
+| [registerEmote](docs/exports/client/registerEmote.md) | Table (Emote Data) | Client | Register an animation from an external resource |
+| [playRegisteredEmote](docs/exports/client/playRegisteredEmote.md) | String (Emote Name) | Client | Play a registered animation |
+| [playEmote](docs/exports/client/playEmote.md) | Table (Emote Data), Number (Variant) | Client | Play an animation |
+| [playEmoteByCommand](docs/exports/client/playEmoteByCommand.md) | String (Emote Command), Number (Variant) | Client | Play an animation using the command |
+| [cancelEmote](docs/exports/client/cancelEmote.md) | None | Client | Stop playing an animation |
+| [isLimited](docs/exports/client/isLimited.md) | None | Client | Check if the player is currently limited |
+| [setLimitation](docs/exports/client/setLimitation.md) | Boolean (Limited) | Client | Toggle player limitations |
 
 # Events
 
@@ -100,6 +107,10 @@ By default the configured keybinds in the *initial* config.lua will be the defau
 # Emote Binds
 
 To use emote binds you need to have the `EnableEmoteBinds` option enabled in the config.lua, this will allow your players to bind emotes by opening the keybinds sub menu. Each option within the sub menu is binded to a key within `Esc > settings > keybinds > fivem` that your players can change to their own preferred keys to play emotes.
+
+# Prop Extractor
+
+We've addressed concerns about anticheat scripts causing unintended bans or kicks by introducing a prop extractor config option. This automates the creation of a `prop_dump.lua` file in the resource folder, making it easier for server owners to manage props and mitigate false positives in the anticheat system. This enhancement aims to create a more secure and fair gaming environment for community members.
 
 # Additional Animation Options
 
@@ -175,7 +186,7 @@ To use emote binds you need to have the `EnableEmoteBinds` option enabled in the
 
 # Disclaimer & Credits
 
-All custom animations were added with permission from the creators. Credit to the following people for their animations / props and Dulpear for providing the original project that this is based on:
+All custom animations were added with permission from the creators. Credit to the following people for their animations / props and Dulpear for providing the original project that this is inspired by:
 
 - [Dullpear_dev](https://forum.cfx.re/u/dullpear_dev/summary)
 
@@ -216,5 +227,3 @@ All custom animations were added with permission from the creators. Credit to th
 - [Pupppy](https://discord.gg/3fUwtQW54b)
 
 - [QueenSisters](https://www.gta5-mods.com/users/Queens%20Sister)
-
-- [TayMcKenzieNZ](https://forum.cfx.re/u/taymckenzienz/summary)
