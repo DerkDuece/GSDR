@@ -43,7 +43,7 @@ Config.PoliceStation = {
 		pos = vector3(440.8360, -982.6481, 30.6896),
 	},
 	armory = {
-		pedPos = vector4(480.43, -996.74, 30.69, 90.75),
+		pedPos = vector4(480.43, -996.74, 28.69, 90.75),
 		playerPos = vector4(479.15, -996.66, 30.69, 254.9),
 		model = 's_m_y_cop_01',
 		storage = {
@@ -85,7 +85,7 @@ Config.PoliceStation = {
 	},
 	garage = {
 		['police_garage_1'] = {
-			pedPos = vector4(441.02, -974.92, 25.7, 179.7),
+			pedPos = vector4(441.02, -974.92, 23.7, 179.7),
 			model = 'mp_m_weapexp_01',
 			spawn = vector4(450.4673, -1019.8383, 28.4502, 90.0492),
 			deposit = vector3(450.4673, -1019.8383, 28.4502),
@@ -148,7 +148,7 @@ Config.PoliceStation = {
 	},
 	clothes = {
 		enable = true,
-		pos = vector4(463.7, -996.58, 30.69, 91.22),
+		pos = vector4(463.7, -996.58, 28.69, 91.22),
 		model = 'a_f_m_bevhills_01',
 		male = {
 			[1] = {
