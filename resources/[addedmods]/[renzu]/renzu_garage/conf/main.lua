@@ -74,7 +74,7 @@ Config.GarageKeysCommand = 'garagekeys' -- command to call garagekeys UI
 
 -- Vehicle Keys --
 Config.VehicleKeysCommand = 'vehiclekeys' -- command to call vehiclekeys ui
-Config.EnableKeySystem = true -- Main Key System Config, if this is disable , a lot of feature of lock and hotwire will not work
+Config.EnableKeySystem = false -- Main Key System Config, if this is disable , a lot of feature of lock and hotwire will not work
 Config.LockAllLocalVehicle = true -- lock all vehicles in area if not unlocked state (This are not looped, its being locked only when you Press F) (if you are using F Keybind in other script, this might not work properly) ex. in renzu_hud, F is being used, you may need to disable it there.
 Config.LockParkedLocalVehiclesOnly = true -- if this is true and Config.LockAllLocalVehicle is true, its useless, this is useful if Config.LockAllLocalVehicle is false and this is true
 Config.EnableLockpick = true -- enable lock pick item and command function
