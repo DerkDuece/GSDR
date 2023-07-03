@@ -1835,7 +1835,9 @@ QBShared.Items = {
 	['hammerhead']		             = {['name'] = 'hammerhead', 		 	['label'] = 'Hammerhead',		        ['weight'] = 600, 		['type'] = 'item',		['image'] = 'hammerhead.png',	      ['unique'] = false, 		['useable'] = false, 	['description'] = ''},
 	['greatwhite']        	         = {['name'] = 'greatwhite', 		 	['label'] = 'Great White',		        ['weight'] = 600, 		['type'] = 'item',		['image'] = 'greatwhite.png',	      ['unique'] = false, 		['useable'] = false, 	['description'] = ''},
 
-
+	["lawnmower"] 					= {["name"] = "lawnmower",  	     		        ["label"] = "Lawnmower",	 		    ["weight"] = 1, 		["type"] = "item", 		["image"] = "lawnmower.png", 				["unique"] = false, 	    ["useable"] = true, 	["shouldClose"] = true,   	["combinable"] = nil,   ["description"] = ""},
+	["leafblower"] 					= {["name"] = "leafblower",  	     		    ["label"] = "Leafblower",	 		    ["weight"] = 1, 		["type"] = "item", 		["image"] = "leafblower.png", 				["unique"] = false, 	    ["useable"] = true, 	["shouldClose"] = true,   	["combinable"] = nil,   ["description"] = ""},
+	["garden_pitcher"] 				= {["name"] = "garden_pitcher",  	     		        ["label"] = "Garden Pitcher",	 		    ["weight"] = 1, 		["type"] = "item", 		["image"] = "garden_pitcher.png", 				["unique"] = false, 	    ["useable"] = true, 	["shouldClose"] = true,   	["combinable"] = nil,   ["description"] = ""},
 
 }
 		
