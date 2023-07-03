@@ -9,7 +9,13 @@ Config.AFK = {
         ['admin'] = true,
         ['god'] = true
     },
-    secondsUntilKick = 1800 -- AFK Kick Time Limit (in seconds)
+    secondsUntilKick = 1800, -- AFK Kick Time Limit (in seconds)
+    kickInCharMenu = false -- Set to true if you want to kick players for being AFK even when they are in the character menu.
+}
+
+Config.HandsUp = {
+    command = 'hu',
+    keybind = 'X',
 }
 
 Config.Binoculars = {
@@ -80,6 +86,8 @@ Config.Stun = {
     max = 7000
 }
 
+Config.RemovePistolWhipping = true  -- Removes Pistol Whipping
+
 Config.Cruise = 'mp/h'
 Config.IdleCamera = true
 Config.disableHandsupControls = {24, 25, 47, 58, 59, 63, 64, 71, 72, 75, 140, 141, 142, 143, 257, 263, 264}
@@ -101,26 +109,12 @@ Config.ConsumablesEat = {
     ["tosti"] = math.random(40, 50),
     ["twerks_candy"] = math.random(35, 54),
     ["snikkel_candy"] = math.random(40, 50),
-
-    -- Burgershot 
-
-	["burger-bleeder"] = math.random(35, 54),
-	["burger-moneyshot"] = math.random(35, 54),
-	["burger-torpedo"] = math.random(35, 54),
-	["burger-heartstopper"] = math.random(35, 54),
-	["burger-meatfree"] = math.random(35, 54),
-	["burger-fries"] = math.random(35, 54),
-    
 }
 
 Config.ConsumablesDrink = {
     ["water_bottle"] = math.random(35, 54),
     ["kurkakola"] = math.random(35, 54),
     ["coffee"] = math.random(40, 50),
-	-- Burgershot 
-
-	["burger-softdrink"] = math.random(40, 50),
-	["burger-mshake"] = math.random(40, 50),
 }
 
 Config.ConsumablesAlcohol = {
@@ -151,7 +145,7 @@ Config.ConsumablesCustom = {
     --     },
     --     ['replenish'] = {
     --         type = 'Hunger', -- replenish type 'Hunger'/'Thirst' / false
-    --         replenish = math.random(20, 40), 
+    --         replenish = math.random(20, 40),
     --         isAlcohol = false, -- if you want it to add alcohol count
     --         event = false, -- 'eventname' if you want it to trigger an outside event on use useful for drugs
     --         server = false -- if the event above is a server event
@@ -186,53 +180,57 @@ Config.BlacklistedScenarios = {
 }
 
 Config.BlacklistedVehs = {
-    [`SHAMAL`] = false,
-    [`LUXOR`] = false,
-    [`LUXOR2`] = false,
-    [`JET`] = false,
-    [`LAZER`] = false,
-    [`BUZZARD`] = false,
-    [`BUZZARD2`] = false,
-    [`ANNIHILATOR`] = false,
-    [`SAVAGE`] = false,
-    [`TITAN`] = false,
-    [`RHINO`] = false,
-    [`FIRETRUK`] = false,
-    [`MULE`] = false,
-    [`MAVERICK`] = false,
-    [`BLIMP`] = false,
-    [`AIRTUG`] = false,
-    [`CAMPER`] = false,
-    [`HYDRA`] = false,
-    [`OPPRESSOR`] = false,
-    [`technical3`] = false,
-    [`insurgent3`] = false,
-    [`apc`] = false,
-    [`tampa3`] = false,
-    [`trailersmall2`] = false,
-    [`halftrack`] = false,
-    [`hunter`] = false,
-    [`vigilante`] = false,
-    [`akula`] = false,
-    [`barrage`] = false,
-    [`khanjali`] = false,
-    [`caracara`] = false,
-    [`blimp3`] = false,
-    [`menacer`] = false,
-    [`oppressor2`] = false,
-    [`scramjet`] = false,
-    [`strikeforce`] = false,
-    [`cerberus`] = false,
-    [`cerberus2`] = false,
-    [`cerberus3`] = false,
-    [`scarab`] = false,
-    [`scarab2`] = false,
-    [`scarab3`] = false,
-    [`rrocket`] = false,
-    [`ruiner2`] = false,
-    [`deluxo`] = false,
-    [`cargoplane2`] = false,
-    [`voltic2`] = false,
+    [`SHAMAL`] = true,
+    [`LUXOR`] = true,
+    [`LUXOR2`] = true,
+    [`JET`] = true,
+    [`LAZER`] = true,
+    [`BUZZARD`] = true,
+    [`BUZZARD2`] = true,
+    [`ANNIHILATOR`] = true,
+    [`SAVAGE`] = true,
+    [`TITAN`] = true,
+    [`RHINO`] = true,
+    [`FIRETRUK`] = true,
+    [`MULE`] = true,
+    [`MAVERICK`] = true,
+    [`BLIMP`] = true,
+    [`AIRTUG`] = true,
+    [`CAMPER`] = true,
+    [`HYDRA`] = true,
+    [`OPPRESSOR`] = true,
+    [`technical3`] = true,
+    [`insurgent3`] = true,
+    [`apc`] = true,
+    [`tampa3`] = true,
+    [`trailersmall2`] = true,
+    [`halftrack`] = true,
+    [`hunter`] = true,
+    [`vigilante`] = true,
+    [`akula`] = true,
+    [`barrage`] = true,
+    [`khanjali`] = true,
+    [`caracara`] = true,
+    [`blimp3`] = true,
+    [`menacer`] = true,
+    [`oppressor2`] = true,
+    [`scramjet`] = true,
+    [`strikeforce`] = true,
+    [`cerberus`] = true,
+    [`cerberus2`] = true,
+    [`cerberus3`] = true,
+    [`scarab`] = true,
+    [`scarab2`] = true,
+    [`scarab3`] = true,
+    [`rrocket`] = true,
+    [`ruiner2`] = true,
+    [`deluxo`] = true,
+    [`cargoplane2`] = true,
+    [`voltic2`] = true,
+}
+
+Config.BlacklistedWeapons = {
+    [`WEAPON_RAILGUN`] = true,
 }
 
 Config.BlacklistedPeds = {
@@ -244,6 +242,7 @@ Config.BlacklistedPeds = {
     [`s_m_y_hwaycop_01`] = true,
 }
 
+Config.DisableVestDrawable = false -- Set to TRUE to disable the vest equipped when using heavy armor.
 Config.HolsterVariant = {130,122,3,6,8}
 Config.HolsterableWeapons = {
     --'WEAPON_STUNGUN',
@@ -288,7 +287,7 @@ Config.Teleports = {
             ["AllowVehicle"] = false,
             label = false
         },
-        -- [3] = { 
+        -- [3] = {
         --     ['poly'] = {
         --         coords = vector3(0.0, 0.0, 0.0),
         --         heading = 0.0,

@@ -1,18 +1,58 @@
 Config = {}
 
+Config.PoliceOnDutyRequired = 2 -- amount of police required to be on duty to rob a house
+
+Config.LimitTime = true -- Use in-game clock hours to set the time the houses can be robbed
+Config.MinimumTime = 6 -- only needed if LimitTime is true
+Config.MaximumTime = 22 -- only needed if LimitTime is true
+
+Config.TimeToCloseDoors = 25 -- in minutes (only start counting after one person enters the house)
+
+Config.RequireScrewdriver = true -- if true, you need a screwdriver to rob a house when not using advanced lockpick
+
+Config.ChanceToBreakLockPick = 30 -- chance in percent to break a normal lockpick if failed
+Config.ChanceToBreakAdvancedLockPick = 15 -- chance in percent to break a advanced lockpick if failed
+
+Config.ChanceToAlertPolice = 20 -- chance in percent to call the police if a house robbery is in progress
+
 Config.MinZOffset = 45
 
-Config.MinimumHouseRobberyPolice = 2
-
-Config.MinimumTime = 5
-Config.MaximumTime = 22
-
 Config.Rewards = {
-    [1] = {
-        ["cabin"] = {"diamond_ring", "hydrochloric_acid", "sulfuric_acid", "sodium_hydroxide", "goldchain", "weed_skunk", "thermite", "weapon_golfclub"},
-        ["kitchen"] = {"tosti", "hydrochloric_acid", "meth", "sulfuric_acid", "sodium_hydroxide", "sandwich", "goldchain"},
-        ["chest"] = {"rolex", "diamond_ring", "goldchain", "weed_skunk", "thermite", "weedkey", "cocainekey", "methkey", "coke_small_brick", "weapon_combatpistol"},
-        ["livingroom"] = {"rolex", "diamond_ring", "goldchain", "thermite", "tablet", "weedkey", "cocainekey", "methkey", "coke_small_brick", "pistol_ammo"}
+    [1] = { -- house tier
+        ["cabin"] = {
+            {item = "plastic", min = 1, max = 3},
+            {item = "diamond_ring", min = 1, max = 1},
+            {item = "goldchain", min = 1, max = 1},
+            {item = "weed_skunk", min = 1, max = 3},
+            {item = "thermite", min = 1, max = 1},
+            {item = "cryptostick", min = 1, max = 1},
+            {item = "weapon_golfclub", min = 1, max = 1},
+        },
+        ["kitchen"] = {
+            {item = "tosti", min = 1, max = 3},
+            {item = "sandwich", min = 1, max = 2},
+            {item = "goldchain", min = 1, max = 1}
+        },
+        ["chest"] = {
+            {item = "plastic", min = 1, max = 4},
+            {item = "rolex", min = 1, max = 2},
+            {item = "diamond_ring", min = 1, max = 1},
+            {item = "goldchain", min = 1, max = 1},
+            {item = "weed_skunk", min = 1, max = 5},
+            {item = "thermite", min = 1, max = 1},
+            {item = "cryptostick", min = 1, max = 1},
+            {item = "weapon_combatpistol", min = 1, max = 1}
+        },
+        ["livingroom"] = {
+            {item = "plastic", min = 1, max = 4},
+            {item = "rolex", min = 1, max = 1},
+            {item = "diamond_ring", min = 1, max = 1},
+            {item = "goldchain", min = 1, max = 1},
+            {item = "thermite", min = 1, max = 1},
+            {item = "cryptostick", min = 1, max = 1},
+            {item = "tablet", min = 1, max = 1},
+            {item = "pistol_ammo", min = 1, max = 3}
+        }
     }
 }
 
@@ -4857,10 +4897,10 @@ Config.Houses = {
     },
 }
 
-Config.MaleNoHandshoes = {
+Config.MaleNoGloves = {
     [0] = true, [1] = true, [2] = true, [3] = true, [4] = true, [5] = true, [6] = true, [7] = true, [8] = true, [9] = true, [10] = true, [11] = true, [12] = true, [13] = true, [14] = true, [15] = true, [16] = true, [18] = true, [26] = true, [52] = true, [53] = true, [54] = true, [55] = true, [56] = true, [57] = true, [58] = true, [59] = true, [60] = true, [61] = true, [62] = true, [112] = true, [113] = true, [114] = true, [118] = true, [125] = true, [132] = true
 }
 
-Config.FemaleNoHandshoes = {
+Config.FemaleNoGloves = {
     [0] = true, [1] = true, [2] = true, [3] = true, [4] = true, [5] = true, [6] = true, [7] = true, [8] = true, [9] = true, [10] = true, [11] = true, [12] = true, [13] = true, [14] = true, [15] = true, [19] = true, [59] = true, [60] = true, [61] = true, [62] = true, [63] = true, [64] = true, [65] = true, [66] = true, [67] = true, [68] = true, [69] = true, [70] = true, [71] = true, [129] = true, [130] = true, [131] = true, [135] = true, [142] = true, [149] = true, [153] = true, [157] = true, [161] = true, [165] = true
 }
