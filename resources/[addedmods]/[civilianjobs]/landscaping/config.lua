@@ -40,7 +40,7 @@ Config.Default = {
 
 Config.GiveKeys = function(vehicle)
     local plate = GetVehicleNumberPlateText(vehicle)
-    -- Replace this line with your export / event to give keys for your vehicle.
+    TriggerServerEvent('qb-vehiclekeys:server:AcquireVehicleKeys', plate)
 end
 
 Config.Lawnmower = {
