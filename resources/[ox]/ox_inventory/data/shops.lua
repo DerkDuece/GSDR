@@ -139,7 +139,7 @@ return {
 			{ name = 'WEAPON_SNIPERRIFLE', price = 500, metadata = {registered = true, serial = 'POL'}, grade = 6},
 			{ name = 'WEAPON_SMG', price = 500, metadata = {registered = true, serial = 'POL'}, grade = 6}
 		}, locations = {
-			vec3(451.51, -979.44, 30.68)
+			vec3(482.47, -995.6, 30.69)
 		}, targets = {
 			{ loc = vec3(453.21, -980.03, 30.68), length = 0.5, width = 3.0, heading = 270.0, minZ = 30.5, maxZ = 32.0, distance = 6 }
 		}
@@ -169,11 +169,22 @@ return {
 	BlackMarketArms = {
 		name = 'Black Market (Arms)',
 		inventory = {
-			{ name = 'WEAPON_DAGGER', price = 5000, metadata = { registered = false	}, currency = 'black_money' },
-			{ name = 'WEAPON_CERAMICPISTOL', price = 50000, metadata = { registered = false }, currency = 'black_money' },
-			{ name = 'at_suppressor_light', price = 50000, currency = 'black_money' },
-			{ name = 'ammo-rifle', price = 1000, currency = 'black_money' },
-			{ name = 'ammo-rifle2', price = 1000, currency = 'black_money' }
+            { name = 'weapon_switchblade', price = 1500, metadata = { registered = false    }, currency = 'black_money', quantity = 5},
+            { name = 'weapon_battleaxe', price = 4000, metadata = { registered = false    }, currency = 'black_money', quantity = 5},
+            { name = 'weapon_knuckle', price = 5000, metadata = { registered = false    }, currency = 'black_money', quantity = 3},
+            { name = 'weapon_microsmg', price = 7500, metadata = { registered = false    }, currency = 'black_money', quantity = 3},
+            { name = 'weapon_machinepistol', price = 6000, metadata = { registered = false    }, currency = 'black_money', quantity = 5},
+            { name = 'weapon_sawnoffshotgun', price = 10000, metadata = { registered = false    }, currency = 'black_money', quantity = 5},
+            { name = 'weapon_revolver_mk2', price = 7000, metadata = { registered = false    }, currency = 'black_money', quantity = 2},
+            { name = 'weapon_pistol50', price = 7500, metadata = { registered = false    }, currency = 'black_money', quantity = 2},
+            { name = 'weapon_assaultrifle', price = 20000, metadata = { registered = false    }, currency = 'black_money', quantity = 3},
+            { name = 'weapon_carbinerifle', price = 25000, metadata = { registered = false    }, currency = 'black_money', quantity = 2},
+            { name = 'weapon_compactrifle', price = 18000, metadata = { registered = false    }, currency = 'black_money', quantity = 5},
+            { name = 'weapon_tacticalrifle', price = 22000, metadata = { registered = false    }, currency = 'black_money', quantity = 3},
+            { name = 'WEAPON_CERAMICPISTOL', price = 10000, metadata = { registered = false }, currency = 'black_money' },
+            { name = 'ammo-rifle', price = 25, currency = 'black_money' },
+            { name = 'ammo-rifle2', price = 100, currency = 'black_money' }
+            { name = 'ammo-9', price = 10, currency = 'black_money' }
 		}, locations = {
 			vec3(309.09, -913.75, 56.46)
 		}, targets = {

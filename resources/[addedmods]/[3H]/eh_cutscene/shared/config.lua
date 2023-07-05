@@ -20,14 +20,14 @@ Resource = {
 -- Cutscene Settings
 Cutscene = {
 	CutsceneOnly = false, -- Play only cutscene & disable taxi & rental feature
-	UseLamarPart = false, -- Exclude Lamar's cutscene segment
+	UseLamarPart = true, -- Exclude Lamar's cutscene segment
 	StartCoords = vector4(-1042.49, -2746.0, 21.36, 326.91), -- Coordinates the player teleports after cutscene ends
 	WelcomeMessage = true, -- Enable welcome message
 	Message = "Hello dear, welcome to our server", -- Welcome message
 	TestCommand = false,  -- Enable command to start cutscene
 	Command = 'cutscene', -- Command to start the cutscene
 	QBApartment = true,  -- Set to true if using qb-apartments and modify the apartment file as instructed at https://errorhub.gitbook.io/docs/qbcore/eh-cutscene/modifications
-	BlendTaxi = false,  -- Automatically teleport player to taxi after cutscene ends if CutsceneOnly = false.
+	BlendTaxi = true,  -- Automatically teleport player to taxi after cutscene ends if CutsceneOnly = false.
 }
   
 -- AirportPed Settings (Ignore this if BlendTaxi = true)
