@@ -13,26 +13,21 @@ const loadingsettings = [{
 
 // TEAM NOTE reproducible
 const team = [{
-        name: "NaorNC",
-        rank: "Developer // NCHub",
+        name: "Tichys",
+        rank: "Owner/Developer",
         image: "naornc",
     },
     {
-        name: "NoBuddy",
-        rank: "Designer // NCHub",
+        name: "DerkDeuce",
+        rank: "Owner",
         image: "nobuddy",
-    },
-    {
-        name: "LionM",
-        rank: "Partner // NCHub",
-        image: "lionm",
     },
 
 ]
 
 // SOCIAL MEDIA
 const social = [{
-        discord: "Discord.gg/NCHub",
+        discord: "https://discord.gg/sNqVYFuZM7",
         web: "Fiverr.com/QBusdev",
         instagram: "Version - #V5.0"
     },
