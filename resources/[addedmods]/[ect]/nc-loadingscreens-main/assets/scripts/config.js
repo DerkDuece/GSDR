@@ -27,4 +27,4 @@ Config.Categories = [
 ];
 
 // Music
-Config.Song = "song.mp3";
+Config.Song = "song.mp4";
