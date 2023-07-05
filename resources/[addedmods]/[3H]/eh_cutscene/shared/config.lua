@@ -15,9 +15,9 @@ Config.UseLamarPart = true -- If set as false, Lamar's cutscene segment will be 
 Config.EnableCommand = false -- Test efficiently - no need to create multiple characters with this command
 Config.Command = 'cutscene' -- Command to start the cutscene 
 Config.ToggleApartment = true -- For optimal use of qb-apartment, set it to true and modify the apartment file as instructed at https://3rror-hub.gitbook.io/docementation/qbcore/3h-cutscene/modifications
-Config.BlendTaxi = true -- If set to true, the player will be automatically transported to the taxi immediately after the cutscene ends
+Config.BlendTaxi = false -- If set to true, the player will be automatically transported to the taxi immediately after the cutscene ends
 Config.StatCoords = vector4(-1042.49, -2746.0, 21.36, 326.91) -- Coordinates where the player will be sent after the cutscene is ended if Config.BlendTaxi is false
-Config.EnableMessage = false -- Welcome your new players with a warm greeting
+Config.EnableMessage = true -- Welcome your new players with a warm greeting
 Config.Message = "Hello dear, welcome to our server"
 
 -- Airport Ped
@@ -28,7 +28,7 @@ Config.PedModel = "u_m_m_rivalpap" -- Model of the ped. Other model lists can be
 -- AI-Taxi 
 Config.TaxiMenu = true -- If set to false, it will hide the taxi option from the airport ped menu. Ignore if Config.EnablePed is false. 
 Config.SendMail = true -- If set to true and Config.BlendTaxi is false, it will send a taxi's info mail to the player 
-Config.Plate = "3RRORHUB" -- Number plate of the taxi. A maximum of 8 characters (numbers/alphabets) is allowed.
+Config.Plate = "ERRORHUB" -- Number plate of the taxi. A maximum of 8 characters (numbers/alphabets) is allowed.
 Config.Driver = "u_m_y_proldriver_01" -- Ped model of the taxi driver 
 Config.DefaultTaxi = { 
 	Model = "taxi", -- Default taxi model. Ignore if Config.BlendTaxi is false.
