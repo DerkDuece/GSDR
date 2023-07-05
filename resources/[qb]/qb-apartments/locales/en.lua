@@ -23,11 +23,10 @@ local Translations = {
         leave = 'Leave Apartment',
         close_menu = '⬅ Close Menu',
         tennants = 'Tennants',
-        rent = 'Pay Rent',
     },
 }
 
-Lang = Locale:new({
+Lang = Lang or Locale:new({
     phrases = Translations,
     warnOnMissing = true
 })

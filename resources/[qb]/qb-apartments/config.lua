@@ -1,11 +1,6 @@
 Apartments = {}
 Apartments.Starting = true
 Apartments.SpawnOffset = 30
-
--- **** IMPORTANT ****
--- UseTarget should only be set to true when using qb-target
-Apartments.UseTarget = true
-
 Apartments.Locations = {
     ["apartment1"] = {
         name = "apartment1",
@@ -22,8 +17,7 @@ Apartments.Locations = {
             width = 3,
             distance = 2.0,
             created = false
-        },
-        price = 600,
+        }
     },
     ["apartment2"] = {
         name = "apartment2",
@@ -40,14 +34,13 @@ Apartments.Locations = {
             width = 3,
             distance = 2.0,
             created = false
-        },
-        price = 600,
+        }
     },
     ["apartment3"] = {
         name = "apartment3",
         label = "Integrity Way",
         coords = {
-            enter = vector4(280.66, -652.12, 42.02, 342.31),
+            enter = vector4(269.73, -640.75, 42.02, 249.07),
         },
         polyzoneBoxData = {
             heading = 250,
@@ -58,14 +51,13 @@ Apartments.Locations = {
             width = 1,
             distance = 2.0,
             created = false
-        },
-        price = 600,
+        }
     },
     ["apartment4"] = {
         name = "apartment4",
         label = "Tinsel Towers",
         coords = {
-            enter = vector4(-621.016, 46.677, 43.591, 179.36),
+            enter = vector4(-619.29, 37.69, 43.59, 181.03),
         },
         polyzoneBoxData = {
             heading = 180,
@@ -76,8 +68,7 @@ Apartments.Locations = {
             width = 2,
             distance = 2.0,
             created = false
-        },
-        price = 600,
+        }
     },
     ["apartment5"] = {
         name = "apartment5",
@@ -94,7 +85,6 @@ Apartments.Locations = {
             width = 2,
             distance = 2.0,
             created = false
-        },
-        price = 600,
+        }
     },
 }

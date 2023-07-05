@@ -13,21 +13,90 @@ local RangDoorbell = nil
 -- target variables
 local InApartmentTargets = {}
 
--- polyzone variables - used when Config.UseTarget is false
-local IsInsideEntranceZone = false
-local IsInsideExitZone = false
+-- polyzone variables
 local IsInsideStashZone = false
 local IsInsideOutfitsZone = false
 local IsInsideLogoutZone = false
 
+
 -- polyzone integration
+
+local function ShowEntranceHeaderMenu()
+    local headerMenu = {}
+
+    if IsOwned then
+        headerMenu[#headerMenu+1] = {
+            header = Lang:t('text.enter'),
+            params = {
+                event = 'apartments:client:EnterApartment',
+                args = {}
+            }
+        }
+     elseif not IsOwned then
+        headerMenu[#headerMenu+1] = {
+            header = Lang:t('text.move_here'),
+            params = {
+                event = 'apartments:client:UpdateApartment',
+                args = {}
+            }
+        }
+     end
+
+    headerMenu[#headerMenu+1] = {
+        header = Lang:t('text.ring_doorbell'),
+        params = {
+            event = 'apartments:client:DoorbellMenu',
+            args = {}
+        }
+    }
+
+    headerMenu[#headerMenu+1] = {
+        header = Lang:t('text.close_menu'),
+        txt = "",
+        params = {
+            event = "qb-menu:client:closeMenu"
+        }
+    }
+
+    exports['qb-menu']:showHeader(headerMenu)
+end
+
+local function ShowExitHeaderMenu()
+    local headerMenu = {}
+
+    headerMenu[#headerMenu+1] = {
+        header = Lang:t('text.open_door'),
+        params = {
+            event = 'apartments:client:OpenDoor',
+            args = {}
+        }
+    }
+
+    headerMenu[#headerMenu+1] = {
+        header = Lang:t('text.leave'),
+        params = {
+            event = 'apartments:client:LeaveApartment',
+            args = {}
+        }
+    }
+
+    headerMenu[#headerMenu+1] = {
+        header = Lang:t('text.close_menu'),
+        txt = "",
+        params = {
+            event = "qb-menu:client:closeMenu"
+        }
+    }
+
+    exports['qb-menu']:openMenu(headerMenu)
+end
 
 local function RegisterApartmentEntranceZone(apartmentID, apartmentData)
     local coords = apartmentData.coords['enter']
     local boxName = 'apartmentEntrance_' .. apartmentID
     local boxData = apartmentData.polyzoneBoxData
 
-    if boxData.created or Apartments.UseTarget then
+    if boxData.created then
         return
     end
 
@@ -41,15 +110,12 @@ local function RegisterApartmentEntranceZone(apartmentID, apartmentData)
 
     zone:onPlayerInOut(function (isPointInside)
         if isPointInside and not InApartment then
-            exports['qb-core']:DrawText(Lang:t("text.options"), 'left')
+            ShowEntranceHeaderMenu()
         else
-            exports['qb-core']:HideText()
             CloseMenuFull()
         end
-
-        IsInsideEntranceZone = isPointInside
     end)
-    
+
     boxData.created = true
     boxData.zone = zone
 end
@@ -63,9 +129,11 @@ local function RegisterInApartmentZone(targetKey, coords, heading, text)
         return
     end
 
+    Wait(1500)
+
     local boxName = 'inApartmentTarget_' .. targetKey
-    
-    local zone = BoxZone:Create(coords, 1.5, 1.7, {
+
+    local zone = BoxZone:Create(coords, 1.5, 1.5, {
         name = boxName,
         heading = heading,
         minZ = coords.z - 1.0,
@@ -75,16 +143,17 @@ local function RegisterInApartmentZone(targetKey, coords, heading, text)
 
     zone:onPlayerInOut(function (isPointInside)
         if isPointInside and text then
-            exports['qb-core']:DrawText(text, 'left')
+            if targetKey == "entrancePos" then
+                ShowExitHeaderMenu()
+            else
+                exports['qb-core']:DrawText(text, 'left')
+            end
         else
-            exports['qb-core']:HideText()
             if targetKey == "entrancePos" then
                 CloseMenuFull()
+            else
+                exports['qb-core']:HideText()
             end
-        end
-
-        if targetKey == "entrancePos" then
-            IsInsideExitZone = isPointInside
         end
 
         if targetKey == "stashPos" then
@@ -125,7 +194,7 @@ local function SetInApartmentTargets()
         return
     end
 
-    local entrancePos = vector3(Apartments.Locations[ClosestHouse].coords.enter.x - POIOffsets.exit.x, Apartments.Locations[ClosestHouse].coords.enter.y - POIOffsets.exit.y - 0.5, Apartments.Locations[ClosestHouse].coords.enter.z - CurrentOffset + POIOffsets.exit.z)
+    local entrancePos = vector3(Apartments.Locations[ClosestHouse].coords.enter.x + POIOffsets.exit.x, Apartments.Locations[ClosestHouse].coords.enter.y + POIOffsets.exit.y - 0.5, Apartments.Locations[ClosestHouse].coords.enter.z - CurrentOffset + POIOffsets.exit.z)
     local stashPos = vector3(Apartments.Locations[ClosestHouse].coords.enter.x - POIOffsets.stash.x, Apartments.Locations[ClosestHouse].coords.enter.y - POIOffsets.stash.y, Apartments.Locations[ClosestHouse].coords.enter.z - CurrentOffset + POIOffsets.stash.z)
     local outfitsPos = vector3(Apartments.Locations[ClosestHouse].coords.enter.x - POIOffsets.clothes.x, Apartments.Locations[ClosestHouse].coords.enter.y - POIOffsets.clothes.y, Apartments.Locations[ClosestHouse].coords.enter.z - CurrentOffset + POIOffsets.clothes.z)
     local logoutPos = vector3(Apartments.Locations[ClosestHouse].coords.enter.x - POIOffsets.logout.x, Apartments.Locations[ClosestHouse].coords.enter.y + POIOffsets.logout.y, Apartments.Locations[ClosestHouse].coords.enter.z - CurrentOffset + POIOffsets.logout.z)
@@ -164,199 +233,6 @@ local function DeleteInApartmentTargets()
     InApartmentTargets = {}
 end
 
--- qb-target integration
-
-local function RegisterInApartmentTarget(targetKey, coords, heading, options)
-    if not InApartment then
-        return
-    end
-
-    if InApartmentTargets[targetKey] and InApartmentTargets[targetKey].created then
-        return
-    end
-
-    local boxName = 'inApartmentTarget_' .. targetKey
-    exports['qb-target']:AddBoxZone(boxName, coords, 1, 1, {
-        name = boxName,
-        heading = heading,
-        minZ = coords.z - 1.0,
-        maxZ = coords.z + 5.0,
-        debugPoly = false,
-    }, {
-        options = options,
-        distance = 1
-    })
-
-    InApartmentTargets[targetKey] = InApartmentTargets[targetKey] or {}
-    InApartmentTargets[targetKey].created = true
-end
-
-local function RegisterApartmentEntranceTarget(apartmentID, apartmentData)
-    local coords = apartmentData.coords['enter']
-    local boxName = 'apartmentEntrance_' .. apartmentID
-    local boxData = apartmentData.polyzoneBoxData
-
-    if boxData.created or not Apartments.UseTarget then
-        return
-    end
-
-    local options = {}
-    if apartmentID == ClosestHouse and IsOwned then
-        options = {
-            {
-                type = "client",
-                event = "apartments:client:EnterApartment",
-                icon = "fas fa-door-open",
-                label = Lang:t("text.enter"),
-            },
-        }
-    else
-        options = {
-            {
-                type = "client",
-                event = "apartments:client:UpdateApartment",
-                icon = "fas fa-hotel",
-                label = Lang:t("text.move_here"),
-            }
-        }
-    end
-    options[#options+1] = {
-        type = "client",
-        event = "apartments:client:DoorbellMenu",
-        icon = "fas fa-concierge-bell",
-        label = Lang:t('text.ring_doorbell'),
-    }
-
-    exports['qb-target']:AddBoxZone(boxName, coords, boxData.length, boxData.width, {
-        name = boxName,
-        heading = boxData.heading,
-        debugPoly = boxData.debug,
-        minZ = boxData.minZ,
-        maxZ = boxData.maxZ,
-    }, {
-        options = options,
-        distance = boxData.distance
-    })
-
-    boxData.created = true
-end
-
-
--- shared
-
-local function SetApartmentsEntranceTargets()
-    if Apartments.Locations and next(Apartments.Locations) then
-        for id, apartment in pairs(Apartments.Locations) do
-            if apartment and apartment.coords and apartment.coords['enter'] then
-                if Apartments.UseTarget then
-                    RegisterApartmentEntranceTarget(id, apartment)
-                else
-                    RegisterApartmentEntranceZone(id, apartment)
-                end
-            end
-        end
-    end
-end
-
-local function SetInApartmentTargets()
-    if not POIOffsets then
-        -- do nothing
-        return
-    end
-    
-    local entrancePos = vector3(Apartments.Locations[ClosestHouse].coords.enter.x - POIOffsets.exit.x, Apartments.Locations[ClosestHouse].coords.enter.y - POIOffsets.exit.y - 0.5, Apartments.Locations[ClosestHouse].coords.enter.z - CurrentOffset + POIOffsets.exit.z)
-    local stashPos = vector3(Apartments.Locations[ClosestHouse].coords.enter.x - POIOffsets.stash.x, Apartments.Locations[ClosestHouse].coords.enter.y - POIOffsets.stash.y, Apartments.Locations[ClosestHouse].coords.enter.z - CurrentOffset + POIOffsets.stash.z)
-    local outfitsPos = vector3(Apartments.Locations[ClosestHouse].coords.enter.x - POIOffsets.clothes.x, Apartments.Locations[ClosestHouse].coords.enter.y - POIOffsets.clothes.y, Apartments.Locations[ClosestHouse].coords.enter.z - CurrentOffset + POIOffsets.clothes.z)
-    local logoutPos = vector3(Apartments.Locations[ClosestHouse].coords.enter.x - POIOffsets.logout.x, Apartments.Locations[ClosestHouse].coords.enter.y + POIOffsets.logout.y, Apartments.Locations[ClosestHouse].coords.enter.z - CurrentOffset + POIOffsets.logout.z)
-
-    if Apartments.UseTarget then
-        RegisterInApartmentTarget('entrancePos', entrancePos, 0, {
-            {
-                type = "client",
-                event = "apartments:client:OpenDoor",
-                icon = "fas fa-door-open",
-                label = Lang:t('text.open_door'),
-            },
-            {
-                type = "client",
-                event = "apartments:client:LeaveApartment",
-                icon = "fas fa-door-open",
-                label = Lang:t('text.leave'),
-            },
-        })
-        RegisterInApartmentTarget('stashPos', stashPos, 0, {
-            {
-                type = "client",
-                event = "apartments:client:OpenStash",
-                icon = "fas fa-box-open",
-                label = Lang:t('text.open_stash'),
-            },
-        })
-        RegisterInApartmentTarget('outfitsPos', outfitsPos, 0, {
-            {
-                type = "client",
-                event = "apartments:client:ChangeOutfit",
-                icon = "fas fa-tshirt",
-                label = Lang:t('text.change_outfit'),
-            },
-        })
-        RegisterInApartmentTarget('logoutPos', logoutPos, 0, {
-            {
-                type = "client",
-                event = "apartments:client:Logout",
-                icon = "fas fa-sign-out-alt",
-                label = Lang:t('text.logout'),
-            },
-        })
-    else
-        RegisterInApartmentZone('entrancePos', entrancePos, 0, Lang:t('text.options'))
-        RegisterInApartmentZone('stashPos', stashPos, 0, "[E] " .. Lang:t('text.open_stash'))
-        RegisterInApartmentZone('outfitsPos', outfitsPos, 0, "[E] " .. Lang:t('text.change_outfit'))
-        RegisterInApartmentZone('logoutPos', logoutPos, 0, "[E] " .. Lang:t('text.logout'))
-    end
-end
-
-local function DeleteApartmentsEntranceTargets()
-    IsInsideEntranceZone = false
-
-    if Apartments.Locations and next(Apartments.Locations) then
-        for id, apartment in pairs(Apartments.Locations) do
-            if Apartments.UseTarget then
-                exports['qb-target']:RemoveZone('apartmentEntrance_' .. id)
-            else
-                if apartment.polyzoneBoxData.zone then
-                    apartment.polyzoneBoxData.zone:destroy()
-                    apartment.polyzoneBoxData.zone = nil
-                end
-            end
-            
-            apartment.polyzoneBoxData.created = false
-        end
-    end
-end
-
-local function DeleteInAparmtnetTargets()
-    IsInsideExitZone = false
-    IsInsideStashZone = false
-    IsInsideOutfitsZone = false
-    IsInsideLogoutZone = false
-
-    if InApartmentTargets and next(InApartmentTargets) then
-        for id, apartmentTarget in pairs(InApartmentTargets) do
-            if Apartments.UseTarget then
-                exports['qb-target']:RemoveZone('inApartmentTarget_' .. id)
-            else
-                if apartmentTarget.zone then
-                    apartmentTarget.zone:destroy()
-                    apartmentTarget.zone = nil
-                end
-            end
-        end
-    end
-    InApartmentTargets = {}
-end
-
-
 
 -- utility functions
 
@@ -387,7 +263,7 @@ local function EnterApartment(house, apartmentId, new)
                 CurrentOffset = newoffset
                 TriggerServerEvent("apartments:server:AddObject", apartmentId, house, CurrentOffset)
                 local coords = { x = Apartments.Locations[house].coords.enter.x, y = Apartments.Locations[house].coords.enter.y, z = Apartments.Locations[house].coords.enter.z - CurrentOffset}
-                data = exports['qb-interior']:CreateApartmentFurnished(coords)
+                local data = exports['qb-interior']:CreateApartmentFurnished(coords)
                 Wait(100)
                 HouseObj = data[1]
                 POIOffsets = data[2]
@@ -400,8 +276,8 @@ local function EnterApartment(house, apartmentId, new)
                 Wait(100)
                 TriggerServerEvent('qb-apartments:server:SetInsideMeta', house, apartmentId, true, false)
                 TriggerServerEvent("InteractSound_SV:PlayOnSource", "houses_door_close", 0.1)
-                TriggerServerEvent("QBCore:Server:SetMetaData", "currentapartment", CurrentApartment)
-                
+                TriggerServerEvent("apartments:server:setCurrentApartment", CurrentApartment)
+
             end, house)
         else
             if offset > 230 then
@@ -411,7 +287,7 @@ local function EnterApartment(house, apartmentId, new)
             TriggerServerEvent("InteractSound_SV:PlayOnSource", "houses_door_open", 0.1)
             TriggerServerEvent("apartments:server:AddObject", apartmentId, house, CurrentOffset)
             local coords = { x = Apartments.Locations[ClosestHouse].coords.enter.x, y = Apartments.Locations[ClosestHouse].coords.enter.y, z = Apartments.Locations[ClosestHouse].coords.enter.z - CurrentOffset}
-            data = exports['qb-interior']:CreateApartmentFurnished(coords)
+            local data = exports['qb-interior']:CreateApartmentFurnished(coords)
             Wait(100)
             HouseObj = data[1]
             POIOffsets = data[2]
@@ -422,7 +298,7 @@ local function EnterApartment(house, apartmentId, new)
             Wait(100)
             TriggerServerEvent('qb-apartments:server:SetInsideMeta', house, apartmentId, true, true)
             TriggerServerEvent("InteractSound_SV:PlayOnSource", "houses_door_close", 0.1)
-            TriggerServerEvent("QBCore:Server:SetMetaData", "currentapartment", CurrentApartment)
+            TriggerServerEvent("apartments:server:setCurrentApartment", CurrentApartment)
         end
 
         if new ~= nil then
@@ -455,11 +331,11 @@ local function LeaveApartment(house)
         CurrentOffset = 0
         DoScreenFadeIn(1000)
         TriggerServerEvent("InteractSound_SV:PlayOnSource", "houses_door_close", 0.1)
-        TriggerServerEvent("QBCore:Server:SetMetaData", "currentapartment", nil)
-    end)
+        TriggerServerEvent("apartments:server:setCurrentApartment", nil)
 
-    DeleteInAparmtnetTargets()
-    DeleteApartmentsEntranceTargets()
+        DeleteInApartmentTargets()
+        DeleteApartmentsEntranceTargets()
+    end)
 end
 
 local function SetClosestApartment()
@@ -477,7 +353,7 @@ local function SetClosestApartment()
         QBCore.Functions.TriggerCallback('apartments:IsOwner', function(result)
             IsOwned = result
             DeleteApartmentsEntranceTargets()
-            DeleteInAparmtnetTargets()
+            DeleteInApartmentTargets()
         end, ClosestHouse)
     end
 end
@@ -522,87 +398,10 @@ function MenuOwners()
     end, ClosestHouse)
 end
 
-local function ShowExitHeaderMenu()
-    local headerMenu = {}
-
-    headerMenu[#headerMenu+1] = {
-        header = Lang:t('text.open_door'),
-        params = {
-            event = 'apartments:client:OpenDoor',
-            args = {}
-        }
-    }
-  
-    headerMenu[#headerMenu+1] = {
-        header = Lang:t('text.leave'),
-        params = {
-            event = 'apartments:client:LeaveApartment',
-            args = {}
-        }
-    }
-
-    headerMenu[#headerMenu+1] = {
-        header = Lang:t('text.rent'),
-        params = {
-            event = 'apartments:rent',
-            args = {}
-        }
-    }
-
-    headerMenu[#headerMenu+1] = {
-        header = Lang:t('text.close_menu'),
-        txt = "",
-        params = {
-            event = "qb-menu:client:closeMenu"
-        }
-    }
-
-    exports['qb-menu']:openMenu(headerMenu)
-end
-
-local function ShowEntranceHeaderMenu()
-    local headerMenu = {}
-
-    if IsOwned then
-        headerMenu[#headerMenu+1] = {
-            header = Lang:t('text.enter'),
-            params = {
-                event = 'apartments:client:EnterApartment',
-                args = {}
-            }
-        }
-     elseif not IsOwned then
-        headerMenu[#headerMenu+1] = {
-            header = Lang:t('text.move_here'),
-            params = {
-                event = 'apartments:client:UpdateApartment',
-                args = {}
-            }
-        }
-     end
-
-    headerMenu[#headerMenu+1] = {
-        header = Lang:t('text.ring_doorbell'),
-        params = {
-            event = 'apartments:client:DoorbellMenu',
-            args = {}
-        }
-    }
-
-    headerMenu[#headerMenu+1] = {
-        header = Lang:t('text.close_menu'),
-        txt = "",
-        params = {
-            event = "qb-menu:client:closeMenu"
-        }
-    }
-
-    exports['qb-menu']:showHeader(headerMenu)
-end
-
 function CloseMenuFull()
     exports['qb-menu']:closeMenu()
 end
+
 
 -- Event Handlers
 
@@ -625,10 +424,12 @@ AddEventHandler('onResourceStop', function(resource)
         end
 
         DeleteApartmentsEntranceTargets()
-        DeleteInAparmtnetTargets()
+        DeleteInApartmentTargets()
     end
 end)
 
+
+-- Events
 
 RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
     CurrentApartment = nil
@@ -636,7 +437,7 @@ RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
     CurrentOffset = 0
 
     DeleteApartmentsEntranceTargets()
-    DeleteInAparmtnetTargets()
+    DeleteInApartmentTargets()
 end)
 
 RegisterNetEvent('apartments:client:setupSpawnUI', function(cData)
@@ -679,7 +480,7 @@ end)
 RegisterNetEvent('apartments:client:SetHomeBlip', function(home)
     CreateThread(function()
         SetClosestApartment()
-        for name, apartment in pairs(Apartments.Locations) do
+        for name, _ in pairs(Apartments.Locations) do
             RemoveBlip(Apartments.Locations[name].blip)
 
             Apartments.Locations[name].blip = AddBlipForCoord(Apartments.Locations[name].coords.enter.x, Apartments.Locations[name].coords.enter.y, Apartments.Locations[name].coords.enter.z)
@@ -706,7 +507,7 @@ RegisterNetEvent('apartments:client:RingMenu', function(data)
     TriggerServerEvent("apartments:server:RingDoor", data.apartmentId, ClosestHouse)
 end)
 
-RegisterNetEvent('apartments:client:RingDoor', function(player, house)
+RegisterNetEvent('apartments:client:RingDoor', function(player, _)
     CurrentDoorBell = player
     TriggerServerEvent("InteractSound_SV:PlayOnSource", "doorbell", 0.1)
     QBCore.Functions.Notify(Lang:t('info.at_the_door'))
@@ -731,7 +532,7 @@ RegisterNetEvent('apartments:client:UpdateApartment', function()
     IsOwned = true
 
     DeleteApartmentsEntranceTargets()
-    DeleteInAparmtnetTargets()
+    DeleteInApartmentTargets()
 end)
 
 RegisterNetEvent('apartments:client:OpenDoor', function()
@@ -764,108 +565,6 @@ RegisterNetEvent('apartments:client:Logout', function()
     TriggerServerEvent('qb-houses:server:LogoutLocation')
 end)
 
-
--- Threads
-
-CreateThread(function ()
-    local sleep = 500
-    while not LocalPlayer.state.isLoggedIn do
-        -- do nothing
-        Wait(sleep)
-    end
-
-    while true do
-        sleep = 500
-        if not InApartment then
-            SetClosestApartment()
-            SetApartmentsEntranceTargets()
-        end
-
-        if InApartment then
-            SetInApartmentTargets()
-        end
-
-        if not Apartments.UseTarget and not InApartment then
-            if IsInsideEntranceZone then
-                sleep = 0
-                if IsControlJustPressed(0, 38) then
-                    ShowEntranceHeaderMenu()
-                    exports['qb-core']:HideText()
-                end
-            end
-        end
-
-        if not Apartments.UseTarget and InApartment then
-            if IsInsideExitZone then
-                sleep = 0
-                if IsControlJustPressed(0, 38) then
-                    ShowExitHeaderMenu()
-                    exports['qb-core']:HideText()
-                end
-            end
-
-            if IsInsideStashZone then
-                sleep = 0
-                if IsControlJustPressed(0, 38) then
-                    TriggerEvent('apartments:client:OpenStash')
-                    exports['qb-core']:HideText()
-                end
-            end
-
-            if IsInsideOutfitsZone then
-                sleep = 0
-                if IsControlJustPressed(0, 38) then
-                    TriggerEvent('apartments:client:ChangeOutfit')
-                    exports['qb-core']:HideText()
-                end
-            end
-
-            if IsInsideLogoutZone then
-                sleep = 0
-                if IsControlJustPressed(0, 38) then
-                    TriggerEvent('apartments:client:Logout')
-                    exports['qb-core']:HideText()
-                end
-            end
-        end
-
-        Wait(sleep)
-    end
-end)
-
-
--- CreateThread(function()
---     while true do
---         if LocalPlayer.state.isLoggedIn then
---             QBCore.Functions.TriggerCallback('apartments:GetOwnedApartment', function(result)
---                 if result ~= nil then
---                     if Apartments.Locations[result.type].price ~= nil then
---                         TriggerServerEvent("apartments:rent", result.label, Apartments.Locations[result.type].price)
---                     end
---                 end
---             end)
---         end
---         local hour = 60 * 60 * 1000
---         Wait(hour)
---     end
--- end)
-
-CreateThread(function ()
-    if LocalPlayer.state.isLoggedIn then
-        local seconds = 1000
-        local minutes = 60 * seconds
-        local hour = 60 * minutes
-        Citizen.Wait(hour)
-        QBCore.Functions.TriggerCallback('apartments:GetOwnedApartment', function(result)
-            if result ~= nil then
-                if Apartments.Locations[result.type].price ~= nil then
-                    TriggerServerEvent("apartments:rent", result.label, Apartments.Locations[result.type].price)
-                end
-            end
-        end)
-    end
-end)
-
 -- EH-Cutscene
 local function DisableInApartment(house)
     TriggerServerEvent("qb-apartments:returnBucket")
@@ -889,4 +588,50 @@ RegisterNetEvent('eh_cutscene:client:DisableInsideAparts', function()
     end
     DisableInApartment(ClosestHouse)
     print('^2Disabled Inside Apartment')
+end)
+
+-- Threads
+
+CreateThread(function ()
+    local sleep = 5000
+    while not LocalPlayer.state.isLoggedIn do
+        -- do nothing
+        Wait(sleep)
+    end
+
+    while true do
+        sleep = 1000
+
+        if not InApartment then
+            SetClosestApartment()
+            SetApartmentsEntranceTargets()
+        elseif InApartment then
+            sleep = 0
+
+            SetInApartmentTargets()
+
+            if IsInsideStashZone then
+                if IsControlJustPressed(0, 38) then
+                    TriggerEvent('apartments:client:OpenStash')
+                    exports['qb-core']:HideText()
+                end
+            end
+
+            if IsInsideOutfitsZone then
+                if IsControlJustPressed(0, 38) then
+                    TriggerEvent('apartments:client:ChangeOutfit')
+                    exports['qb-core']:HideText()
+                end
+            end
+
+            if IsInsideLogoutZone then
+                if IsControlJustPressed(0, 38) then
+                    TriggerEvent('apartments:client:Logout')
+                    exports['qb-core']:HideText()
+                end
+            end
+        end
+
+        Wait(sleep)
+    end
 end)
