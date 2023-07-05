@@ -9,7 +9,7 @@ client_scripts {
 	'client/cocaine.lua',
 	'client/heroin.lua',
 	'client/lsd.lua',
-	'client/target.lua',
+	'client/oxtarget/oxtarget.lua',
 	'client/crack.lua',
 	'client/shrooms.lua',
 	'client/pharma.lua',
