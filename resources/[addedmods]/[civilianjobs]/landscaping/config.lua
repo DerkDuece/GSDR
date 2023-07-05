@@ -34,7 +34,7 @@ Config.Default = {
     respawnTimer = 300, -- Time for respawning a scenario (put this inside a scenario to change it's timer).
     showScenarioBlip = true, -- Show scenario blip on the map so landscapers can find work.
     rewards = { -- Default rewards for completing a scenario, these are split amongst players (put this inside a scenario to change it's rewards).
-        {type = "money", amount = 500}
+        {type = "money", amount = 200}
     }
 }
 
