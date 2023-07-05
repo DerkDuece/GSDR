@@ -183,8 +183,8 @@ return {
             { name = 'weapon_tacticalrifle', price = 22000, metadata = { registered = false    }, currency = 'black_money', quantity = 3},
             { name = 'WEAPON_CERAMICPISTOL', price = 10000, metadata = { registered = false }, currency = 'black_money' },
             { name = 'ammo-rifle', price = 25, currency = 'black_money' },
-            { name = 'ammo-rifle2', price = 100, currency = 'black_money' }
-            { name = 'ammo-9', price = 10, currency = 'black_money' }
+            { name = 'ammo-rifle2', price = 100, currency = 'black_money' },
+            { name = 'ammo-9', price = 10, currency = 'black_money' },
 		}, locations = {
 			vec3(309.09, -913.75, 56.46)
 		}, targets = {
