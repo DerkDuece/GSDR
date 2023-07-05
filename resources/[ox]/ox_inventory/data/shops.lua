@@ -122,13 +122,22 @@ return {
 		blip = {
 			id = 110, colour = 84, scale = 0.8
 		}, inventory = {
-			{ name = 'ammo-9', price = 5, },
+			{ name = 'ammo-9', price = 1, },
 			{ name = 'ammo-rifle', price = 5, },
-			{ name = 'WEAPON_FLASHLIGHT', price = 200 },
+			{ name = 'ammo-shotgun', price = 2 },
+			{ name = 'ammo-sniper', price = 10},
+			{ name = 'WEAPON_FLASHLIGHT', price = 50 },
 			{ name = 'WEAPON_NIGHTSTICK', price = 100 },
-			{ name = 'WEAPON_PISTOL', price = 500, metadata = { registered = true, serial = 'POL' }, license = 'weapon' },
-			{ name = 'WEAPON_CARBINERIFLE', price = 1000, metadata = { registered = true, serial = 'POL' }, license = 'weapon', grade = 3 },
-			{ name = 'WEAPON_STUNGUN', price = 500, metadata = { registered = true, serial = 'POL'} }
+			{ name = 'handcuffs', price = 100 },
+			{ name = 'bodycam', price = 5},
+			{ name = 'armour', price = 50},
+			{ name = 'WEAPON_COMBATPISTOL', price = 150, metadata = { registered = true, serial = 'POL' }, license = 'weapon' },
+			{ name = 'WEAPON_CARBINERIFLE', price = 500, metadata = { registered = true, serial = 'POL' }, license = 'weapon', grade = 3 },
+			{ name = 'WEAPON_STUNGUN', price = 150, metadata = { registered = true, serial = 'POL'} },
+			{ name = 'WEAPON_PUMPSHOTGUN', price = 150, metadata = {registered = true, serial = 'POL'}, license = 'weapon'},
+			{ name = 'WEAPON_TACTICALRIFLE', price = 500, metadata = {registered = true, serial = 'POL'}, grade = 6},
+			{ name = 'WEAPON_SNIPERRIFLE', price = 500, metadata = {registered = true, serial = 'POL'}, grade = 6},
+			{ name = 'WEAPON_SMG', price = 500, metadata = {registered = true, serial = 'POL'}, grade = 6}
 		}, locations = {
 			vec3(451.51, -979.44, 30.68)
 		}, targets = {
@@ -144,8 +153,12 @@ return {
 		blip = {
 			id = 403, colour = 69, scale = 0.8
 		}, inventory = {
-			{ name = 'medikit', price = 26 },
-			{ name = 'bandage', price = 5 }
+			{ name = 'firstaid', price = 100 },
+			{ name = 'bandage', price = 1 },
+			{ name = 'painkillers', price = 5},
+			{ name = 'WEAPON_FIREEXTINGUISHER', price = 500},
+			{ name = 'WEAPON_STUNGUN', price = 100},
+			{ name = 'WEAPON_FLASHLIGHT', price = 100},
 		}, locations = {
 			vec3(306.3687, -601.5139, 43.28406)
 		}, targets = {
