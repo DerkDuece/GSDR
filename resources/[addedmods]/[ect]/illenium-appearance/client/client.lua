@@ -109,6 +109,8 @@ function InitializeCharacter(gender, onSubmit, onCancel)
     TriggerServerEvent("illenium-appearance:server:ChangeRoutingBucket")
     client.startPlayerCustomization(function(appearance)
         if (appearance) then
+            TriggerEvent("eh_cutscene:client:StartCutscene") -->> Start eh_cutscene
+            print('^2Started eh_cutscene')
             TriggerServerEvent("illenium-appearance:server:saveAppearance", appearance)
             if onSubmit then
                 onSubmit()

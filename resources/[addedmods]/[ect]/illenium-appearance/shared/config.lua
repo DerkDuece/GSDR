@@ -36,6 +36,8 @@ Config.EnablePedsForPlayerOutfitRooms = true
 Config.EnablePedMenu = true
 Config.PedMenuGroup = "group.admin"
 
+Config.EnableJobOutfitsCommand = false -- Enables /joboutfits and /gangoutfits commands
+
 Config.ShowNearestShopOnly = false
 Config.HideRadar = true -- Hides the minimap while the appearance menu is open
 Config.NearestShopBlipUpdateDelay = 10000
@@ -43,6 +45,10 @@ Config.NearestShopBlipUpdateDelay = 10000
 Config.InvincibleDuringCustomization = true
 
 Config.PreventTrackerRemoval = true -- Disables "Scarf and Chains" section if the player has tracker
+Config.TrackerClothingOptions = {
+    drawable = 13,
+    texture = 0
+}
 
 Config.NewCharacterSections = {
     Ped = true,
@@ -61,7 +67,7 @@ Config.AlwaysKeepProps = false
 Config.PersistUniforms = true -- Keeps Job / Gang Outfits on player reconnects / logout
 Config.OnDutyOnlyClothingRooms = false -- Set to `true` to make the clothing rooms accessible only to players who are On Duty
 
-Config.BossManagedOutfits = false -- Allows Job / Gang bosses to manage their own job / gang outfits
+Config.BossManagedOutfits = true -- Allows Job / Gang bosses to manage their own job / gang outfits
 
 Config.ReloadSkinCooldown = 5000
 
