@@ -38,5 +38,5 @@ Config.DropOffLocation = {
     vector4(-270.55, -977.02, 31.22, 162.47),
 }
 
-Config.PDAlerts = "qb" -- qb, ps and cd (Configure to your dispatch system)
+Config.PDAlerts = "ps" -- qb, ps and cd (Configure to your dispatch system)
 Config.CallCopsChance = math.random(30, 50) -- 30 to 50% chance to call the cops
