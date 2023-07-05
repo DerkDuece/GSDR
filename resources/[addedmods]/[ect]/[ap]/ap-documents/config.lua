@@ -1,9 +1,9 @@
 Config = {
 	FrameworkExport = "qb-core", -- Set this too your core name, only change this if you have a custom version of QBCore. 
 	Debug = false, -- Set the webhooks you want to use to true.
-	Inventory = {QB = true, OX = false, Other = false}, -- Set QB to true if you use an inventory that uses QB functionality Otherwise use OX if you have that or Other and add compat to your own inventory in server\custominventory.lua.
-	Context = {QB = true, OX = false},
-	Dialog = {QB = true, OX = false},
+	Inventory = {QB = false, OX = true, Other = false}, -- Set QB to true if you use an inventory that uses QB functionality Otherwise use OX if you have that or Other and add compat to your own inventory in server\custominventory.lua.
+	Context = {QB = false, OX = true},
+	Dialog = {QB = false, OX = true},
 	ExportNames = {menu = "qb-menu", input = "qb-input"},
 	UseItem = {
 		QBItemCreation = true,

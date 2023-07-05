@@ -55,17 +55,18 @@ local function robKeyLoop()
                         elseif Config.LockNPCDrivingCars then
                             TriggerServerEvent('qb-vehiclekeys:server:setVehLockState', NetworkGetNetworkIdFromEntity(entering), 2)
                         else
-                            TriggerServerEvent('qb-vehiclekeys:server:setVehLockState', NetworkGetNetworkIdFromEntity(entering), 1)
-                            TriggerServerEvent('qb-vehiclekeys:server:AcquireVehicleKeys', plate)
-
-                            --Make passengers flee
-                            local pedsInVehicle = GetPedsInVehicle(entering)
-                            for _, pedInVehicle in pairs(pedsInVehicle) do
-                                if pedInVehicle ~= GetPedInVehicleSeat(entering, -1) then
-                                    MakePedFlee(pedInVehicle)
+                            if not plate == 'Your Plate Here' then 
+                                TriggerServerEvent('qb-vehiclekeys:server:setVehLockState', NetworkGetNetworkIdFromEntity(entering), 1)
+                                TriggerServerEvent('qb-vehiclekeys:server:AcquireVehicleKeys', plate)
+                                                        
+                                --Make passengers flee
+                                local pedsInVehicle = GetPedsInVehicle(entering)
+                                for _, pedInVehicle in pairs(pedsInVehicle) do
+                                    if pedInVehicle ~= GetPedInVehicleSeat(entering, -1) then
+                                        MakePedFlee(pedInVehicle)
+                                    end
                                 end
                             end
-                        end
                     -- Parked car logic
                     elseif driver == 0 and entering ~= lastPickedVehicle and not HasKeys(plate) and not isTakingKeys then
                         QBCore.Functions.TriggerCallback('qb-vehiclekeys:server:checkPlayerOwned', function(playerOwned)
