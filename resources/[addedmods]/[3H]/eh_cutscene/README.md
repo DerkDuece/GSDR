@@ -1,7 +1,15 @@
-* To purchase additional scripts, please visit my Tebex page [Tebex] - https://3rror-hub-webstore.tebex.io
+# EH Cutscene (Open Source) Paid Edition Available Now!
 
-* If you need support with any of my scripts, please join my Discord server [Discord] - https://discord.gg/NW4g4kkmqS
+* The paid edition includes additional features such as ride skip, and only the paid version will receive future updates not the free edition.
+* To check out the paid edition, visit this link: https://errorhub.tebex.io/package/5637614.
 
-* Please review the Documentation for detailed instructions on installing and configuring the script [Docementation] - https://3rror-hub.gitbook.io/docementation/
+# Additional Scripts
+To purchase other scripts, please check out our Tebex page at https://errorhub.tebex.io.
 
-# Thank you for choosing my script!
+# Support
+If you need support with any of our scripts, please join our Discord server at https://discord.gg/NW4g4kkmqS.
+
+# Documentation
+For detailed instructions on how to install and configure the script, please refer to our documentation at https://errorhub.gitbook.io/docs/.
+
+# Thank you for choosing our script!

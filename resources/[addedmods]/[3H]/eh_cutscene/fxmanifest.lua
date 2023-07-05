@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 lua54 'yes'
 
-version '2.1'
+version '2.5'
 description 'Advanced Intro Cutscene Script'
 author '3RROR'
 
@@ -11,28 +11,29 @@ dependencies {
 }
 
 client_scripts {
-	'@PolyZone/client.lua',
-	'@PolyZone/CircleZone.lua',
-	'client/cl_cutscene.lua',
- 	'client/cl_main.lua',
-	'shared/open.lua',
+    '@PolyZone/client.lua',
+    '@PolyZone/CircleZone.lua',
+    'client/cl_cutscene.lua',
+	'client/cl_main.lua',
+    'shared/open.lua',
 }
 
 server_scripts {
-	'server/version_check.lua',
-	'server/sv_main.lua',
+    'server/version_check.lua',
+    'server/sv_main.lua',
 }
 
 shared_scripts {
-	'@ox_lib/init.lua',
-	'shared/config.lua',
-	'shared/functions.lua',
-	'locales/**.lua',
+    '@ox_lib/init.lua',
+    'shared/config.lua',
+    'shared/functions.lua',
+    'locales/**.lua',
 }
 
 escrow_ignore {
-	'shared/config.lua',
-	'shared/open.lua',
-	'locales/**.lua',
+    'shared/config.lua',
+    'shared/open.lua',
+    'locales/**.lua',
 }
+
 dependency '/assetpacks'
