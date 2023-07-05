@@ -11,10 +11,10 @@ Framework = {
 
 -- Resource Settings
 Resource = {
-	Notify = 'qb', -- Choose the one you are from: 'qb', 'okok', 'ox' 
-	Menu = 'qb', -- Choose the one you are from: 'qb', 'ox'
-	Text = 'qb', -- Choose the one you are from: 'qb', 'ox'
-	Fuel = 'LegacyFuel', -- Choose the one you are from: 'LegacyFuel', 'ps-fuel', 'cdn-fuel'
+	Notify = 'ox', -- Choose the one you are from: 'qb', 'okok', 'ox' 
+	Menu = 'ox', -- Choose the one you are from: 'qb', 'ox'
+	Text = 'ox', -- Choose the one you are from: 'qb', 'ox'
+	Fuel = 'cdn-fuel', -- Choose the one you are from: 'LegacyFuel', 'ps-fuel', 'cdn-fuel'
 }
 
 -- Cutscene Settings
