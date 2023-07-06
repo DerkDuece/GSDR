@@ -28,9 +28,9 @@ Config.tickInterval = 1000                      -- No need to change this.
 --------------------
 --POLICE VARIABLES--
 --------------------
-Config.UsePoliceName = false                    -- If this is set to "false", server will check for jobname: "police", otherwise it will check for job type for newer qb-core builds
-Config.PoliceJobType = "leo"                    -- Name of job type used by your server - used if "Config.UsePoliceName = true"
-Config.PoliceJobName = "police"                 -- Name of police role in your server - used if "Config.UsePoliceName = false"
+Config.UsePoliceName = true                    -- If this is set to "false", server will check for jobname: "police", otherwise it will check for job type for newer qb-core builds
+Config.PoliceJobType = "leo"                    -- Name of job type used by your server - NOTE: Only used if "Config.UsePoliceName = false"
+Config.PoliceJobName = "police"                 -- Name of police role in your server - NOTE: Only used if "Config.UsePoliceName = true"
 
 Config.MinimumStoreRobberyPolice = 0            -- Minimum police that need to be on duty before a store can be robbed.
 
@@ -94,7 +94,7 @@ Config.circleparses = 7                         -- number of circle parses a pla
 Config.circletime = 13                          -- time for player to complete one parse of the circle
 
 -- Reward type:
-Config.CashRegisterReturn = "dirtymoney"        -- Set to "dirtymoney", "markedbills" or "cash" to alter the reward given.
+Config.CashRegisterReturn = "dirty_money"        -- Set to "dirtymoney", "markedbills" or "cash" to alter the reward given.
 Config.minRegisterEarn = 750                   -- Minimum amount earnt from stealing from a cash register
 Config.maxRegisterEarn = 1250                   -- Maximum amount earnt from stealing from a cash register
 
@@ -313,7 +313,7 @@ Config.StressForFailing = 10                    -- Amount of stress a player inc
 
 Config.SafeReqItem = "usb2"                     -- Change to any item you want (needs to be in qb-core/shared/items.lua)
 
-Config.SafeReturn = "dirtymoney"                -- Set to "dirtymoney", "markedbills" or "cash" to alter the reward given.
+Config.SafeReturn = "dirty_money"                -- Set to "dirtymoney", "markedbills" or "cash" to alter the reward given.
 
 Config.minSafeEarn = 7000                       -- Minimum amount earnt from stealing from a safe (in dirtymoney)
 Config.maxSafeEarn = 22000                      -- Maximum amount earnt from stealing from a safe (in dirtymoney)
@@ -341,7 +341,7 @@ Config.RareItem3Amount = 1                      -- Amount of the rare item playe
 
 Config.LiquorReqItem = "liquorkey"              -- Item needed to attempt to breach a liquor safe.
 
-Config.AlcoholReturn = "dirtymoney"             -- Set to "dirtymoney", "markedbills" or "cash" to alter the reward given.
+Config.AlcoholReturn = "dirty_money"             -- Set to "dirtymoney", "markedbills" or "cash" to alter the reward given.
 
 Config.AlcoholminSafeEarn = 9000                -- Minimum amount earnt from stealing from a safe (in dirtymoney)
 Config.AlcoholmaxSafeEarn = 27000               -- Maximum amount earnt from stealing from a safe (in dirtymoney)

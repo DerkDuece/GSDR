@@ -67,6 +67,24 @@ If using lj-inventory, add the images to: lj-inventory/html/images/ - if you are
 
 ```
 
+## F. QB-POLICEJOB/EVIDENCE
+
+7. In order to avoid console errors regarding the pulling of coordinates for the purposes of qb-policejob's evidence integration you will need to replace the existing :AddFingerPrint" evidence function with the following:
+
+```lua
+RegisterNetEvent('evidence:client:AddFingerPrint', function(fingerId, fingerprint, coords)
+    local pos = GetEntityCoords(PlayerPedId(vector3))
+    Fingerprints[fingerId] = {
+        fingerprint = fingerprint,
+        coords =  {
+            x = pos.x,
+            y = pos.y,
+            z = pos.z - 0.8
+        }
+    }
+end)
+```
+
 ## F. FINALISATION
 
 7. If you attend to all of the above steps you will need to restart the server in order for the new added items to be recognised by qb-core. 

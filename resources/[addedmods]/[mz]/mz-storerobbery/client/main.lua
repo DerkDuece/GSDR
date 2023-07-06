@@ -196,7 +196,7 @@ CreateThread(function()
     if not Config.UseGabz then 
         for k, v in pairs(Config.RegistersTarget) do
             exports["qb-target"]:AddBoxZone("zainregisters" .. k, v.coords, 1, 1, {
-                name = "zainregister" .. k,
+                name = "zainregisters" .. k,
                 heading = 90,
                 minZ = v.coords.z - 0.2,
                 maxZ = v.coords.z + 0.4,
@@ -224,7 +224,7 @@ CreateThread(function()
     else 
         for k, v in pairs(Config.RegistersTargetGabz) do
             exports["qb-target"]:AddBoxZone("zainregisters" .. k, v.coords, 1, 1, {
-                name = "zainregister" .. k,
+                name = "zainregisters" .. k,
                 heading = 90,
                 minZ = v.coords.z - 0.2,
                 maxZ = v.coords.z + 0.4,
@@ -786,7 +786,7 @@ CreateThread(function()
     if not Config.UseGabz then 
         for safe, v in pairs(Config.SafesTarget) do
             exports["qb-target"]:AddBoxZone("zainsafes" .. safe, v.coords, 1, 1, {
-                name = "zainsafe" .. safe,
+                name = "zainsafes" .. safe,
                 heading = 40,
                 minZ = v.coords.z - 1,
                 maxZ = v.coords.z + 1,
@@ -814,7 +814,7 @@ CreateThread(function()
     else
         for safe, v in pairs(Config.SafesTargetGabz) do
             exports["qb-target"]:AddBoxZone("zainsafes" .. safe, v.coords, 1, 1, {
-                name = "zainsafe" .. safe,
+                name = "zainsafes" .. safe,
                 heading = 40,
                 minZ = v.coords.z - 1,
                 maxZ = v.coords.z + 1,
