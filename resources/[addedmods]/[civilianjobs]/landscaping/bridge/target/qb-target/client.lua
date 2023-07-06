@@ -2,16 +2,16 @@ if GetResourceState('ox_target') == 'started' or GetResourceState('qb-target') ~
 
 local Zones = {}
 
-function AddModel(models, options)
+function AddTargetModel(models, radius, options)
     local optionsNames = {}
     for i=1, #options do 
         optionsNames[i] = options[i].name
     end
-    RemoveModel(models, optionsNames)
+    RemoveTargetModel(models, optionsNames)
     exports['qb-target']:AddTargetModel(models, {options = options, distance = 2.5})
 end
 
-function RemoveModel(models, optionsNames)
+function RemoveTargetModel(models, optionsNames)
     exports['qb-target']:RemoveTargetModel(models, optionsNames)
 end
 
