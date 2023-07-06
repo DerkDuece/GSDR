@@ -283,7 +283,7 @@ Config.Scenarios = { -- This is where you'll add work for landscapers to do.
     {
         type = "obstacle", -- When ran over by either type of lawnmower, the lawnmower is destroyed.
         model = `prop_rock_5_smash1`, -- Model of the scenario.
-        coords = vector3(-1602.23, 108.93, 60.99,), -- Center of the scenario.
+        coords = vector3(-1602.23, 108.93, 60.99), -- Center of the scenario.
         heading = 30.0077, -- Heading of the scenario.
         offset = -0.05, -- Offset of the Z-coordinate of the prop placed.
         rewards = { -- Rewards for finishing the scenario.
