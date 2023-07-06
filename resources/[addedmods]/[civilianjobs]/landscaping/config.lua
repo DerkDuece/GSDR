@@ -31,7 +31,7 @@ Config.XPCategories = { -- Registered XP Types for Pickle's XP.
 }
 
 Config.Default = {
-    respawnTimer = 300, -- Time for respawning a scenario (put this inside a scenario to change it's timer).
+    respawnTimer = 20, -- Time for respawning a scenario (put this inside a scenario to change it's timer).
     showScenarioBlip = true, -- Show scenario blip on the map so landscapers can find work.
     rewards = { -- Default rewards for completing a scenario, these are split amongst players (put this inside a scenario to change it's rewards).
         {type = "money", amount = 200}
@@ -209,14 +209,12 @@ Config.ScenarioBlip = { -- Landscaping work blip when enabled.
 Config.Scenarios = { -- This is where you'll add work for landscapers to do.
     -- Mansion
     {
-        respawnTimer = 20, -- Time for respawning a scenario
         type = "grass", -- Type of scenario.
         model = `prop_veg_grass_01_c`, -- Model of the scenario.
         coords = vector3(-1604.2740, 107.1936, 61.0744), -- Center of the scenario.
         radius = 6.0, -- Area of the scenario.
         size = 1.15, -- Size of each prop inside the area.
         offset = -0.75, -- Offset of the Z-coordinate of each prop placed in the area.
-        respawnTimer = 1200, -- Time for respawning a scenario
         rewards = { -- Rewards for finishing the scenario. Rewards are split amongst those that help clear it.
             {type = "money", amount = 200},
             {type = "xp", name = "landscaping", amount = 1000},
@@ -296,7 +294,6 @@ Config.Scenarios = { -- This is where you'll add work for landscapers to do.
         radius = 3.0, -- Area of the scenario.
         spread = 20, -- Amount of leaves to place inside the area.
         offset = -0.75, -- Offset of the Z-coordinate of each prop placed in the area.
-        respawnTimer = 600, -- Time for respawning a scenario
         rewards = { -- Rewards for finishing the scenario. Rewards are split amongst those that help clear it.
             {type = "money", amount = 50},
             {type = "xp", name = "landscaping", amount = 1000},
@@ -309,7 +306,6 @@ Config.Scenarios = { -- This is where you'll add work for landscapers to do.
         radius = 2.0, -- Area of the scenario.
         spread = 30, -- Amount of leaves to place inside the area.
         offset = -0.75, -- Offset of the Z-coordinate of each prop placed in the area.
-        respawnTimer = 600, -- Time for respawning a scenario
         rewards = { -- Rewards for finishing the scenario. Rewards are split amongst those that help clear it.
             {type = "money", amount = 25},
             {type = "xp", name = "landscaping", amount = 1000},
@@ -323,7 +319,6 @@ Config.Scenarios = { -- This is where you'll add work for landscapers to do.
         radius = 7.0, -- Area of the scenario.
         spread = 40, -- Amount of leaves to place inside the area.
         offset = -0.75, -- Offset of the Z-coordinate of each prop placed in the area.
-        respawnTimer = 600, -- Time for respawning a scenario
         rewards = { -- Rewards for finishing the scenario. Rewards are split amongst those that help clear it.
             {type = "money", amount = 50},
             {type = "xp", name = "landscaping", amount = 1000},
@@ -336,7 +331,6 @@ Config.Scenarios = { -- This is where you'll add work for landscapers to do.
         radius = 7.0, -- Area of the scenario.
         spread = 40, -- Amount of leaves to place inside the area.
         offset = -0.75, -- Offset of the Z-coordinate of each prop placed in the area.
-        respawnTimer = 600, -- Time for respawning a scenario
         rewards = { -- Rewards for finishing the scenario. Rewards are split amongst those that help clear it.
             {type = "money", amount = 50},
             {type = "xp", name = "landscaping", amount = 1000},
@@ -349,7 +343,6 @@ Config.Scenarios = { -- This is where you'll add work for landscapers to do.
         radius = 3.0, -- Area of the scenario.
         spread = 100, -- Amount of leaves to place inside the area.
         offset = 0.02, -- Offset of the Z-coordinate of each prop placed in the area.
-        respawnTimer = 600, -- Time for respawning a scenario
         rewards = { -- Rewards for finishing the scenario. Rewards are split amongst those that help clear it.
             {type = "money", amount = 25},
             {type = "xp", name = "landscaping", amount = 1000},
@@ -363,7 +356,6 @@ Config.Scenarios = { -- This is where you'll add work for landscapers to do.
         radius = 7.0, -- Area of the scenario.
         spread = 40, -- Amount of leaves to place inside the area.
         offset = -0.75, -- Offset of the Z-coordinate of each prop placed in the area.
-        respawnTimer = 1000, -- Time for respawning a scenario
         rewards = { -- Rewards for finishing the scenario. Rewards are split amongst those that help clear it.
             {type = "money", amount = 75},
             {type = "xp", name = "landscaping", amount = 1000},
@@ -376,7 +368,6 @@ Config.Scenarios = { -- This is where you'll add work for landscapers to do.
         radius = 10.0, -- Area of the scenario.
         spread = 100, -- Amount of leaves to place inside the area.
         offset = -0.75, -- Offset of the Z-coordinate of each prop placed in the area.
-        respawnTimer = 1000, -- Time for respawning a scenario
         rewards = { -- Rewards for finishing the scenario. Rewards are split amongst those that help clear it.
             {type = "money", amount = 100},
             {type = "xp", name = "landscaping", amount = 1000},
@@ -389,7 +380,6 @@ Config.Scenarios = { -- This is where you'll add work for landscapers to do.
         radius = 2.0, -- Area of the scenario.
         spread = 50, -- Amount of leaves to place inside the area.
         offset = 0.02, -- Offset of the Z-coordinate of each prop placed in the area.
-        respawnTimer = 1000, -- Time for respawning a scenario
         rewards = { -- Rewards for finishing the scenario. Rewards are split amongst those that help clear it.
             {type = "money", amount = 30},
             {type = "xp", name = "landscaping", amount = 1000},
@@ -403,7 +393,6 @@ Config.Scenarios = { -- This is where you'll add work for landscapers to do.
         radius = 2.0, -- Area of the scenario.
         spread = 50, -- Amount of leaves to place inside the area.
         offset = 0.02, -- Offset of the Z-coordinate of each prop placed in the area.
-        respawnTimer = 600, -- Time for respawning a scenario
         rewards = { -- Rewards for finishing the scenario. Rewards are split amongst those that help clear it.
             {type = "money", amount = 25},
             {type = "xp", name = "landscaping", amount = 1000},
@@ -416,7 +405,6 @@ Config.Scenarios = { -- This is where you'll add work for landscapers to do.
         radius = 3.0, -- Area of the scenario.
         spread = 20, -- Amount of leaves to place inside the area.
         offset = -0.75, -- Offset of the Z-coordinate of each prop placed in the area.
-        respawnTimer = 600, -- Time for respawning a scenario
         rewards = { -- Rewards for finishing the scenario. Rewards are split amongst those that help clear it.
             {type = "money", amount = 50},
             {type = "xp", name = "landscaping", amount = 1000},
@@ -429,7 +417,6 @@ Config.Scenarios = { -- This is where you'll add work for landscapers to do.
         radius = 6.0, -- Area of the scenario.
         spread = 40, -- Amount of leaves to place inside the area.
         offset = -0.75, -- Offset of the Z-coordinate of each prop placed in the area.
-        respawnTimer = 600, -- Time for respawning a scenario
         rewards = { -- Rewards for finishing the scenario. Rewards are split amongst those that help clear it.
             {type = "money", amount = 60},
             {type = "xp", name = "landscaping", amount = 1000},
