@@ -405,6 +405,9 @@ QBShared.Items = {
     ["flyer"] 					 = {["name"] = "flyer", 			  	  		["label"] ="Flyer", 				["weight"] = 0, 		["type"] = "item", 		["image"] ="flyer.png", 				["unique"] = true,	 	["useable"] = true,		["created"] = nil,		["decay"] = nil, 	["shouldClose"] = false, ["combinable"] =nil,   ["description"] = "A Flyer"},
     ["menu"] 					 = {["name"] = "menu", 			  	  		["label"] ="Menu", 				["weight"] = 0, 		["type"] = "item", 		["image"] ="menu.png", 				["unique"] = true,	 	["useable"] = true,		["created"] = nil,		["decay"] = nil, 	["shouldClose"] = false, ["combinable"] =nil,   ["description"] = "A Menu"},
     ["book"] 					 = {["name"] = "book", 			  	  		["label"] = "Book", 				["weight"] = 0, 		["type"] = "item", 		["image"] = "book.png", 				["unique"] = true,	 	["useable"] = true,			["created"] = nil,		["decay"] = nil, 	["shouldClose"] = false, ["combinable"] = nil,   ["description"] = "A book"},
-    
+
+    ['redbull'] 				 	 = {['name'] = 'redbull', 			  	  		['label'] = 'Redbull', 				['weight'] = 200, 		['type'] = 'item', 		['image'] = 'redbull.png', 			['unique'] = false, 	['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'Redbull'},
+
+    ['chocolate'] 				 	 = {['name'] = 'chocolate', 			  	  		['label'] = 'Chocolate', 				['weight'] = 200, 		['type'] = 'item', 		['image'] = 'chocolate.png', 			['unique'] = false, 	['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'Chocolate'},
 
 }

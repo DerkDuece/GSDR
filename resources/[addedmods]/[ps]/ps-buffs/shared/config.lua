@@ -78,6 +78,21 @@ Config.Buffs = {
         iconColor = '#FDE829',
         type = 'enhancement',
     },
+    ['gym-stamina'] = {
+        iconColor = "#ffffff",
+        iconName = 'wind',
+        maxTime = 300000,
+        progressColor = "#FFD700",
+        type = 'buff'
+    },
+
+    ['gym-strength'] = {
+        iconColor = "#ffffff",
+        iconName = 'dumbbell',
+        maxTime = 300000,
+        progressColor = "#FFD700",
+        type = 'buff'
+    },
     ['super-stress'] = {
         maxTime = 3600000,
         iconColor = '#FDE829',

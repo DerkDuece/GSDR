@@ -109,12 +109,14 @@ Config.ConsumablesEat = {
     ["tosti"] = math.random(40, 50),
     ["twerks_candy"] = math.random(35, 54),
     ["snikkel_candy"] = math.random(40, 50),
+    ["chocolate"] = math.random(10, 15),
 }
 
 Config.ConsumablesDrink = {
     ["water_bottle"] = math.random(35, 54),
     ["kurkakola"] = math.random(35, 54),
     ["coffee"] = math.random(40, 50),
+    ["redbull"] = math.random(10, 15),
 }
 
 Config.ConsumablesAlcohol = {

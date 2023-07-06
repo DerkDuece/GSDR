@@ -27,9 +27,7 @@ const team = [{
 
 // SOCIAL MEDIA
 const social = [{
-        discord: "https://discord.gg/sNqVYFuZM7",
-        web: "Fiverr.com/QBusdev",
-        instagram: "Version - #V5.0"
+        discord: "https://discord.gg/sNqVYFuZM7"
     },
 
 ]

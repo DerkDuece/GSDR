@@ -149,19 +149,30 @@ end
 -- Events
 
 RegisterNetEvent('consumables:client:Eat', function(itemName)
+    local eat = (1000 * 60) * Config.SuperHunger
     TriggerEvent('animations:client:EmoteCommandStart', {"eat"})
     QBCore.Functions.Progressbar("eat_something", Lang:t('consumables.eat_progress'), 5000, false, true, {
         disableMovement = false,
         disableCarMovement = false,
         disableMouse = false,
         disableCombat = true,
-    }, {}, {}, {}, function() -- Done
+    }, {
+        animDict = "mp_player_inteat@burger",
+        anim = "mp_player_int_eat_burger",
+        flags = 49,
+    }, {}, {}, function() -- Done
+
+        if itemName == "chocolate" then
+            exports['ps-buffs']:AddBuff("gym-stamina", 300000)
+        end
+
         TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items[itemName], "remove")
         TriggerEvent('animations:client:EmoteCommandStart', {"c"})
         TriggerServerEvent("consumables:server:addHunger", QBCore.Functions.GetPlayerData().metadata["hunger"] + Config.ConsumablesEat[itemName])
         TriggerServerEvent('hud:server:RelieveStress', math.random(2, 4))
     end)
 end)
+
 
 RegisterNetEvent('consumables:client:Drink', function(itemName)
     TriggerEvent('animations:client:EmoteCommandStart', {"drink"})
@@ -170,12 +181,22 @@ RegisterNetEvent('consumables:client:Drink', function(itemName)
         disableCarMovement = false,
         disableMouse = false,
         disableCombat = true,
-    }, {}, {}, {}, function() -- Done
+    }, {
+        animDict = "mp_player_inteat@pnq",
+        anim = "loop",
+        flags = 49,
+    }, {}, {}, function() -- Done
+
+        if itemName == "redbull" then
+            exports['ps-buffs']:AddBuff("gym-strength", 300000)
+        end
+
         TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items[itemName], "remove")
         TriggerEvent('animations:client:EmoteCommandStart', {"c"})
         TriggerServerEvent("consumables:server:addThirst", QBCore.Functions.GetPlayerData().metadata["thirst"] + Config.ConsumablesDrink[itemName])
     end)
 end)
+
 
 RegisterNetEvent('consumables:client:DrinkAlcohol', function(itemName)
     TriggerEvent('animations:client:EmoteCommandStart', {"drink"})

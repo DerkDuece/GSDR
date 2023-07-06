@@ -87,6 +87,13 @@ function QBCore.Player.CheckPlayerData(source, PlayerData)
     PlayerData.charinfo.account = PlayerData.charinfo.account or QBCore.Functions.CreateAccountNumber()
     -- Metadata
     PlayerData.metadata = PlayerData.metadata or {}
+    PlayerData.metadata["skill"]  = PlayerData.metadata["skill"]  ~= nil and PlayerData.metadata["skill"] or {
+		["Stamina"] = {["Current"] = 10.0, ["Stat"] = "MP0_STAMINA", ["RemoveAmount"] = 0}, 
+		["Strength"] = {["Current"] = 5.0, ["Stat"] = "MP0_STRENGTH", ["RemoveAmount"] = 0 },
+        ["Lung Capacity"] = {["Current"] = 5.0, ["Stat"] = "MP0_LUNG_CAPACITY", ["RemoveAmount"] = 0 },
+        ["Driving"] = {["Current"] = 0.0, ["Stat"] = "MP0_DRIVING_ABILITY", ["RemoveAmount"] = 0 },
+        ["Wheelie"] = {["Current"] = 0.0, ["Stat"] = "MP0_WHEELIE_ABILITY", ["RemoveAmount"] = 0 }
+	}
     PlayerData.metadata['hunger'] = PlayerData.metadata['hunger'] or 100
     PlayerData.metadata['thirst'] = PlayerData.metadata['thirst'] or 100
     PlayerData.metadata['stress'] = PlayerData.metadata['stress'] or 0
