@@ -569,5 +569,5 @@ end)
 
 RegisterNetEvent("rz-gym:shop")
 AddEventHandler("rz-gym:shop", function()
-    TriggerServerEvent("inventory:server:OpenInventory", "shop", "GymShop", config.GymShop)
+  TriggerEvent("ox_inventory:openInventory", "shop", "GymShop")
 end)
