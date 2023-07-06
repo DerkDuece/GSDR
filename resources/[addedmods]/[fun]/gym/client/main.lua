@@ -142,26 +142,6 @@ CreateThread(function()
       distance = 2.0
     })
   end
-
-  for k, v in pairs(config.Locations["shop"]) do
-    exports['qb-target']:AddBoxZone("gymshop" .. k, vector3(v.x, v.y, v.z), 2, 2, {
-      name = "gymshop" .. k,
-      heading = 39.69,
-      debugPoly = false,
-      minZ = v.z - 2,
-      maxZ = v.z + 2,
-    }, {
-      options = {
-        {
-          type = "client",
-          event = "rz-gym:shop",
-          icon = "fa-solid fa-shop",
-          label = "Gym Shop"
-          },
-      },
-      distance = 2.0
-    })
-  end
   
 end)
 
@@ -565,9 +545,4 @@ Citizen.CreateThread(function()
       EndTextCommandSetBlipName(info.blip)
     end
 	end
-end)
-
-RegisterNetEvent("rz-gym:shop")
-AddEventHandler("rz-gym:shop", function()
-  TriggerEvent("ox_inventory:openInventory", "shop", "GymShop")
 end)

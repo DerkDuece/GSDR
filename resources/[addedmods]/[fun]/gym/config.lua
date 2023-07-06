@@ -1,6 +1,6 @@
 config = {}
 config.SporCd = 20000
-config.SkillSystem = "gamz-skillsystem" -- gamz-skillsystem-- mz-skills -- B1-skillz
+config.SkillSystem = "mz-skills" -- gamz-skillsystem-- mz-skills -- B1-skillz
 config.DrivingLoopTime = 5000
 config.SwimmingLoopTime = 30000
 config.DrivingMinSpeed = 20
@@ -171,25 +171,4 @@ config.Blip = {
         blipcoords = vector3(-2136.16, -150.3, 54.99),
         showBlip = false,
     },
-}
-
-config.GymShop = {
-    label = "Gym Shop",
-    slots = 2,
-    items = {
-      {
-        name = "redbull",
-        amount = 1,
-        type = "item",
-        price = 1,
-        slot = 1,
-      },
-      {
-        name = "chocolate",
-        amount = 1,
-        type = "item",
-        price = 1,
-        slot = 2,
-      },
-    }
 }
