@@ -12514,4 +12514,24 @@ return {
 		close = true,
 		description = nil
 	},
+	['spray'] = {
+		label = 'Spray',
+		weight = 250,
+		close = true,
+		consume = 0,
+		client = {},
+		server = {
+			export = 'rcore_spray.spray',
+		},
+	},
+	['spray_remover'] = {
+		label = 'Spray Remover',
+		weight = 250,
+		close = true,
+		consume = 0,
+		client = {},
+		server = {
+			export = 'rcore_spray.spray_remover',
+		},
+	},
 }
