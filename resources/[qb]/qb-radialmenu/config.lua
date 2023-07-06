@@ -164,6 +164,42 @@ Config.MenuItems = {
                                 shouldClose = true
                             }
                         }
+                    },
+                    {
+                        id = 'prints',
+                        title = 'Prints',
+                        icon = 'address-card',
+                        items = {
+                            {
+                                id = 'business_card',
+                                title = 'Give Business Card',
+                                icon = 'address-card',
+                                type = 'client',
+                                event = 'cw-prints:client:GivePrint',
+                                shouldClose = true
+                            }, {
+                                id = 'flyer',
+                                title = 'Give Flyer',
+                                icon = 'scroll',
+                                type = 'client',
+                                event = 'cw-prints:client:GivePrint',
+                                shouldClose = true
+                            }, {
+                                id = 'coupon',
+                                title = 'Give Coupon',
+                                icon = 'percent',
+                                type = 'client',
+                                event = 'cw-prints:client:GivePrint',
+                                shouldClose = true
+                            }, {
+                                id = 'menu',
+                                title = 'Give Menu',
+                                icon = 'file-alt',
+                                type = 'client',
+                                event = 'cw-prints:client:GivePrint',
+                                shouldClose = true
+                            }
+                        }
                     }
                 }
             }, {
