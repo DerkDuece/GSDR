@@ -209,6 +209,7 @@ Config.ScenarioBlip = { -- Landscaping work blip when enabled.
 Config.Scenarios = { -- This is where you'll add work for landscapers to do.
     -- Mansion
     {
+        respawnTimer = 20, -- Time for respawning a scenario
         type = "grass", -- Type of scenario.
         model = `prop_veg_grass_01_c`, -- Model of the scenario.
         coords = vector3(-1604.2740, 107.1936, 61.0744), -- Center of the scenario.
@@ -228,7 +229,6 @@ Config.Scenarios = { -- This is where you'll add work for landscapers to do.
         radius = 2.0, -- Area of the scenario.
         spread = 50, -- Amount of leaves to place inside the area.
         offset = 0.02, -- Offset of the Z-coordinate of each prop placed in the area.
-        respawnTimer = 1200, -- Time for respawning a scenario
         rewards = { -- Rewards for finishing the scenario. Rewards are split amongst those that help clear it.
             {type = "money", amount = 50},
             {type = "xp", name = "landscaping", amount = 1000},
@@ -238,7 +238,6 @@ Config.Scenarios = { -- This is where you'll add work for landscapers to do.
         type = "bush", -- When watered, it replaces the unwatered plant with the watered plant.
         coords = vector3(-1599.0365, 90.3076, 60.8134), -- Center of the scenario.
         heading = 48.5044, -- Heading of the scenario.
-        respawnTimer = 1200, -- Time for respawning a scenario
         unwatered = {
             model = `prop_bush_dead_02`, -- Model of the scenario when unwatered.
             offset = -0.2, -- Offset of the Z-coordinate of each prop placed in the area.
@@ -256,7 +255,6 @@ Config.Scenarios = { -- This is where you'll add work for landscapers to do.
         type = "bush", -- When watered, it replaces the unwatered plant with the watered plant.
         coords = vector3(-1594.6431, 93.5099, 60.6486), -- Center of the scenario.
         heading = 48.5044, -- Heading of the scenario.
-        respawnTimer = 1200, -- Time for respawning a scenario
         unwatered = {
             model = `prop_bush_dead_02`, -- Model of the scenario when unwatered.
             offset = -0.2, -- Offset of the Z-coordinate of each prop placed in the area.
