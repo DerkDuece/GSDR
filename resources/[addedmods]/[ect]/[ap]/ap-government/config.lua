@@ -2,7 +2,7 @@ Config = {
 	FrameworkExport = "qb-core", -- Set this too your core name, only change this if you have a custom version of QBCore. 
 	DiscordWebhook = {CandidateWinner = true, PollsOpen = true, CandidateStarted = true, CompanyRegisterd = true, CompanyGrantGiven = true, AppointmentRequest = true, AppointmentApprove = true, MayorTaxChange = true}, -- Set the webhooks you want to use to true.
 	Currency = '$', -- Set this to the currency your server uses.
-	UsingAPCourt = false, -- Set this to true if your using AP-COURT.
+	UsingAPCourt = true, -- Set this to true if your using AP-COURT.
 	NotifyWinnerByPhone = true, -- Set true to email player of winning the election
 	displayVotingChatNotify = false, -- Set too true to show voting notiforcations in chat false for notify
 	AddJobsFromConfig = true, -- Set this to true if you want this script to add the jobs from Config.AddSharedJobs below to your shared jobs in qb-core. 
@@ -22,7 +22,7 @@ Config = {
 	  [3] = 500, -- Keep this below 500 for What would you bring to the city, This is for the length of the string in the application.
 	},
 	Phone = {GKSPhone = false, QBPhone = true, QuasarPhone = false, HighPhone = false, Custom = false}, -- Set to the phone you use to true, if you do not have one of these phones then set Custom to true and edit the function in webhooks.lua.
-	Interactions = {qbTarget = true, qTarget = false, drawText = false}, -- Set the target system to true that you use.
+	Interactions = {qbTarget = false, qTarget = false, drawText = true}, -- Set the target system to true that you use.
 	Banking = {
 	  okokbanking = false, -- Set this to true if you own okokbanking and you want the tax to show as a transaction.
 	  other = false -- Set to true if you own a differnt banking script and want to add an export, to edit this open functions.lua and edit the banking function.
@@ -31,8 +31,8 @@ Config = {
 	  menu = "qb-menu",
 	  input = "qb-input"
 	},
-	Context = {QB = true, OX = false},
-	Dialog = {QB = true, OX = false},
+	Context = {QB = false, OX = true},
+	Dialog = {QB = false, OX = true},
 	CustomEdits = "" -- Leave this blank, this is for customers that have a custom version of the government script.
 }
 

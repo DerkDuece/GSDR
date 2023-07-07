@@ -7,6 +7,7 @@ local itemsdelivered = 0
 local candropoff = false
 local hasdropoff = false
 local lastdelivery = 1
+local vehspawned = false
 
 RegisterNetEvent("f-deliveryrun:client:alertcops", function()
 	if Config.PDAlerts == "ps" then
@@ -18,15 +19,15 @@ RegisterNetEvent("f-deliveryrun:client:alertcops", function()
 		TriggerServerEvent('cd_dispatch:AddNotification', {
 			job_table = {'police'}, 
 			coords = data.coords,
-			title = '10-17 - Suspicious Person',
+			title = '10-45 - Suspicious Person',
 			message = 'A '..data.sex..' Was last seen doing suspicious activity at '..data.street, 
 			flash = 0,
 			unique_id = data.unique_id,
 			sound = 1,
 			blip = {
-				sprite = 480, 
-				scale = 0.8, 
-				colour = 0,
+				sprite = 501, 
+				scale = 1.0, 
+				colour = 1,
 				flashes = true, 
 				text = '911 - Suspicious Person',
 				time = 5,
@@ -116,6 +117,18 @@ local function CreateRun()
 	end
 end
 
+RegisterCommand("enddeliveryrun", function()
+	itemsdelivered = 0
+	startedrun = false
+	candeliver = false
+	candropoff = false
+	hasdropoff = false
+	TriggerServerEvent("f-deliveryrun:server:finishedrun")
+	QBCore.Functions.Notify("You ended the deliveryrun", "success", 5000)
+	RemoveBlip(dropoffblip)
+	DeleteDeliveryPed()
+end)
+
 RegisterNetEvent("f-deliveryruns:client:StartDeliveryRun", function()
 	if itemsdelivered <= Config.MaxRuns then
 		candeliver = true
@@ -162,7 +175,7 @@ RegisterNetEvent("f-deliveryrun:client:check", function(data)
 			QBCore.Functions.Notify("Wait for another delivery", "primary", 5000)
 			startedrun = false
 			DeleteDeliveryPed(data.args)
-			Wait(Config.TBR)
+			Wait(Config.TBR * 1000)
 			TriggerEvent("f-deliveryruns:client:StartDeliveryRun")
 		end
 	else
@@ -177,9 +190,34 @@ RegisterNetEvent("f-deliveryrun:client:spawnvehicle", function()
 	QBCore.Functions.SpawnVehicle(vehicle, function(veh)
 		SetVehicleNumberPlateText(veh, "RUN-"..tostring(math.random(1000, 9999)))
 		SetEntityHeading(veh, coords.w)
-		exports['cdn-fuel']:SetFuel(veh, 100.0)
 		TriggerEvent("vehiclekeys:client:SetOwner", QBCore.Functions.GetPlate(veh))
+		exports[Config.Fuel]:SetFuel(veh, 100.0)
 	end, coords, true)
+	vehspawned = true
+end)
+
+RegisterNetEvent("f-deliveryrun:client:deletevehicle", function()
+	local ped = PlayerPedId()
+	local veh = GetVehiclePedIsUsing(ped)
+	if vehspawned == true then
+		if veh ~= 0 then
+			QBCore.Functions.DeleteVehicle(veh)
+		else
+			local pcoords = GetEntityCoords(ped)
+			local vehicles = GetGamePool('CVehicle')
+			for k, v in pairs(vehicles) do
+				if #(pcoords - GetEntityCoords(v)) <= 10.0 then
+					QBCore.Functions.DeleteVehicle(v)
+				end
+			end
+		end
+	else
+		QBCore.Functions.Notify("The delivery run vehicle is not spawned so you cant get the return reward", "error", 5000)
+	end
+	if Config.VehicleReturnReward == true and vehspawned == true then 
+		TriggerServerEvent("f-deliveryrun:server:vehiclereturnreward")
+	end
+	vehspawned = false
 end)
 
 CreateThread(function()
@@ -207,3 +245,31 @@ CreateThread(function()
 		distance = 2.0
 	})
 end)
+
+if Config.SpawnStartVehicle == true then
+	CreateThread(function()
+		-- Delete Vehicle ped
+		local delvehped = Config.DelVehiclePed
+		RequestModel(delvehped)
+		while not HasModelLoaded(delvehped) do 
+			Wait(10) 
+		end
+		local vehp = CreatePed(0, delvehped, Config.DelVehPedLocation.x, Config.DelVehPedLocation.y, Config.DelVehPedLocation.z-1.0, Config.DelVehPedLocation.w, false, false)
+		TaskStartScenarioInPlace(vehp, 'WORLD_HUMAN_CLIPBOARD', -1, true)
+		FreezeEntityPosition(vehp, true)
+		SetEntityInvincible(vehp, true)
+		SetBlockingOfNonTemporaryEvents(vehp, true)
+		-- Target
+		exports['qb-target']:AddTargetEntity(vehp, {
+			options = {
+				{
+					type = "client",
+					event = "f-deliveryrun:client:deletevehicle",
+					icon = 'fas fa-capsules',
+					label = 'Delete Delivery Run Vehicle',
+				}
+			},
+			distance = 5.0
+		})
+	end)
+end
