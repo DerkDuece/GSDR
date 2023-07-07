@@ -1,7 +1,7 @@
 return {
 	[1] = {
 		AttachmentsCustomiseOnly = true, -- this will set the weapon components available in Customise Only
-		moneytype = 'bread',
+		moneytype = 'money',
 		item = true,
 		label = 'Ammunation #1', -- identifier for each stores. do not rename once player already buy this store
 		coord = vec3(13.674331665039,-1106.5460205078,29.791040420532),

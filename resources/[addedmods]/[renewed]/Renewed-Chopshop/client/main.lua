@@ -82,7 +82,7 @@ end)
 RegisterNetEvent("renewed-chopshop:client:CarFound", function()
     local realCar = NetworkGetEntityFromNetworkId(NetID)
     print('setting fuel')
-    exports['LegacyFuel']:SetFuel(realCar, 100.0)
+    exports['cdn-fuel']:SetFuel(realCar, 100.0)
 end)
 
 RegisterNetEvent('renewed-chopshop:client:FindCar', function(car, GroupDoors, Secure, Coords)
