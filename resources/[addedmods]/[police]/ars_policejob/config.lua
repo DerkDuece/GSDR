@@ -87,7 +87,7 @@ Config.PoliceStation = {
 		['police_garage_1'] = {
 			pedPos = vector4(441.02, -974.92, 23.7, 179.7),
 			model = 'mp_m_weapexp_01',
-			spawn = vector4(450.4673, -1019.8383, 28.4502, 90.0492),
+			spawn = vector4(450.4673, -1019.8383, 29.4502, 90.0492),
 			deposit = vector3(450.4673, -1019.8383, 28.4502),
 			driverSpawnCoords = vector3(452.0132, -1025.2670, 27.5377),
 
