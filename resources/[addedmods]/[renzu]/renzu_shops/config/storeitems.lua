@@ -140,30 +140,22 @@ return {
 	},
 
 	PoliceArmoury = { -- PoliceArmoury
-		{ category = 'ammo',  name = 'ammo-9', price = 2, },
-		{ category = 'ammo',  name = 'ammo-rifle', price = 2, },
-		{ category = 'ammo',  name = 'ammo-shotgun', price = 2, },
-		{ category = 'ammo',  name = 'ammo-50', price = 2, },
-		{ category = 'ammo',  name = 'ammo-rifle2', price = 2, },
-		{ category = 'ammo',  name = 'ammo-45', price = 2, },
-		{ category = 'throwable',  name = 'WEAPON_BZGAS', price = 300 },
-		{ category = 'pistol',  name = 'WEAPON_PISTOL50', price = 300 },
-		{ category = 'drink',  name = 'energy_drink', price = 300 },
-
-		{ category = 'handheld',  name = 'WEAPON_FLASHLIGHT', price = 200 },
-		{ category = 'handheld',  name = 'WEAPON_NIGHTSTICK', price = 100 },
-		{ category = 'Pistol',  name = 'WEAPON_PISTOL', price = 500, metadata = { registered = true, serial = 'POL' }, },
-		{ category = 'Rifle',  name = 'WEAPON_CARBINERIFLE', price = 800, grade = 5, metadata = { registered = true, serial = 'POL' },  grade = 3 },
-		{ category = 'Rifle',  name = 'WEAPON_SPECIALCARBINE', price = 800, grade = 5, metadata = { registered = true, serial = 'POL' },  grade = 3 },
-		{ category = 'handheld',  name = 'WEAPON_STUNGUN', price = 300, metadata = { registered = true, serial = 'POL'} },
-		{ category = 'Shotguns',  name = 'WEAPON_PUMPSHOTGUN', price = 600, metadata = { registered = true, serial = 'POL'} },
-		{ category = 'SMG',  name = 'WEAPON_COMBATPDW', price = 700 },
-		{ lvl = 2, name = 'radio', category = 'handheld', price = 100, metadata = { description = 'pang pakunat' } },
-
-		{ lvl = 2, name = 'armour', category = 'Tools', price = 100, metadata = { description = 'pang pakunat' } },
-		{ lvl = 2, name = 'vision_helmet', category = 'Tools', price = 5000 },
-		{ lvl = 2, name = 'thermal_helmet', category = 'Tools', price = 5000 },
-		{ lvl = 2, name = 'gpstracker', category = 'Tools', price = 15000 },
+		{ category = 'ammo', name = 'ammo-9', price = 1, },
+		{ category = 'ammo', name = 'ammo-rifle', price = 5, },
+		{ category = 'ammo', name = 'ammo-shotgun', price = 2 },
+		{ category = 'ammo', name = 'ammo-sniper', price = 10},
+		{ category = 'ammo', name = 'WEAPON_FLASHLIGHT', price = 50 },
+		{ category = 'handheld', name = 'WEAPON_NIGHTSTICK', price = 100 },
+		{ category = 'handheld', name = 'handcuffs', price = 100 },
+		{ category = 'handheld', name = 'bodycam', price = 5},
+		{ category = 'armor', name = 'armour', price = 50},
+		{ category = 'weapon', name = 'WEAPON_COMBATPISTOL', price = 150, metadata = { registered = true, serial = 'POL' }, license = 'weapon' },
+		{ category = 'weapon', name = 'WEAPON_CARBINERIFLE', price = 500, metadata = { registered = true, serial = 'POL' }, license = 'weapon', grade = 3 },
+		{ category = 'weapon', name = 'WEAPON_STUNGUN', price = 150, metadata = { registered = true, serial = 'POL'} },
+		{ category = 'weapon', name = 'WEAPON_PUMPSHOTGUN', price = 150, metadata = {registered = true, serial = 'POL'}, license = 'weapon'},
+		{ category = 'weapon', name = 'WEAPON_TACTICALRIFLE', price = 500, metadata = {registered = true, serial = 'POL'}, grade = 6},
+		{ category = 'weapon', name = 'WEAPON_SNIPERRIFLE', price = 500, metadata = {registered = true, serial = 'POL'}, grade = 6},
+		{ category = 'weapon', name = 'WEAPON_SMG', price = 500, metadata = {registered = true, serial = 'POL'}, grade = 6}
 		
 
 
