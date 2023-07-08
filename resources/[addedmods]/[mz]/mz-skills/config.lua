@@ -12,7 +12,7 @@ Config.NotifyType = 'qb'                  -- Notification type: 'qb' for QBCore 
 
 Config.Debug = false                        -- Set to "true" to print debugging messages
 
-Config.UseOxMenu = false                     -- set to "true" to use ox_lib menu instead of qb-menu
+Config.UseOxMenu = true                     -- set to "true" to use ox_lib menu instead of qb-menu
 -- if "Config.UseOxMenu = true", then the following parameters apply:
 Config.XPBarColour = "cyan"                 -- Change the colour of your XP Bar.
 Config.SkillsTitle = "MZ-SKILLS"            -- Change this to label your skill system as you see fit.
@@ -26,7 +26,7 @@ Config.Skillmenu = "skills"                 -- phrase typed to display skills me
 --GTA NATIVE SKILLS--
 ---------------------
 
-Config.B1Natives = false                    -- Change to "true" to use B1-skillz native functions as well as mz-skills
+Config.B1Natives = true                    -- Change to "true" to use B1-skillz native functions as well as mz-skills
                                             -- Please make sure you uncomment the "GTA NATIVE SKILLS" set out below. 
                                             -- To do so highlight all relevant lines of code and hold down "ctrl" + "k" and then press "u".
                                             -- PLEASE NOTE SUPPORT FOR B1 NATIVE SKILLS IS NOT OFFERED AND MAY COMPROMISE YOUR DATABASE RE: EXISTING SKILLS
@@ -120,40 +120,40 @@ Config.Skills = {
 ---------------------
 -- PLEASE NOTE: THE FOLLOWING VALUES SHOULD ONLY BE UNCOMMENTED IF Config.B1Natives = true.
 
-    -- ["Stamina"] = {
-    --     ["Current"] = 0, -- Default value 
-    --     ["RemoveAmount"] = -0.3, -- % to remove when updating,
-    --     ["Stat"] = "MP0_STAMINA", -- GTA stat hashname
-    --     ['icon'] = 'fas fa-walking',
-    -- },
-    -- ["Strength"] = {
-    --     ["Current"] = 0,
-    --     ["RemoveAmount"] = -0.3,
-    --     ["Stat"] = "MP0_STRENGTH",
-    --     ['icon'] = 'fas fa-dumbbell',
-    -- },
-    -- ["Lung Capacity"] = {
-    --     ["Current"] = 0,
-    --     ["RemoveAmount"] = -0.1,
-    --     ["Stat"] = "MP0_LUNG_CAPACITY",
-    --     ['icon'] = 'fas fa-heartbeat',
-    -- },
-    -- ["Shooting"] = {
-    --     ["Current"] = 0,
-    --     ["RemoveAmount"] = -0.1,
-    --     ["Stat"] = "MP0_SHOOTING_ABILITY",
-    --     ['icon'] = 'fas fa-bullseye',
-    -- },
-    -- ["Driving"] = {
-    --     ["Current"] = 0,
-    --     ["RemoveAmount"] = -0.5,
-    --     ["Stat"] = "MP0_DRIVING_ABILITY",
-    --     ['icon'] = 'fas fa-car-side',
-    -- },
-    -- ["Wheelie"] = {
-    --     ["Current"] = 0,
-    --     ["RemoveAmount"] = -0.2,
-    --     ["Stat"] = "MP0_WHEELIE_ABILITY",
-    --     ['icon'] = 'fas fa-wheelchair',
-    -- },
+     ["Stamina"] = {
+         ["Current"] = 0, -- Default value 
+         ["RemoveAmount"] = -0.3, -- % to remove when updating,
+         ["Stat"] = "MP0_STAMINA", -- GTA stat hashname
+         ['icon'] = 'fas fa-walking',
+     },
+     ["Strength"] = {
+         ["Current"] = 0,
+         ["RemoveAmount"] = -0.3,
+         ["Stat"] = "MP0_STRENGTH",
+         ['icon'] = 'fas fa-dumbbell',
+     },
+     ["Lung Capacity"] = {
+         ["Current"] = 0,
+         ["RemoveAmount"] = -0.1,
+         ["Stat"] = "MP0_LUNG_CAPACITY",
+         ['icon'] = 'fas fa-heartbeat',
+     },
+     ["Shooting"] = {
+         ["Current"] = 0,
+         ["RemoveAmount"] = -0.1,
+         ["Stat"] = "MP0_SHOOTING_ABILITY",
+         ['icon'] = 'fas fa-bullseye',
+     },
+     ["Driving"] = {
+         ["Current"] = 0,
+         ["RemoveAmount"] = -0.5,
+         ["Stat"] = "MP0_DRIVING_ABILITY",
+         ['icon'] = 'fas fa-car-side',
+     },
+     ["Wheelie"] = {
+         ["Current"] = 0,
+         ["RemoveAmount"] = -0.2,
+         ["Stat"] = "MP0_WHEELIE_ABILITY",
+         ['icon'] = 'fas fa-wheelchair',
+     },
 }
