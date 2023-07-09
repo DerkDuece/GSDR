@@ -112,6 +112,18 @@ return {
 			id = 402, colour = 69, scale = 0.8
 		}, inventory = {
 			{ name = 'lockpick', price = 2000 ,grade = 0},
+			{ name = 'spray', price = 100},
+			{ name = 'fishingrod', price = 200 , category = 'fishing'},
+			{ name = 'fishbait', price = 50, category = 'fishing'},
+			{ name = 'garden_shovel', price = 1000 , category = 'seeds'},
+			{ name = 'garden_pitcher', price = 1000, category = 'seeds'},
+			{ name = 'pickle_seed', price = 100 , category = 'seeds'},
+			{ name = 'potato_seed', price = 100 , category = 'seeds'},
+			{ name = 'tomato_seed', price = 100 , category = 'seeds'},
+			{ name = 'wheat_seed', price = 100 , category = 'seeds'},
+			{ name = 'carrot_seed', price = 100 , category = 'seeds'},
+			{ name = 'corn_seed', price = 100 , category = 'seeds'},
+	
 
 		}, locations = {
 			vec3(2747.025390625,3473.0822753906,55.683399200439),
