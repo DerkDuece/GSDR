@@ -106,7 +106,7 @@ return {
 
 	YouTool = {
 		--groups = 'police',
-		moneytype = 'black_money',
+		moneytype = 'money',
 		name = 'YouTool',
 		blip = {
 			id = 402, colour = 69, scale = 0.8
@@ -123,6 +123,7 @@ return {
 			{ name = 'wheat_seed', price = 100 , category = 'seeds'},
 			{ name = 'carrot_seed', price = 100 , category = 'seeds'},
 			{ name = 'corn_seed', price = 100 , category = 'seeds'},
+			{ name = 'steelfile', price = 500, category = 'tools'},
 	
 
 		}, locations = {

@@ -12534,4 +12534,9 @@ return {
 			export = 'rcore_spray.spray_remover',
 		},
 	},
+	['steelfile'] = {
+		label = 'Steel File',
+		weight = 300,
+	},
+
 }
