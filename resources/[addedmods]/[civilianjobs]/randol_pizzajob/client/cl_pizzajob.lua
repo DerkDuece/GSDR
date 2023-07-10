@@ -104,7 +104,9 @@ CreateThread(function()
 end)
 
 function PullOutVehicle()
-
+    if ownsVan then
+        QBCore.Functions.Notify("You already have a work vehicle! Go and collect it or end your job.", "error")
+    else
         local coords = Config.VehicleSpawn
         QBCore.Functions.SpawnVehicle(Config.Vehicle, function(pizzaCar)
             SetVehicleNumberPlateText(pizzaCar, "PIZZA"..tostring(math.random(1000, 9999)))
@@ -133,6 +135,7 @@ function PullOutVehicle()
         Hired = true
         ownsVan = true
         NextDelivery()
+    end
 end
 
 
@@ -163,8 +166,6 @@ RegisterNetEvent('randol_pizzajob:client:deliverPizza', function()
             DeleteObject(prop)
             Wait(1000)
             ClearPedSecondaryTask(PlayerPedId())
-            Player.Functions.AddMoney("cash", 75)
-            TriggerClientEvent("QBCore:Notify", source, "You received $75 "success"")
             QBCore.Functions.Notify("Pizza Delivered. Please wait for your next delivery!", "success") 
             SetTimeout(5000, function()    
                 NextDelivery()
@@ -210,6 +211,7 @@ end
 function NextDelivery()
     if not activeOrder then
         newDelivery = Config.JobLocs[math.random(1, #Config.JobLocs)]
+
         JobBlip = AddBlipForCoord(newDelivery.x, newDelivery.y, newDelivery.z)
         SetBlipSprite(JobBlip, 1)
         SetBlipDisplay(JobBlip, 4)
@@ -225,7 +227,6 @@ function NextDelivery()
         exports['qb-target']:AddCircleZone("deliverZone", vector3(newDelivery.x, newDelivery.y, newDelivery.z), 1.3,{ name = "deliverZone", debugPoly = false, useZ=true, }, { options = { { type = "client", event = "randol_pizzajob:client:deliverPizza", icon = "fa-solid fa-pizza-slice", label = "Deliver Pizza"}, }, distance = 1.5 })
         activeOrder = true
         QBCore.Functions.Notify("You have a new delivery!", "success")
-       
     end
 end
 
@@ -243,7 +244,15 @@ RegisterNetEvent('randol_pizzajob:client:finishWork', function()
                 HasPizza = false
                 ownsVan = false
                 activeOrder = false
-                PullOutVehicle()
+                if DeliveriesCount > 0 then
+                    TriggerServerEvent('randol_pizzajob:server:Payment', DeliveriesCount)
+                else
+                    QBCore.Functions.Notify("You didn't complete any deliveries so you weren't paid.", "error")
+                end
+                DeliveriesCount = 0
+            else
+                QBCore.Functions.Notify("You must return your work vehicle to get paid.", "error")
+                return
             end
         end
     end

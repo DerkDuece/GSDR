@@ -1,9 +1,8 @@
 fx_version 'cerulean'
 game 'gta5'
 
-author '! Liad#5121'
-description '! Liad#5121 PizzaJob - '
-version '1.0.0' 
+author 'Randolio | MrEvilGamer'
+description 'Reworked Pizza Job for QBCore.'
 
 shared_scripts {
     'config.lua'

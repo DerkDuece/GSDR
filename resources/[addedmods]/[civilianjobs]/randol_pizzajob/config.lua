@@ -2,11 +2,11 @@ Config = {}
 
 Config.BossModel = "u_m_y_party_01"
 
-Config.Payment = 0 -- Per Delivery. Totals up and get paid when you return the vehicle.
+Config.Payment = 105 -- Per Delivery. Totals up and get paid when you return the vehicle.
 
 Config.BossCoords = vector4(538.35, 101.8, 95.54, 164.05) -- The Blip also uses these coords.
 
-Config.Vehicle = "stanier"
+Config.Vehicle = "surge"
 
 Config.VehicleSpawn = vector4(535.3, 95.58, 96.32, 159.15)
 
@@ -36,12 +36,4 @@ Config.JobLocs = { -- Random delivery houses.
     vector3(1381.98, -1544.75, 57.11),
     vector3(1245.4, -1626.85, 53.28),
     vector3(315.09, -128.31, 69.98),
-    vector3(-20.93653, -1406.271, 29.532669),
-    vector3(-32.32445, -1446.168, 31.89141),
-    vector3(-602.1438, -1121.965, 22.324249),
-    vector3(-736.7023, -1118.965, 11.015544),
-    vector3(335.23135, -71.63269, 73.042213),
-    vector3(1207.4804, -620.3994, 66.438636),
-    vector3(1130.4631, -963.6549, 47.258625),
-    vector3(232.49606, -1094.821, 29.294008),
 }
