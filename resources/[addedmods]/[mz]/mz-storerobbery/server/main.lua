@@ -177,17 +177,14 @@ RegisterNetEvent('mz-storerobbery:server:SafeReward', function(safe, safeCheck)
                 TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.LiquorItem], "add", 1)
             end
             if Config.RareItemDrops then 
-                Wait(1000)
                 if math.random(1, 100) <= Config.RareItem1Chance then 
                     Player.Functions.AddItem(Config.RareItem1, Config.RareItemAmount, false)
                     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.RareItem1], "add", Config.RareItemAmount)
                 end
-                Wait(1000)
                 if math.random(1, 100) <= Config.RareItem2Chance then 
                     Player.Functions.AddItem(Config.RareItem2, Config.RareItem2Amount, false)
                     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.RareItem2], "add", Config.RareItem2Amount)
                 end
-                Wait(1000)
                 if math.random(1, 100) <= Config.RareItem3Chance then 
                     Player.Functions.AddItem(Config.RareItem3, Config.RareItem3Amount, false)
                     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.RareItem3], "add", Config.RareItem3Amount)
@@ -209,17 +206,14 @@ RegisterNetEvent('mz-storerobbery:server:SafeReward', function(safe, safeCheck)
                 TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.LiquorItem], "add", 1)
             end
             if Config.RareItemDrops then
-                Wait(1000)
                 if math.random(1, 100) <= Config.RareItem1Chance then 
                     Player.Functions.AddItem(Config.RareItem1, Config.RareItemAmount, false)
                     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.RareItem1], "add", Config.RareItemAmount)
                 end
-                Wait(1000)
                 if math.random(1, 100) <= Config.RareItem2Chance then 
                     Player.Functions.AddItem(Config.RareItem2, Config.RareItem2Amount, false)
                     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.RareItem2], "add", Config.RareItem2Amount)
                 end
-                Wait(1000)
                 if math.random(1, 100) <= Config.RareItem3Chance then 
                     Player.Functions.AddItem(Config.RareItem3, Config.RareItem3Amount, false)
                     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.RareItem3], "add", Config.RareItem3Amount)
@@ -238,17 +232,14 @@ RegisterNetEvent('mz-storerobbery:server:SafeReward', function(safe, safeCheck)
                 TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.LiquorItem], "add", 1)
             end
             if Config.RareItemDrops then
-                Wait(1000)
                 if math.random(1, 100) <= Config.RareItem1Chance then 
                     Player.Functions.AddItem(Config.RareItem1, Config.RareItemAmount, false)
                     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.RareItem1], "add", Config.RareItemAmount)
                 end
-                Wait(1000)
                 if math.random(1, 100) <= Config.RareItem2Chance then 
                     Player.Functions.AddItem(Config.RareItem2, Config.RareItem2Amount, false)
                     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.RareItem2], "add", Config.RareItem2Amount)
                 end
-                Wait(1000)
                 if math.random(1, 100) <= Config.RareItem3Chance then 
                     Player.Functions.AddItem(Config.RareItem3, Config.RareItem3Amount, false)
                     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.RareItem3], "add", Config.RareItem3Amount)
@@ -281,17 +272,14 @@ RegisterNetEvent('mz-storerobbery:server:SafeRewardAlcohol', function(safe, safe
                 TriggerClientEvent('okokNotify:Alert', source, "RAIDED THE SAFE", "You stole $" ..amount.. " from the safe!", 4500, 'success')
             end
             if Config.AlcoholRareItemDrops then 
-                Wait(1500)
                 if math.random(1, 100) <= Config.AlcoholRareItem1Chance then 
                     Player.Functions.AddItem(Config.AlcoholRareItem1, Config.AlcoholRareItemAmount, false)
                     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.AlcoholRareItem1], "add", Config.AlcoholRareItemAmount)
                 end
-                Wait(1500)
                 if math.random(1, 100) <= Config.AlcoholRareItem2Chance then 
                     Player.Functions.AddItem(Config.AlcoholRareItem2, Config.AlcoholRareItem2Amount, false)
                     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.AlcoholRareItem2], "add", Config.AlcoholRareItem2Amount)
                 end
-                Wait(1500)
                 if math.random(1, 100) <= Config.AlcoholRareItem3Chance then 
                     Player.Functions.AddItem(Config.AlcoholRareItem3, Config.AlcoholRareItem3Amount, false)
                     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.AlcoholRareItem3], "add", Config.AlcoholRareItem3Amount)
@@ -309,17 +297,14 @@ RegisterNetEvent('mz-storerobbery:server:SafeRewardAlcohol', function(safe, safe
                 TriggerClientEvent('okokNotify:Alert', source, "RAIDED THE SAFE", "You stole $" ..info.worth.. " from the safe!", 4500, 'success')
             end
             if Config.AlcoholRareItemDrops then
-                Wait(1000)
                 if math.random(1, 100) <= Config.AlcoholRareItem1Chance then 
                     Player.Functions.AddItem(Config.AlcoholRareItem1, Config.AlcoholRareItemAmount, false)
                     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.AlcoholRareItem1], "add", Config.AlcoholRareItemAmount)
                 end
-                Wait(1500)
                 if math.random(1, 100) <= Config.AlcoholRareItem2Chance then 
                     Player.Functions.AddItem(Config.AlcoholRareItem2, Config.AlcoholRareItem2Amount, false)
                     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.AlcoholRareItem2], "add", Config.AlcoholRareItem2Amount)
                 end
-                Wait(1500)
                 if math.random(1, 100) <= Config.AlcoholRareItem3Chance then 
                     Player.Functions.AddItem(Config.AlcoholRareItem3, Config.AlcoholRareItem3Amount, false)
                     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.AlcoholRareItem3], "add", Config.AlcoholRareItem3Amount)
@@ -334,17 +319,14 @@ RegisterNetEvent('mz-storerobbery:server:SafeRewardAlcohol', function(safe, safe
                 TriggerClientEvent('okokNotify:Alert', source, "RAIDED THE TILL", "You stole $" ..cleanmoney.. " from the safe!", 4500, 'success')
             end
             if Config.AlcoholRareItemDrops then
-                Wait(1000)
                 if math.random(1, 100) <= Config.AlcoholRareItem1Chance then 
                     Player.Functions.AddItem(Config.AlcoholRareItem1, Config.AlcoholRareItemAmount, false)
                     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.AlcoholRareItem1], "add", Config.AlcoholRareItemAmount)
                 end
-                Wait(1500)
                 if math.random(1, 100) <= Config.AlcoholRareItem2Chance then 
                     Player.Functions.AddItem(Config.AlcoholRareItem2, Config.AlcoholRareItem2Amount, false)
                     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.AlcoholRareItem2], "add", Config.AlcoholRareItem2Amount)
                 end
-                Wait(1500)
                 if math.random(1, 100) <= Config.AlcoholRareItem3Chance then 
                     Player.Functions.AddItem(Config.AlcoholRareItem3, Config.AlcoholRareItem3Amount, false)
                     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.AlcoholRareItem3], "add", Config.AlcoholRareItem3Amount)
