@@ -43,6 +43,7 @@ dispatchCodes = {
 	["vehicletheft"] =  {displayCode = '10-35', description = "Car Theft In Progress", radius = 0, recipientList = {'police'}, blipSprite = 595, blipColour = 60, blipScale = 1.5, blipLength = 2, sound = "Lose_1st", sound2 = "GTAO_FM_Events_Soundset", offset = "false", blipflash = "false"},
 	["signrobbery"] =  {displayCode = '10-35', description = "Sign Robbery Committed", radius = 0, recipientList = {'police'}, blipSprite = 358, blipColour = 60, blipScale = 1.5, blipLength = 2, sound = "Lose_1st", sound2 = "GTAO_FM_Events_Soundset", offset = "false", blipflash = "false"},
 	["susactivity"] =  {displayCode = '10-66', description = "Suspicious Activity", radius = 0, recipientList = {'police'}, blipSprite = 66, blipColour = 37, blipScale = 0.5, blipLength = 2, sound = "Lose_1st", sound2 = "GTAO_FM_Events_Soundset", offset = "false", blipflash = "false"},
+	["parkingmeterrobbery"] =  {displayCode = '10-90', description = "Parking Meter(s) Being Robbed", radius = 0, recipientList = {'police'}, blipSprite = 267, blipColour = 4, blipScale = 1.5, blipLength = 2, sound = "robberysound", offset = "false"},
 
 	-- Rainmad Heists
 

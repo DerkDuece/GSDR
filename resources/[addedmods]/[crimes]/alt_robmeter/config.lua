@@ -1,8 +1,8 @@
 Config = {}
 ox_inventory = exports.ox_inventory
 
-Config.MinCash = 2
-Config.MaxCash = 125
+Config.MinCash = 1
+Config.MaxCash = 50
 Config.Cooldown = 60000 -- In ms
 Config.UseLock = false -- Depends if you want to use lockpick or skillcheck
 Config.Reward = 'money' -- Set it with the item you want to give when the rob is done

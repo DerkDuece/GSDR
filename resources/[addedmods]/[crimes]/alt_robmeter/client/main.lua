@@ -1,5 +1,10 @@
 lib.locale()
 
+local function policeAlert()
+    --TriggerServerEvent("police:server:policeAlert", 'Parking Meter Robbery') --configure to your liking this is jus default
+    exports['ps-dispatch']:ParkingMeterRobbery() -- or use ps-dispatch alert
+end
+
 local function delPmeter(ent)
     TriggerServerEvent('alt_robmeter:cdEntity', ent)
 end
@@ -41,9 +46,11 @@ local function main()
                             bone = 18905
                         },
                     }) then
+                        policeAlert()
                         TriggerServerEvent('alt_robmeter:payout')
                         delPmeter(close)
                     else
+                        policeAlert()
                         ClearPedTasks(cache.ped) 
                     end
                 else
