@@ -36,7 +36,7 @@ end)
 -- Event that officially starts the mission
 lib.callback.register('lation_oxyrun:startOxyRun', function(source, price)
     local source = source
-    local ped = ESX.GetPlayerFromId(source)
+    local ped = QBCore.Functions.GetPlayer(source)
     ox_inventory:AddItem(ped.source, Config.BlankPrescription, Config.BlankPrescriptionRewardAmount)
     ox_inventory:RemoveItem(ped.source, Config.Money, price)
     if Config.EnableWebhook then
@@ -45,9 +45,9 @@ lib.callback.register('lation_oxyrun:startOxyRun', function(source, price)
 end)
 
 -- Makes the blank_prescription item usable, prompts player to input the information then applies the metadata
-ESX.RegisterUsableItem('blank_prescription', function(source)
+RegisterUsableItem('blank_prescription', function(source)
     local source = source
-    local ped = ESX.GetPlayerFromId(source)
+    local ped = QBCore.Functions.GetPlayer(source)
     getInputData = lib.callback.await('lation_oxyrun:fillPrescriptionInfo', ped.source)
     if getInputData == nil then return end
     local blankPrescription = ox_inventory:Search(ped.source, 1, Config.BlankPrescription)
@@ -65,7 +65,7 @@ end)
 -- Checks the players manually filled in script with the necessary information and proceeds accordingly
 lib.callback.register('lation_oxyrun:getItemMetadata', function(source, item)
     local source = source
-    local ped = ESX.GetPlayerFromId(source)
+    local ped = QBCore.Functions.GetPlayer(source)
     local playerName = ped.getName()
     if string.lower(playerName) ~= string.lower(getInputData[1]) or string.lower(selectADoctor) ~= string.lower(getInputData[6]) or getInputData[4] ~= true then
         lib.callback.await('lation_oxyrun:fakeScript', source)
@@ -83,9 +83,9 @@ lib.callback.register('lation_oxyrun:getItemMetadata', function(source, item)
 end)
 
 -- Makes the oxy_bottle item usable and rewards you with individual oxycontin
-ESX.RegisterUsableItem('oxy_bottle', function(source)
+RegisterUsableItem('oxy_bottle', function(source)
     local source = source
-    local ped = ESX.GetPlayerFromId(source)
+    local ped = QBCore.Functions.GetPlayer(source)
     local openedBottle = lib.callback.await('lation_oxyrun:openOxyBottle', source, result)
     if openedBottle then 
         ox_inventory:RemoveItem(ped.source, Config.OxyBottleItem, 1)
@@ -96,9 +96,9 @@ ESX.RegisterUsableItem('oxy_bottle', function(source)
 end)
 
 -- Makes the oxycontin itself usable, for features such as health, etc
-ESX.RegisterUsableItem('oxycontin', function(source)
+RegisterUsableItem('oxycontin', function(source)
     local source = source
-    local ped = ESX.GetPlayerFromId(source)
+    local ped = QBCore.Functions.GetPlayer(source)
     local usedOxycontin = lib.callback.await('lation_oxyrun:useOxycontin', source, result)
     if usedOxycontin then
         ox_inventory:RemoveItem(ped.source, Config.OxyPillItem, 1)
