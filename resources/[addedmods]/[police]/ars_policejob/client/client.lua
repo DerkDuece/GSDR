@@ -54,3 +54,15 @@ AddEventHandler('onResourceStop', function(resourceName)
         DeletePed(v)
     end
 end)
+
+RegisterNetEvent('evidence:client:AddFingerPrint', function(fingerId, fingerprint, coords)
+    local pos = GetEntityCoords(PlayerPedId(vector3))
+    Fingerprints[fingerId] = {
+        fingerprint = fingerprint,
+        coords =  {
+            x = pos.x,
+            y = pos.y,
+            z = pos.z - 0.8
+        }
+    }
+end)

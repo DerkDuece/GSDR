@@ -32,7 +32,7 @@ Config.UsePoliceName = true                    -- If this is set to "false", ser
 Config.PoliceJobType = "leo"                    -- Name of job type used by your server - NOTE: Only used if "Config.UsePoliceName = false"
 Config.PoliceJobName = "police"                 -- Name of police role in your server - NOTE: Only used if "Config.UsePoliceName = true"
 
-Config.MinimumStoreRobberyPolice = 0            -- Minimum police that need to be on duty before a store can be robbed.
+Config.MinimumStoreRobberyPolice = 2            -- Minimum police that need to be on duty before a store can be robbed.
 
 Config.PoliceMinutesCooldown = 5                -- Change minutes to change alert time for police 
 
@@ -95,16 +95,16 @@ Config.circletime = 13                          -- time for player to complete o
 
 -- Reward type:
 Config.CashRegisterReturn = "dirtymoney"        -- Set to "dirtymoney", "markedbills" or "cash" to alter the reward given.
-Config.minRegisterEarn = 750                   -- Minimum amount earnt from stealing from a cash register
-Config.maxRegisterEarn = 1250                   -- Maximum amount earnt from stealing from a cash register
+Config.minRegisterEarn = 400                   -- Minimum amount earnt from stealing from a cash register
+Config.maxRegisterEarn = 750                   -- Maximum amount earnt from stealing from a cash register
 
-Config.RegisterTime = 25                        -- progressBar time it takes for player to rob cash register after lockpicking (in seconds)
+Config.RegisterTime = 30                        -- progressBar time it takes for player to rob cash register after lockpicking (in seconds)
 
 --Chance to drop item to get into liquor store robbery
 
 Config.LiquorItem = "liquorkey"
 
-Config.liquorKey = 4                           -- Percentage chance to find a "liquorkey" from a cash register
+Config.liquorKey = 20                           -- Percentage chance to find a "liquorkey" from a cash register
 
 Config.liquorKeySafe = 15                      -- Percentage chance to find a "liquorkey" from a convenience store safe.
 
@@ -313,10 +313,10 @@ Config.StressForFailing = 10                    -- Amount of stress a player inc
 
 Config.SafeReqItem = "usb2"                     -- Change to any item you want (needs to be in qb-core/shared/items.lua)
 
-Config.SafeReturn = "dirty_money"                -- Set to "dirtymoney", "markedbills" or "cash" to alter the reward given.
+Config.SafeReturn = "dirtymoney"                -- Set to "dirtymoney", "markedbills" or "cash" to alter the reward given.
 
 Config.minSafeEarn = 7000                       -- Minimum amount earnt from stealing from a safe (in dirtymoney)
-Config.maxSafeEarn = 22000                      -- Maximum amount earnt from stealing from a safe (in dirtymoney)
+Config.maxSafeEarn = 15000                      -- Maximum amount earnt from stealing from a safe (in dirtymoney)
 
 --RARE DROPS (In addition to money)
 
@@ -341,11 +341,11 @@ Config.RareItem3Amount = 1                      -- Amount of the rare item playe
 
 Config.LiquorReqItem = "liquorkey"              -- Item needed to attempt to breach a liquor safe.
 
-Config.AlcoholReturn = "dirty_money"             -- Set to "dirtymoney", "markedbills" or "cash" to alter the reward given.
+Config.AlcoholReturn = "dirtymoney"             -- Set to "dirtymoney", "markedbills" or "cash" to alter the reward given.
 
 Config.AlcoholminSafeEarn = 9000                -- Minimum amount earnt from stealing from a safe (in dirtymoney)
-Config.AlcoholmaxSafeEarn = 27000               -- Maximum amount earnt from stealing from a safe (in dirtymoney)
-Config.AlcoholSafeTime = 25                     -- Time it takes for player to rob safe (in seconds)
+Config.AlcoholmaxSafeEarn = 25000               -- Maximum amount earnt from stealing from a safe (in dirtymoney)
+Config.AlcoholSafeTime = 90                     -- Time it takes for player to rob safe (in seconds)
 Config.AlcoholStressForFailing = 10             -- Amount of stress a player incurs for failing to breach a safe
 
 --RARE DROPS (In addition to money)

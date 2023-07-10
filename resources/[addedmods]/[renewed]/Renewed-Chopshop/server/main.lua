@@ -49,7 +49,7 @@ RegisterNetEvent('renewed-chopshop:server:ChopCarSpawn', function(group)
         SetVehicleColours(car, 12, 12)
 
         if Config.RenewedFuel then
-            exports['Renewed-Fuel']:SetFuel(car, 100.0)
+            exports['cdn-fuel']:SetFuel(car, 100.0)
         end
 
         exports['qb-phone']:setJobStatus(group, "Chop Shop", JobActives[group].Stages)
