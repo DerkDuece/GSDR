@@ -6,7 +6,7 @@ Config.PedStart = {
     scenario = "WORLD_HUMAN_DRUG_DEALER"
 }
 
-Config.RenewedFuel = true -- Not released at the moment
+Config.RenewedFuel = false -- Not released at the moment
 Config.oSkullaEmotes = true -- https://github.com/Scullyy/scully_emotemenu
 
 Config.Cars = {
