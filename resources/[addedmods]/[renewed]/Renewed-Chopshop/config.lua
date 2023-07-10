@@ -7,7 +7,7 @@ Config.PedStart = {
 }
 
 Config.RenewedFuel = false -- Not released at the moment
-Config.oSkullaEmotes = true -- https://github.com/Scullyy/scully_emotemenu
+Config.oSkullaEmotes = false -- https://github.com/Scullyy/scully_emotemenu
 
 Config.Cars = {
     "sultan",
