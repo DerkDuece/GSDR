@@ -4,7 +4,7 @@ shared.lang = 'en' -- look config/locales/%s.lua eg. 'en' for en.lua | to create
 -- use ox_inventory Shops UI (experimental feature) only with my forked ox_inventory REPO https://github.com/renzuzu/ox_inventory
 shared.oxShops = false -- if true this resource will use ox_inventory Shops UI instead of built in UI
 shared.allowplayercreateitem = false -- if false only admin can create new items via /stores
-shared.target = false -- if true all lib zones for markers and oxlib textui will be disable.
+shared.target = true -- if true all lib zones for markers and oxlib textui will be disable.
 shared.FinanceMinimum = 500000 -- minimum amount for financing to be enable
 shared.FinanceDownPayment = 20 -- 20%. this is the amount of minimum initial payment
 shared.FinanceInterest = 10 -- 10%
