@@ -4,6 +4,7 @@ local missionActive = false
 local getPharmacies = math.random(1, #Config.PharmacyLocations)
 local selectPharmacy = Config.PharmacyLocations[getPharmacies]
 local doctorList = {}
+local QBCore = exports['qb-core']:GetCoreObject()
 local startOxyRunOptions = {
     {
         name = 'startOxyRun',

@@ -5,6 +5,7 @@ local discordImage = Config.WebhookAvatarIcon
 local pickADoctor = math.random(1, #Config.DoctorNames)
 local selectADoctor = Config.DoctorNames[pickADoctor]
 local getInputData
+local QBCore = exports['qb-core']:GetCoreObject()
 
 -- Event for Discord webhook logs
 function sendToDiscord(name, message, color, timestamp)
@@ -36,7 +37,7 @@ end)
 -- Event that officially starts the mission
 lib.callback.register('lation_oxyrun:startOxyRun', function(source, price)
     local source = source
-    local ped = QBCore.Functions.GetPlayer(source)
+    local ped = QBCore.Functions.GetSource(identifier)
     ox_inventory:AddItem(ped.source, Config.BlankPrescription, Config.BlankPrescriptionRewardAmount)
     ox_inventory:RemoveItem(ped.source, Config.Money, price)
     if Config.EnableWebhook then
@@ -47,7 +48,7 @@ end)
 -- Makes the blank_prescription item usable, prompts player to input the information then applies the metadata
 RegisterUsableItem('blank_prescription', function(source)
     local source = source
-    local ped = QBCore.Functions.GetPlayer(source)
+    local ped = QBCore.Functions.GetSource(identifier)
     getInputData = lib.callback.await('lation_oxyrun:fillPrescriptionInfo', ped.source)
     if getInputData == nil then return end
     local blankPrescription = ox_inventory:Search(ped.source, 1, Config.BlankPrescription)
@@ -65,7 +66,7 @@ end)
 -- Checks the players manually filled in script with the necessary information and proceeds accordingly
 lib.callback.register('lation_oxyrun:getItemMetadata', function(source, item)
     local source = source
-    local ped = QBCore.Functions.GetPlayer(source)
+    local ped = QBCore.Functions.GetSource(identifier)
     local playerName = ped.getName()
     if string.lower(playerName) ~= string.lower(getInputData[1]) or string.lower(selectADoctor) ~= string.lower(getInputData[6]) or getInputData[4] ~= true then
         lib.callback.await('lation_oxyrun:fakeScript', source)
@@ -85,7 +86,7 @@ end)
 -- Makes the oxy_bottle item usable and rewards you with individual oxycontin
 RegisterUsableItem('oxy_bottle', function(source)
     local source = source
-    local ped = QBCore.Functions.GetPlayer(source)
+    local ped = QBCore.Functions.GetSource(identifier)
     local openedBottle = lib.callback.await('lation_oxyrun:openOxyBottle', source, result)
     if openedBottle then 
         ox_inventory:RemoveItem(ped.source, Config.OxyBottleItem, 1)
@@ -98,7 +99,7 @@ end)
 -- Makes the oxycontin itself usable, for features such as health, etc
 RegisterUsableItem('oxycontin', function(source)
     local source = source
-    local ped = QBCore.Functions.GetPlayer(source)
+    local ped = QBCore.Functions.GetSource(identifier)
     local usedOxycontin = lib.callback.await('lation_oxyrun:useOxycontin', source, result)
     if usedOxycontin then
         ox_inventory:RemoveItem(ped.source, Config.OxyPillItem, 1)
