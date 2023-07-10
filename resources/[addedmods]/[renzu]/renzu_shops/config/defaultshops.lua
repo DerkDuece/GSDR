@@ -124,6 +124,8 @@ return {
 			{ name = 'carrot_seed', price = 100 , category = 'seeds'},
 			{ name = 'corn_seed', price = 100 , category = 'seeds'},
 			{ name = 'steelfile', price = 500, category = 'tools'},
+			{ name = 'bakingsoda', price = 10, category = 'tools'},
+			{ name = 'empty_weed_bag', price = 1, category = 'tools'},
 	
 
 		}, locations = {

@@ -8,7 +8,7 @@ Config.respawnTime = 150 -- Seconds
 Config.cd = false ---- if you use cd-dispatch
 Config.ps = true --- if you use ps dispatch
 Config.gks = false -- true if you use gks, false if you use qb or renewed phone
-Config.Dirty = 'marked_money' -- whatever you use for dirty money
+Config.Dirty = 'dirtymoney' -- whatever you use for dirty money
 
 
 
