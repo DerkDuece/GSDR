@@ -135,7 +135,7 @@ end)
     
 RegisterNetEvent("qb-uwucafe:client:stash1", function()
     TriggerEvent("inventory:client:SetCurrentStash", "uwuStash1")
-    TriggerServerEvent("inventory:server:OpenInventory", "stash", "uwuStash1", {
+    TriggerServerEvent("exports.ox_inventory:openInventory", "stash", "uwuStash1", {
         maxweight = 50000,
         slots = 20,
     })
@@ -143,7 +143,7 @@ end)
 
 RegisterNetEvent("qb-uwucafe:client:stash2", function()
     TriggerEvent("inventory:client:SetCurrentStash", "uwuStash2")
-    TriggerServerEvent("inventory:server:OpenInventory", "stash", "uwuStash2", {
+    TriggerServerEvent("exports.ox_inventory:openInventory", "stash", "uwuStash2", {
         maxweight = 50000,
         slots = 20,
     })
@@ -151,7 +151,7 @@ end)
 
 RegisterNetEvent("qb-uwucafe:client:stash3", function()
     TriggerEvent("inventory:client:SetCurrentStash", "uwuStash3")
-    TriggerServerEvent("inventory:server:OpenInventory", "stash", "uwuStash3", {
+    TriggerServerEvent("exports.ox_inventory:openInventory", "stash", "uwuStash3", {
         maxweight = 50000,
         slots = 20,
     })
@@ -159,7 +159,7 @@ end)
 
 RegisterNetEvent("qb-uwucafe:client:stash4", function()
     TriggerEvent("inventory:client:SetCurrentStash", "uwuStash4")
-    TriggerServerEvent("inventory:server:OpenInventory", "stash", "uwuStash4", {
+    TriggerServerEvent("exports.ox_inventory:openInventory", "stash", "uwuStash4", {
         maxweight = 50000,
         slots = 20,
     })
@@ -167,7 +167,7 @@ end)
 
 RegisterNetEvent("qb-uwucafe:client:stash5", function()
     TriggerEvent("inventory:client:SetCurrentStash", "uwuStash5")
-    TriggerServerEvent("inventory:server:OpenInventory", "stash", "uwuStash5", {
+    TriggerServerEvent("exports.ox_inventory:openInventory", "stash", "uwuStash5", {
         maxweight = 50000,
         slots = 20,
     })
@@ -175,7 +175,7 @@ end)
 
 RegisterNetEvent("qb-uwucafe:client:stash6", function()
     TriggerEvent("inventory:client:SetCurrentStash", "uwuStash6")
-    TriggerServerEvent("inventory:server:OpenInventory", "stash", "uwuStash6", {
+    TriggerServerEvent("exports.ox_inventory:openInventory", "stash", "uwuStash6", {
         maxweight = 50000,
         slots = 20,
     })
@@ -183,7 +183,7 @@ end)
 
 RegisterNetEvent("qb-uwucafe:client:stash7", function()
     TriggerEvent("inventory:client:SetCurrentStash", "uwuStash7")
-    TriggerServerEvent("inventory:server:OpenInventory", "stash", "uwuStash7", {
+    TriggerServerEvent("exports.ox_inventory:openInventory", "stash", "uwuStash7", {
         maxweight = 50000,
         slots = 20,
     })
@@ -191,7 +191,7 @@ end)
 
 RegisterNetEvent("qb-uwucafe:client:stash8", function()
     TriggerEvent("inventory:client:SetCurrentStash", "uwuStash8")
-    TriggerServerEvent("inventory:server:OpenInventory", "stash", "uwuStash8", {
+    TriggerServerEvent("exports.ox_inventory:openInventory", "stash", "uwuStash8", {
         maxweight = 50000,
         slots = 20,
     })
@@ -199,7 +199,7 @@ end)
 
 RegisterNetEvent("qb-uwucafe:client:stash9", function()
     TriggerEvent("inventory:client:SetCurrentStash", "uwuStash9")
-    TriggerServerEvent("inventory:server:OpenInventory", "stash", "uwuStash9", {
+    TriggerServerEvent("exports.ox_inventory:openInventory", "stash", "uwuStash9", {
         maxweight = 50000,
         slots = 20,
     })
@@ -207,7 +207,7 @@ end)
 
 RegisterNetEvent("qb-uwucafe:client:stash10", function()
     TriggerEvent("inventory:client:SetCurrentStash", "uwuStash10")
-    TriggerServerEvent("inventory:server:OpenInventory", "stash", "uwuStash10", {
+    TriggerServerEvent("exports.ox_inventory:openInventory", "stash", "uwuStash10", {
         maxweight = 50000,
         slots = 20,
     })
@@ -215,7 +215,7 @@ end)
 
 RegisterNetEvent("qb-uwucafe:client:tray1", function()
     TriggerEvent("inventory:client:SetCurrentStash", "uwuTray1")
-    TriggerServerEvent("inventory:server:OpenInventory", "stash", "uwuTray1", {
+    TriggerServerEvent("exports.ox_inventory:openInventory", "stash", "uwuTray1", {
         maxweight = 50000,
         slots = 20,
     })
@@ -223,7 +223,7 @@ end)
 
 RegisterNetEvent("qb-uwucafe:client:tray2", function()
     TriggerEvent("inventory:client:SetCurrentStash", "uwuTray2")
-    TriggerServerEvent("inventory:server:OpenInventory", "stash", "uwuTray2", {
+    TriggerServerEvent("exports.ox_inventory:openInventory", "stash", "uwuTray2", {
         maxweight = 50000,
         slots = 20,
     })
@@ -231,7 +231,7 @@ end)
 
 RegisterNetEvent("qb-uwucafe:client:tray3", function()
     TriggerEvent("inventory:client:SetCurrentStash", "uwuTray3")
-    TriggerServerEvent("inventory:server:OpenInventory", "stash", "uwuTray3", {
+    TriggerServerEvent("exports.ox_inventory:openInventory", "stash", "uwuTray3", {
         maxweight = 50000,
         slots = 20,
     })
@@ -239,14 +239,14 @@ end)
 
 RegisterNetEvent("qb-uwucafe:client:refregiator", function()
     TriggerEvent("inventory:client:SetCurrentStash", "uwuRefregiator")
-    TriggerServerEvent("inventory:server:OpenInventory", "stash", "uwuRefregiator", {
+    TriggerServerEvent("exports.ox_inventory:openInventory", "stash", "uwuRefregiator", {
         maxweight = 50000,
         slots = 20,
     })
 end)
 
 RegisterNetEvent("qb-uwucafe:client:openShop", function()
-    TriggerServerEvent("inventory:server:OpenInventory", "shop", "uwuShop", Config.Items)
+    TriggerServerEvent("exports.ox_inventory:openInventory", "shop", "uwuShop", Config.Items)
 end)
 
 RegisterNetEvent('qb-uwucafe:clientToggleDuty', function()
