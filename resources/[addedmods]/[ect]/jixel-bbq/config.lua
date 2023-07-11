@@ -1,6 +1,6 @@
 Config = {
     Lan = "en",
-    Notify = "qb",
+    Notify = "ox",
     Inv = "ox", -- change to ox if ox inv
     img = "GSDR/resources/[addedmods]/[ox]/ox_inventory/web/images", -- set this to what your inventory directory is
     Menu = "jixel",

@@ -285,4 +285,48 @@ QBShared.Jobs = {
             },
         },
 	},
+    ['uwu'] = {
+        label = 'UwU Cafe',
+        defaultDuty = true,
+        offDutyPay = false,
+        grades = {
+            ['0'] = {
+                name = 'Trainee',
+                payment = 50
+            },
+            ['1'] = {
+                name = 'Employee',
+                payment = 75
+            },
+            ['2'] = {
+                name = 'Advanced',
+                payment = 125
+            },
+            ['3'] = {
+                name = 'Manager',
+                payment = 150
+            },
+            ['4'] = {
+                name = 'Owner',
+                isboss = true,
+                payment = 150
+            },
+        },
+    },
+    ['corrections'] = {
+        label = 'Department of Corrections',
+        defaultDuty = true,
+        offdutyPay = true,
+        grades = {
+            ['0'] = {
+                name = 'DOC Trainee',
+                payment = 50
+            },
+            ['1'] = {
+                name = 'DOC Warden',
+                isboss = true,
+                payment = 150
+            },
+        },
+    },
 }
