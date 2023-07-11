@@ -1,18 +1,17 @@
 local cam = nil
 local charPed = nil
-local loadScreenCheckState = false
 local QBCore = exports['qb-core']:GetCoreObject()
 
--- Main Thread
+-- Main
 
 CreateThread(function()
 	while true do
 		Wait(0)
 		if NetworkIsSessionStarted() then
-			TriggerEvent('qb-multicharacter:client:chooseChar')
-			return
-		end
-	end
+	        TriggerEvent('DevX-multicharacter:client:chooseChar')
+	        return
+	  end
+       end
 end)
 
 -- Functions
@@ -37,33 +36,17 @@ local function skyCam(bool)
 end
 
 local function openCharMenu(bool)
-    QBCore.Functions.TriggerCallback("qb-multicharacter:server:GetNumberOfCharacters", function(result)
-        local translations = {}
-        for k in pairs(Lang.fallback and Lang.fallback.phrases or Lang.phrases) do
-            if k:sub(0, ('ui.'):len()) then
-                translations[k:sub(('ui.'):len() + 1)] = Lang:t(k)
-            end
-        end
-        SetNuiFocus(bool, bool)
-        SendNUIMessage({
-            action = "ui",
-            customNationality = Config.customNationality,
-            toggle = bool,
-            nChar = result,
-            enableDeleteButton = Config.EnableDeleteButton,
-            translations = translations
-        })
-        skyCam(bool)
-        if not loadScreenCheckState then
-            ShutdownLoadingScreenNui()
-            loadScreenCheckState = true
-        end
-    end)
+    SetNuiFocus(bool, bool)
+    SendNUIMessage({
+        action = "ui",
+        toggle = bool,
+    })
+    skyCam(bool)
 end
 
 -- Events
 
-RegisterNetEvent('qb-multicharacter:client:closeNUIdefault', function() -- This event is only for no starting apartments
+RegisterNetEvent('DevX-multicharacter:client:closeNUIdefault', function() -- This event is only for no starting apartments
     DeleteEntity(charPed)
     SetNuiFocus(false, false)
     DoScreenFadeOut(500)
@@ -82,16 +65,16 @@ RegisterNetEvent('qb-multicharacter:client:closeNUIdefault', function() -- This 
     TriggerEvent('qb-clothes:client:CreateFirstCharacter')
 end)
 
-RegisterNetEvent('qb-multicharacter:client:closeNUI', function()
+RegisterNetEvent('DevX-multicharacter:client:closeNUI', function()
     DeleteEntity(charPed)
     SetNuiFocus(false, false)
 end)
 
-RegisterNetEvent('qb-multicharacter:client:chooseChar', function()
+RegisterNetEvent('DevX-multicharacter:client:chooseChar', function()
     SetNuiFocus(false, false)
     DoScreenFadeOut(10)
     Wait(1000)
-    local interior = GetInteriorAtCoords(Config.Interior.x, Config.Interior.y, Config.Interior.z - 18.9)
+    local interior = GetInteriorAtCoords(Config.Interior.x, Config.Interior.y, Config.Interior.z)
     LoadInterior(interior)
     while not IsInteriorReady(interior) do
         Wait(1000)
@@ -106,26 +89,23 @@ end)
 
 -- NUI Callbacks
 
-RegisterNUICallback('closeUI', function(_, cb)
+RegisterNUICallback('closeUI', function()
     openCharMenu(false)
-    cb("ok")
 end)
 
-RegisterNUICallback('disconnectButton', function(_, cb)
+RegisterNUICallback('disconnectButton', function()
     SetEntityAsMissionEntity(charPed, true, true)
     DeleteEntity(charPed)
-    TriggerServerEvent('qb-multicharacter:server:disconnect')
-    cb("ok")
+    TriggerServerEvent('DevX-multicharacter:server:disconnect')
 end)
 
-RegisterNUICallback('selectCharacter', function(data, cb)
+RegisterNUICallback('selectCharacter', function(data)
     local cData = data.cData
     DoScreenFadeOut(10)
-    TriggerServerEvent('qb-multicharacter:server:loadUserData', cData)
+    TriggerServerEvent('DevX-multicharacter:server:loadUserData', cData)
     openCharMenu(false)
     SetEntityAsMissionEntity(charPed, true, true)
     DeleteEntity(charPed)
-    cb("ok")
 end)
 
 RegisterNUICallback('cDataPed', function(nData, cb)
@@ -148,7 +128,7 @@ RegisterNUICallback('cDataPed', function(nData, cb)
                     PlaceObjectOnGroundProperly(charPed)
                     SetBlockingOfNonTemporaryEvents(charPed, true)
                     data = json.decode(data)
-                    TriggerEvent('qb-clothing:client:loadPlayerClothing', data, charPed)
+                    exports['illenium-appearance']:setPedAppearance(charPed, skinData)
                 end)
             else
                 CreateThread(function()
@@ -193,37 +173,32 @@ RegisterNUICallback('cDataPed', function(nData, cb)
     end
 end)
 
-RegisterNUICallback('setupCharacters', function(_, cb)
-    QBCore.Functions.TriggerCallback("qb-multicharacter:server:setupCharacters", function(result)
+RegisterNUICallback('setupCharacters', function()
+    QBCore.Functions.TriggerCallback("DevX-multicharacter:server:setupCharacters", function(result)
         SendNUIMessage({
             action = "setupCharacters",
             characters = result
         })
-        cb("ok")
     end)
 end)
 
-RegisterNUICallback('removeBlur', function(_, cb)
+RegisterNUICallback('removeBlur', function()
     SetTimecycleModifier('default')
-    cb("ok")
 end)
 
-RegisterNUICallback('createNewCharacter', function(data, cb)
+RegisterNUICallback('createNewCharacter', function(data)
     local cData = data
     DoScreenFadeOut(150)
-    if cData.gender == Lang:t("ui.male") then
+    if cData.gender == "Male" then
         cData.gender = 0
-    elseif cData.gender == Lang:t("ui.female") then
+    elseif cData.gender == "Female" then
         cData.gender = 1
     end
-    TriggerServerEvent('qb-multicharacter:server:createCharacter', cData)
+    TriggerServerEvent('DevX-multicharacter:server:createCharacter', cData)
     Wait(500)
-    cb("ok")
 end)
 
-RegisterNUICallback('removeCharacter', function(data, cb)
-    TriggerServerEvent('qb-multicharacter:server:deleteCharacter', data.citizenid)
-    DeletePed(charPed)
-    TriggerEvent('qb-multicharacter:client:chooseChar')
-    cb("ok")
+RegisterNUICallback('removeCharacter', function(data)
+    TriggerServerEvent('DevX-multicharacter:server:deleteCharacter', data.citizenid)
+    TriggerEvent('DevX-multicharacter:client:chooseChar')
 end)
