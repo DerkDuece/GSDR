@@ -67,5 +67,5 @@ function GetIdentifier(source)
 end
 
 function GetItemLabel(item)
-    return item
+    return exports.ox_inventory:GetItem(source, item).label
 end
