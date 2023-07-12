@@ -64,9 +64,9 @@ Config.ScubaJobOn = true					-- If true allows the scuba job
 Config.ScubaJobName = 'scuba-diver'			-- Name of the scuba job, used if Config.UsePlayerJob = true
 Config.JetSkiJobOn = true					-- If true allows the JetSKi job
 Config.JetSkiJobName = 'lifeguard'			-- Name of the JetSKi job, used if Config.UsePlayerJob = true
-Config.HeliJobOn = true						-- If true allows the Heli job
+Config.HeliJobOn = false						-- If true allows the Heli job
 Config.HeliJobName = 'heli-driver'			-- Name of the Heli job, used if Config.UsePlayerJob = true
-Config.GarbageJobOn = true					-- If true allows the Garbage job
+Config.GarbageJobOn = false					-- If true allows the Garbage job
 Config.GarbageJobName = 'garbage-driver'	-- Name of the Garbage job, used if Config.UsePlayerJob = true
 
 
@@ -75,7 +75,7 @@ RegisterNetEvent('angelicxs-CivilianJobs:VehicleInitation')
 AddEventHandler('angelicxs-CivilianJobs:VehicleInitation', function(vehicle)
 	-- Example provided:
 	TriggerEvent("vehiclekeys:client:SetOwner", GetVehicleNumberPlateText(vehicle))
-    exports["ps-fuel"]:SetFuel(vehicle, 99)
+    exports["cdn-fuel"]:SetFuel(vehicle, 99)
 end)
 
 -- Language Configuration

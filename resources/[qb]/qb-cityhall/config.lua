@@ -15,7 +15,7 @@ Config.AvailableJobs = { -- Only used when not using qb-jobs.
 Config.Cityhalls = {
     { -- Cityhall 1
         coords = vec3(-265.0, -963.6, 31.2),
-        showBlip = true,
+        showBlip = false,
         blipData = {
             sprite = 487,
             display = 4,
@@ -45,7 +45,7 @@ Config.Cityhalls = {
 Config.DrivingSchools = {
     { -- Driving School 1
         coords = vec3(240.3, -1379.89, 33.74),
-        showBlip = true,
+        showBlip = false,
         blipData = {
             sprite = 225,
             display = 4,

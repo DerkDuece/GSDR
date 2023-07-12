@@ -14,7 +14,7 @@ Config.Payment = "bank" --cash/bank
 --Blips
 Config.Blips = {
     -- Job ped
-    {title = 'Farming', colour = 5, id = 1, coords = vector3(2309.68, 4885.79, 41.81), scale = 0.6, useblip = true},
+    {title = 'Farming', colour = 5, id = 1, coords = vector3(2309.68, 4885.79, 41.81), scale = 0.6, useblip = false},
     -- Blips Farmer Coffee
     {title = 'Farm Coffee', colour = 5, id = 1, coords = vector3(2298.27, 5140.95, 52.49), scale = 0.6, useblip = false},
     -- Blips Pick Up Seeds Potatoes

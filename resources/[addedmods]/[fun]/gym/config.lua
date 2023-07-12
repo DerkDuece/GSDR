@@ -162,7 +162,7 @@ config.Blip = {
         colour=0,
         id=311,
         blipcoords = vector3(-1203.97, -1568.59, 4.61),
-        showBlip = true,
+        showBlip = false,
     },
     ["Jail"] = {
         title = "Jail",
