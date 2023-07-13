@@ -10,7 +10,7 @@ Config.cooldownTimer = 1000 * 60 * 60 -- 1000 = 1s // box cooldown
 
 Config.ammuVitrines = { -- vitrines conf every stealable vitrine is an object
     vitrine1 = { -- preferable to set vitrinekey as name
-        coords = vector3(20.55, -1105.46, 29.8), -- vitrine coords
+        coords = vector3(21.94, -1107.55, 29.8), -- vitrine coords
         name = "vitrine1",
         target_icon = "fas fa-sack-dollar",
         target_label = "ammurobbery.vitine_target_label", -- label is translatble.. you can change it in locales/en.lua

@@ -262,15 +262,7 @@ function StealFromRegister(k)
                         print(k)
                         TriggerServerEvent('mz-storerobbery:server:setRegisterStatus', currentRegister)
                         if Config.BreakRegister == "standard" then 
-                            TriggerEvent('qb-lockpick:client:openLockpick', lockpickFinishAdvanced)
-                            if Config.psdispatch then 
-                                if not copsCalled then 
-                                    TriggerEvent('mz-storerobbery:client:mzRegisterHit')
-                                    copsCalled = true
-                                    Wait(Config.DispatchRegisterDelay * 1000)
-                                    copsCalled = false 
-                                end 
-                            end 
+                            print('Config.BreakRegister == "standard" is no longer supported - please select "circle"')
                         elseif Config.BreakRegister == "circle" then 
                             TriggerEvent('mz-storerobbery:client:circleLockpickAdvanced')
                             if Config.psdispatch then 
@@ -315,15 +307,7 @@ function StealFromRegister(k)
                         print(k)
                         TriggerServerEvent('mz-storerobbery:server:setRegisterStatus', currentRegister)
                         if Config.BreakRegister == "standard" then 
-                            TriggerEvent('qb-lockpick:client:openLockpick', lockpickFinishAdvanced)
-                            if Config.psdispatch then 
-                                if not copsCalled then 
-                                    TriggerEvent('mz-storerobbery:client:mzRegisterHit')
-                                    copsCalled = true
-                                    Wait(Config.DispatchRegisterDelay * 1000)
-                                    copsCalled = false 
-                                end 
-                            end 
+                            print('Config.BreakRegister == "standard" is no longer supported - please select "circle"')
                         elseif Config.BreakRegister == "circle" then 
                             TriggerEvent('mz-storerobbery:client:circleLockpickAdvanced')
                             if Config.psdispatch then 
@@ -370,15 +354,7 @@ function StealFromRegister(k)
                         print(k)
                         TriggerServerEvent('mz-storerobbery:server:setRegisterStatus', currentRegister)
                         if Config.BreakRegister == "standard" then 
-                            TriggerEvent('qb-lockpick:client:openLockpick', lockpickFinish)
-                            if Config.psdispatch then 
-                                if not copsCalled then 
-                                    TriggerEvent('mz-storerobbery:client:mzRegisterHit')
-                                    copsCalled = true
-                                    Wait(Config.DispatchRegisterDelay * 1000)
-                                    copsCalled = false 
-                                end 
-                            end 
+                            print('Config.BreakRegister == "standard" is no longer supported, please select "circle"')
                         elseif Config.BreakRegister == "circle" then 
                             TriggerEvent('mz-storerobbery:client:circleLockpick')
                             if Config.psdispatch then 
@@ -423,15 +399,7 @@ function StealFromRegister(k)
                         print(k)
                         TriggerServerEvent('mz-storerobbery:server:setRegisterStatus', currentRegister)
                         if Config.BreakRegister == "standard" then 
-                            TriggerEvent('qb-lockpick:client:openLockpick', lockpickFinish)
-                            if Config.psdispatch then 
-                                if not copsCalled then 
-                                    TriggerEvent('mz-storerobbery:client:mzRegisterHit')
-                                    copsCalled = true
-                                    Wait(Config.DispatchRegisterDelay * 1000)
-                                    copsCalled = false 
-                                end 
-                            end 
+                            print('Config.BreakRegister == "standard" is no longer supported, please select "circle"')
                         elseif Config.BreakRegister == "circle" then 
                             TriggerEvent('mz-storerobbery:client:circleLockpick')
                             if Config.psdispatch then 
@@ -640,128 +608,6 @@ end)
 
 local openingDoor = false
 
-local function lockpickFinish(success)
-    if success then
-        if currentRegister ~= 0 then
-            openLockpick(false)
-            TriggerServerEvent('mz-storerobbery:server:setRegisterStatus', currentRegister)
-            local lockpickTime = (Config.RegisterTime * 1000)
-            QBCore.Functions.Progressbar("search_register", "Emptying the till...", lockpickTime, false, true, {
-                disableMovement = true,
-                disableCarMovement = true,
-                disableMouse = false,
-                disableCombat = true,
-            }, {
-                animDict = "veh@break_in@0h@p_m_one@",
-                anim = "low_force_entry_ds",
-                flags = 16,
-            }, {}, {}, function() -- Done
-                openingDoor = false
-                ClearPedTasks(PlayerPedId())
-                registerDone = false 
-                TriggerServerEvent('mz-storerobbery:server:takeMoney', currentRegister, true, registerDone)
-                registerDone = true
-            end, function() -- Cancel
-                openingDoor = false
-                ClearPedTasks(PlayerPedId())
-                if Config.NotifyType == 'qb' then
-                    QBCore.Functions.Notify('Process Cancelled', "error", 3500)
-                elseif Config.NotifyType == "okok" then
-                    exports['okokNotify']:Alert("TASK STOPPED", "Process Cancelled", 3500, "error")
-                end 
-                currentRegister = 0
-            end)
-            CreateThread(function()
-                while openingDoor do
-                    if Config.StressEnabled then 
-                        TriggerServerEvent('hud:server:GainStress', 1)
-                    end 
-                    Wait(2500)
-                    if openingDoor then 
-                        TriggerServerEvent("InteractSound_SV:PlayOnSource", "lockpick", 1)
-                    end 
-                end
-            end)
-        end
-    else
-        if math.random(1, 100) <= Config.LockpickBreakChance then
-            TriggerServerEvent('mz-storerobbery:server:RemoveLockpick')
-            Wait(500)
-            if Config.NotifyType == 'qb' then
-                QBCore.Functions.Notify('Your lockpick snapped! Damn!', "error", 3500)
-            elseif Config.NotifyType == "okok" then
-                exports['okokNotify']:Alert("LOCKPICK SNAPPED", 'Your lockpick snapped! Damn!', 3500, "error")
-            end 
-        end
-        if (IsWearingHandshoes() and math.random(1, 100) <= Config.PrintChanceRegister) then
-            local pos = GetEntityCoords(PlayerPedId())
-            TriggerServerEvent("evidence:server:CreateFingerDrop", pos)
-        end
-        openLockpick(false)
-    end
-end
-
-local function lockpickFinishAdvanced(success)
-    if success then
-        if currentRegister ~= 0 then
-            openLockpick(false)
-            TriggerServerEvent('mz-storerobbery:server:setRegisterStatus', currentRegister)
-            local lockpickTime = (Config.RegisterTime * 1000)
-            QBCore.Functions.Progressbar("search_register", "Emptying the till...", lockpickTime, false, true, {
-                disableMovement = true,
-                disableCarMovement = true,
-                disableMouse = false,
-                disableCombat = true,
-            }, {
-                animDict = "veh@break_in@0h@p_m_one@",
-                anim = "low_force_entry_ds",
-                flags = 16,
-            }, {}, {}, function() -- Done
-                openingDoor = false
-                ClearPedTasks(PlayerPedId())
-                registerDone = false 
-                TriggerServerEvent('mz-storerobbery:server:takeMoney', currentRegister, true, registerDone)
-                registerDone = true
-            end, function() -- Cancel
-                openingDoor = false
-                ClearPedTasks(PlayerPedId())
-                if Config.NotifyType == 'qb' then
-                    QBCore.Functions.Notify('Process Cancelled', "error", 3500)
-                elseif Config.NotifyType == "okok" then
-                    exports['okokNotify']:Alert("TASK STOPPED", "Process Cancelled", 3500, "error")
-                end 
-                currentRegister = 0
-            end)
-            CreateThread(function()
-                while openingDoor do
-                    if Config.StressEnabled then 
-                        TriggerServerEvent('hud:server:GainStress', 1)
-                    end 
-                    Wait(2500)
-                    if openingDoor then 
-                        TriggerServerEvent("InteractSound_SV:PlayOnSource", "lockpick", 1)
-                    end 
-                end
-            end)
-        end
-    else
-        if math.random(1, 100) <= Config.AdvancedBreakChance then
-            TriggerServerEvent('mz-storerobbery:server:RemoveAdvanced')
-            Wait(500)
-            if Config.NotifyType == 'qb' then
-                QBCore.Functions.Notify('Your sturdy lockpick snapped! Damn!', "error", 3500)
-            elseif Config.NotifyType == "okok" then
-                exports['okokNotify']:Alert("ADVANCED LOCKPICK SNAPPED", 'Your sturdy lockpick snapped! Damn!', 3500, "error")
-            end 
-        end
-        if (IsWearingHandshoes() and math.random(1, 100) <= Config.FingerprintChance) then
-            local pos = GetEntityCoords(PlayerPedId())
-            TriggerServerEvent("evidence:server:CreateFingerDrop", pos)
-        end
-        openLockpick(false)
-    end
-end
-
 function IsWearingHandshoes()
     local armIndex = GetPedDrawableVariation(PlayerPedId(), 3)
     local model = GetEntityModel(PlayerPedId())
@@ -943,6 +789,7 @@ function StealfromSafe(safe)
                                         TriggerEvent("mhacking:start", math.random(Config.mhacklvl0low, Config.mhacklvl0high), Config.mhacklvl0time, HackingSuccessSafe)
                                     end
                                 elseif not Config.mzskills then
+                                    TriggerEvent("mhacking:show") 
                                     TriggerEvent("mhacking:start", math.random(Config.mhacklvlNOXPlow, Config.mhacklvlNOXPlow), Config.mhacklvlNOXPtime, HackingSuccessSafe)
                                 else
                                     print('You need to configure whether you are using mz-skills or not - see Config.mzskills')
@@ -1226,9 +1073,9 @@ function StealfromSafe(safe)
                             [1] = {name = QBCore.Shared.Items[Config.SafeReqItem]["name"], image = QBCore.Shared.Items[Config.SafeReqItem]["image"]},
                             }
                             if Config.NotifyType == 'qb' then
-                                QBCore.Functions.Notify('You need a '..QBCore.Shared.Items[Config.SafeReqItem]["name"]..' to breach the safe...', "error", 3500)
+                                QBCore.Functions.Notify('You need a '..QBCore.Shared.Items[Config.SafeReqItem]["label"]..' to breach the safe...', "error", 3500)
                             elseif Config.NotifyType == "okok" then
-                                exports['okokNotify']:Alert(QBCore.Shared.Items[Config.SafeReqItem]["name"].."REQUIRED", "You need a "..QBCore.Shared.Items[Config.SafeReqItem]["name"].." to breach the safe...", 3500, "error")
+                                exports['okokNotify']:Alert(QBCore.Shared.Items[Config.SafeReqItem]["label"].." REQUIRED", "You need a "..QBCore.Shared.Items[Config.SafeReqItem]["label"].." to breach the safe...", 3500, "error")
                             end 
                             TriggerEvent('inventory:client:requiredItems', requiredItems, true)
                             Wait(3500)
@@ -1283,9 +1130,10 @@ function StealfromSafe(safe)
                                         TriggerEvent("mhacking:start", math.random(Config.mhacklvl0low, Config.mhacklvl0high), Config.mhacklvl0time, HackingSuccessSafeLiquor)
                                     end
                                 elseif not Config.mzskills then
+                                    TriggerEvent("mhacking:show") 
                                     TriggerEvent("mhacking:start", math.random(Config.mhacklvlNOXPlow, Config.mhacklvlNOXPlow), Config.mhacklvlNOXPtime, HackingSuccessSafeLiquor)
                                 else
-                                    print('You need to configure whether you are using mz-skills or not - see Config.mzskills')
+                                    print('You need to configure whether you are using mz-skills or not - see "Config.mzskills"')
                                 end
                             elseif Config.HacktypeLiquor == "varHack" then
                                 TriggerServerEvent("mz-storerobbery:server:setSafeStatus", currentSafe)
@@ -1564,9 +1412,9 @@ function StealfromSafe(safe)
                             [1] = {name = QBCore.Shared.Items[Config.LiquorReqItem]["name"], image = QBCore.Shared.Items[Config.LiquorReqItem]["image"]},
                             }
                             if Config.NotifyType == 'qb' then
-                                QBCore.Functions.Notify('You need a '..QBCore.Shared.Items[Config.LiquorReqItem]["name"]..' to breach the safe...', "error", 3500)
+                                QBCore.Functions.Notify('You need a '..QBCore.Shared.Items[Config.LiquorReqItem]["label"]..' to breach the safe...', "error", 3500)
                             elseif Config.NotifyType == "okok" then
-                                exports['okokNotify']:Alert(QBCore.Shared.Items[Config.LiquorReqItem]["name"].."REQUIRED", "You need a "..QBCore.Shared.Items[Config.LiquorReqItem]["name"].." to breach the safe...", 3500, "error")
+                                exports['okokNotify']:Alert(QBCore.Shared.Items[Config.LiquorReqItem]["label"].." REQUIRED", "You need a "..QBCore.Shared.Items[Config.LiquorReqItem]["label"].." to breach the safe...", 3500, "error")
                             end 
                             TriggerEvent('inventory:client:requiredItems', requiredItems, true)
                             Wait(3500)
@@ -1633,6 +1481,7 @@ function StealfromSafe(safe)
                                         TriggerEvent("mhacking:start", math.random(Config.mhacklvl0low, Config.mhacklvl0high), Config.mhacklvl0time, HackingSuccessSafe)
                                     end
                                 elseif not Config.mzskills then
+                                    TriggerEvent("mhacking:show") 
                                     TriggerEvent("mhacking:start", math.random(Config.mhacklvlNOXPlow, Config.mhacklvlNOXPlow), Config.mhacklvlNOXPtime, HackingSuccessSafe)
                                 else
                                     print('You need to configure whether you are using mz-skills or not - see Config.mzskills')
@@ -1916,9 +1765,9 @@ function StealfromSafe(safe)
                             [1] = {name = QBCore.Shared.Items[Config.SafeReqItem]["name"], image = QBCore.Shared.Items[Config.SafeReqItem]["image"]},
                             }
                             if Config.NotifyType == 'qb' then
-                                QBCore.Functions.Notify('You need a '..QBCore.Shared.Items[Config.SafeReqItem]["name"]..' to breach the safe...', "error", 3500)
+                                QBCore.Functions.Notify('You need a '..QBCore.Shared.Items[Config.SafeReqItem]["label"]..' to breach the safe...', "error", 3500)
                             elseif Config.NotifyType == "okok" then
-                                exports['okokNotify']:Alert(QBCore.Shared.Items[Config.SafeReqItem]["name"].."REQUIRED", "You need a "..QBCore.Shared.Items[Config.SafeReqItem]["name"].." to breach the safe...", 3500, "error")
+                                exports['okokNotify']:Alert(QBCore.Shared.Items[Config.SafeReqItem]["label"].." REQUIRED", "You need a "..QBCore.Shared.Items[Config.SafeReqItem]["label"].." to breach the safe...", 3500, "error")
                             end 
                             TriggerEvent('inventory:client:requiredItems', requiredItems, true)
                             Wait(3500)
@@ -1973,6 +1822,7 @@ function StealfromSafe(safe)
                                         TriggerEvent("mhacking:start", math.random(Config.mhacklvl0low, Config.mhacklvl0high), Config.mhacklvl0time, HackingSuccessSafeLiquor)
                                     end
                                 elseif not Config.mzskills then
+                                    TriggerEvent("mhacking:show") 
                                     TriggerEvent("mhacking:start", math.random(Config.mhacklvlNOXPlow, Config.mhacklvlNOXPlow), Config.mhacklvlNOXPtime, HackingSuccessSafeLiquor)
                                 else
                                     print('You need to configure whether you are using mz-skills or not - see Config.mzskills')
@@ -2253,9 +2103,9 @@ function StealfromSafe(safe)
                             [1] = {name = QBCore.Shared.Items[Config.LiquorReqItem]["name"], image = QBCore.Shared.Items[Config.LiquorReqItem]["image"]},
                             }
                             if Config.NotifyType == 'qb' then
-                                QBCore.Functions.Notify('You need a '..QBCore.Shared.Items[Config.LiquorReqItem]["name"]..' to breach the safe...', "error", 3500)
+                                QBCore.Functions.Notify('You need a '..QBCore.Shared.Items[Config.LiquorReqItem]["label"]..' to breach the safe...', "error", 3500)
                             elseif Config.NotifyType == "okok" then
-                                exports['okokNotify']:Alert(QBCore.Shared.Items[Config.LiquorReqItem]["name"].."REQUIRED", "You need a "..QBCore.Shared.Items[Config.LiquorReqItem]["name"].." to breach the safe...", 3500, "error")
+                                exports['okokNotify']:Alert(QBCore.Shared.Items[Config.LiquorReqItem]["label"].." REQUIRED", "You need a "..QBCore.Shared.Items[Config.LiquorReqItem]["label"].." to breach the safe...", 3500, "error")
                             end 
                             TriggerEvent('inventory:client:requiredItems', requiredItems, true)
                             Wait(3500)
@@ -3479,13 +3329,4 @@ RegisterNetEvent('mz-storerobbery:client:LiquorBoth5', function()
             exports['okokNotify']:Alert("TASK STOPPED", "Process Cancelled", 3500, "error")
         end 
     end)
-end)
-
-RegisterNUICallback('fail', function(_ ,cb)
-
-end)
-
-RegisterNUICallback('exit', function(_, cb)
-    openLockpick(false)
-    cb('ok')
 end)

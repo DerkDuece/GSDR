@@ -154,7 +154,7 @@ RegisterNetEvent('renewed-chopshop:client:SecureCar', function()
     QBCore.Functions.TriggerCallback('renewed-chopshop:server:CanSecureCar', function(canSecure)
         if canSecure then
             if Config.oSkullaEmotes then
-                exports.scully_emotemenu:PlayByCommand("mechanic4")
+                exports.scully_emotemenu:playByCommand("mechanic4")
             else
                 TriggerEvent('animations:client:EmoteCommandStart', {"mechanic3"})
             end
@@ -193,7 +193,7 @@ RegisterNetEvent('renewed-chopshop:client:ChopDoor', function(data)
                 end
             end
             if Config.oSkullaEmotes then
-                exports.scully_emotemenu:PlayByCommand("weld")
+                exports.scully_emotemenu:playByCommand("weld")
             else
                 TriggerEvent('animations:client:EmoteCommandStart', {"weld"})
             end
@@ -224,7 +224,7 @@ RegisterNetEvent('renewed-chopshop:client:ChopEngine', function(data)
             local vehicle = NetworkGetEntityFromNetworkId(NetID)
             SetVehicleDoorOpen(vehicle, data.door, false, true)
             if Config.oSkullaEmotes then
-                exports.scully_emotemenu:PlayByCommand("pull")
+                exports.scully_emotemenu:playByCommand("pull")
             else
                 TriggerEvent('animations:client:EmoteCommandStart', {"pull"})
             end
@@ -254,7 +254,7 @@ RegisterNetEvent('renewed-chopshop:client:ChopWheel', function(data)
     QBCore.Functions.TriggerCallback("renewed-chopshop:server:CanStealPart", function(canSteal)
         local vehicle = NetworkGetEntityFromNetworkId(NetID)
         if Config.oSkullaEmotes then
-            exports.scully_emotemenu:PlayByCommand("mechanic4")
+            exports.scully_emotemenu:playByCommand("mechanic4")
         else
             TriggerEvent('animations:client:EmoteCommandStart', {"mechanic3"})
         end
@@ -279,7 +279,7 @@ RegisterNetEvent('renewed-chopshop:client:ScrapCar', function()
     if inProgress then return QBCore.Functions.Notify('You are already doing something', 'error', 7500) end
     inProgress = true
     if Config.oSkullaEmotes then
-        exports.scully_emotemenu:PlayByCommand("weld")
+        exports.scully_emotemenu:playByCommand("weld")
     else
         TriggerEvent('animations:client:EmoteCommandStart', {"weld"})
     end
@@ -833,7 +833,7 @@ RegisterNetEvent('renewed-chopshop:client:ChopParts', function(k)
     PlaceObjectOnGroundProperly(object)
     Wait(1000)
     if Config.oSkullaEmotes then
-        exports.scully_emotemenu:PlayByCommand("weld")
+        exports.scully_emotemenu:playByCommand("weld")
     else
         TriggerEvent('animations:client:EmoteCommandStart', {"weld"})
     end

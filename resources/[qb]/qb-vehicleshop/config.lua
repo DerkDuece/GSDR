@@ -26,7 +26,7 @@ Config.Shops = {
             ['maxZ'] = 28.0, -- max height of the shop zone
             ['size'] = 2.75 -- size of the vehicles zones
         },
-        ['Job'] = 'cardealer', -- Name of job or none
+        ['Job'] = 'none', -- Name of job or none
         ['ShopLabel'] = 'Premium Deluxe Motorsport', -- Blip name
         ['showBlip'] = true, -- true or false
         ['blipSprite'] = 669, -- Blip sprite

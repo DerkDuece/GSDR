@@ -10,7 +10,7 @@ Config.Settings = {
     despawnDuration = 3, -- sec
     itemUsageCooldown = 1, -- sec
     minHuntingAbilityLevel = 1, -- level
-    PetMiniMap = { showblip = true, sprite = 442, colour = 2, shortRange = false },
+    PetMiniMap = { showblip = false, sprite = 442, colour = 2, shortRange = false },
     chaseDistance = 50.0,
     chaseIndicator = true, -- huge marker on hunted target head
     petMenuKeybind = 'o' -- keybind (players can change bind)

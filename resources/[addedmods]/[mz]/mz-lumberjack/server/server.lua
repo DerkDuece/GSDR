@@ -346,6 +346,8 @@ RegisterServerEvent('mz-lumberjack:server:MulchBark', function()
             else
                 if Config.NotifyType == 'qb' then
                     TriggerClientEvent('QBCore:Notify', src, "You do not have enough tree bark to mulch (Need "..Config.BarkAmount..")", 'error')
+                elseif Config.NotifyType == "okok" then
+                    TriggerClientEvent('okokNotify:Alert', source, "NEED BARK", "You do not have enough tree bark to mulch (Need "..Config.BarkAmount..")", 3500, 'error')
                 end
             end
         end
@@ -374,30 +376,30 @@ end)
 --BAG MULCH--
 -------------
 
-AddEventHandler('mz-lumberjack:client:BagMulch', function(source, amount)
-    if not baggingmulch then 
-        local mulchBag = exports.ox_inventory:Search('count', 'emptymulchbag')
-        local mulchCount = exports.ox_inventory:Search('count', 'treemulch')
-        if mulchBag >= 1 then
-            if mulchCount > amount then
-                TriggerServerEvent("mz-lumberjack:server:BagMulch")
+RegisterServerEvent('mz-lumberjack:server:BagMulch', function()
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    local treemulch = Player.Functions.GetItemByName('treemulch')
+    if Player.PlayerData.items ~= nil then 
+        if treemulch ~= nil then 
+            if treemulch.amount >= Config.mulchamount then 
+                Player.Functions.RemoveItem("treemulch", Config.mulchamount)
+                TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['treemulch'], "remove", Config.mulchamount)
+                Player.Functions.RemoveItem("emptymulchbag", 1)
+                TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['emptymulchbag'], "remove", 1)
+                if Config.ProcessMaterialCheck then 
+                    TriggerClientEvent("mz-lumberjack:client:BagMulchMinigame", src)
+                else 
+                    TriggerClientEvent("mz-lumberjack:client:BagMulchProcess", src)
+                end 
             else
-                lib.notify({
-                    description = 'You need a bag and some mulch',
-                    type = 'error'
-                })
+                if Config.NotifyType == 'qb' then
+                    TriggerClientEvent('QBCore:Notify', src, "You do not have enough mulch to bag (Need "..Config.mulchamount..")", 'error')
+                elseif Config.NotifyType == "okok" then
+                    TriggerClientEvent('okokNotify:Alert', source, "NEED MULCH", "You do not have enough mulch to bag (Need "..Config.mulchamount..")", 3500, 'error')
+                end
             end
-        else
-            lib.notify({
-                description = 'You need a bag ',
-                type = 'error'
-            })
         end
-    else
-        lib.notify({
-            description = 'You are already doing something',
-            type = 'error
-        })
     end
 end)
 

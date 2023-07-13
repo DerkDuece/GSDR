@@ -1,2 +1,5 @@
-# Hydrix-GSR
-For The Project Sloth Community! A QBCore Framework Gun Shot Residue Test! Perfect For RP!
+# QBCore GSR TEST REMAKE BY <HYDRIX/SCRIPTS>
+
+## Acknowledgments
+Finally A GSR TEST That is Made For QBCore with qb-admin exports and aceperms as well for forcewash command.
+

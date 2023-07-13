@@ -10,6 +10,8 @@ Config.NotifyType = 'qb'                  -- notification type: 'qb' for qb-core
 
 Config.mzskills = true                      -- change to "false" if you wish to use this resource without using mz-skills
 
+Config.ScrapXPSkill = "Scraping"            -- Take the name of your scrap skill from mz-skills (make sure they are exactly the same)
+
 Config.SellLocation = {
     [1] = {
             coords = vector3(-54.9, 6392.3, 31.62),
@@ -281,21 +283,5 @@ Config.CarItems = {
     [11] = {
         item = "sparkplugs",
         price = math.random(270, 310)
-    },
-    [12] = {
-        item = "car_hood",
-        price = math.random(300, 400)
-    },
-    [13] = {
-        item = "car_tire",
-        price = math.random(50, 100)
-    },
-    [14] = {
-        item = "car_door",
-        price = math.random(150, 200)
-    },
-    [15] = {
-        item = "car_trunk",
-        price = math.random(200, 300)
     }
 }

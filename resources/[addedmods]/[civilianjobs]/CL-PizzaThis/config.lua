@@ -10,7 +10,7 @@ Config.PolyZone = false -- Set to true to activate polygon zones
 
 Config.ConsumablesVersion = "new" -- Not sure if its got updated buut i noticed that QBCore:Server:SetMetaData isnt working anymore, If you still want to use this event change it to : "old"
 
-Config.Target = 'qb-target' -- Name for the target
+Config.Target = 'ox_target' -- Name for the target
 
 Config.WashingHandsStress = 3.0 -- How much stress is decreased when washing hands
 

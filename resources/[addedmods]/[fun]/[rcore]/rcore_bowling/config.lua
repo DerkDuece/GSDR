@@ -26,8 +26,8 @@ Config = {
 	},
 
 	EnabledMaps = {
-		BREZE_BOWLING = true,
-		GABZ_BOWLING = false,
+		BREZE_BOWLING = false,
+		GABZ_BOWLING = true,
 		YBN_MILO_RICHARDS_BOWLING = false,
 		YBN_MILO_SANDY_SHORES = false,
 		MAP4ALL_BOWLING = false,

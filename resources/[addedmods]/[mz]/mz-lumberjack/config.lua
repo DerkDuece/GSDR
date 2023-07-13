@@ -4,7 +4,7 @@ Config = Config or {}
 --MZ-LUMBERJACK--
 -----------------
 
-Config.NotifyType = 'okok'              -- notification type: 'qb' for qb-core standard notifications, 'okok' for okokNotify notifications
+Config.NotifyType = 'qb'              -- notification type: 'qb' for qb-core standard notifications, 'okok' for okokNotify notifications
 
 Config.mzskills = true                  -- Set to "false" to disable mz-skills
 -- if "Config.mzskills = true", then the following parameters apply:
@@ -37,7 +37,7 @@ Config.Timeout = 2 * (60 * 1000)        -- Time (in minutes) that it takes for t
 --------------------------------
 
 -- Set this to "true" if you want to enable a skill check for chopping wood (a different skill check applies for processing lumber products)
-Config.Axeskillcheck = false            -- Change to "false" if you do not want to have a skillcheck before cutting down a tree.
+Config.Axeskillcheck = true            -- Change to "false" if you do not want to have a skillcheck before cutting down a tree.
 --If "Config.Axeskillcheck" = true", then the following parameters apply:
 Config.lowparse = 1                     -- Lowest number of skillcheck parses per wood chop.
 Config.highparse = 2                    -- Highest number of skillcheck parses per wood chop.

@@ -26,14 +26,14 @@ Config.NotifyOptions = {
 
 Config.OutfitCodeLength = 10
 
-Config.UseRadialMenu = false
-Config.UseOxRadial = false -- Set to true to use ox_lib radial menu, both this and UseRadialMenu must be true 
+Config.UseRadialMenu = true
+Config.UseOxRadial = true -- Set to true to use ox_lib radial menu, both this and UseRadialMenu must be true 
 
 Config.EnablePedsForShops = true
 Config.EnablePedsForClothingRooms = true
 Config.EnablePedsForPlayerOutfitRooms = true
 
-Config.EnablePedMenu = true
+Config.EnablePedMenu = false
 Config.PedMenuGroup = "group.admin"
 
 Config.EnableJobOutfitsCommand = false -- Enables /joboutfits and /gangoutfits commands
@@ -182,7 +182,7 @@ Config.Stores = {
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false, -- false => uses the size + rotation to create the zone | true => uses points to create the zone
-        showBlip = true, -- overrides the blip visibilty configured above for the group
+        showBlip = false, -- overrides the blip visibilty configured above for the group
         --targetModel = "s_m_m_doctor_01", -- overrides the target ped configured for the group
         --targetScenario = "" -- overrides the target scenario configure for the group
         points = {

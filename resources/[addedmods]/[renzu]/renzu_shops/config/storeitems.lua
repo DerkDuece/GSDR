@@ -7,8 +7,6 @@ return {
 		{ lvl = 1, name = 'donut', price = 30 , category = 'food'},
 		{ lvl = 1, name = 'sandwich', price = 30 , category = 'food'},
 		{ lvl = 2, name = 'lighter', price = 20 , category = 'misc'},
-		{ lvl = 2, name = 'redw', price = 1000 , category = 'TOBACCO'},
-		{ lvl = 2, name = 'marlboro', price = 1000 , category = 'TOBACCO'},
 
 		{ lvl = 2, name = 'phone', price = 1000 , category = 'gadget'},
 		{ lvl = 2, name = 'radio', price = 1000 , category = 'gadget'},
@@ -32,16 +30,8 @@ return {
 		{ lvl = 1, name = 'martini', price = 5 , category = 'liquor'},
 		{ lvl = 1, name = 'bread', price = 15 , category = 'ingredients'},
 		{ lvl = 1, name = 'hotdog', price = 25 , category = 'ingredients'},
-		{ lvl = 1, name = 'fishingrod', price = 200 , category = 'fishing'},
-		{ lvl = 1, name = 'fishbait', price = 50, category = 'fishing'},
-		{ lvl = 1, name = 'garden_shovel', price = 1000 , category = 'seeds'},
-		{ lvl = 1, name = 'garden_pitcher', price = 1000, category = 'seeds'},
-		{ lvl = 1, name = 'pickle_seed', price = 100 , category = 'seeds'},
-		{ lvl = 1, name = 'potato_seed', price = 100 , category = 'seeds'},
-		{ lvl = 1, name = 'tomato_seed', price = 100 , category = 'seeds'},
-		{ lvl = 1, name = 'wheat_seed', price = 100 , category = 'seeds'},
-		{ lvl = 1, name = 'carrot_seed', price = 100 , category = 'seeds'},
-		{ lvl = 1, name = 'corn_seed', price = 100 , category = 'seeds'},
+		{ lvl = 1, name = 'redbull', price = 100, category = 'food'},
+		{ lvl = 1, name = 'chocolate', price = 100, category = 'food'},
 	
 		
 		{ lvl = 1, name = 'playerbooth', price = 50000 , category = 'misc', 
