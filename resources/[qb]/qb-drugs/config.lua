@@ -99,8 +99,8 @@ Config.Products = {
 
 -- Selling Config
 Config.SuccessChance = 50
-Config.ScamChance = 25
-Config.RobberyChance = 25
+Config.ScamChance = 10
+Config.RobberyChance = 10
 Config.MinimumDrugSalePolice = 0
 
 Config.DrugsPrice = {
