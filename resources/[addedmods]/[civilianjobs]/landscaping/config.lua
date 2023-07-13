@@ -31,7 +31,7 @@ Config.XPCategories = { -- Registered XP Types for Pickle's XP.
 }
 
 Config.Default = {
-    respawnTimer = 20, -- Time for respawning a scenario (put this inside a scenario to change it's timer).
+    respawnTimer = 300, -- Time for respawning a scenario (put this inside a scenario to change it's timer).
     showScenarioBlip = true, -- Show scenario blip on the map so landscapers can find work.
     rewards = { -- Default rewards for completing a scenario, these are split amongst players (put this inside a scenario to change it's rewards).
         {type = "money", amount = 200}
@@ -270,16 +270,6 @@ Config.Scenarios = { -- This is where you'll add work for landscapers to do.
         type = "obstacle", -- When ran over by either type of lawnmower, the lawnmower is destroyed.
         model = `prop_rock_5_smash1`, -- Model of the scenario.
         coords = vector3(-1605.2738, 106.0849, 61.0947), -- Center of the scenario.
-        heading = 30.0077, -- Heading of the scenario.
-        offset = -0.05, -- Offset of the Z-coordinate of the prop placed.
-        rewards = { -- Rewards for finishing the scenario.
-            {type = "xp", name = "landscaping", amount = 1000},
-        }
-    },
-    {
-        type = "obstacle", -- When ran over by either type of lawnmower, the lawnmower is destroyed.
-        model = `prop_rock_5_smash1`, -- Model of the scenario.
-        coords = vector3(-1602.23, 108.93, 60.99), -- Center of the scenario.
         heading = 30.0077, -- Heading of the scenario.
         offset = -0.05, -- Offset of the Z-coordinate of the prop placed.
         rewards = { -- Rewards for finishing the scenario.
