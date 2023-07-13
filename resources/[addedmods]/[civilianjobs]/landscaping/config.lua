@@ -305,18 +305,6 @@ Config.Scenarios = { -- This is where you'll add work for landscapers to do.
     {
         type = "grass", -- Type of scenario.
         model = `prop_veg_grass_01_c`, -- Model of the scenario.
-        coords = vector3(-592.4904, -29.4992, 43.6042), -- Center of the scenario.
-        radius = 7.0, -- Area of the scenario.
-        spread = 40, -- Amount of leaves to place inside the area.
-        offset = -0.75, -- Offset of the Z-coordinate of each prop placed in the area.
-        rewards = { -- Rewards for finishing the scenario. Rewards are split amongst those that help clear it.
-            {type = "money", amount = 50},
-            {type = "xp", name = "landscaping", amount = 1000},
-        }
-    },
-    {
-        type = "grass", -- Type of scenario.
-        model = `prop_veg_grass_01_c`, -- Model of the scenario.
         coords = vector3(-608.8917, -35.4217, 42.5946), -- Center of the scenario.
         radius = 7.0, -- Area of the scenario.
         spread = 40, -- Amount of leaves to place inside the area.
